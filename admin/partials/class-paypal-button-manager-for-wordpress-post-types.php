@@ -5,8 +5,8 @@
  * Registers post types and taxonomies
  *
  * @class       Paypal_button_Manager_For_Wordpress_Post_types
- * @version		1.0.0
- * @package		paypal-button-manager-for-wordpress
+ * @version	1.0.0
+ * @package	paypal-button-manager-for-wordpress
  * @category	Class
  * @author      Angell EYE <service@angelleye.com>
  */
