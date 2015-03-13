@@ -41,6 +41,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
 
         $this->plugin_name = $plugin_name;
         $this->version = $version;
+        $this->load_dependencies();
     }
 
     /**
@@ -61,6 +62,14 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
     public function enqueue_scripts() {
 
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/paypal-button-manager-for-wordpress-admin.js', array('jquery'), $this->version, false);
+    }
+
+    private function load_dependencies() {
+
+        /**
+         * The class responsible for defining all actions that occur in the Dashboard for Paypal buttons.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/class-paypal-button-manager-for-wordpress-post-types.php';
     }
 
 }

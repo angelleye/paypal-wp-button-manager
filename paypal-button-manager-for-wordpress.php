@@ -1,7 +1,6 @@
 <?php
 
 /**
- *
  * @wordpress-plugin
  * Plugin Name:       PayPal Button Manager for WordPress
  * Plugin URI:        http://www.angelleye.com/
@@ -17,6 +16,25 @@
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
     die;
+}
+
+/**
+ *  define BMW_PLUGIN_DIR constant for global use
+ */
+if (!defined('BMW_PLUGIN_DIR'))
+    define('BMW_PLUGIN_DIR', dirname(__FILE__));
+
+/**
+ * define BMW_PLUGIN_URL constant for global use
+ */
+if (!defined('BMW_PLUGIN_URL'))
+    define('BMW_PLUGIN_URL', plugin_dir_url(__FILE__));
+
+/**
+ *  define log file path
+ */
+if (!defined('PAYPAL_BUTTONS_FOR_WORDPRESS_LOG_DIR')) {
+    define('PAYPAL_BUTTONS_FOR_WORDPRESS_LOG_DIR', ABSPATH . 'paypal-buttons-logs/');
 }
 
 /**
