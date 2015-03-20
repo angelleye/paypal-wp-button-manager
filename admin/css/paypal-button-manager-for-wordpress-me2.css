@@ -1,0 +1,665 @@
+.gblMerHeader {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:14px;
+  min-width: 808px;
+  padding-bottom: 20px;
+}		  
+.gblMerHeader .header-wrap {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #a7a7a7;
+  -webkit-box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.25);
+  display: block;
+  height: 73px;
+}
+.gblMerHeader .header-wrap .header-inner-wrap {
+  border-bottom: 1px solid #fff;
+  height: 73px;
+}
+.gblMerHeader .header-wrap .headerContent {
+  margin: 0 auto;
+  max-width: 960px;
+  min-width: 768px;
+  padding: 0 20px;
+  position: relative;
+  text-align: center;
+}
+.gblMerHeader .header-wrap a {
+  color: #0877c8;
+  text-decoration: none;
+}
+.gblMerHeader .header-wrap .logo {
+  float: left;
+  height: 28px;
+  margin: 23px 8px 13px 0;
+  width: 106px;
+}
+.gblMerHeader .header-wrap .homeIcon {
+  background: url("https://www.paypalobjects.com/webstatic/i/ex_me2/sprite/sprite_headerfooter-1x_107.png") no-repeat scroll 8px -1396px transparent;
+  float: left;
+  height: 28px;
+  margin: 23px 9px 13px 0;
+}
+
+.gblMerHeader .header-wrap .homeIcon:hover ,
+.header-wrap .homeIcon:focus{
+  background-position: 8px -1595px;
+}
+
+.gblMerHeader .header-wrap #top-navi {
+  float: left;
+  list-style-type: none;
+  margin: 0;
+}
+.gblMerHeader .header-wrap #top-navi li.homeIconWrapper {
+  background: none;
+}
+.gblMerHeader .header-wrap #top-navi li {
+  background: transparent url(https://www.paypalobjects.com/webstatic/i/ex_me2/sprite/sprite_headerfooter-1x_107.png) no-repeat 0 0;
+  float: left;
+  line-height: 72px;
+  margin:0px;
+  padding:0px;
+}
+.gblMerHeader .header-wrap #top-navi li a,
+.gblMerHeader .header-wrap #top-navi li .menu-trigger {
+  color: #666;
+  display: block;
+  font-weight: bold;
+  line-height: 72px;
+  padding: 0 11px 0 20px;
+  text-align: left;
+}
+.gblMerHeader .header-wrap #top-navi li a:hover {
+  color: #0079c1;
+}
+.gblMerHeader .header-wrap #top-navi li.dropdown {
+  position: relative;
+}
+.gblMerHeader .header-wrap #top-navi li.dropdown .menu-trigger {
+  background: transparent url(https://www.paypalobjects.com/webstatic/i/ex_me2/sprite/sprite_headerfooter-1x_107.png) no-repeat 0 0;
+  background-position: right 0;
+  left: 3px;
+  padding: 0 40px 0 17px;
+  position: relative;
+  z-index: 3;
+}
+.gblMerHeader .header-wrap #top-navi li.dropdown ul {
+  background: #fff;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #d6d6d6;
+  -webkit-border-radius: 0 5px 5px 5px;
+  -moz-border-radius: 0 5px 5px 5px;
+  border-radius: 0 5px 5px 5px;	
+  -moz-box-shadow: 0 1px 2px #ccc;
+  -webkit-box-shadow: 0 1px 2px #ccc;
+  box-shadow: 0 1px 2px #ccc;
+  left: -9999px;
+  list-style: none;
+  margin: 0;
+  padding: 5px 0;
+  position: absolute;
+  top: 49px;
+  z-index: 2;
+}
+.gblMerHeader .header-wrap #top-navi li.dropdown ul li {
+  background: none;
+  line-height: 40px;
+  min-width: 160px;
+  max-width: 200px;
+}
+.gblMerHeader .header-wrap #top-navi li.dropdown ul li.RU {
+  min-width: 192px;
+  max-width: 200px;
+}
+.gblMerHeader .header-wrap #top-navi li.dropdown ul li img {
+  display:none;
+}
+.gblMerHeader .header-wrap #top-navi li.dropdown ul li a {
+  background: none;
+  display: block;
+  font-size: 13px;
+  font-weight: normal;
+  left: 0;
+  line-height: 18px;
+  padding: 12px 20px;
+  z-index: 3;
+
+}
+.gblMerHeader .header-wrap #top-navi li.dropdown ul li a:hover, .gblMerHeader .header-wrap #top-navi li.dropdown ul li a:focus{
+  background-color: #f5f5f5;
+  color: #0079c1;
+}
+.gblMerHeader .header-wrap #top-navi li.dropdown ul li .divider{
+  background: none repeat scroll 0 0 #ddd;
+  display: block;
+  height: 1px;
+  margin: 0 10px;
+}
+.gblMerHeader .header-wrap #top-navi li.dropdown:hover,
+.gblMerHeader .header-wrap #top-navi li.dropdown:focus ,
+.gblMerHeader .header-wrap #top-navi li.dropdown.show-dropdown {
+  background: transparent url(https://www.paypalobjects.com/webstatic/i/ex_me2/sprite/sprite_headerfooter-1x_107.png) no-repeat 0 0;
+  background-position: -1px -200px;  
+}
+.gblMerHeader .header-wrap #top-navi li.dropdown:hover .menu-trigger,
+.gblMerHeader .header-wrap #top-navi li.dropdown:focus .menu-trigger,
+.gblMerHeader .header-wrap #top-navi li.dropdown.show-dropdown .menu-trigger,
+.gblMerHeader .header-wrap #top-navi li.dropdown:hover:focus,
+.gblMerHeader .header-wrap #top-navi li.dropdown:focus:focus,
+.gblMerHeader .header-wrap #top-navi li.dropdown.show-dropdown:focus {
+  background: transparent url(https://www.paypalobjects.com/webstatic/i/ex_me2/sprite/sprite_headerfooter-1x_107.png) no-repeat 0 0;
+  background-position: right -200px;
+  color: #0079c1;
+  cursor: pointer;
+}
+.gblMerHeader .header-wrap #top-navi li.dropdown:hover ul,.gblMerHeader .header-wrap #top-navi li.dropdown:focus ul,.gblMerHeader .header-wrap #top-navi li.dropdown.show-dropdown ul{
+  left: 2px;
+}  
+.gblMerHeader .header-wrap .globalLinksHolder {
+  float: right;
+  height: 50px;
+  margin-top: 12px;
+  position: relative;
+}
+.gblMerHeader .header-wrap .globalLinksHolder .secondary-btn {
+  font-weight: bold !important;
+  margin: 11px 0 12px 0;
+  line-height: 16px;
+}
+.gblMerHeader .header-wrap .secondary-btn {
+  color: #333;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+  background: none;
+  background-color: #d9d9d9;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e0e0e0), color-stop(20%, #e0e0e0), to(#bfbfbf));
+  background-image: -webkit-linear-gradient(#e0e0e0, #e0e0e0 20%, #bfbfbf);
+  background-image: -moz-linear-gradient(top, #e0e0e0, #e0e0e0 2000%, #bfbfbf);
+  background-image: -o-linear-gradient(#e0e0e0, #e0e0e0 20%, #bfbfbf);
+  background-image: linear-gradient(#e0e0e0, #e0e0e0 20%, #bfbfbf);
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe0e0e0', endColorstr='#ffbfbfbf', GradientType=0);
+  -moz-box-shadow: 0 1px #ececec inset, 0 1px rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: 0 1px #ececec inset, 0 1px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px #ececec inset, 0 1px rgba(255, 255, 255, 0.2);
+  border-color: #cbcbcb #b2b2b2 #8b8b8b;
+  border-style: solid;
+  border-width: 1px;
+  text-shadow: 0 1px #e0e0e0;
+  display: inline-block;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.gblMerHeader .header-wrap .secondary-btn:hover,
+.gblMerHeader .header-wrap .secondary-btn:focus {
+  border-color: #cbcbcb #b2b2b2 #8d8d8d;
+  background-color: #d4d4d4;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e0e0e0), color-stop(20%, #e0e0e0), to(#a5a5a5));
+  background-image: -webkit-linear-gradient(#e0e0e0, #e0e0e0 20%, #a5a5a5);
+  background-image: -moz-linear-gradient(top, #e0e0e0, #e0e0e0 2000%, #a5a5a5);
+  background-image: -o-linear-gradient(#e0e0e0, #e0e0e0 20%, #a5a5a5);
+  background-image: linear-gradient(#e0e0e0, #e0e0e0 20%, #a5a5a5);
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe0e0e0', endColorstr='#ffa5a5a5', GradientType=0);
+  -moz-box-shadow: 0 1px #ebe9ec inset, 0 1px rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: 0 1px #ebe9ec inset, 0 1px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px #ebe9ec inset, 0 1px rgba(255, 255, 255, 0.2);
+}
+.gblMerHeader .header-wrap .secondary-btn:active {
+  border-color: #8c8c8c #878787 #808080;
+  background-color: #c4c4c4;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#cccccc), color-stop(20%, #cccccc), to(#a5a5a5));
+  background-image: -webkit-linear-gradient(#cccccc, #cccccc 20%, #a5a5a5);
+  background-image: -moz-linear-gradient(top, #cccccc, #cccccc 2000%, #a5a5a5);
+  background-image: -o-linear-gradient(#cccccc, #cccccc 20%, #a5a5a5);
+  background-image: linear-gradient(#cccccc, #cccccc 20%, #a5a5a5);
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffcccccc', endColorstr='#ffa5a5a5', GradientType=0);
+  -moz-box-shadow: 0 1px #ebe9ec inset, 0 1px rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: 0 1px #ebe9ec inset, 0 1px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 4px #737373 inset, 0 1px rgba(255, 255, 255, 0.2);
+}
+.gblMerHeader .notification-wrapper, .gblMerHeader .settings-wrapper {
+  float: left;
+  position: relative;
+}
+.gblMerHeader #notificationBtn, .gblMerHeader #settingsBtn {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 10px;
+}
+.gblMerHeader .notification-icon {
+	background: transparent url(https://www.paypalobjects.com/webstatic/i/ex_me2/sprite/sprite_headerfooter-1x_107.png) no-repeat 1px -600px;
+	float: left;
+	height: 16px;
+	margin: 0;
+	position: relative;
+	width: 18px;
+}
+.gblMerHeader .notification-count {    
+	background-color: #D71E26;
+	background-image: -webkit-linear-gradient(#ee9b9f, #e1262f 0.4, #af0002);
+	background-image: -moz-linear-gradient(top, #ee9b9f, #e1262f 40%, #af0002);
+	background-image: -o-linear-gradient(#ee9b9f, #e1262f 0.4, #af0002);
+	background-image: linear-gradient(#ee9b9f, #e1262f 0.4, #af0002);
+	background-repeat: no-repeat;
+	background-clip: padding-box;
+	border-radius: 10px;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+	color: #fff;
+	float: right;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 18px;
+	min-width: 10px;
+	padding: 0 4px;
+	position: absolute;
+	right: 5px;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(7, 0, 0, 0.9);
+	top: 4px;
+}
+
+.gblMerHeader .settings-icon {
+	background: transparent url(https://www.paypalobjects.com/webstatic/i/ex_me2/sprite/sprite_headerfooter-1x_107.png) no-repeat 1px -1000px;
+	float: left;
+	height: 16px;
+	margin: 0;
+	position: relative;
+	width: 18px;
+}
+.gblMerHeader .settings-count {    
+	background-color: #888;
+	background-image: -webkit-linear-gradient(#adadad, #888888 0.4, #666666);
+	background-image: -moz-linear-gradient(top, #adadad, #888888 40%, #666666);
+	background-image: -o-linear-gradient(#adadad, #888888 0.4, #666666);
+	background-image: linear-gradient(#adadad, #888888 0.4, #666666);
+	background-repeat: no-repeat;
+	background-clip: padding-box;
+	border-radius: 10px;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+	color: #fff;
+	float: right;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 18px;
+	min-width: 10px;
+	padding: 0 4px;
+	position: absolute;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(7, 0, 0, 0.9);
+	top: 4px;
+}
+.gblMerHeader .popover {
+	left: auto;
+	position: absolute;									
+	right: -15px;
+	top: 50px;
+	width: 300px;
+	z-index: 1010;
+}
+.gblMerHeader .popover:before {
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #cccccc;
+	content: "";
+	display: inline-block;
+	height: 0;
+	position: absolute;
+	right: 35px;
+	top: 8px;
+	width: 0;
+}
+.gblMerHeader .popover-content {
+	background-clip: padding-box;
+	background-color: #888;
+	border-radius: 5px;
+	border-top: 0 none;
+	box-shadow: 0 4px 20px #999;
+	color: #fff;
+	min-width: 230px;
+	padding: 0 0 2px;
+	position: relative;
+	text-align: left;
+}
+.gblMerHeader .popover-content:before {
+	border-bottom: 10px solid #888;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	content: "";
+	display: inline-block;
+	height: 0;
+	position: absolute;
+	right: 35px;
+	top: -9px;
+	width: 0;
+}
+.gblMerHeader .popover-head {
+	border-radius: 10px;
+	height: 100%;
+	min-height: 6px;
+	padding-top: 4px;
+	text-align: center;
+}
+.gblMerHeader .close-notification-box, .gblMerHeader .dismiss, .gblMerHeader .close-settings-box {
+	background: transparent url(https://www.paypalobjects.com/webstatic/i/ex_me2/sprite/sprite_headerfooter-1x_107.png) no-repeat 20px -385px;
+	border:none !important;
+	color: transparent;
+	font-size:0px;
+	display: block;
+	height: 30px;
+	overflow: hidden;
+	padding: 7px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30px !important;
+	z-index: 3;
+}
+.close-notification-box:hover,.close-notification-box:focus,.close-settings-box:hover,.close-settings-box:focus{
+	background-position: -312px -385px;
+}
+.gblMerHeader .dismiss {
+	opacity: 0.6;
+	padding: 0;
+	right:-8px;
+}
+.gblMerHeader .dismiss:focus,.gblMerHeader .dismiss:hover {
+	opacity: 1;
+}
+.gblMerHeader .popover-body {
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	color: #999;
+	margin: 0 6px 5px;
+	padding: 5px 0 0;
+	max-height: 340px;
+	overflow-y: auto;
+}
+.gblMerHeader .setting-body {
+	max-height: 450px;
+}
+.gblMerHeader .setting-body .merchantInfo {
+	background: #f1f1f1;
+    color: #424242;
+	margin-top: -5px;
+    padding: 10px 15px 15px 20px;
+}
+.gblMerHeader .setting-body .merchantInfo h3 {
+	color: #686868;
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: bold;
+	margin: 0 0 5px;
+	padding-left: 0;
+	text-align: left;
+}
+.gblMerHeader .setting-body .merchantInfo .businessInfo {
+    font-size: 13px;
+}
+.gblMerHeader .setting-body .merchantInfo .businessInfo .businessLabel {
+    display: block;
+    float: left;
+    margin-right: 8px;
+}
+.gblMerHeader .setting-body .merchantInfo .businessInfo a {
+    display: inline-block;
+}
+.gblMerHeader .setting-body ul.topNavLinks {
+    background-color: #fff;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.gblMerHeader .setting-body ul.topNavLinks li {
+    border-bottom: 1px solid #ddd;
+    line-height: 20px;
+    margin: 0 10px;
+    padding: 10px 5px 5px;
+    position: relative;
+}
+.gblMerHeader .setting-body ul.topNavLinks li:last-child {
+    border-bottom: medium none;
+}
+.gblMerHeader .setting-body  ul.topNavLinks li a {
+    background: url("https://www.paypalobjects.com/webstatic/i/ex_me2/sprite/sprite_headerfooter-1x_107.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    font-size: 14px;
+    min-height: 30px;
+    padding: 5px 0 0 40px;
+}
+.gblMerHeader .setting-body ul.topNavLinks li a.businiessSetupIcon {
+    background-position: 4px -2196px;
+}
+.gblMerHeader .setting-body ul.topNavLinks li a.settingsIcon {
+    background-position: 4px -2397px;
+}
+.gblMerHeader .setting-body h3 {
+    background: #f1f1f1;
+    color: #686868;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 5px 0;
+    padding: 6px;
+    text-align: center;
+}
+.gblMerHeader .setting-body h3 .todosCount {
+    background: none repeat scroll 0 0 #999;
+    border-radius: 999px;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    height: 19px;
+    width: 19px;
+    margin-left:5px;	
+}
+.gblMerHeader .setting-body .subMenuWrapper {
+    max-height: 170px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.gblMerHeader .setting-body .subMenuWrapper ul.toDosList {
+    background-color: #fff;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.gblMerHeader .setting-body .subMenuWrapper ul.toDosList:last-child {
+    border-bottom: medium none;
+}
+.gblMerHeader .setting-body .subMenuWrapper ul.toDosList li {
+    border-bottom: 1px solid #ddd;
+    margin: 0 10px;
+    padding: 15px 0 16px 10px;
+    line-height: 20px;
+}
+.gblMerHeader .setting-body .subMenuWrapper ul.toDosList li a {
+    color: #0079c1;
+    display: list-item;
+    font-size: 14px;
+}
+.gblMerHeader .logoutWrapper {
+    float: right;
+	margin-left: 10px;
+}
+.gblMerHeader .popover .popover-body .alert {
+	background-color: transparent;
+	background-clip: padding-box;
+	border-bottom: 1px solid #ddd;
+	color: #333;
+	display: block;
+	margin-bottom: 1px;
+	padding: 16px 30px 4px 40px;
+	position: relative;	
+}
+.gblMerHeader .popover .popover-body .alert.alert-restriction {
+	font-weight:bold;
+}
+.gblMerHeader .popover .popover-body .alert.alert-restriction .icon {
+	background: transparent url(https://www.paypalobjects.com/webstatic/i/ex_me2/sprite/sprite_headerfooter-1x_107.png) no-repeat 0 -785px;
+	height: 32px;
+	left: 10px;
+	position: absolute;
+	top: 0;
+	width: 30px;
+}
+.gblMerHeader .popover .popover-body .alert .notification-message {
+	display: block;
+	padding-bottom: 12px;
+	margin:0px;
+}
+.gblMerHeader .popover .popover-body .alert a {
+	font-weight: normal;
+}
+.gblMerHeader .popover .popover-body .alert a,.popover .popover-body .alert a.secondary-btn {
+	font-size:14px;
+	margin:0px;
+}
+.gblMerHeader .popover .popover-body .alert a:focus,.gblMerHeader .popover .popover-body .alert a:hover {
+	text-decoration:underline;
+}
+.gblMerHeader .popover .popover-body .alert .secondary-btn:hover,.gblMerHeader .popover .popover-body .alert .secondary-btn:focus {
+	text-decoration:none;
+}
+.gblMerHeader .popover .popover-head h2{
+	font-size: 18px;
+	margin: 5px 45px 10px 20px;
+	color:#fff;
+}
+.gblMerHeader .popover .popover-head h2 a{
+	color:#fff;
+	font-size: 18px;
+	text-decoration: none;
+}
+.gblMerHeader .popover .popover-body .alert.first-item {
+	border:none;
+}
+#gblMerFooter {
+  background: none repeat scroll 0 0 #6e6d71;
+  border-top: 1px solid #e5e5e5;
+  clear: both;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  margin: 0 auto;
+}
+#gblMerFooter .utility {
+  background-color: #f5f5f5;
+  border-top: 1px solid #fff;
+  -moz-box-shadow: 0 5px 5px #5a595d;
+  -webkit-box-shadow: 0 5px 5px #5a595d;
+  box-shadow: 0 5px 5px #5a595d;
+}
+#gblMerFooter ul,#gblMerFooter ul li {
+  list-style: disc outside none;
+  margin: 0;
+  padding: 0;
+}
+#gblMerFooter ul li {
+  display: inline-block;
+}
+#gblMerFooter .utility .footerNav {
+  margin: 0 auto;
+  overflow: auto;
+  width: 988px;	
+}
+#gblMerFooter .utility ul {
+  float: left;
+}
+#gblMerFooter .utility ul li {
+  margin-right: 25px;
+}
+#gblMerFooter .utility ul a {
+  color: #666;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 4.16em;
+  padding: 0;
+  text-decoration: none;
+  text-shadow: 1px 1px #fff;
+}
+#gblMerFooter .utility ul a:hover,#gblMerFooter .utility ul a:focus {
+  color: #0079c1;
+  text-decoration: none;
+}
+#gblMerFooter .utility ul a:active {
+  color: #00457c;
+}
+#gblMerFooter .footer {
+  color: #fff;
+  font-size: 11px;
+  position: relative;
+  margin: 0 auto;
+  overflow: auto;	
+  width: 988px;
+}
+#gblMerFooter .footer  a{
+	color: #fff;
+	text-decoration: none;
+}
+#gblMerFooter .footer  a:hover,
+#gblMerFooter .footer  a:focus {
+	text-decoration: underline;
+}
+#gblMerFooter .footer  .legal {
+  line-height: 1.875em;
+  overflow: auto;
+  padding-bottom: 32px;	
+}
+#gblMerFooter .footer  .legal .copyright {
+  float: left;
+  line-height: 2.1818em;
+  margin: 12px 0 10px;
+  padding: 0 10px 0 0;
+}
+#gblMerFooter .footer  .legal ul {
+  border-left: 1px solid #ddd;
+  float: left;
+  height: 12px;
+  line-height: 1em;
+  margin: 19px 0 0;
+  padding: 0 0 0 14px;
+  width: auto;
+}
+#gblMerFooter .footer  .legal ul li {
+  list-style: disc outside none;
+  margin-right: 18px;
+  padding: 0;
+}
+#gblMerFooter .footer  .legal .legalDesc {
+	clear:both;
+	line-height:15px;
+}
+#gblMerFooter .footer  .legal .legalDesc a{
+	text-decoration: underline;
+}
+/* CMS pages */
+#page #page, #stdpage #page {
+	min-width: 0;
+	background:none;
+}
+#page.outside {
+	width:100%;
+}
+
+#page #content #wrapper #content{
+	box-shadow: none;
+	padding-left: 0;
+}
+
+@media print {
+	#gblMerFooter, .gblMerHeader {
+		display: none;
+	}
+}

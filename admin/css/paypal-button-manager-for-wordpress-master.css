@@ -1,0 +1,372 @@
+/**************************************************************************
+ * 18236 - Button Factory 2.0
+ * These styles are based on the new semantic model being integrated into 
+ * the CoreLayout.
+ **************************************************************************/
+#pageLoadMsg {
+	background:url('/en_US/i/header/header_logginginAction.gif') center center no-repeat;
+	font-weight:bold;
+	font-size:1.4em;
+	height:110px;
+	margin-top:60px;
+	text-align:center;
+	width:100%;
+}
+#blurb {margin-bottom:12px;}
+#pageViewHelpText{font-size:12px;margin-left:0;}
+
+label.float {padding-right:5px; float:left;}
+
+.layout1 {clear:both;}
+
+.clearfix:after {content:'.'; display:block; height:0; *height:1%; _height:1%; clear:both; visibility:hidden;}
+.heightfix:before {content:'.'; display:block; visibility:hidden; height:0;}
+
+/* Lightbox mask layer fix */
+div#page {position: static;}
+
+/* Noscript styles */
+#noScriptButtons div {float:left;}
+#noScriptButtons div ol {padding-left:4px;}
+#noScriptButtons div ol li {margin-bottom: 4px;}
+#noScriptButtons div.splitLeft {width:350px;}
+#noScriptButtons div.splitDivider {border-left:1px solid #ccc; width:40px; height:115px; vertical-align:middle;}
+#noScriptButtons div.splitDivider span.centeredText {background-color:#fff; font-size:1.2em; font-weight:bold; line-height:115px; left:-0.6em; padding:0.2em 0; position:relative;}
+#noScriptButtons div.splitRight {width:350px;}
+#noScriptButtons:after {content:"."; height:1%; clear:both; visibility:hidden; display:block;}
+
+/**************************************************************************
+ * Standard button styles 
+ **************************************************************************/
+input.secondary, input.tertiary, input.secondayDisabled, input.tertiaryDisabled {cursor:pointer; cursor:hand; width:auto; height:22px; padding-left:10px; padding-right:10px;}
+input.secondary {color:#336699; background:#83a9ce url(/en_US/i/btn/btn_secondary_1x50.gif) repeat-x top left; border:1px solid #85a7ca;}
+input.tertiary {color:#777; background:#bcbcbb url(/en_US/i/btn/btn_cancel_1x50.gif) repeat-x top left; border:1px solid #acadaf;}
+input.secondaryDisabled, input.tertiaryDisabled {color:#ccc; background:#e5e5e5; border:1px solid #ccc; cursor:none;}
+
+
+/**************************************************************************
+ * Common/Global
+ **************************************************************************/
+.accordionContainer {margin:2em 0;}
+.loginNotice {background-color:#ffffcc; line-height:18px; padding:4px 12px 4px 12px;}
+.fadedOut {background-color:#fff; filter:alpha(opacity=50); opacity:0.5;}
+.fakeLink {color:#084482; text-decoration:underline;}
+div.group {clear:both; margin:0 0 20px 0 !important;}
+div.group:after {clear:both; content:"."; display:block; height:0; visibility:hidden;}
+div.group.last {margin:0 !important;}
+div.group.outerContainer {margin:30px 0 !important;}
+
+/********************************************************************** 
+ * Accordion (overrides)
+ **********************************************************************/
+ 
+.accordion {margin-bottom:18px;}
+.accordion .box div.header {background:transparent url(/en_US/i/scr/scr_stepgradient_1x23h.jpg) repeat-x; border:1px solid #ccc; border-bottom:0; margin:0}
+.accordion .box.open div.header,
+.accordion .box div.header.hover {background:transparent url(/en_US/i/scr/scr_stepgradienthover_1x23h.jpg) repeat-x; cursor:pointer; cursor:hand;}
+.accordion .box.last div.header,
+.accordion .box.open.last .body .content {border-bottom:1px solid #ccc}
+.accordion .box div.header h3 {background:transparent url(/en_US/i/scr/scr_steparrowright_12wx12h.gif) 9px 5px no-repeat; border:1px solid #f4f7f6; color:#333; font-size:1em; font-weight:normal; height:16px; padding:4px 0 2px 25px;}
+
+.accordion .box div.header.hover h3 {font-weight:bold}
+.accordion .box div.header h3 { font-weight: bold;}
+.accordion .box.open div.header h3 {background:transparent url(/en_US/i/scr/src_steparrowdown_12wx12h.gif) 9px 5px no-repeat; font-weight:bold; margin:0 !important}
+/*.accordion .box .body {width:750px !important;}*/
+.accordion .box .body .content {border-left:1px solid #ccc; border-right:1px solid #ccc; margin:0; padding:0; height:auto;}
+.accordion .box .body .content:after {content:"."; height:0; *height:1%; clear:both; visibility:hidden; display:block;}
+.accordion .box.open .body .content {position:relative; overflow:hidden;}
+.accordion.dynamic .box div.header h3 {cursor:pointer; cursor:hand; margin:0 !important}
+/*.accordion.dynamic .box .body {height:auto; position:absolute; visibility:hidden;}*/
+.accordion.dynamic .box .body {height:auto; position:relative; visibility:hidden; display: none;}
+
+
+.accordion.dynamic .box.open div.header {border-bottom:1px solid #ccc}
+.accordion.dynamic .box.open .body {background-color:#fff; overflow:hidden; position:relative; visibility:visible; display: block;width:100% !important;}
+.accordion .box .body .content .container {padding:30px;}
+
+/********************************************************************** 
+ * Step 1
+ **********************************************************************/
+.infoLink {color:#084482; font-size:11px; padding-left:3px; text-decoration:underline; border:none; font-weight:normal;}
+.infoLinkDottedLine {border-bottom:1px dashed #084482; text-decoration:none; padding-left:0; font-weight:normal; font-size:0.9em;}
+.fieldNote {color:#999; font-size:11px; margin-top:2px;}
+.fieldNote .label {float:left; font-weight:bold; padding-right:6px;}
+.floatLeft {float:left; width:auto; display:inline;}
+.floatRight {float:right; width:auto;}
+.clearLeft {clear:left;}
+
+/* General styles */
+#stepOne .box .body .content {padding:20px 28px 0 20px !important;}
+#stepOne fieldset {margin:0; padding:0;}
+#stepOne fieldset label {margin:2px 0 0 0;}
+#stepOne fieldset legend {padding-bottom:5px;}
+#stepOne input, #stepOne .group select {margin:2px 5px 0 0;}
+#stepOne #buttonType {padding-bottom:3px; margin-bottom:3px;}
+#stepOne .labelOption {margin:3px 0 6px 20px;}
+#stepOne .demoLink {position:absolute; right:30px; width:auto;}
+#stepOne .demoLink a {background:url(/en_US/i/icon/icon_question_16wx16h.gif) 2px 3px no-repeat; padding:3px 0 3px 25px;}
+
+/* Form elements */
+#stepOne input.xsmall {width:60px;}
+#stepOne input.small {width:90px;}
+#stepOne input.xlarge {width:250px;}
+#stepOne #itemCurrency {width:90px;}
+#stepOne #itemWeight {margin-left:5px;}
+#stepOne #trialDurationCount, #stepOne #secondTrialDurationCount {margin-left:0 !important;}
+#stepOne .group h2.gcStyleHeader {margin:30px 0 10px;}
+#stepOne .group.products .shipping {margin-bottom:20px;}
+#stepOne .group.products .shipping input, 
+#stepOne .group.products .tax input {text-align:right;}
+#stepOne .group.cartOption {padding-bottom:0;}
+#stepOne .group.cartOption.fadedOut legend {font-weight:600;}
+#stepOne .group.notifications {margin:0 !important;}
+#stepOne .group select {padding:1px 0;}
+#stepOne .group.paymentNotification select, 
+#stepOne .group .subOption select, 
+#stepOne .group .subOption input {margin-top:0; margin-left:5px;}
+#stepOne .labelOption .fixedDonationAmountContainer input {margin-left:0;}
+#stepOne .trialOfferOptions, #stepOne .secondTrialOfferOptions {padding:0 0 10px 20px;}
+#stepOne .trialOfferOptions fieldset {padding:0 !important; margin:15px 0 0 0;}
+#stepOne .secondTrialOfferOptions fieldset {padding:0 !important; margin:5px 0 0 0;}
+#stepOne .secondTrialOfferOptions fieldset div {margin-bottom:17px;}
+
+/**********************************************************************
+ * Customize Button
+ **********************************************************************/
+.outerContainer{border:1px solid #ccc !important; width:565px; position:relative; overflow:hidden}
+div#wideBox { width:690px;}
+
+/* Left Column */
+.customizeButtonSection p{margin:0; padding:0}
+.customizeButtonSection{width:308px; float:left; border:1px solid #f3f3f3; border-right:256px solid #f3f3f3; margin-right:-250px}
+#wideBox .customizeButtonSection{border-color:#F3F3F3;border-style:solid;border-width:1px 300px 1px 1px;float:left;margin-right:-250px;width:390px;}
+.borderBox{border-right:1px solid #ccc; width:307px; padding-bottom:15px}
+#wideBox .borderBox {border-right:1px solid #CCCCCC;padding-bottom:15px;width:390px;}
+.customizeButtonSection .heading{padding:6px 0 10px 8px; margin:0}
+#customizeSection input.checkbox, 
+#customizeSection input.radio{margin:0 5px 0 0; padding:0}
+#wideBox .optionRow{clear:both;}
+div#dropdownPriceSection .dropdownPriceTitle label span{margin:0 !important;}
+/* Dropdowns */
+.ddpOptionCurrency.show{display:inline!important;}
+#stepOne .group select.ddpOptionFrequency{width:115px; padding:0;}
+div#dropdownPriceSection p.title input, 
+div#dropdownPriceSection p.title label, 
+div#dropdownPriceSection p.title span, 
+div#customizeSection div.dropdownSection p.title input, 
+div#customizeSection div.dropdownSection p.title label, 
+div#customizeSection div.textfieldSection p.title input, 
+div#customizeSection div.textfieldSection p.title label{margin:0 6px 6px 40px; padding:2px}
+div#customizeSection div label.optionNameLbl{width:115px; float:left; margin:0 6px 6px 40px; _margin:0 6px 6px 20px; padding:2px; _height:10px}
+div#customizeSection div label.optionPriceLbl{width:53px; float:left; margin:0 6px 6px 0; padding:2px}
+div#customizeSection div label.optionCurrencyLbl{float:left; padding:2px; margin:0 6px 0 0}
+div.customizeButtonSection div#customizeSection div p.optionRow {clear:both; margin: 6px 0px;}
+div.customizeButtonSection div#customizeSection div p input.ddOptionName{margin:0 6px 6px 40px}
+div.customizeButtonSection div#customizeSection div p.optionRow input.ddpOptionName{width:115px; float:left; margin-left:40px}
+div.customizeButtonSection div#customizeSection div p.optionRow input.ddpOptionPrice{width:53px; float:left;}
+div.customizeButtonSection div#customizeSection div p.optionRow select.ddpOptionCurrency{float:left; margin: 2px 0px;}
+div.customizeButtonSection div#customizeSection div p.optionRow label.ddpOptionCurrency{float: left; margin:0px 6px; padding:0; color:#ccc; font-size:12px}
+div.customizeButtonSection div#customizeSection div p.moreOptionsLink{clear:left; margin:0 20px 6px 40px; padding:2px; overflow:auto;}
+div.customizeButtonSection div#customizeSection div p.moreOptionsLink a#addOptionPrice{float:left;}
+div.customizeButtonSection div#customizeSection div p.moreOptionsLink a#removeOptionPrice{float:right;}
+div.customizeButtonSection div#customizeSection div p.saveCancel{clear:left; margin:0 6px 20px 40px; padding:2px}
+div.customizeButtonSection div#customizeSection div p.saveCancel a#cancelOptionPrice, 
+div.customizeButtonSection div#customizeSection div p.saveCancel a.cancelOption,  
+div.customizeButtonSection div#customizeSection div p.saveCancel a.cancelTextfield{margin:0 0 0 7px}
+div.customizeButtonSection div#customizeSection div p.editDelete{margin:5px 0 15px 40px; padding:0}
+#wideBox div.customizeButtonSection div#customizeSection div p input.ddpOptionPrice{width:85px}
+div#customizeSection label{margin:0 0 6px 20px; _margin:0 0 2px 20px}
+#wideBox div#customizeSection div label.optionPriceLbl{width:90px}
+div.customizeButtonSection div#customizeSection label#dropdown{clear:both}
+.dropdown label{display:inline}
+input#dropdown{clear:left}
+
+/* Saved Dropdown/Textfield Sections */
+div#customizeSection div#savedDropdownPriceSection p label, 
+div#customizeSection div.savedDropdownSection p label, 
+div#customizeSection div.savedTextfieldSection p label, 
+p#addNewDropdownSection a, 
+p#addNewTextfieldSection a{margin:0 0 0 40px; padding:0}
+div#customizeSection div#savedDropdownPriceSection p label, 
+div#customizeSection div.savedDropdownSection p label, 
+div#customizeSection div.savedTextfieldSection p label{width:250px; overflow:hidden}
+
+/* Customize Button Appearance Section */
+p#addTextfield{margin:0 0 10px 0}
+span#buttonAppLink.collapsed a{background:transparent url(/en_US/i/scr/scr_arrowright_14wx14h.gif) no-repeat; margin:0 0 0 20px; padding-left:15px}
+span#buttonAppLink.expanded a{background:transparent url(/en_US/i/scr/scr_arrowdown_14wx14h.gif) no-repeat; margin:0 0 0 20px; padding-left:15px}
+div#buttonAppSection p#addPaypalButton label, 
+div#buttonAppSection p#addCustomButton label{margin:13px 0 0 40px; padding:0}
+div#buttonAppSection div#paypalButtonSection p#displaySmallButton label{margin:13px 0 0 60px; _margin:6px 0 0 60px; padding:0}
+div#buttonAppSection div#paypalButtonSection p#displayCcLogos label{margin:6px 0 0 60px; _margin:0 0 0 60px; padding:0}
+div#buttonAppSection div#paypalButtonSection p#buttonCountryLanguage label{margin:12px 0 0 60px; _margin:8px 0 0 60px; padding:0}
+div#buttonAppSection div#paypalButtonSection p#textBuyNow label, 
+div#buttonAppSection div#paypalButtonSection p#textSubscr label{margin:18px 0 0 60px; _margin:16px 0 0 60px; padding:0}
+div#buttonAppSection div#paypalButtonSection p input{clear:both}
+div#buttonAppSection div#paypalButtonSection p select{clear:both; width:235px; margin:5px 0 0 60px}
+div.customizeButtonSection div#customizeSection div#buttonAppSection p#addCustomButton span{margin:5px 0 5px 60px}
+div.customizeButtonSection div#customizeSection div#buttonAppSection div#customButtonSection input{margin:0 0 0 60px; padding:0}
+.inactiveChkBox{color:#adadad; filter:alpha(opacity=50); opacity:0.5}
+.heightFix{height:115px}
+#rbFixedAmount{clear:both;}
+/* Buyer's Preview Section (right column) */
+.buyerViewSection{width:256px; position:absolute; right:0; left:309px; top:0; text-align:center}
+#wideBox .buyerViewSection {left:392px;position:absolute;right:0;text-align:center;top:0;width:300px;}
+.buyerViewSection p.heading{background:transparent url(/en_US/i/scr/scr_headergradient.jpg) repeat; margin:0; padding:5px 8px}
+#plan .buyerViewSection p.heading{padding-top:3px;}
+div.buyerViewSection p.heading{text-align:left}
+.previewSection .previewDropdown{width:209px; margin:15px auto 0; text-align:left}
+#stepOne .previewSection select, 
+#stepOne .previewSection input{width:209px; margin:2px auto 0; padding:0}
+.previewSection .previewDropdown label{width:209px; overflow:hidden}
+.previewSection .previewImageSection, 
+.previewSection .previewCustomImageSection{margin:18px 0 0 0}
+/* New style for GC Text heading */
+.gcStyleHeader_new{margin-bottom:5px;}
+/* View Cart/Unsubscribe page */
+.accordion .box.open .body #secondaryButtonContainer.content{padding-left:30px; width:718px}
+
+/**********************************************************************
+ * Step 2
+ **********************************************************************/
+#stepTwo p{padding:0; margin:0}
+#stepTwo input{float:left; display:block}
+#stepTwo label{float:left}
+
+#stepTwo .helpText{cursor:help; color:#084482; display:inline-block; margin-left:0px}
+#stepTwo .fakeHelpLink{cursor:help; color:#084482; text-decoration:underline}
+
+#stepTwo div.step2-left-info{/*float:left; width:340px;*/padding:0}
+#stepTwo div.step2-left-info ul{margin:1em 0 0 20px; list-style-type:disc}
+#stepTwo div.step2-left-info ul li{height:auto}
+#stepTwo div.step2-left-info p.not-logged-in{font-weight:bold}
+#stepTwo div.step2-left-info li.inventory{margin-top:20px}
+#stepTwo div.step2-left-info li.profit-loss{margin-top:25px}
+#stepTwo div.step2-right-info{float:left; margin-left:10px; width:auto}
+
+#stepTwo div.step2-left-active{/*float:left;  width:45%;*/margin-bottom:20px; position:relative;}
+#stepTwo div.step2-left-active input{padding:0; margin:0; vertical-align:middle;}
+#stepTwo div.step2-left-active div.step2-inventory{margin:5px 0 0 20px}
+#stepTwo div.step2-left-active div.info-list-wrapper{clear:both; display:block; margin:0; padding:0 0 0 33px; /*position:relative; */}
+#stepTwo div.step2-left-active div.info-list-wrapper ul{margin:0; padding:5px 0}
+#stepTwo div.step2-left-active div.info-list-wrapper ul li{list-style-type:disc; vertical-align:middle}
+#stepTwo div.step2-left-active label{line-height:14px; vertical-align:middle; margin:0 0 0 5px; font-weight:bold; padding:0}
+/*#stepTwo div.step2-left-active div#inventoryOptions{width:300px}*/
+#stepTwo div.step2-left-active div#inventoryOptions p.hint{clear:both; margin:0 0 5px 18px; padding:0}
+
+#stepTwo div.step2-right-active{float:left; margin-left:20px; width:336px}
+
+#stepTwo div.step2-extra-fields{clear:both; margin:0 0 0 20px; border:1px solid #ececec; padding:10px; height:100%}
+#stepTwo div.step2-extra-fields input#trackByItem, 
+#stepTwo div.step2-extra-fields input#trackByOption{padding:0; margin:2px 5px 0 0}
+#stepTwo div.step2-extra-fields div.track-by-item{margin-bottom:10px; float:left}
+#stepTwo div.step2-extra-fields div.track-by-option{clear:left; float:left; margin-bottom:20px}
+#stepTwo div.step2-extra-fields input.type-text{width:100px; float:none; border:1px solid #999}
+#stepTwo div.step2-extra-fields div#trackByItemTable, 
+#stepTwo div.step2-extra-fields div#trackByOptionTable, 
+#stepTwo div.step2-extra-fields div#byItemTableBody, 
+#stepTwo div.step2-extra-fields div#byOptionTableBody{clear:both}
+#stepTwo div.step2-extra-fields div#trackByItemTable:after, 
+#stepTwo div.step2-extra-fields div#trackByOptionTable:after{clear:both; content:""; display:block; height:0px; visibility:hidden}
+#stepTwo div.step2-extra-fields div.inventory-table-row{clear:both; height:1%}
+#stepTwo div.step2-extra-fields div.inventory-table-row div{padding:0px 10px 5px 0px; float:left; width:104px; word-wrap:break-word;}
+#stepTwo div.step2-extra-fields div.inventory-table-row:after{clear:both}
+#stepTwo div.step2-extra-fields div.inventory-table-row div.left-edge{float:left; width:100px; padding:0; margin:0; overflow:hidden}
+#stepTwo div.step2-extra-fields div.inventory-table-row div.right-edge{float:left; width:45px; padding:0}
+
+#stepTwo div.step2-bottom-fields{clear:both; margin:30px 0 0 20px; height:0; _height:1%}
+#stepTwo div.step2-bottom-fields:after{clear:both; content:"."; display:block; height:0; _height:1%; visibility:hidden}
+#stepTwo div.step2-bottom-fields input.radio{border-width:0px}
+#stepTwo div.step2-bottom-fields input#enablePreOrder, 
+#stepTwo div.step2-bottom-fields input#dontEnablePreOrder{padding:0; margin:2px 5px 0 0}
+#stepTwo div.step2-bottom-fields div.pre-order{float:left; margin-top:20px}
+#stepTwo div.step2-bottom-fields div.no-pre-order{clear:left; float:left; margin-top:5px; width:100%}
+#stepTwo div.step2-bottom-fields div.no-pre-order label{margin-bottom:3px}
+#stepTwo div.step2-bottom-fields input.type-text{border:1px solid #999}
+#stepTwo div.step2-bottom-fields p.hint{clear:left; margin-left:19px; height:1%}
+#stepTwo div.step2-bottom-fields input#soldOutURL{margin-top:3px; width:200px}
+#stepTwo div.step2-bottom-fields span.littleHint{clear:both; display:block}
+
+/**********************************************************************
+ * Step 3
+ **********************************************************************/
+#stepThree .body .content .container {padding-bottom:16px;}
+#stepThree .body .header {background:none; border:0; font-size:1em; font-weight:bold; margin:0 0 10px; padding:0; width:auto;}
+#stepThree .checkbox, #stepThree .radio {border:medium none}
+#stepThree .topSpacer {margin:10px 0 0 0}
+#stepThree .bottomSpacer {margin:0 0 30px 0}
+#stepThree label#messageBoxContainer {padding-left:23px}
+#stepThree #messageBox {display:block; width:350px}
+#stepThree .redirectContainer {padding: 0 0 30px 21px; width:350px}
+#stepThree .text {width:350px;}
+#stepThree #variablesSpacer {margin:0 0 25px 0}
+#stepThree #variablesTextareaContainer {padding:0; height:115px}
+#stepThree #variablesTextarea {float:left; margin:0 0 30px 20px; padding:0; width:350px; height:115px}
+#stepThree #variablesExamples {float:left; clear:right; margin:10px 0 0 10px}
+
+/****************************************************
+Payment plan button css
+****************************************************/
+#plan .inline{display:inline;}
+#plan .itemname{margin-right:5px;}
+#plan .curreny_code{margin-left:5px;}
+#plan .currency_code{margin-left:5px;}
+#plan .cycle{margin-left:5px;}
+#plan .total{text-align:right;}
+#plan .amount_at_checkout_group{margin-bottom:5px;}
+#plan .btnTxt{display:block;margin-top:5px;color:#333333;font-weight:bold;}
+#plan .relative{position:relative;}
+#plan .plandetails{margin:0px 10px 10px;padding:10px;border:1px solid #ccc;}
+#plan .buyerview {text-align:left;margin:20px 10px;}
+#plan .customizeButtonSection p.group{margin:1em 0}
+#plan .customizeButtonSection table.basic{width:305px}
+#plan .customizeButtonSection .dispmode table.basic{width:345px;}
+#plan table.show{display:table !important;}
+#plan .customizeButtonSection td p.group{margin: 0}
+#plan .plandetails h4{border-bottom:1px solid #CCCCCC;color:#757575;font-weight:normal;padding-bottom:5px;}
+#plan .buyerview label.plnname{font-weight:bold;}
+#plan .buyerview input.radio{width:18px;}
+#plan .buyerview  div.fixedprev, .buyerview  div.equalprev, .buyerview  div.varprev{margin-left:18px; margin-bottom:30px;}
+#plan .buyerview table {width:100%}
+#plan .buyerview table thead tr th {border-bottom:1px solid #CCCCCC;}
+#plan .buyerview table  tr td.ftotal {border-top:1px solid #CCC;}
+#plan .buyerview table tr.total{border-top:1px solid #CCC;}
+#plan .buyerview table td,.buyerview table th {background-color:transparent;}
+#plan .buyerview table td.left,.buyerview table th.left {text-align:left;padding-left:0l;}
+#plan  table td.right, table th.right {text-align:right;}
+#plan .buyerview table td.right,.buyerview table th.right {padding-right:0;}
+#plan .buyerview table td.right {font-weight:normal}
+#plan .dispmode p.group{margin:0.5em 0}
+#plan .dispmode p.group label{display:inline;color:#757575;}
+#plan .dispmode table.vafirstamnt label, .dispmode table.vafirstamntdisp label{display:block;}
+#plan .small.fright{position:absolute;right:15px;}
+#plan .equaltable p.small, #plan .variabletable p.small {margin-top:10px;}
+#plan #disclaimer{margin:-20px 10px 0 25px;padding-left:5px;color:#757575;font-size:0.9em;text-align:left;}
+#plan input.text{border:1px solid #ADC2D6}
+#plan input.text.plan_name{width:14em;}
+#plan input.sall{width:53px;}
+#plan td.right{text-align:right;}
+#plan .grand_total, .ftotal, #plan .buyerview table td.ftotal{font-weight:bold;} 
+#plan .equaldisp p.small, #plan .variabledisp p.small {margin:10px 0;}
+#plan td.total{white-space:nowrap;}
+#plan td.frequency{white-space:nowrap;}
+#plan td .currency_symbol{margin-left:5px;}
+#plan td .currency_code{margin-left:5px;}
+#plan td select{font-size:1em;}
+#plan span.at_checkout.show, label.currency_code, span.after.show{display:inline !important;}
+#plan p.group.first{margin:0.5em 0;}
+#plan p.addplan{margin:20px 10px 0; padding-bottom:20px;border-bottom:1px dotted #CCCCCC;}
+#plan #customizeSection td{vertical-align:bottom}
+#plan span#buttonAppLink.collapsed a, span#buttonAppLink.expanded a{margin-left:8px;;}
+#plan div#customizeSection label{margin:0;}
+#plan div#customizeSection label.planoptions{margin:10px 0;}
+#plan div#customizeSection label.display_total{margin:20px 10px;}
+#plan  #stepOne .plandetails fieldset.buynowform,  #stepOne .plandetails fieldset.equalform, #stepOne .plandetails fieldset.variableform{margin-left:20px;padding: 0px 10px 10px;background-color:#F8F8F8;}
+#plan #stepOne #customizeSection .plandetails input.small {width:50px;border:1px solid #ADC2D6;}
+#plan #stepOne .previewSection input.radio{width:auto;margin-right:5px;}
+#plan table.basic.vafirstamntdisp td span.pln_name{display:block;}
+#plan table.basic.vafirstamntdisp td span.pln_name .currency_symbol {margin-left:0}
+#plan table.basic.varamnt td span.frequency,#plan table.varamntdisp td span.frequency{margin-left:3px;}
+#plan .donebtn{position:relative}
+#plan .donebtn a.delete{position:absolute;bottom:0;right:0}
+#plan .buyerview label.plnname.noradio{margin-left:20px;}
