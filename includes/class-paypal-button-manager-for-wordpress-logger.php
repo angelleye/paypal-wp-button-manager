@@ -51,7 +51,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Logger {
             return true;
         }
 
-        if ($this->_handles[$handle] = @fopen($this->paypal_button_manager_for_wordpress_get_log_file_path($handle), 'a')) {
+        if ($this->_handles[$handle] = @fopen($this->paypal_button_manager_for_wordpress_wordpress_get_log_file_path($handle), 'a')) {
             return true;
         }
 
@@ -93,8 +93,8 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Logger {
      * @param mixed $handle
      * @return void
      */
-    public function paypal_button_manager_for_wordpress_get_log_file_path($handle) {
-        return trailingslashit(PAYPAL_BUTTONS_FOR_WORDPRESS_LOG_DIR_DIR) . $handle . '-' . sanitize_file_name(wp_hash($handle)) . '.log';
+    public function paypal_button_manager_for_wordpress_wordpress_get_log_file_path($handle) {
+        return trailingslashit(PAYPAL_BUTTONS_FOR_WORDPRESS_LOG_DIR) . $handle . '-' . sanitize_file_name(wp_hash($handle)) . '.log';
     }
 
 }

@@ -5,8 +5,8 @@
  * Registers post types and taxonomies
  *
  * @class       Paypal_button_Manager_For_Wordpress_Post_types
- * @version	1.0.0
- * @package	paypal-button-manager-for-wordpress
+ * @version		1.0.0
+ * @package		paypal-button-manager-for-wordpress
  * @category	Class
  * @author      Angell EYE <service@angelleye.com>
  */
@@ -20,6 +20,8 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
     public static function init() {
         add_action('admin_print_scripts', array(__CLASS__, 'disable_autosave'));
         add_action('init', array(__CLASS__, 'paypal_button_manager_for_wordpress_register_post_types'), 5);
+        add_action('add_meta_boxes', array(__CLASS__, 'paypal_button_manager_for_wordpress_add_meta_boxes'), 10);
+        add_action('save_post', array(__CLASS__, 'paypal_button_manager_button_interface_generator'));
     }
 
     /**
@@ -86,6 +88,21 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
                         )
                 )
         );
+    }
+
+    public static function paypal_button_manager_for_wordpress_add_meta_boxes() {
+        add_meta_box('paypal-buttons-meta-id', 'Paypal Button Generator', array(__CLASS__, 'paypal_button_manager_for_wordpress_metabox'), 'paypal_buttons', 'normal', 'high');
+    }
+
+    public static function paypal_button_manager_for_wordpress_metabox() {
+
+        do_action('paypal_button_manager_interface');
+    }
+
+    public function paypal_button_manager_button_interface_generator() {
+        if (isset($_POST['button_submit'])) {
+            do_action('paypal_button_manager_button_generator');
+        }
     }
 
 }

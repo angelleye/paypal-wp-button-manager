@@ -105,6 +105,36 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress {
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-paypal-button-manager-for-wordpress-public.php';
 
+        /**
+         * Custom functions returns in file
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/paypal-button-manager-for-wordpress-functions.php';
+        /**
+         * PayPal button generator interface code written
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/paypal-button-manager-for-wordpress-html-format.php';
+
+        /**
+         * PayPal button generator file included.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/BMCreateButton.php';
+
+        /**
+         * PayPal button generator custom functions define in this file.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/paypal-button-manager-for-wordpress-paypal-helper.php';
+        /**
+         * Autoload file included for paypal intigrate paypal library.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/autoload.php';
+
+        /**
+         * PayPal php class file included.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/PayPal.php';
+
+
+
         $this->loader = new AngellEYE_PayPal_Button_Manager_for_WordPress_Loader();
     }
 

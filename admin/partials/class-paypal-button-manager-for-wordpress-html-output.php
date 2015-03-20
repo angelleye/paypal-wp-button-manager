@@ -139,7 +139,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Html_output {
                     case 'textarea':
 
                         $option_value = self::get_option($value['id'], $value['default']);
-                        ?><tr valign="top">
+                                    ?><tr valign="top">
                             <th scope="row" class="titledesc">
                                 <label for="<?php echo esc_attr($value['id']); ?>"><?php echo esc_html($value['title']); ?></label>
                                 <?php echo $tip; ?>
@@ -163,7 +163,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Html_output {
                     case 'multiselect' :
 
                         $option_value = self::get_option($value['id'], $value['default']);
-                        ?><tr valign="top">
+                                    ?><tr valign="top">
                             <th scope="row" class="titledesc">
                                 <label for="<?php echo esc_attr($value['id']); ?>"><?php echo esc_html($value['title']); ?></label>
                                 <?php echo $tip; ?>
@@ -181,12 +181,12 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Html_output {
                                         foreach ($value['options'] as $key => $val) {
                                             ?>
                                         <option value="<?php echo esc_attr($key); ?>" <?php
-                                        if (is_array($option_value)) {
-                                            selected(in_array($key, $option_value), true);
-                                        } else {
-                                            selected($option_value, $key);
-                                        }
-                                        ?>><?php echo $val ?></option>
+                            if (is_array($option_value)) {
+                                selected(in_array($key, $option_value), true);
+                            } else {
+                                selected($option_value, $key);
+                            }
+                                            ?>><?php echo $val ?></option>
                                                 <?php
                                             }
                                             ?>
@@ -199,7 +199,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Html_output {
                     case 'radio' :
 
                         $option_value = self::get_option($value['id'], $value['default']);
-                        ?><tr valign="top">
+                                            ?><tr valign="top">
                             <th scope="row" class="titledesc">
                                 <label for="<?php echo esc_attr($value['id']); ?>"><?php echo esc_html($value['title']); ?></label>
                                 <?php echo $tip; ?>
@@ -254,7 +254,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Html_output {
                         }
 
                         if (!isset($value['checkboxgroup']) || 'start' == $value['checkboxgroup']) {
-                            ?>
+                                            ?>
                             <tr valign="top" class="<?php echo esc_attr(implode(' ', $visbility_class)); ?>">
                                 <th scope="row" class="titledesc"><?php echo esc_html($value['title']) ?></th>
                                 <td class="forminp forminp-checkbox">
