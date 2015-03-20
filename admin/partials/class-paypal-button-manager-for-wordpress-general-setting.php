@@ -29,26 +29,53 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_General_Setting {
      */
     public static function paypal_button_manager_for_wordpress_general_setting_fields() {
 
-        $fields[] = array('title' => __('Paypal API Integration', 'paypal-button-manager-for-wordpress'), 'type' => 'title', 'desc' => '', 'id' => 'general_options');
+        $fields[] = array('title' => __('Paypal API Sandbox Integration', 'paypal-button-manager-for-wordpress'), 'type' => 'title', 'desc' => '', 'id' => 'general_options_sandbox');
+        
 
         $fields[] = array(
-            'title' => __('API Username', 'paypal-button-manager-for-wordpress'),
+            'title' => __('API Sandbox Username', 'paypal-button-manager-for-wordpress'),
             'desc' => __('Enter Your Username', 'paypal-button-manager-for-wordpress'),
-            'id' => 'paypal_api_username',
+            'id' => 'paypal_api_username_sandbox',
             'type' => 'text',
             'css' => 'min-width:300px;',
         );
         $fields[] = array(
-            'title' => __('API Password', 'paypal-button-manager-for-wordpress'),
+            'title' => __('API Sandbox Password', 'paypal-button-manager-for-wordpress'),
             'desc' => __('Enter Your API Password', 'paypal-button-manager-for-wordpress'),
-            'id' => 'paypal_password',
+            'id' => 'paypal_password_sandbox',
             'type' => 'password',
             'css' => 'min-width:300px;',
         );
         $fields[] = array(
-            'title' => __('API Signature', 'paypal-button-manager-for-wordpress'),
+            'title' => __('API Sandbox Signature', 'paypal-button-manager-for-wordpress'),
             'desc' => __('Enter Your API Signature', 'paypal-button-manager-for-wordpress'),
-            'id' => 'paypal_signature',
+            'id' => 'paypal_signature_sandbox',
+            'type' => 'text',
+            'css' => 'min-width:300px;',
+        );
+        
+        $fields[] = array('type' => 'sectionend', 'id' => 'general_options_sandbox');
+        
+        $fields[] = array('title' => __('Paypal API Live Integration', 'paypal-button-manager-for-wordpress'), 'type' => 'title', 'desc' => '', 'id' => 'general_options_live');
+        
+        $fields[] = array(
+            'title' => __('API Live Username', 'paypal-button-manager-for-wordpress'),
+            'desc' => __('Enter Your Username', 'paypal-button-manager-for-wordpress'),
+            'id' => 'paypal_api_username_live',
+            'type' => 'text',
+            'css' => 'min-width:300px;',
+        );
+        $fields[] = array(
+            'title' => __('API Live Password', 'paypal-button-manager-for-wordpress'),
+            'desc' => __('Enter Your API Password', 'paypal-button-manager-for-wordpress'),
+            'id' => 'paypal_password_live',
+            'type' => 'password',
+            'css' => 'min-width:300px;',
+        );
+        $fields[] = array(
+            'title' => __('API Live Signature', 'paypal-button-manager-for-wordpress'),
+            'desc' => __('Enter Your API Signature', 'paypal-button-manager-for-wordpress'),
+            'id' => 'paypal_signature_live',
             'type' => 'text',
             'css' => 'min-width:300px;',
         );
@@ -70,7 +97,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_General_Setting {
             'desc' => sprintf(__('Log Paypal button Manager for Wordpress events, inside <code>%s</code>', 'paypal-button-manager-for-wordpress'), PAYPAL_BUTTONS_FOR_WORDPRESS_LOG_DIR)
         );
 
-        $fields[] = array('type' => 'sectionend', 'id' => 'general_options');
+        $fields[] = array('type' => 'sectionend', 'id' => 'general_options_live');
 
         return $fields;
     }
