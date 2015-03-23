@@ -56,7 +56,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
         wp_enqueue_style($this->plugin_name . 'two', plugin_dir_url(__FILE__) . '/css/paypal-button-manager-for-wordpress-coreLayout.css', array(), $this->version, false);
         wp_enqueue_style($this->plugin_name . 'three', plugin_dir_url(__FILE__) . '/css/paypal-button-manager-for-wordpress-me2.css', array(), $this->version, false);
         wp_enqueue_style($this->plugin_name . 'four', plugin_dir_url(__FILE__) . '/css/paypal-button-manager-for-wordpress-print.css', array(), $this->version, false);
-        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/paypal-button-manager-for-wordpress-admin.css', array(), $this->version, 'all');
+        wp_enqueue_style($this->plugin_name . 'five', plugin_dir_url(__FILE__) . 'css/paypal-button-manager-for-wordpress-admin.css', array(), $this->version, 'all');
     }
 
     /**
@@ -75,7 +75,6 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
         wp_enqueue_script($this->plugin_name . 'five', plugin_dir_url(__FILE__) . 'js/paypal-button-manager-for-wordpress-widgets.js', array('jquery'), $this->version, false);
         wp_enqueue_script($this->plugin_name . 'four', plugin_dir_url(__FILE__) . 'js/paypal-button-manager-for-wordpress-pp_jscode_080706.js', array('jquery'), $this->version, false);
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/paypal-button-manager-for-wordpress-admin.js', array('jquery'), $this->version, false);
-        wp_enqueue_script($this->plugin_name .'six', plugin_dir_url(__FILE__) . 'js/paypal-button-manager-for-wordpress-buttonDesigner.js', array('jquery'), $this->version, false);
     }
 
     private function load_dependencies() {

@@ -20,7 +20,7 @@ if (!defined('WPINC')) {
 /**
  *  define PIW_PLUGIN_DIR constant for global use
  */
- if (!defined('BMW_PLUGIN_DIR'))
+if (!defined('BMW_PLUGIN_DIR'))
     define('BMW_PLUGIN_DIR', dirname(__FILE__));
 
 /**
@@ -28,14 +28,13 @@ if (!defined('WPINC')) {
  */
 if (!defined('BMW_PLUGIN_URL'))
     define('BMW_PLUGIN_URL', plugin_dir_url(__FILE__));
- 
- /**
-  *  define log file path
-  */
- if (!defined('PAYPAL_BUTTONS_FOR_WORDPRESS_LOG_DIR')) {
-	define('PAYPAL_BUTTONS_FOR_WORDPRESS_LOG_DIR', ABSPATH . 'paypal-buttons-logs/');
- }
 
+/**
+ *  define log file path
+ */
+if (!defined('PAYPAL_BUTTONS_FOR_WORDPRESS_LOG_DIR')) {
+    define('PAYPAL_BUTTONS_FOR_WORDPRESS_LOG_DIR', ABSPATH . 'paypal-buttons-logs/');
+}
 
 /**
  * The code that runs during plugin activation.

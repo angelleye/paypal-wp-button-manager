@@ -39,7 +39,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
     }
 
     public function paypal_button_manager_for_wordpress_get_paypalconfig() {
-		
+
         $payapalconfig = array('Sandbox' => TRUE,
             'APIUsername' => get_option('paypal_api_username'),
             'APIPassword' => get_option('paypal_password'),
@@ -53,13 +53,25 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
 
     // Prepare request arrays
     public function paypal_button_manager_for_wordpress_get_buttonfields() {
+        $buttonimageurl = $_POST['custom_image_url'];
+        if ($buttonimageurl == 'http://') {
+            $buttonimageurl = '';
+        } else {
+            $buttonimageurl = $buttonimageurl;
+        }
+        if (isset($_POST['enable_hosted_buttons'])) {
+            $buttontype = 'HOSTED';
+        } else {
+            $buttontype = 'CLEARTEXT';
+        }
+
         $bmcreatebuttonfields = array
             (
-            'buttoncode' => 'CLEARTEXT', // The kind of button code to create.  It is one of the following values:  HOSTED, ENCRYPTED, CLEARTEXT, TOKEN
+            'buttoncode' => $buttontype, // The kind of button code to create.  It is one of the following values:  HOSTED, ENCRYPTED, CLEARTEXT, TOKEN
             'buttontype' => AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper::paypal_button_manager_for_wordpress_get_button_type(), // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
             'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
             'buttonimage' => isset($_POST['cc_logos']) ? 'CC' : 'SML',
-            'buttonimageurl' => isset($_POST['custom_image_url']) ? $_POST['custom_image_url'] : '',
+            'buttonimageurl' => $buttonimageurl,
             'buttonlanguage' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : ''
         );
         return $bmcreatebuttonfields;
@@ -104,7 +116,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'add' => '', // Set to 1 to add an item to the PayPal shopping cart.
             'display' => '', // Set to 1 to display the contents of the PayPal shopping cart to the buyer.
             'upload' => '', // Set to 1 to upload the contents of a third-party shopping cart or a custom shopping cart.
-            'business' => 'nishit.langaliya@multidots.in', // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
+            'business' => isset($_POST['business']) ? $_POST['business'] : 'nishit.langaliya@multidots.in', // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
             'paymentaction' => '', // Indicates whether the payment is a finale sale or an authorization for a final sale, to be captured later.  Values are:  sale, authorization, order
             'shopping_url' => isset($_POST['gift_certificate_shop_url']) ? $_POST['gift_certificate_shop_url'] : '', // The URL of the page on the merchant website that buyers go to when they click the Continue Shopping button on the PayPal shopping cart page.
             'a1' => '', // Trial period 1 price.  For a free trial period, specify 0.
@@ -139,7 +151,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'return' => isset($_POST['return']) ? $_POST['return'] : '', // The URL to which PayPal redirects buyers' browsers after they complete their payment.
             'rm' => '', // Return method.  Values are:  0 - all shopping cart payments use GET method.  1 - buyer's browser is redirected using the GET method. 2 - buyer's browser is redirected using POST.
             'cbt' => '', // Sets the text for the Return to Merchant button on the PayPal completed payment page.
-            'cancel_return' => isset($_POST['cancel_return']) ? $_POST['cancel_return'] : '' , // A URL to which PayPal redirects buyers if they cancel the payment.
+            'cancel_return' => isset($_POST['cancel_return']) ? $_POST['cancel_return'] : '', // A URL to which PayPal redirects buyers if they cancel the payment.
             'address1' => '',
             'address2' => '',
             'city' => '',
@@ -153,7 +165,6 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'night_phone_a' => '', // Area code for US phone numbers or country code for phone numbers outside the US.
             'night_phone_b' => '', // 3 digit prefix for US numbers or the entire phone number for numbers outside the US.
             'night_phone_c' => '' // 4 digit phone number for US numbers.
-            
         );
         return $buttonvars;
     }
