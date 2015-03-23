@@ -553,5 +553,3 @@ function get_paypal_button_languages() {
 
     return array_unique($paypal_button_language);
 }
-?>
-

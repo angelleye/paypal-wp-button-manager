@@ -1,11 +1,10 @@
 <?php
 
 /**
- *
  * @wordpress-plugin
  * Plugin Name:       PayPal Button Manager for WordPress
  * Plugin URI:        http://www.angelleye.com/
- * Description:       Lorem Ipsum
+ * Description:       Easily create and manage secure PayPal buttons for WordPress
  * Version:           1.0.0
  * Author:            Angell EYE
  * Author URI:        http://www.angelleye.com/
