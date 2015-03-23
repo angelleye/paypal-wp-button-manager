@@ -21,7 +21,7 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         add_action('admin_print_scripts', array(__CLASS__, 'disable_autosave'));
         add_action('init', array(__CLASS__, 'paypal_button_manager_for_wordpress_register_post_types'), 5);
         add_action('add_meta_boxes', array(__CLASS__, 'paypal_button_manager_for_wordpress_add_meta_boxes'), 10);
-        add_action('save_post', array(__CLASS__, 'paypal_button_manager_button_interface_generator'));
+        add_action('save_post', array(__CLASS__, 'paypal_button_manager_button_interface_display'));
     }
 
     /**
@@ -99,7 +99,7 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         do_action('paypal_button_manager_interface');
     }
 
-    public function paypal_button_manager_button_interface_generator() {
+    public static function paypal_button_manager_button_interface_display() {
         if (isset($_POST['button_submit'])) {
             do_action('paypal_button_manager_button_generator');
         }
