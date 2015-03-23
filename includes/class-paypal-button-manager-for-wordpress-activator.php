@@ -24,7 +24,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Activator {
     /**
      * Create files/directories
      */
-    private function create_files() {
+    public static function create_files() {
         // Install files and folders for uploading files and prevent hotlinking
         $upload_dir = wp_upload_dir();
 
