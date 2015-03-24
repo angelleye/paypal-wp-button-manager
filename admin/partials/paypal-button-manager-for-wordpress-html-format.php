@@ -222,7 +222,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                             <p class="editDelete"><a class="editDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                         </div>
                                                                         <p id="addNewDropdownSection" class="editDelete hideShow accessAid hide"><a id="addNewDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add another drop-down menu</a></p>
-                                                                        <p id="addTextfield" class="hideShow opened"><label for="textfield"><input class="checkbox" type="checkbox" id="textfield" name="textfield" value="createdTextfield">Add text field&nbsp;<a target="_blank" class="infoLink exampleLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_display-textfield-example" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Example</a></label></p>
+
                                                                         <div class="hideShow accessAid textfieldSection hide" id="textfieldSection1">
                                                                             <p class="title"><label for="textfieldTitle1">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle1" class="text" disabled="" name="textfield1_title" value=""></p>
                                                                             <p class="saveCancel"><input class="saveTextfield primary button" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
@@ -528,65 +528,12 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                     <li>Edit your buttons with PayPal's tools</li>
                                                                 </ul>
                                                             </div>
-                                                            <div class="step2-inventory opened" id="inventoryOptions">
-                                                                <input class="checkbox" type="checkbox" id="enableInventory" name="enable_inventory" value="enabledInventory"><label for="enableInventory">Track inventory</label>
-                                                                <p class="hint">Don't oversell items not in stock -- Get an email alert when inventory is low.</p>
-                                                                <input class="checkbox" type="checkbox" id="enableProfitAndLoss" name="enable_profit_and_loss" value="enabledProfitAndLoss"><label for="enableProfitAndLoss">Track profit and losses</label>
-                                                                <p class="hint">View profit and loss report by product/service.</p>
+                                                            <div class="step2-inventory" id="inventoryOptions">
+
                                                             </div>
                                                         </div>
-                                                        <div class="step2-extra-fields opened" id="inventoryTable">
-                                                            <div id="trackByItemTable" class="fadedOut">
-                                                                <input class="radio" type="radio" id="trackByItem" checked="" name="track_button_by" value="trackdByItem" disabled=""><label id="byItemLabel" for="trackByItem"><strong>By item</strong></label>
-                                                                <div id="byItemTableBody">
-                                                                    <div class="inventory-table-row">
-                                                                        <div class="left-edge">&nbsp;</div>
-                                                                        <div>Item ID</div>
-                                                                        <div class="invRelated">Qty. in stock</div>
-                                                                        <div class="invRelated">Alert qty. (optional) <span class="autoTooltip helpText" title="" tabindex="0">What's this?<span class="accessAid">When your inventory falls to this number, PayPal will send you an e-mail alert.</span></span></div>
-                                                                        <div class="PNLRelated">Price</div>
-                                                                        <div class="right-edge">&nbsp;</div>
-                                                                    </div>
-                                                                    <div class="inventory-table-row">
-                                                                        <div class="left-edge">&nbsp;</div>
-                                                                        <div><input class="type-text" type="text" name="item_id" value="" disabled=""></div>
-                                                                        <div class="invRelated"><input class="type-text" type="text" name="items_in_stock" value="" disabled=""></div>
-                                                                        <div class="invRelated"><input class="type-text" type="text" name="alert_quantity" value="" disabled=""></div>
-                                                                        <div class="PNLRelated"><input class="type-text" type="text" name="item_cost" value="" disabled=""></div>
-                                                                        <div class="right-edge">USD</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div id="trackByOptionTable" class="fadedOut accessAid">
-                                                                <input class="radio" type="radio" id="trackByOption" name="track_button_by" value="trackdByOption" disabled=""><label for="trackByOption"><strong>By option</strong> (in drop-down menu) <a id="chooseAnotherDropDown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#chooseAnotherDropDown" class="accessAid">Choose a different drop-down</a></label>
-                                                                <div id="byOptionTableBody" class="accessAid">
-                                                                    <div class="inventory-table-row">
-                                                                        <div class="left-edge">&nbsp;</div>
-                                                                        <div>Item ID</div>
-                                                                        <div class="invRelated">Qty in stock</div>
-                                                                        <div class="invRelated">Alert qty. (optional) <span class="autoTooltip helpText" title="" tabindex="0">What's this?<span class="accessAid">When your inventory falls to this number, PayPal will send you an e-mail alert.</span></span></div>
-                                                                        <div class="PNLRelated">Cost</div>
-                                                                        <div class="right-edge">&nbsp;</div>
-                                                                    </div>
-                                                                    <div class="inventory-table-row">
-                                                                        <div class="left-edge">&nbsp;</div>
-                                                                        <div><input class="type-text" type="text" name="item_id" value="" disabled=""></div>
-                                                                        <div class="invRelated"><input class="type-text" type="text" name="items_in_stock" value="" disabled=""></div>
-                                                                        <div class="invRelated"><input class="type-text" type="text" name="alert_quantity" value="" disabled=""></div>
-                                                                        <div class="PNLRelated"><input class="type-text" type="text" name="item_cost" value="" disabled=""></div>
-                                                                        <div class="right-edge">&nbsp;</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="step2-bottom-fields fadedOut opened" id="soldOutOption">
-                                                            <h5 id="shoppingHead" class="opened">Can customers buy an item when it is sold out?</h5>
-                                                            <div class="pre-order opened" id="shoppingPreOrder"><input class="radio" type="radio" id="enablePreOrder" name="enable_pre_order" value="enabledPreOrder" disabled=""><label for="enablePreOrder">Yes, customers can buy the item as usual.</label></div>
-                                                            <div class="no-pre-order">
-                                                                <input class="radio opened" type="radio" id="dontEnablePreOrder" checked="" name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened">No, don't let customers buy the item. <a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDSoldOutExample" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Preview</a></label>
-                                                                <p class="hint opened fadedOut" id="shoppingURL"><span class="littleHint">Take customers to specific page when they click <strong>Continue Shopping</strong> button on "item sold out" page</span><input class="type-text" type="text" id="soldOutURL" name="sold_out_url" value="" disabled=""><span class="littleHint">Ex: http://www.mybuynowstore.com</span></p>
-                                                            </div>
-                                                        </div>
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -643,7 +590,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                             </div>
                                         </div>
                                     </div>
-                                  <!--  <input class="button-primary" type="submit" id="createButton" name="create_button_submit" value="Create Button">-->
+                                    <!--  <input class="button-primary" type="submit" id="createButton" name="create_button_submit" value="Create Button">-->
                                     <input type="submit" value="Create Button" class="button-primary" name="button_submit">
                                 </div>
                             </div>

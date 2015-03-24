@@ -39,11 +39,22 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
     }
 
     public function paypal_button_manager_for_wordpress_get_paypalconfig() {
-
-        $payapalconfig = array('Sandbox' => TRUE,
-            'APIUsername' => get_option('paypal_api_username'),
-            'APIPassword' => get_option('paypal_password'),
-            'APISignature' => get_option('paypal_signature'),
+        if (get_option('enable_sandbox') == 'yes') {
+            $apitype = 'TRUE';
+            $APIUsername = get_option('paypal_api_username_sandbox');
+            $APIPassword = get_option('paypal_password_sandbox');
+            $APISignature = get_option('paypal_signature_sandbox');
+        }
+        else {
+            $apitype = 'FALSE';
+            $APIUsername = get_option('paypal_api_username_live');
+            $APIPassword = get_option('paypal_password_live');
+            $APISignature = get_option('paypal_signature_live');
+        }
+        $payapalconfig = array('Sandbox' => $apitype,
+            'APIUsername' => isset($APIUsername) ? $APIUsername : '',
+            'APIPassword' => isset($APIPassword) ? $APIPassword : '',
+            'APISignature' => isset($APISignature) ? $APISignature : '',
             'PrintHeaders' => isset($print_headers) ? $print_headers : '',
             'LogResults' => isset($log_results) ? $log_results : '',
             'LogPath' => isset($log_path) ? $log_path : ''
@@ -116,7 +127,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'add' => '', // Set to 1 to add an item to the PayPal shopping cart.
             'display' => '', // Set to 1 to display the contents of the PayPal shopping cart to the buyer.
             'upload' => '', // Set to 1 to upload the contents of a third-party shopping cart or a custom shopping cart.
-            'business' => isset($_POST['business']) ? $_POST['business'] : 'nishit.langaliya@multidots.in', // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
+            'business' => isset($_POST['business']) ? $_POST['business'] : '', // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
             'paymentaction' => '', // Indicates whether the payment is a finale sale or an authorization for a final sale, to be captured later.  Values are:  sale, authorization, order
             'shopping_url' => isset($_POST['gift_certificate_shop_url']) ? $_POST['gift_certificate_shop_url'] : '', // The URL of the page on the merchant website that buyers go to when they click the Continue Shopping button on the PayPal shopping cart page.
             'a1' => '', // Trial period 1 price.  For a free trial period, specify 0.

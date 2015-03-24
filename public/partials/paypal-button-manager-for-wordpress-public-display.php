@@ -1,16 +1,33 @@
 <?php
 
 /**
- * Provide a public-facing view for the plugin
- *
- * This file is used to markup the public-facing aspects of the plugin.
- *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    paypal-button-manager-for-wordpress
- * @subpackage paypal-button-manager-for-wordpress/public/partials
+ * @class       AngellEYE_PayPal_Button_Manager_for_WordPress_Public_Display
+ * @version		1.0.0
+ * @package		paypal-button-manager-for-wordpress
+ * @category	Class
+ * @author      Angell EYE <service@angelleye.com>
  */
-?>
+class AngellEYE_PayPal_Button_Manager_for_WordPress_Public_Display {
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+    public static function init() {
+        add_shortcode('paypal_button_manager', array(__CLASS__, 'create_paypal_button_manager_shortcode'));
+    }
+
+    public static function create_paypal_button_manager_shortcode($atts, $content = null) {
+
+        global $post, $post_ID;
+
+        extract(shortcode_atts(array(
+                    'id' => ''), $atts));
+
+        $paypal_button_response = get_post_meta($id, 'paypal_button_response', true);
+        if (!empty($paypal_button_response)) {
+            echo $paypal_button_response;
+        } else {
+            echo '[paypal_button_manager id=' . $id . ']';
+        }
+    }
+
+}
+
+AngellEYE_PayPal_Button_Manager_for_WordPress_Public_Display::init();
