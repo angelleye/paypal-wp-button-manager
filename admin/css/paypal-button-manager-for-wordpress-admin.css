@@ -11,3 +11,4 @@ label.bottomSpacer {margin-bottom: 10px; margin-left: 5px !important;}
 input#noSpecialInstructions {margin-left: -5px !important;}
 div#changeOrderQuantitiesContainer div {font-weight: bold;margin-bottom: 6px;}
 div#specialInstructionsContainer {margin-top: 6px;}
+#stepOne input.xlarge {width: 170px; margin-right: 30px;}

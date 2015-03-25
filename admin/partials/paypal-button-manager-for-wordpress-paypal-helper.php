@@ -94,7 +94,20 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
      * Refer to the HTML Standard Variable reference for more details on variables for specific button types.
      */
     public function paypal_button_manager_for_wordpress_get_buttonvars() {
-
+		if (isset($_POST['product_id'])) {
+			$item_number = $_POST['product_id'];
+		} else if (isset($_POST['donation_id'])) {
+			$item_number = $_POST['donation_id'];
+		} else {
+			$item_number ='';
+		}
+		if (isset($_POST['donation_name'])) {
+			$item_name = $_POST['donation_name'];
+		} else if (isset($_POST['product_name'])) {
+			$item_name = $_POST['product_name'];
+		} else {
+			$item_name = '';
+		}
         $buttonvars = array(
             'notify_url' => '', // The URL to which PayPal posts information about the payment. in the form of an IPN message.
             'amount' => $_POST['item_price'], // The price or amount of the product, service, or contribution, not including shipping, handling, or tax.  If this variable is omitted from Buy Now or Donate buttons, buyers enter their own amount at the time of the payment.
@@ -103,14 +116,14 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'discount_rate' => '', // Discount rate (percentage) associated with an item.  Must be set to a value less than 100.
             'discount_rate2' => '', // Discount rate (percentage) associated with each additional quantity of the item.  Must be equal to or less than 100.
             'discount_num' => '', // Number of additional quantities of the item to which the discount applies.
-            'item_name' => $_POST['product_name'], // Description of the item.  If this is omitted, buyers enter their own name during checkout.
-            'item_number' => $_POST['product_id'], // Pass-through variable for you to track product or service purchased or the contribution made.
+            'item_name' => $item_name, // Description of the item.  If this is omitted, buyers enter their own name during checkout.
+            'item_number' => $item_number, // Pass-through variable for you to track product or service purchased or the contribution made.
             'quantity' => '', // Number of items.
-            'shipping' => $_POST['item_shipping_amount'], // The cost of shipping this item.
+            'shipping' => isset($_POST['item_shipping_amount']) ? $_POST['item_shipping_amount'] : '', // The cost of shipping this item.
             'shipping2' => '', // The cost of shipping each additional unit of this item.
             'handling' => '', // handling charges.  This variable is not quantity-specific.
             'tax' => '', // Transaction-based tax override variable.  Set this variable to a flat tax amount to apply to the payment regardless of the buyer's location.  This overrides any tax settings in the account profile.
-            'tax_rate' => $_POST['item_tax_rate'], // Transaction-based tax override variable.  Set this variable to a percentage that applies to the amount multipled by the quantity selected uring checkout.  This overrides your paypal account profile.
+            'tax_rate' => isset($_POST['item_tax_rate']) ? $_POST['item_tax_rate'] : '', // Transaction-based tax override variable.  Set this variable to a percentage that applies to the amount multipled by the quantity selected uring checkout.  This overrides your paypal account profile.
             'undefined_quantity' => '', // Set to 1 to allow the buyer to specify the quantity.
             'weight' => '', // Weight of items.
             'weight_unit' => '', // The unit of measure if weight is specified.  Values are:  lbs, kgs
