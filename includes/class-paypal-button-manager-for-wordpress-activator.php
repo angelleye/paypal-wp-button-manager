@@ -16,11 +16,12 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Activator {
      * @since    1.0.0
      */
     public static function activate() {
-       /**
+        /**
          *  call create_files function when plugin active
          */
         self::create_files();
     }
+
     /**
      * Create files/directories
      */

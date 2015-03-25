@@ -21,6 +21,9 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         add_action('admin_print_scripts', array(__CLASS__, 'disable_autosave'));
         add_action('init', array(__CLASS__, 'paypal_button_manager_for_wordpress_register_post_types'), 5);
         add_action('add_meta_boxes', array(__CLASS__, 'paypal_button_manager_for_wordpress_add_meta_boxes'), 10);
+        add_filter('manage_edit-paypal_buttons_columns', array(__CLASS__, 'my_edit_paypal_buttons_columns'));
+        add_action('manage_paypal_buttons_posts_custom_column', array(__CLASS__, 'my_paypal_buttons_columns'), 10, 2);
+
         add_action('save_post', array(__CLASS__, 'paypal_button_manager_button_interface_display'));
     }
 
@@ -48,6 +51,7 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         if (post_type_exists('paypal_button_manager_for_wordpress')) {
             return;
         }
+
 
         do_action('paypal_button_manager_for_wordpress_register_post_types');
 
@@ -88,6 +92,30 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
                         )
                 )
         );
+    }
+
+    public static function my_edit_paypal_buttons_columns($columns) {
+
+        $columns = array(
+            'cb' => '<input type="checkbox" />',
+            'title' => __('Button Name'),
+            'shortcodes' => __('Shortcodes'),
+            'date' => __('Date')
+        );
+
+        return $columns;
+    }
+
+    public static function my_paypal_buttons_columns($column, $post_id) {
+        global $post;
+        switch ($column) {
+            case 'shortcodes' :
+                echo '[paypal_button_manager id=' . $post_id . ']';
+                break;
+            case 'publisher' :
+                echo get_post_meta($post_id, 'publisher', true);
+                break;
+        }
     }
 
     public static function paypal_button_manager_for_wordpress_add_meta_boxes() {

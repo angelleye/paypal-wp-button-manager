@@ -44,8 +44,10 @@ jQuery( ".removeOptionPrice" ).click(function() {
 	
 });
 
-
-
+jQuery( ".autoTooltip" ).click(function() {
+		
+		jQuery('.accessAid').tooltip();
+});
 
 	
 });

@@ -30,7 +30,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_General_Setting {
     public static function paypal_button_manager_for_wordpress_general_setting_fields() {
 
         $fields[] = array('title' => __('Paypal API Sandbox Integration', 'paypal-button-manager-for-wordpress'), 'type' => 'title', 'desc' => '', 'id' => 'general_options_sandbox');
-        
+
 
         $fields[] = array(
             'title' => __('API Sandbox Username', 'paypal-button-manager-for-wordpress'),
@@ -53,11 +53,11 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_General_Setting {
             'type' => 'text',
             'css' => 'min-width:300px;',
         );
-        
+
         $fields[] = array('type' => 'sectionend', 'id' => 'general_options_sandbox');
-        
+
         $fields[] = array('title' => __('Paypal API Live Integration', 'paypal-button-manager-for-wordpress'), 'type' => 'title', 'desc' => '', 'id' => 'general_options_live');
-        
+
         $fields[] = array(
             'title' => __('API Live Username', 'paypal-button-manager-for-wordpress'),
             'desc' => __('Enter Your Username', 'paypal-button-manager-for-wordpress'),

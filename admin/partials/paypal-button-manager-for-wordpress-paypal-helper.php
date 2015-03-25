@@ -39,11 +39,21 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
     }
 
     public function paypal_button_manager_for_wordpress_get_paypalconfig() {
-		
-        $payapalconfig = array('Sandbox' => TRUE,
-            'APIUsername' => get_option('paypal_api_username'),
-            'APIPassword' => get_option('paypal_password'),
-            'APISignature' => get_option('paypal_signature'),
+        if (get_option('enable_sandbox') == 'yes') {
+            $apitype = 'TRUE';
+            $APIUsername = get_option('paypal_api_username_sandbox');
+            $APIPassword = get_option('paypal_password_sandbox');
+            $APISignature = get_option('paypal_signature_sandbox');
+        } else {
+            $apitype = 'FALSE';
+            $APIUsername = get_option('paypal_api_username_live');
+            $APIPassword = get_option('paypal_password_live');
+            $APISignature = get_option('paypal_signature_live');
+        }
+        $payapalconfig = array('Sandbox' => $apitype,
+            'APIUsername' => isset($APIUsername) ? $APIUsername : '',
+            'APIPassword' => isset($APIPassword) ? $APIPassword : '',
+            'APISignature' => isset($APISignature) ? $APISignature : '',
             'PrintHeaders' => isset($print_headers) ? $print_headers : '',
             'LogResults' => isset($log_results) ? $log_results : '',
             'LogPath' => isset($log_path) ? $log_path : ''
@@ -53,13 +63,25 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
 
     // Prepare request arrays
     public function paypal_button_manager_for_wordpress_get_buttonfields() {
+        $buttonimageurl = $_POST['custom_image_url'];
+        if ($buttonimageurl == 'http://') {
+            $buttonimageurl = '';
+        } else {
+            $buttonimageurl = $buttonimageurl;
+        }
+        if (isset($_POST['enable_hosted_buttons'])) {
+            $buttontype = 'HOSTED';
+        } else {
+            $buttontype = 'CLEARTEXT';
+        }
+
         $bmcreatebuttonfields = array
             (
-            'buttoncode' => 'CLEARTEXT', // The kind of button code to create.  It is one of the following values:  HOSTED, ENCRYPTED, CLEARTEXT, TOKEN
+            'buttoncode' => $buttontype, // The kind of button code to create.  It is one of the following values:  HOSTED, ENCRYPTED, CLEARTEXT, TOKEN
             'buttontype' => AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper::paypal_button_manager_for_wordpress_get_button_type(), // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
             'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
             'buttonimage' => isset($_POST['cc_logos']) ? 'CC' : 'SML',
-            'buttonimageurl' => isset($_POST['custom_image_url']) ? $_POST['custom_image_url'] : '',
+            'buttonimageurl' => $buttonimageurl,
             'buttonlanguage' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : ''
         );
         return $bmcreatebuttonfields;
@@ -70,13 +92,11 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
      *
      * Depending on the type of button you are creating some variables will be required.
      * Refer to the HTML Standard Variable reference for more details on variables for specific button types.
-     *
-     * https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/Appx_websitestandard_htmlvariables/
      */
     public function paypal_button_manager_for_wordpress_get_buttonvars() {
 
         $buttonvars = array(
-            'notify_url' => $_POST['variables_textarea'], // The URL to which PayPal posts information about the payment. in the form of an IPN message.
+            'notify_url' => '', // The URL to which PayPal posts information about the payment. in the form of an IPN message.
             'amount' => $_POST['item_price'], // The price or amount of the product, service, or contribution, not including shipping, handling, or tax.  If this variable is omitted from Buy Now or Donate buttons, buyers enter their own amount at the time of the payment.
             'discount_amount' => '', // Discount amount associated with an item.  Must be less than the selling price of the item.  Valid only for Buy Now and Add to Cart buttons.
             'discount_amount2' => '', // Discount amount associated with each additional quantity of the item.  Must be equal to or less than the selling price of the item.
@@ -94,7 +114,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'undefined_quantity' => '', // Set to 1 to allow the buyer to specify the quantity.
             'weight' => '', // Weight of items.
             'weight_unit' => '', // The unit of measure if weight is specified.  Values are:  lbs, kgs
-            'address_override' => '', // Set to 1 to override the payer's address stored in their PayPal account.
+            'address_override' => isset($_POST['add_variables']) ? $_POST['add_variables'] : '', // Set to 1 to override the payer's address stored in their PayPal account.
             'currency_code' => $_POST['item_price_currency'], // The currency of the payment.  https://developer.paypal.com/docs/classic/api/currency_codes/#id09A6G0U0GYK
             'custom' => '', // Pass-through variable for your own tracking purposes, which buyers do not see.
             'invoice' => '', // Pass-through variable you can use to identify your invoice number for the purchase.
@@ -104,7 +124,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'add' => '', // Set to 1 to add an item to the PayPal shopping cart.
             'display' => '', // Set to 1 to display the contents of the PayPal shopping cart to the buyer.
             'upload' => '', // Set to 1 to upload the contents of a third-party shopping cart or a custom shopping cart.
-            'business' => 'nishit.langaliya@multidots.in', // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
+            'business' => isset($_POST['business']) ? $_POST['business'] : '', // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
             'paymentaction' => '', // Indicates whether the payment is a finale sale or an authorization for a final sale, to be captured later.  Values are:  sale, authorization, order
             'shopping_url' => isset($_POST['gift_certificate_shop_url']) ? $_POST['gift_certificate_shop_url'] : '', // The URL of the page on the merchant website that buyers go to when they click the Continue Shopping button on the PayPal shopping cart page.
             'a1' => '', // Trial period 1 price.  For a free trial period, specify 0.
@@ -139,7 +159,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'return' => isset($_POST['return']) ? $_POST['return'] : '', // The URL to which PayPal redirects buyers' browsers after they complete their payment.
             'rm' => '', // Return method.  Values are:  0 - all shopping cart payments use GET method.  1 - buyer's browser is redirected using the GET method. 2 - buyer's browser is redirected using POST.
             'cbt' => '', // Sets the text for the Return to Merchant button on the PayPal completed payment page.
-            'cancel_return' => isset($_POST['cancel_return']) ? $_POST['cancel_return'] : '' , // A URL to which PayPal redirects buyers if they cancel the payment.
+            'cancel_return' => isset($_POST['cancel_return']) ? $_POST['cancel_return'] : '', // A URL to which PayPal redirects buyers if they cancel the payment.
             'address1' => '',
             'address2' => '',
             'city' => '',
@@ -153,9 +173,21 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'night_phone_a' => '', // Area code for US phone numbers or country code for phone numbers outside the US.
             'night_phone_b' => '', // 3 digit prefix for US numbers or the entire phone number for numbers outside the US.
             'night_phone_c' => '' // 4 digit phone number for US numbers.
-            
         );
-        return $buttonvars;
+        if (isset($_POST['add_variables'])) {
+            $advance_finalarray = array();
+            $advance_subarray = array();
+            $advance_subarray = explode("\n", str_replace("\r", "", $_POST['variables_textarea']));
+            foreach ($advance_subarray as $subkey => $subvalue) {
+                $innersub = explode('=', $subvalue);
+                $advance_finalarray[$innersub[0]] = $innersub[1];
+            }
+            $advance_buttonvars = array();
+            $buttonvars = array_merge($buttonvars, $advance_finalarray);
+            return $buttonvars;
+        } else {
+            return $buttonvars;
+        }
     }
 
     public function paypal_button_manager_for_wordpress_get_dropdown_values() {
@@ -186,7 +218,6 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             );
             array_push($BMButtonOptions, $BMButtonOption);
         }
-
 
         for ($i = 1; $i <= 6; $i++) {
             if (isset($post['dd' . $i . '_option_name']) || !empty($post['dd' . $i . '_option_name'])) {
