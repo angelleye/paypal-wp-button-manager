@@ -44,8 +44,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             $APIUsername = get_option('paypal_api_username_sandbox');
             $APIPassword = get_option('paypal_password_sandbox');
             $APISignature = get_option('paypal_signature_sandbox');
-        }
-        else {
+        } else {
             $apitype = 'FALSE';
             $APIUsername = get_option('paypal_api_username_live');
             $APIPassword = get_option('paypal_password_live');
@@ -93,13 +92,11 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
      *
      * Depending on the type of button you are creating some variables will be required.
      * Refer to the HTML Standard Variable reference for more details on variables for specific button types.
-     *
-     * https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/Appx_websitestandard_htmlvariables/
      */
     public function paypal_button_manager_for_wordpress_get_buttonvars() {
 
         $buttonvars = array(
-            'notify_url' => $_POST['variables_textarea'], // The URL to which PayPal posts information about the payment. in the form of an IPN message.
+            'notify_url' => '', // The URL to which PayPal posts information about the payment. in the form of an IPN message.
             'amount' => $_POST['item_price'], // The price or amount of the product, service, or contribution, not including shipping, handling, or tax.  If this variable is omitted from Buy Now or Donate buttons, buyers enter their own amount at the time of the payment.
             'discount_amount' => '', // Discount amount associated with an item.  Must be less than the selling price of the item.  Valid only for Buy Now and Add to Cart buttons.
             'discount_amount2' => '', // Discount amount associated with each additional quantity of the item.  Must be equal to or less than the selling price of the item.
@@ -117,7 +114,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'undefined_quantity' => '', // Set to 1 to allow the buyer to specify the quantity.
             'weight' => '', // Weight of items.
             'weight_unit' => '', // The unit of measure if weight is specified.  Values are:  lbs, kgs
-            'address_override' => '', // Set to 1 to override the payer's address stored in their PayPal account.
+            'address_override' => isset($_POST['add_variables']) ? $_POST['add_variables'] : '', // Set to 1 to override the payer's address stored in their PayPal account.
             'currency_code' => $_POST['item_price_currency'], // The currency of the payment.  https://developer.paypal.com/docs/classic/api/currency_codes/#id09A6G0U0GYK
             'custom' => '', // Pass-through variable for your own tracking purposes, which buyers do not see.
             'invoice' => '', // Pass-through variable you can use to identify your invoice number for the purchase.
@@ -177,7 +174,20 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'night_phone_b' => '', // 3 digit prefix for US numbers or the entire phone number for numbers outside the US.
             'night_phone_c' => '' // 4 digit phone number for US numbers.
         );
-        return $buttonvars;
+        if (isset($_POST['add_variables'])) {
+            $advance_finalarray = array();
+            $advance_subarray = array();
+            $advance_subarray = explode("\n", str_replace("\r", "", $_POST['variables_textarea']));
+            foreach ($advance_subarray as $subkey => $subvalue) {
+                $innersub = explode('=', $subvalue);
+                $advance_finalarray[$innersub[0]] = $innersub[1];
+            }
+            $advance_buttonvars = array();
+            $buttonvars = array_merge($buttonvars, $advance_finalarray);
+            return $buttonvars;
+        } else {
+            return $buttonvars;
+        }
     }
 
     public function paypal_button_manager_for_wordpress_get_dropdown_values() {
@@ -208,7 +218,6 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             );
             array_push($BMButtonOptions, $BMButtonOption);
         }
-
 
         for ($i = 1; $i <= 6; $i++) {
             if (isset($post['dd' . $i . '_option_name']) || !empty($post['dd' . $i . '_option_name'])) {

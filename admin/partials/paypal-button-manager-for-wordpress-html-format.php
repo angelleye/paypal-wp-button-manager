@@ -10,16 +10,16 @@
  */
 class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
 
-    /**
+	/**
      * Hook in methods
      * @since    1.0.0
      * @access   static
      */
-    public static function init() {
-        add_action('paypal_button_manager_interface', array(__CLASS__, 'paypal_button_manager_button_interface_html'));
-    }
+	public static function init() {
+		add_action('paypal_button_manager_interface', array(__CLASS__, 'paypal_button_manager_button_interface_html'));
+	}
 
-    public static function paypal_button_manager_button_interface_html() {
+	public static function paypal_button_manager_button_interface_html() {
         ?>
         <div id="wrap">
             <div id="main" class="legacyErrors">
@@ -56,8 +56,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                             <div class="body" style="height: auto; opacity: 1;">
                                                 <div class="content">
                                                     <div class="container">
-                                                        <div class="demoLink"><a target="_blank" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDAllButtonInformation" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})"><span class="small">Which button should I choose?</span></a></div>
-                                                        <div class="group buttonType">
+                                                                                                              <div class="group buttonType">
                                                             <label for="buttonType">Choose a button type</label>
                                                             <?php $paypal_button_options = get_paypal_button_options(); ?>
                                                             <select id="buttonType" name="button_type">
@@ -66,13 +65,14 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                 <?php } ?>
 
                                                             </select>
-                                                            <div class="fieldNote">Note: <a class="submitPage loginSavedSubmit" href="https://www.paypal.com/us/cgi-bin/webscr">Go to My saved buttons</a> to create a new button similar to an existing one.</div>
+                                                          
                                                         </div>
                                                         <div class="products"><input class="hide radio subButtonType" type="radio" id="radioAddToCartButton" checked="" name="sub_button_type" value="add_to_cart"><input class="hide radio subButtonType" type="radio" id="radioBuyNowButton" name="sub_button_type" value="buy_now"></div>
                                                         <div class="group details">
                                                             <div class="products">
                                                                 <div class="floatLeft"><label for="itemName">Item name</label><input class="text xlarge" maxlength="127" type="text" id="itemName" name="product_name" value=""></div>
-                                                                <div class="floatLeft"><label for="itemID">Item ID<span class="fieldNote"> (optional) </span><span class="autoTooltip" title="" tabindex="0">What's this?<span class="accessAid">You can assign an Item ID as a unique identifier to make tracking easier</span></span></label><input class="text" maxlength="127" type="text" id="itemID" size="9" name="product_id" value=""></div>
+                                                                <div class="floatLeft"><label for="itemID">Item ID<span class="fieldNote"> (optional) </span>
+                                                               <input class="text" maxlength="127" type="text" id="itemID" size="9" name="product_id" value=""></div>
                                                             </div>
                                                             <div class="donations accessAid fadedOut">
                                                                 <div class="floatLeft"><label for="donationName">Organization name/service</label><input class="text xlarge" maxlength="127" type="text" id="donationName" name="donation_name" value="" disabled=""></div>
@@ -95,7 +95,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                         <option value="<?php echo $paypal_button_currency_with_symbole_key; ?>" title="<?php echo $paypal_button_currency_with_symbole_value; ?>"><?php echo $paypal_button_currency_with_symbole_key; ?></option>
                                                                     <?php } ?>
                                                                 </select>
-                                                                <a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDMultiplePrices" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Need multiple prices?</a>
+                                                              
                                                             </div>
                                                         </div>
                                                         <div class="group subscriptions accessAid fadedOut">
@@ -112,7 +112,8 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                 <div class="borderBox">
                                                                     <p class="heading"><strong>Customize button</strong></p>
                                                                     <div id="customizeSection">
-                                                                        <p id="addDropdownPrice" class="hideShow opened"><label for="dropdownPrice"><input class="checkbox" type="checkbox" id="dropdownPrice" name="dropdown_price" value="createdDropdownPrice"><span class="products">Add drop-down menu with price/option&nbsp;</span><span class="subscriptions accessAid fadedOut">Add a dropdown menu with prices and options</span><a target="_blank" class="infoLink exampleLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_display-dropdown-price-example" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Example</a></label></p>
+                                                                        <p id="addDropdownPrice" class="hideShow opened"><label for="dropdownPrice"><input class="checkbox" type="checkbox" id="dropdownPrice" name="dropdown_price" value="createdDropdownPrice"><span class="products">Add drop-down menu with price/option&nbsp;</span><span class="subscriptions accessAid fadedOut">Add a dropdown menu with prices and options</span>
+                                                     					</label></p>
                                                                         <div id="dropdownPriceSection" class="hideShow accessAid hide">
                                                                             <p class="title dropdownPriceTitle"><label for="dropdownPriceTitle"><span class="products">Name of drop-down menu (ex.: "Colors," "Sizes")</span><span class="subscriptions accessAid fadedOut">Description (For example, “Payment options�?.)</span></label><input class="text" maxlength="64" type="text" id="dropdownPriceTitle" disabled="" name="dropdown_price_title" value=""></p>
                                                                             <p><label class="optionNameLbl" for=""><span class="products">Menu option name</span><span class="subscriptions accessAid fadedOut">Menu Name</span></label><label class="optionPriceLbl" for="optionPrice"><span class="products">Price</span><span class="subscriptions accessAid fadedOut">Amount (<span class="currencyLabel">USD</span>)</span></label><label class="optionCurrencyLbl" for="optionCurrency"><span class="products">Currency</span><span class="subscriptions accessAid fadedOut">Frequency</span></label></p>
@@ -160,7 +161,9 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                             <p><label id="savedDropdownPrice" for=""></label></p>
                                                                             <p class="editDelete"><a id="editDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products">Edit</span><span class="subscriptions accessAid fadedOut">Change</span></a>&nbsp;|&nbsp;<a id="deleteDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products">Delete</span><span class="subscriptions accessAid fadedOut">Cancel</span></a></p>
                                                                         </div>
-                                                                        <p id="addDropdown" class="hideShow opened"><label for="dropdown"><input class="checkbox" type="checkbox" id="dropdown" name="dropdown" value="createdDropdown"><span class="hideShow accessAid hide" id="dropDownLabelForSubscription">Add a dropdown menu </span><span id="dropDownLabel" class="opened">Add drop-down menu&nbsp;</span><a target="_blank" class="infoLink exampleLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_display-dropdown-example" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Example</a></label></p>
+                                                                        <p id="addDropdown" class="hideShow opened"><label for="dropdown"><input class="checkbox" type="checkbox" id="dropdown" name="dropdown" value="createdDropdown"><span class="hideShow accessAid hide" id="dropDownLabelForSubscription">Add a dropdown menu </span><span id="dropDownLabel" class="opened">Add drop-down menu&nbsp;</span>
+                                                                       
+                                                                        </label></p>
                                                                         <div class="hideShow dropdownSection accessAid hide" id="dropdownSection1">
                                                                             <p class="title"><label for="">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text" disabled="" name="dropdown1_title" value=""></p>
                                                                             <p><label for="">Menu option name</label></p>
@@ -276,7 +279,8 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                                     </span>
                                                                                 </p>
                                                                             </div>
-                                                                            <p id="addCustomButton"><label for="customButton"><input class="radio" type="radio" id="customButton" name="paypal_button" value="false">Use your own button image</label><span class="autoTooltip" title="" tabindex="0">What’s this?<span class="accessAid">Use custom button images that match the look of your website.</span></span></p>
+                                                                            <p id="addCustomButton"><label for="customButton"><input class="radio" type="radio" id="customButton" name="paypal_button" value="false">Use your own button image</label>
+                                                                            </p>
                                                                             <div id="customButtonSection" class="hideShow accessAid hide"><input type="text" id="customImageUrl" class="text" name="custom_image_url" value="http://"></div>
                                                                         </div>
                                                                     </div>
@@ -336,13 +340,15 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                         <div class="group products">
                                                             <div class="shipping">
                                                                 <fieldset>
-                                                                    <legend>Shipping</legend>
-                                                                    <label for="itemFlatShippingAmount">Use specific amount: <input class="text" type="text" id="itemFlatShippingAmount" size="9" name="item_shipping_amount" value=""><span class="currencyLabel">USD</span><a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDFlatShippingHelp" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Help</a></label>
+                                                                    <legend><strong>Shipping</strong></legend>
+                                                                    <label for="itemFlatShippingAmount">Use specific amount: <input class="text" type="text" id="itemFlatShippingAmount" size="9" name="item_shipping_amount" value=""><span class="currencyLabel">USD</span>
+                                                                    
+                                                                    </label>
                                                                 </fieldset>
                                                             </div>
                                                             <div class="tax">
                                                                 <fieldset>
-                                                                    <legend>Tax</legend>
+                                                                    <legend><strong>Tax</strong></legend>
                                                                     <label for="itemTaxRate">Use tax rate <input class="text xsmall" type="text" id="itemTaxRate" name="item_tax_rate" value="">%</label>
                                                                 </fieldset>
                                                             </div>
@@ -367,11 +373,11 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                         </div>
                                                         <div class="group subscriptions last accessAid fadedOut">
                                                             <div class="group">
-                                                                <input type="checkbox" id="enableUsernamePasswordCreation" class="checkbox" name="enable_username_password_creation" value="1" disabled="">Have PayPal create user names and passwords for customers&nbsp;<a class="balloonControl infoLinkDottedLine" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#customerControlHelp">What's this?<span class="accessAid">Give customers access to "members-only" content on your site.</span></a>
+                                                                <input type="checkbox" id="enableUsernamePasswordCreation" class="checkbox" name="enable_username_password_creation" value="1" disabled="">Have PayPal create user names and passwords for customers&nbsp;<a class="balloonControl infoLinkDottedLine" href="#customerControlHelp">What's this?<span class="accessAid">Give customers access to "members-only" content on your site.</span></a>
                                                                 <div class="balloonCallout accessAid" id="customerControlHelp">Give customers access to "members-only" content on your site.</div>
                                                                 <div class="fieldNote">
                                                                     <div class="label">Notes: </div>
-                                                                    <div class="floatLeft"><a target="_blank" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/xclick/request/SubscriptionPassManual" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">IPN and server modifications required.</a><br>Auto Return is not compatible with this feature.</div>
+                                                                    <div class="floatLeft"><a target="_blank" href="xpt/Merchant/xclick/request/SubscriptionPassManual" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">IPN and server modifications required.</a><br>Auto Return is not compatible with this feature.</div>
                                                                 </div>
                                                             </div>
                                                             <div id="rbFixedAmount">
@@ -513,7 +519,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                         <div id="stepTwo" class="box">
                                             <div class="header">
                                                 <h3 id="giftBasedHeading" class="accessAid hide">Step 2: Save your buttons (optional)</h3>
-                                                <h3 id="productBasedHeading" class="opened">Step 2: Track inventory, profit &amp; loss (optional)</h3>
+                                                <h3 id="productBasedHeading" class="opened">Step 2: Save your buttons (optional)</h3>
                                             </div>
                                             <div class="body">
                                                 <div class="content">
@@ -575,9 +581,8 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                         </div>
                                                         <div id="addVariablesContainer" class="opened">
                                                             <div class="header">
-                                                                Advanced variables <a class="balloonControl infoLinkDottedLine" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#advancedVariablesHelp">What's this?<span class="accessAid">Power users can add extra PayPal button variables here.</span></a>
-                                                                <div class="balloonCallout accessAid" id="advancedVariablesHelp">Power users can add extra PayPal button variables here.</div>
-                                                            </div>
+                                                                Advanced variables
+                                                             </div>
                                                             <div id="variablesSpacer">Use a line break between each variable. The variables will appear in your button’s HTML code. <a target="_blank" href="https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_html_Appx_websitestandard_htmlvariables">Learn more</a></div>
                                                             <label for="addVariables"><input class="checkbox" type="checkbox" id="addVariables" name="add_variables" value="1">Add advanced variables</label>
                                                             <div id="variablesTextareaContainer">
@@ -607,7 +612,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
 
         <?php
         wp_enqueue_script('button-designer-js', '/wp-content/plugins/paypal-button-manager-for-wordpress/admin/js/paypal-button-manager-for-wordpress-buttonDesigner.js', array(), '1.0', true);
-    }
+	}
 
 }
 

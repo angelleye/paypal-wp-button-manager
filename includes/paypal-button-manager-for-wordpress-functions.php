@@ -133,9 +133,8 @@ function get_paypal_button_options() {
         "services" => "Buy Now",
         "donations" => "Donations",
         "gift_certs" => "Gift certificates",
-        "subscriptions" => "Subscriptions",
-        "auto_billing" => "Automatic Billing",
-        "payment_plan" => "Installment Plan"));
+        "subscriptions" => "Subscriptions"
+            ));
 
     return array_unique($paypal_button_options);
 }
