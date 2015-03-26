@@ -64,6 +64,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
      *
      * @since    1.0.0
      */
+    
     public function enqueue_scripts() {
 
         wp_enqueue_script('jquery-ui-core');

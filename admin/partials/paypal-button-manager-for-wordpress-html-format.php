@@ -333,8 +333,8 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                                 </p>
                                                                                 <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection1"><label id="previewTextfieldTitle1" for="buttonTextfield1">Title</label><input type="text" id="buttonTextfield1" class="text readOnlyLabel" name="button_textfield1" value=""></p>
                                                                                 <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection2"><label id="previewTextfieldTitle2" for="buttonTextfield2">Title</label><input type="text" id="buttonTextfield2" class="text readOnlyLabel" name="button_textfield2" value=""></p>
-                                                                                <p class="hideShow opened previewImageSection"><img id="previewImage" src="<? echo site_url(); ?>/wp-content/plugins/paypal-button-manager-for-wordpress/admin/images/btn_cart_LG.gif" border="0" alt="Preview Image"></p>
-                                                                                <p class="hideShow accessAid previewCustomImageSection hide"><img id="previewCustomImage" src="<? echo site_url(); ?>/wp-content/plugins/paypal-button-manager-for-wordpress/admin/images/info_nobuttonpreview_121wx26h.gif" border="0" alt="Use your own button image"></p>
+                                                                                <p class="hideShow opened previewImageSection"><img id="previewImage" src="<? echo BMW_PLUGIN_URL ?>/admin/images/btn_cart_LG.gif" border="0" alt="Preview Image"></p>
+                                                                                <p class="hideShow accessAid previewCustomImageSection hide"><img id="previewCustomImage" src="<? echo BMW_PLUGIN_URL?>/admin/images/info_nobuttonpreview_121wx26h.gif" border="0" alt="Use your own button image"></p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -614,7 +614,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
 
 
                 <?php
-                wp_enqueue_script('button-designer-js', '/wp-content/plugins/paypal-button-manager-for-wordpress/admin/js/paypal-button-manager-for-wordpress-buttonDesigner.js', array(), '1.0', true);
+                wp_enqueue_script('button-designer-js', BMW_PLUGIN_URL.'admin/js/paypal-button-manager-for-wordpress-buttonDesigner.js', array(), '1.0', true);
             }
 
         }
