@@ -64,7 +64,6 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
      *
      * @since    1.0.0
      */
-    
     public function enqueue_scripts() {
 
         wp_enqueue_script('jquery-ui-core');
@@ -101,24 +100,16 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php';
     }
 
-    public function paypal_button_manager_notice_display($m) {
+    public function paypal_button_manager_notice_display() {
         global $post;
-        $notice = get_option('paypal_button_manager_notice');
-        if (empty($notice))
-            return $m;
-        foreach ($notice as $pid => $mm) {
-            if ($post->ID == $pid) {
-                foreach ($m['post'] as $i => $message) {
-                    if ($i == 4) {
-                        $m['post'][$i] = $mm;
-                    }
-                }
-                unset($notice[$pid]);
-                update_option('paypal_button_manager_notice', $notice);
-                break;
-            }
+        $errors = get_option('paypal_button_manager_notice');
+
+        if ($errors) {
+            echo '<div class="error"><p>' . $errors[$post->ID] . '</p></div>';
+            echo "<style>.updated{display:none;}</style>";
+            unset($errors[$post->ID]);
+            update_option('paypal_button_manager_notice', $errors);
         }
-        return $m;
     }
 
 }

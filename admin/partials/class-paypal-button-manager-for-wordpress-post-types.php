@@ -110,7 +110,13 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         global $post;
         switch ($column) {
             case 'shortcodes' :
-                echo '[paypal_button_manager id=' . $post_id . ']';
+                $shortcode_avalabilty = get_post_meta($post_id, 'paypal_button_response', true);
+                if (isset($shortcode_avalabilty) && !empty($shortcode_avalabilty)) {
+                    echo '[paypal_button_manager id=' . $post_id . ']';
+                } else {
+                    echo "Not Available";
+                }
+
                 break;
             case 'publisher' :
                 echo get_post_meta($post_id, 'publisher', true);
@@ -123,8 +129,23 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
     }
 
     public static function paypal_button_manager_for_wordpress_metabox() {
+        if (get_option('enable_sandbox') == 'yes') {
 
-        do_action('paypal_button_manager_interface');
+            $APIUsername = get_option('paypal_api_username_sandbox');
+            $APIPassword = get_option('paypal_password_sandbox');
+            $APISignature = get_option('paypal_signature_sandbox');
+        } else {
+
+            $APIUsername = get_option('paypal_api_username_live');
+            $APIPassword = get_option('paypal_password_live');
+            $APISignature = get_option('paypal_signature_live');
+        }
+
+        if ((isset($APIUsername) && !empty($APIUsername)) && (isset($APIPassword) && !empty($APIPassword)) && (isset($APISignature) && !empty($APISignature))) {
+            do_action('paypal_button_manager_interface');
+        } else {
+            echo "Please fill your API credentials properly &nbsp;&nbsp;<a href='/wp-admin/options-general.php?page=paypal-button-manager-for-wordpress-option'> Settings </a>";
+        }
     }
 
     public static function paypal_button_manager_button_interface_display() {

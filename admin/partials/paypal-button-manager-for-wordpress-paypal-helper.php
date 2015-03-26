@@ -94,20 +94,25 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
      * Refer to the HTML Standard Variable reference for more details on variables for specific button types.
      */
     public function paypal_button_manager_for_wordpress_get_buttonvars() {
-		if (isset($_POST['product_id'])) {
-			$item_number = $_POST['product_id'];
-		} else if (isset($_POST['donation_id'])) {
-			$item_number = $_POST['donation_id'];
-		} else {
-			$item_number ='';
-		}
-		if (isset($_POST['donation_name'])) {
-			$item_name = $_POST['donation_name'];
-		} else if (isset($_POST['product_name'])) {
-			$item_name = $_POST['product_name'];
-		} else {
-			$item_name = '';
-		}
+        if (isset($_POST['product_id'])) {
+            $item_number = $_POST['product_id'];
+        } else if (isset($_POST['donation_id'])) {
+            $item_number = $_POST['donation_id'];
+        } else if (isset($_POST['subscription_id'])) {
+            $item_number = $_POST['subscription_id'];
+        } else {
+            $item_number = '';
+        }
+
+        if (isset($_POST['donation_name'])) {
+            $item_name = $_POST['donation_name'];
+        } else if (isset($_POST['product_name'])) {
+            $item_name = $_POST['product_name'];
+        } else if (isset($_POST['subscription_name'])) {
+            $item_name = $_POST['subscription_name'];
+        } else {
+            $item_name = '';
+        }
         $buttonvars = array(
             'notify_url' => '', // The URL to which PayPal posts information about the payment. in the form of an IPN message.
             'amount' => $_POST['item_price'], // The price or amount of the product, service, or contribution, not including shipping, handling, or tax.  If this variable is omitted from Buy Now or Donate buttons, buyers enter their own amount at the time of the payment.
@@ -140,20 +145,20 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'business' => isset($_POST['business']) ? $_POST['business'] : '', // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
             'paymentaction' => '', // Indicates whether the payment is a finale sale or an authorization for a final sale, to be captured later.  Values are:  sale, authorization, order
             'shopping_url' => isset($_POST['gift_certificate_shop_url']) ? $_POST['gift_certificate_shop_url'] : '', // The URL of the page on the merchant website that buyers go to when they click the Continue Shopping button on the PayPal shopping cart page.
-            'a1' => '', // Trial period 1 price.  For a free trial period, specify 0.
-            'p1' => '', // Trial period 1 duration.  Required if you specify a1.
-            't1' => '', // Trial period 1 units of duration.  Values are:  D, W, M, Y
-            'a2' => '', // Trial period 2 price.  Can be specified only if you also specify a1.
-            'p2' => '', // Trial period 2 duration.
-            't2' => '', // Trial period 2 units of duration.
-            'a3' => '', // Regular subscription price.
+            'a1' => isset($_POST['subscription_trial_rate']) ? $_POST['subscription_trial_rate'] : '', // Trial period 1 price.  For a free trial period, specify 0.
+            'p1' => isset($_POST['subscription_trial_duration']) ? $_POST['subscription_trial_duration'] : '', // Trial period 1 duration.  Required if you specify a1.
+            't1' => isset($_POST['subscription_trial_duration_type']) ? $_POST['subscription_trial_duration_type'] : '', // Trial period 1 units of duration.  Values are:  D, W, M, Y
+            'a2' => isset($_POST['subscription_trial_rate']) ? $_POST['subscription_trial_rate'] : '', // Trial period 2 price.  Can be specified only if you also specify a1.
+            'p2' => isset($_POST['subscription_trial_2_duration']) ? $_POST['subscription_trial_2_duration'] : '', // Trial period 2 duration.
+            't2' => isset($_POST['subscription_trial_2_duration_type']) ? $_POST['subscription_trial_2_duration_type'] : '', // Trial period 2 units of duration.
+            'a3' => isset($_POST['subscription_billing_amount']) ? $_POST['subscription_billing_amount'] : '', // Regular subscription price.
             'p3' => '', // Regular subscription duration.
             't3' => '', // Regular subscription units of duration.
             'src' => '', // Recurring payments.  Subscription payments recur unless subscribers cancel.  Values are:  1, 0
             'sra' => '', // Reattempt on failure.  If a recurring payment fails, PayPal attempts to collect the payment two more times before canceling.  Values are:  1, 0
             'no_note' => '', // Set to 1 to disable prompts for buyers to include a note with their payments.
             'modify' => '', // Modification behavior.  0 - allows subscribers only to sign up for new subscriptions.  1 - allows subscribers to sign up for new subscriptions and modify their current subscriptions.  2 - allows subscribers to modify only their current subscriptions.
-            'usr_manage' => '', // Set to 1 to have PayPal generate usernames and passwords for subscribers.  https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/subscribe_buttons/#id08ADFB00QWS
+            'usr_manage' => isset($_POST['enable_username_password_creation']) ? $_POST['enable_username_password_creation'] : '', // Set to 1 to have PayPal generate usernames and passwords for subscribers.  https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/subscribe_buttons/#id08ADFB00QWS
             'max_text' => '', // A description of the automatic billing plan.
             'set_customer_limit' => '', // Specify whether to let buyers enter maximum billing limits in a text box or choose from a list of max billing limits that you specify.  Values are:  max_limit_own, max_limit_defined
             'min_amount' => '', // The minimum monthly billing limit, if you have one.

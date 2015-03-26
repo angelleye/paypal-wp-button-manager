@@ -5,6 +5,8 @@ jQuery('.ddpOptionCurrency').change(function() {
 	jQuery(".spanOptionCurrency").html(jQuery(this).val());
 });
 
+
+
 jQuery( ".removeOptionPrice" ).click(function() {
 	var rowCount = jQuery('#tblOption tr').length;
 	
@@ -28,5 +30,6 @@ jQuery('#buttonType').change(function() {
 	
 	}
 });
+
 	
 });
