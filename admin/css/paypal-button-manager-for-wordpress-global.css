@@ -553,18 +553,18 @@ table.lite.header-y td {padding:8px 10px;}
 .balloon .yui-panel {border:none;}
 .balloon .header {position:absolute; top:-999px; left:-999px;}
 .balloon .body {padding:10px 15px;}
-.balloon .posUnder {padding:13px 0 0 0; background:url(/en_US/i/pui/scr/tooltip_sprite.gif) -500px top no-repeat;}
+.balloon .posUnder {padding:13px 0 0 0;}
 .balloon .posUnder .body {border:1px solid #666; border-top-width:0; padding:12px 17px 10px 8px; background:#ffffe5;}
-.balloon .posOver {padding:0 0 12px 0; background:url(/en_US/i/pui/scr/tooltip_sprite.gif) 0 bottom no-repeat;}
+.balloon .posOver {padding:0 0 12px 0;}
 .balloon .posOver .body {border:1px solid #666; border-bottom-width:0; padding:8px 17px 12px 8px; background:#ffffe5;}
 
-.balloon .posUnder.right { background:url(/en_US/i/pui/scr/tooltip_sprite_right.gif)  -751px top no-repeat;}
-.balloon .posOver.right { background:url(/en_US/i/pui/scr/tooltip_sprite_right.gif) -249px bottom no-repeat;}
+.balloon .posUnder.right { }
+.balloon .posOver.right {}
 
 
-.miniLayout .balloon .posUnder {background:url(/en_US/i/pui/scr/tooltip_sprite_mini.gif) -465px top no-repeat;}
+.miniLayout .balloon .posUnder {}
 .miniLayout .balloon .posUnder .body {margin-top:-2px;}
-.miniLayout .balloon .posOver {background:url(/en_US/i/pui/scr/tooltip_sprite_mini.gif) -475px bottom no-repeat;}
+.miniLayout .balloon .posOver {}
 .miniLayout .balloon .posOver .body {margin-bottom:-2px;}
 
 /* Tabbed Cardstack */
@@ -606,7 +606,7 @@ table.lite.header-y td {padding:8px 10px;}
 .datatable .title, .datatable .filters, .datatable .actions, .datatable .pagination {overflow:hidden; border-top:1px solid #fff; border-bottom:1px solid #d2d6d9; padding:5px 10px;}
 .datatable .title {background:#eaeef2 url(/en_US/i/pui/table_title_bg.gif) top left repeat-x;}
 .datatable .filters {background:#eaeef2;}
-.datatable .actions, .datatable .pagination {background:#fff url(/en_US/i/pui/cont_grey_30.gif) bottom left repeat-x;}
+.datatable .actions, .datatable .pagination {}
 .datatable .filters, .datatable .actions, .datatable .pagination {font-size:.9em;}
 .datatable .filters p, .datatable .actions p, .datatable .actions ul, .datatable .pagination p {display:inline; margin:0;}
 
@@ -634,9 +634,9 @@ table.lite.header-y td {padding:8px 10px;}
 .datatable tr th {border-right:1px solid #ccc; border-bottom:1px solid #eee; padding:5px 10px; background-color:#e8f1fa; font-weight:normal; font-size:.9em; text-align:left; vertical-align:bottom;}
 .datatable tr th.selected {background-color:#d1e3f7;}
 .datatable tr th.last {border-right:none;}
-.datatable tr th a {padding-right:10px; color:#333; background:url(/en_US/i/btn/btn_grey_dwn_arrow.gif) right center no-repeat; text-decoration:none;}
+.datatable tr th a {padding-right:10px; color:#333;  text-decoration:none;}
 .datatable tr th a:hover, .datatable tr th a:focus {text-decoration:underline;}
-.datatable tr th.selected a {background-image:url(/en_US/i/btn/btn_blue_up_arrow.gif);}
+.datatable tr th.selected a {}
 .datatable table .cur_val {text-align:right;}
 .datatable tr td {border-top:1px solid #eee; padding:5px 10px;}
 .datatable tr.secondary td {border-top:none;}
@@ -644,8 +644,8 @@ table.lite.header-y td {padding:8px 10px;}
 
 
 /* PPLite Widget Styles */
-div#pplite.loading {height:inherit; background: #fff url(/en_US/i/icon/icon_animated_prog_42wx42h.gif) no-repeat center; }
-div#pplite {background:url(/en_US/i/pui/lightbox/bg.gif) repeat-x scroll left bottom #FFFFFF;}
+div#pplite.loading {height:inherit;  }
+div#pplite {}
 div#pplite_c.lightbox div#pplite.loading {padding-top:212px;}
 div#pplite_c {width:300px;}
 div#pplite_c.lightbox{width:400px;}
@@ -702,10 +702,10 @@ div.listOpen.prepOpen span.listArrow  {z-index:4; background:#ffa822 url(/en_US/
 /* NG captcha */
 .ngCaptcha {clear:both;overflow:hidden;}
 .ngCaptcha span {display:block;width:140px;}
-.ngCaptcha span a {background:url(/en_US/i/icon/audiorefresh.png) no-repeat;padding-left:20px;display:block;}
+.ngCaptcha span a {padding-left:20px;display:block;}
 .ngCaptcha span a.ngAudio {background-position: -166px 0; margin-right:20px;}
 .ngCaptcha  span.leftFloat {float:left;}
-.ngCaptcha noscript{background:url(/en_US/i/icon/audiorefresh.png) no-repeat;padding-left:20px;}
+.ngCaptcha noscript{padding-left:20px;}
 .ngCaptcha .transparentButton {margin-top:10px;}
 
 

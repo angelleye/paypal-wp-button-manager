@@ -4,7 +4,6 @@
  * the CoreLayout.
  **************************************************************************/
 #pageLoadMsg {
-	background:url('/en_US/i/header/header_logginginAction.gif') center center no-repeat;
 	font-weight:bold;
 	font-size:1.4em;
 	height:110px;
@@ -39,8 +38,8 @@ div#page {position: static;}
  * Standard button styles 
  **************************************************************************/
 input.secondary, input.tertiary, input.secondayDisabled, input.tertiaryDisabled {cursor:pointer; cursor:hand; width:auto; height:22px; padding-left:10px; padding-right:10px;}
-input.secondary {color:#336699; background:#83a9ce url(/en_US/i/btn/btn_secondary_1x50.gif) repeat-x top left; border:1px solid #85a7ca;}
-input.tertiary {color:#777; background:#bcbcbb url(/en_US/i/btn/btn_cancel_1x50.gif) repeat-x top left; border:1px solid #acadaf;}
+input.secondary {color:#336699; border:1px solid #85a7ca;}
+input.tertiary {color:#777;border:1px solid #acadaf;}
 input.secondaryDisabled, input.tertiaryDisabled {color:#ccc; background:#e5e5e5; border:1px solid #ccc; cursor:none;}
 
 
@@ -61,16 +60,16 @@ div.group.outerContainer {margin:30px 0 !important;}
  **********************************************************************/
  
 .accordion {margin-bottom:18px;}
-.accordion .box div.header {background:transparent url(/en_US/i/scr/scr_stepgradient_1x23h.jpg) repeat-x; border:1px solid #ccc; border-bottom:0; margin:0}
+.accordion .box div.header { border:1px solid #ccc; border-bottom:0; margin:0}
 .accordion .box.open div.header,
-.accordion .box div.header.hover {background:transparent url(/en_US/i/scr/scr_stepgradienthover_1x23h.jpg) repeat-x; cursor:pointer; cursor:hand;}
+.accordion .box div.header.hover { cursor:pointer; cursor:hand;}
 .accordion .box.last div.header,
 .accordion .box.open.last .body .content {border-bottom:1px solid #ccc}
-.accordion .box div.header h3 {background:transparent url(/en_US/i/scr/scr_steparrowright_12wx12h.gif) 9px 5px no-repeat; border:1px solid #f4f7f6; color:#333; font-size:1em; font-weight:normal; height:16px; padding:4px 0 2px 25px;}
+.accordion .box div.header h3 {border:1px solid #f4f7f6; color:#333; font-size:1em; font-weight:normal; height:16px; padding:4px 0 2px 25px;}
 
 .accordion .box div.header.hover h3 {font-weight:bold}
 .accordion .box div.header h3 { font-weight: bold;}
-.accordion .box.open div.header h3 {background:transparent url(/en_US/i/scr/src_steparrowdown_12wx12h.gif) 9px 5px no-repeat; font-weight:bold; margin:0 !important}
+.accordion .box.open div.header h3 {font-weight:bold; margin:0 !important}
 /*.accordion .box .body {width:750px !important;}*/
 .accordion .box .body .content {border-left:1px solid #ccc; border-right:1px solid #ccc; margin:0; padding:0; height:auto;}
 .accordion .box .body .content:after {content:"."; height:0; *height:1%; clear:both; visibility:hidden; display:block;}
@@ -104,7 +103,7 @@ div.group.outerContainer {margin:30px 0 !important;}
 #stepOne #buttonType {padding-bottom:3px; margin-bottom:3px;}
 #stepOne .labelOption {margin:3px 0 6px 20px;}
 #stepOne .demoLink {position:absolute; right:30px; width:auto;}
-#stepOne .demoLink a {background:url(/en_US/i/icon/icon_question_16wx16h.gif) 2px 3px no-repeat; padding:3px 0 3px 25px;}
+#stepOne .demoLink a {padding:3px 0 3px 25px;}
 
 /* Form elements */
 #stepOne input.xsmall {width:60px;}
@@ -193,8 +192,8 @@ div#customizeSection div.savedTextfieldSection p label{width:250px; overflow:hid
 
 /* Customize Button Appearance Section */
 p#addTextfield{margin:0 0 10px 0}
-span#buttonAppLink.collapsed a{background:transparent url(/en_US/i/scr/scr_arrowright_14wx14h.gif) no-repeat; margin:0 0 0 20px; padding-left:15px}
-span#buttonAppLink.expanded a{background:transparent url(/en_US/i/scr/scr_arrowdown_14wx14h.gif) no-repeat; margin:0 0 0 20px; padding-left:15px}
+span#buttonAppLink.collapsed a{ margin:0 0 0 20px; padding-left:15px}
+span#buttonAppLink.expanded a{margin:0 0 0 20px; padding-left:15px}
 div#buttonAppSection p#addPaypalButton label, 
 div#buttonAppSection p#addCustomButton label{margin:13px 0 0 40px; padding:0}
 div#buttonAppSection div#paypalButtonSection p#displaySmallButton label{margin:13px 0 0 60px; _margin:6px 0 0 60px; padding:0}
@@ -212,7 +211,7 @@ div.customizeButtonSection div#customizeSection div#buttonAppSection div#customB
 /* Buyer's Preview Section (right column) */
 .buyerViewSection{width:256px; position:absolute; right:0; left:309px; top:0; text-align:center}
 #wideBox .buyerViewSection {left:392px;position:absolute;right:0;text-align:center;top:0;width:300px;}
-.buyerViewSection p.heading{background:transparent url(/en_US/i/scr/scr_headergradient.jpg) repeat; margin:0; padding:5px 8px}
+.buyerViewSection p.heading{ margin:0; padding:5px 8px}
 #plan .buyerViewSection p.heading{padding-top:3px;}
 div.buyerViewSection p.heading{text-align:left}
 .previewSection .previewDropdown{width:209px; margin:15px auto 0; text-align:left}
