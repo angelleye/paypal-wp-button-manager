@@ -33,7 +33,7 @@ if (!defined('BMW_PLUGIN_URL'))
  *  define log file path
  */
 if (!defined('PAYPAL_BUTTONS_FOR_WORDPRESS_LOG_DIR')) {
-    define('PAYPAL_BUTTONS_FOR_WORDPRESS_LOG_DIR', ABSPATH . 'paypal-buttons-logs/');
+    define('PAYPAL_BUTTONS_FOR_WORDPRESS_LOG_DIR', ABSPATH . 'paypal-button-manager-logs/');
 }
 
 /**
