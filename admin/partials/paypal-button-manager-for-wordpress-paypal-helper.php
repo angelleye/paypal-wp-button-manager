@@ -152,8 +152,8 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'p2' => isset($_POST['subscription_trial_2_duration']) ? $_POST['subscription_trial_2_duration'] : '', // Trial period 2 duration.
             't2' => isset($_POST['subscription_trial_2_duration_type']) ? $_POST['subscription_trial_2_duration_type'] : '', // Trial period 2 units of duration.
             'a3' => isset($_POST['subscription_billing_amount']) ? $_POST['subscription_billing_amount'] : '', // Regular subscription price.
-            'p3' => '', // Regular subscription duration.
-            't3' => '', // Regular subscription units of duration.
+            'p3' => isset($_POST['subscription_billing_cycle_number']) ? $_POST['subscription_billing_cycle_number'] : '', // Regular subscription duration.
+            't3' => isset($_POST['subscription_billing_cycle_period']) ? $_POST['subscription_billing_cycle_period'] : '', // Regular subscription units of duration.
             'src' => '', // Recurring payments.  Subscription payments recur unless subscribers cancel.  Values are:  1, 0
             'sra' => '', // Reattempt on failure.  If a recurring payment fails, PayPal attempts to collect the payment two more times before canceling.  Values are:  1, 0
             'no_note' => '', // Set to 1 to disable prompts for buyers to include a note with their payments.

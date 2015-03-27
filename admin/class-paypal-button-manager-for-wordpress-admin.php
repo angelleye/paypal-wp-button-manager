@@ -102,13 +102,15 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
 
     public function paypal_button_manager_notice_display() {
         global $post;
-        $errors = get_option('paypal_button_manager_notice');
-
-        if ($errors) {
-            echo '<div class="error"><p>' . $errors[$post->ID] . '</p></div>';
+        $errors_notice = get_option('paypal_button_manager_notice');
+		$error_code = get_option('paypal_button_manager_error_code');
+        if ((isset($errors_notice) && !empty($errors_notice)) && (isset($error_code) && !empty($error_code))) {
+            echo '<div class="error"><p>Error Code:&nbsp;'.$error_code[$post->ID].'<br/>Error Details:&nbsp;' . $errors_notice[$post->ID] . '</p></div>';
             echo "<style>.updated{display:none;}</style>";
-            unset($errors[$post->ID]);
-            update_option('paypal_button_manager_notice', $errors);
+            unset($errors_notice[$post->ID]);
+            unset($error_code[$post->ID]);
+            update_option('paypal_button_manager_notice', $errors_notice);
+            update_option('paypal_button_manager_error_code', $error_code);
         }
     }
 
