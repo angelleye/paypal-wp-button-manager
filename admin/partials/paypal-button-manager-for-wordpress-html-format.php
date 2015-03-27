@@ -601,7 +601,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                 </div>
                                             </div>
                                             <!--  <input class="button-primary" type="submit" id="createButton" name="create_button_submit" value="Create Button">-->
-                                            <input type="submit" value="Create Button" class="button-primary create_button" name="button_submit">
+                                            <input type="submit" value="Create Button" class="button-primary create_button" name="publish">
                                         </div>
                                     </div>
                                 </div>

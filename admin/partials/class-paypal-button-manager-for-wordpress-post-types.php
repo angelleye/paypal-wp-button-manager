@@ -129,12 +129,16 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
     }
 
     public static function paypal_button_manager_for_wordpress_metabox() {
-     
-            do_action('paypal_button_manager_interface');
+
+        do_action('paypal_button_manager_interface');
     }
 
     public static function paypal_button_manager_button_interface_display() {
-        if (isset($_POST['button_submit'])) {
+
+        global $post, $post_ID;
+
+        if ((isset($_POST['publish'])) && ($post->post_type == 'paypal_buttons')) {
+
             do_action('paypal_button_manager_button_generator');
         }
     }

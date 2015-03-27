@@ -103,14 +103,20 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
     public function paypal_button_manager_notice_display() {
         global $post;
         $errors_notice = get_option('paypal_button_manager_notice');
-		$error_code = get_option('paypal_button_manager_error_code');
-        if ((isset($errors_notice) && !empty($errors_notice)) && (isset($error_code) && !empty($error_code))) {
-            echo '<div class="error"><p>Error Code:&nbsp;'.$error_code[$post->ID].'<br/>Error Details:&nbsp;' . $errors_notice[$post->ID] . '</p></div>';
+        $error_code = get_option('paypal_button_manager_error_code');
+        $timeout_notice = get_option('paypal_button_manager_timeout_notice');
+        if ((isset($errors_notice) && !empty($errors_notice)) && (isset($error_code) && !empty($error_code)) && (empty($timeout_notice))) {
+            echo '<div class="error"><p>Error Code:&nbsp;' . $error_code[$post->ID] . '<br/>Error Details:&nbsp;' . $errors_notice[$post->ID] . '</p></div>';
             echo "<style>.updated{display:none;}</style>";
             unset($errors_notice[$post->ID]);
             unset($error_code[$post->ID]);
             update_option('paypal_button_manager_notice', $errors_notice);
             update_option('paypal_button_manager_error_code', $error_code);
+        } else if (isset($timeout_notice) && !empty($timeout_notice)) {
+            echo '<div class="error"><p>Error Details:&nbsp;' . $timeout_notice[$post->ID] . '</p></div>';
+            echo "<style>.updated{display:none;}</style>";
+            unset($timeout_notice[$post->ID]);
+            update_option('paypal_button_manager_timeout_notice', $timeout_notice);
         }
     }
 
