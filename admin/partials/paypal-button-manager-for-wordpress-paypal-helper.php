@@ -63,28 +63,43 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
 
     // Prepare request arrays
     public function paypal_button_manager_for_wordpress_get_buttonfields() {
-        $buttonimageurl = $_POST['custom_image_url'];
-        if ($buttonimageurl == 'http://') {
-            $buttonimageurl = '';
-        } else {
-            $buttonimageurl = $buttonimageurl;
-        }
+
         if (isset($_POST['enable_hosted_buttons'])) {
             $buttontype = 'HOSTED';
         } else {
             $buttontype = 'CLEARTEXT';
         }
 
-        $bmcreatebuttonfields = array
-            (
-            'buttoncode' => $buttontype, // The kind of button code to create.  It is one of the following values:  HOSTED, ENCRYPTED, CLEARTEXT, TOKEN
-            'buttontype' => AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper::paypal_button_manager_for_wordpress_get_button_type(), // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
-            'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
-            'buttonimage' => isset($_POST['cc_logos']) ? 'CC' : 'SML',
-            'buttonimageurl' => $buttonimageurl,
-            'buttonlanguage' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : ''
-        );
-        return $bmcreatebuttonfields;
+        if ($_POST['button_type'] == 'products') {
+            $buttonimage = 'REG';
+        } else if (isset($_POST['cc_logos'])) {
+            $buttonimage = 'CC';
+        } else {
+            $buttonimage = 'SML';
+        }
+        if (isset($_POST['custom_image_url']) && !empty($_POST['custom_image_url'])) {
+            $bmcreatebuttonfields = array
+                (
+                'buttoncode' => $buttontype, // The kind of button code to create.  It is one of the following values:  HOSTED, ENCRYPTED, CLEARTEXT, TOKEN
+                'buttontype' => AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper::paypal_button_manager_for_wordpress_get_button_type(), // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
+                'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
+                'buttonimage' => $buttonimage, //isset($_POST['cc_logos']) ? 'CC' : 'SML',
+                'buttonimageurl' => $_POST['custom_image_url'],
+                'buttonlanguage' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : ''
+            );
+            return $bmcreatebuttonfields;
+        } else {
+
+            $bmcreatebuttonfields = array
+                (
+                'buttoncode' => $buttontype, // The kind of button code to create.  It is one of the following values:  HOSTED, ENCRYPTED, CLEARTEXT, TOKEN
+                'buttontype' => AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper::paypal_button_manager_for_wordpress_get_button_type(), // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
+                'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
+                'buttonimage' => $buttonimage, //isset($_POST['cc_logos']) ? 'CC' : 'SML',
+                'buttonlanguage' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : ''
+            );
+            return $bmcreatebuttonfields;
+        }
     }
 
     /**

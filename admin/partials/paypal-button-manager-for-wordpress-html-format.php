@@ -283,7 +283,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                                     </div>
                                                                                     <p id="addCustomButton"><label for="customButton"><input class="radio" type="radio" id="customButton" name="paypal_button" value="false">Use your own button image</label>
                                                                                     </p>
-                                                                                    <div id="customButtonSection" class="hideShow accessAid hide"><input type="text" id="customImageUrl" class="text" name="custom_image_url" value="http://"></div>
+                                                                                    <div id="customButtonSection" class="hideShow accessAid hide"><input type="text" id="customImageUrl" class="text" name="custom_image_url" value=""></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
