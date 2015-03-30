@@ -237,20 +237,37 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
         $ddp_option_name = isset($post['ddp_option_name']) ? $post['ddp_option_name'] : '';
         if (isset($ddp_option_name) && !empty($ddp_option_name)) {
             $BMButtonOptionSelections = array();
+            $BMButtonOptionSelections_own = array();
             foreach ($ddp_option_name as $ddp_option_name_key => $ddp_option_name_value) {
                 $BMButtonOptionSelection = array(
                     'value' => $ddp_option_name_value,
                     'price' => $post['ddp_option_price'][$ddp_option_name_key],
                     'type' => ''
                 );
+                 $BMButtonOptionSelection_own = array(
+                    'value' => $ddp_option_name_value,
+                    'price' => $post['ddp_option_price'][$ddp_option_name_key],
+                    'currency_code' => $_POST['ddp_option_currency']
+                );
                 array_push($BMButtonOptionSelections, $BMButtonOptionSelection);
+                array_push($BMButtonOptionSelections_own, $BMButtonOptionSelection_own);
             }
             $BMButtonOption = array(
                 'name' => isset($_POST['dropdown_price_title']) ? $_POST['dropdown_price_title'] : '',
                 'selections' => $BMButtonOptionSelections
             );
             array_push($BMButtonOptions, $BMButtonOption);
+            
+            
+            
         }
+        $BMButtonOptionSelection_serialize = array();
+        
+        
+        $BMButtonOptionSelection_serialize = serialize($BMButtonOptionSelections_own);
+       
+       
+        update_post_meta($post[post_ID][0],'paypal_button_manager_options1',$BMButtonOptionSelection_serialize);
 
         for ($i = 1; $i <= 6; $i++) {
             if (isset($post['dd' . $i . '_option_name']) || !empty($post['dd' . $i . '_option_name'])) {
