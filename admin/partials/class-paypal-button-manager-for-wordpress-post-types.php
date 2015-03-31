@@ -23,8 +23,9 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         add_action('add_meta_boxes', array(__CLASS__, 'paypal_button_manager_for_wordpress_add_meta_boxes'), 10);
         add_filter('manage_edit-paypal_buttons_columns', array(__CLASS__, 'my_edit_paypal_buttons_columns'));
         add_action('manage_paypal_buttons_posts_custom_column', array(__CLASS__, 'my_paypal_buttons_columns'), 10, 2);
-		add_action( 'init',  array(__CLASS__,'paypal_button_manager_remove_paypal_buttons_editor'), 10 );
+        add_action('init', array(__CLASS__, 'paypal_button_manager_remove_paypal_buttons_editor'), 10);
         add_action('save_post', array(__CLASS__, 'paypal_button_manager_button_interface_display'));
+        add_filter('gettext', array(__CLASS__, 'paypal_button_manager_change_publish_button'), 10, 2);
     }
 
     /**
@@ -86,12 +87,29 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
                     'rewrite' => array('slug' => 'paypal_buttons'),
                     'query_var' => true,
                     'menu_icon' => BMW_PLUGIN_URL . 'admin/images/paypal-button-manager-for-wordpress-icon.png',
-                    'supports' => array('title','editor'),
+                    'supports' => array('title', 'editor'),
                     'has_archive' => true,
                     'show_in_nav_menus' => true
                         )
                 )
         );
+    }
+
+    public static function paypal_button_manager_change_publish_button($translation, $text) {
+
+        global $post;
+
+        if (isset($post->post_type) && !empty($post->post_type)) {
+            if ('paypal_buttons' == $post->post_type) {
+                if ($text == 'Publish') {
+                    return 'Create Button';
+                } else if ($text == 'Update') {
+                    return 'Update Button';
+                }
+            }
+        }
+
+        return $translation;
     }
 
     public static function my_edit_paypal_buttons_columns($columns) {
@@ -105,8 +123,9 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
 
         return $columns;
     }
+
     public static function paypal_button_manager_remove_paypal_buttons_editor() {
-    	 remove_post_type_support( 'paypal_buttons', 'editor' );
+        remove_post_type_support('paypal_buttons', 'editor');
     }
 
     public static function my_paypal_buttons_columns($column, $post_id) {
@@ -132,8 +151,8 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
     }
 
     public static function paypal_button_manager_for_wordpress_metabox() {
-		
-       if (get_option('enable_sandbox') == 'yes') {
+
+        if (get_option('enable_sandbox') == 'yes') {
 
             $APIUsername = get_option('paypal_api_username_sandbox');
             $APIPassword = get_option('paypal_password_sandbox');
@@ -156,7 +175,7 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
 
         global $post, $post_ID;
 
-        if ((isset($_POST['publish'])) && ($post->post_type == 'paypal_buttons')) {
+        if (((isset($_POST['publish'])) || isset($_POST['save'])) && ($post->post_type == 'paypal_buttons')) {
 
             do_action('paypal_button_manager_button_generator');
         }
