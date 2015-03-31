@@ -130,7 +130,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_General_Setting {
           <div id="setting-error-settings_updated" class="updated settings-error"> 
 				<p><strong>Settings were saved successfully.</strong></p></div>
 
-    <?endif;
+    <?php endif;
 	}
 }
 AngellEYE_PayPal_Button_Manager_for_WordPress_General_Setting::init();
