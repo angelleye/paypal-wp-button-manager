@@ -23,7 +23,7 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         add_action('add_meta_boxes', array(__CLASS__, 'paypal_button_manager_for_wordpress_add_meta_boxes'), 10);
         add_filter('manage_edit-paypal_buttons_columns', array(__CLASS__, 'my_edit_paypal_buttons_columns'));
         add_action('manage_paypal_buttons_posts_custom_column', array(__CLASS__, 'my_paypal_buttons_columns'), 10, 2);
-
+		add_action( 'init',  array(__CLASS__,'paypal_button_manager_remove_paypal_buttons_editor'), 10 );
         add_action('save_post', array(__CLASS__, 'paypal_button_manager_button_interface_display'));
     }
 
@@ -86,7 +86,7 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
                     'rewrite' => array('slug' => 'paypal_buttons'),
                     'query_var' => true,
                     'menu_icon' => BMW_PLUGIN_URL . 'admin/images/paypal-button-manager-for-wordpress-icon.png',
-                    'supports' => array('title', ''),
+                    'supports' => array('title','editor'),
                     'has_archive' => true,
                     'show_in_nav_menus' => true
                         )
@@ -104,6 +104,9 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         );
 
         return $columns;
+    }
+    public static function paypal_button_manager_remove_paypal_buttons_editor() {
+    	 remove_post_type_support( 'paypal_buttons', 'editor' );
     }
 
     public static function my_paypal_buttons_columns($column, $post_id) {
@@ -129,8 +132,24 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
     }
 
     public static function paypal_button_manager_for_wordpress_metabox() {
+		
+       if (get_option('enable_sandbox') == 'yes') {
 
-        do_action('paypal_button_manager_interface');
+            $APIUsername = get_option('paypal_api_username_sandbox');
+            $APIPassword = get_option('paypal_password_sandbox');
+            $APISignature = get_option('paypal_signature_sandbox');
+        } else {
+
+            $APIUsername = get_option('paypal_api_username_live');
+            $APIPassword = get_option('paypal_password_live');
+            $APISignature = get_option('paypal_signature_live');
+        }
+
+        if ((isset($APIUsername) && !empty($APIUsername)) && (isset($APIPassword) && !empty($APIPassword)) && (isset($APISignature) && !empty($APISignature))) {
+            do_action('paypal_button_manager_interface');
+        } else {
+            echo "Please fill your API credentials properly. &nbsp;&nbsp;<a href='/wp-admin/options-general.php?page=paypal-button-manager-for-wordpress-option'> Go to API Settings </a>";
+        }
     }
 
     public static function paypal_button_manager_button_interface_display() {
