@@ -105,6 +105,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
         $errors_notice = get_option('paypal_button_manager_notice');
         $error_code = get_option('paypal_button_manager_error_code');
         $timeout_notice = get_option('paypal_button_manager_timeout_notice');
+        $success_notice = get_option('paypal_button_manager_success_notice');
         if ((isset($errors_notice) && !empty($errors_notice)) && (isset($error_code) && !empty($error_code)) && (empty($timeout_notice))) {
             echo '<div class="error"><p>Error Code:&nbsp;' . $error_code[$post->ID] . '<br/>Error Details:&nbsp;' . $errors_notice[$post->ID] . '</p></div>';
             echo "<style>.updated{display:none;}</style>";
@@ -117,7 +118,34 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
             echo "<style>.updated{display:none;}</style>";
             unset($timeout_notice[$post->ID]);
             update_option('paypal_button_manager_timeout_notice', $timeout_notice);
+        } else if (isset($success_notice) && !empty($success_notice)) {
+            echo '<div class="updated below-h2"><p>&nbsp;' . $success_notice[$post->ID] . '</p></div>';
+            unset($success_notice[$post->ID]);
+            update_option('paypal_button_manager_success_notice', $success_notice);
         }
+    }
+
+    public function paypal_button_manager_success_notice_display($messages) {
+
+        global $post, $post_ID;
+
+        $messages['paypal_buttons'] = array(
+            0 => '', // Unused. Messages start at index 1.
+            1 => sprintf(__('Button Created Successfully')),
+            2 => __('Custom field updated.'),
+            3 => __('Custom field deleted.'),
+            4 => __('Button updated successfully.'),
+            /* translators: %s: date and time of the revision */
+            5 => isset($_GET['revision']) ? sprintf(__('Button restored to revision from %s'), wp_post_revision_title((int) $_GET['revision'], false)) : false,
+            6 => sprintf(__('Button Created Successfully')),
+            7 => __('Button saved.'),
+            8 => sprintf(__('Button submitted. <a target="_blank" href="%s">Preview Button</a>'), esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
+            9 => sprintf(__('Button scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview Button</a>'),
+                    // translators: Publish box date format, see http://php.net/date
+                    date_i18n(__('M j, Y @ G:i'), strtotime($post->post_date)), esc_url(get_permalink($post_ID))),
+            10 => sprintf(__('Button draft updated. <a target="_blank" href="%s">Preview Button</a>'), esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
+        );
+        return $messages;
     }
 
 }

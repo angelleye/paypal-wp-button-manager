@@ -22,9 +22,9 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Public_Display {
 
         $paypal_button_response = get_post_meta($id, 'paypal_button_response', true);
         if (!empty($paypal_button_response)) {
-            echo $paypal_button_response;
+            return $paypal_button_response;
         } else {
-            echo '[paypal_button_manager id=' . $id . ']';
+            return '[paypal_button_manager id=' . $id . ']';
         }
     }
 
