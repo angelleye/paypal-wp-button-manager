@@ -89,6 +89,12 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress {
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-paypal-button-manager-for-wordpress-loader.php';
 
         /**
+         * The class responsible for writing log in log file.
+         * core plugin.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-paypal-button-manager-for-wordpress-logger.php';
+
+        /**
          * The class responsible for defining internationalization functionality
          * of the plugin.
          */
