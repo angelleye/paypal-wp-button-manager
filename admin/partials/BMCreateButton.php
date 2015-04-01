@@ -44,7 +44,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_generator {
             $paypal_button_manager_notice = get_option('paypal_button_manager_notice');
             $notice[$post_ID] = $PayPalResult['ERRORS'][0]['L_LONGMESSAGE'];
             $notice_code[$post_ID] = $PayPalResult['ERRORS'][0]['L_ERRORCODE'];
-           self::paypal_button_manager_write_error_log($PayPalResult);
+            self::paypal_button_manager_write_error_log($PayPalResult);
             update_option('paypal_button_manager_notice', $notice);
             update_option('paypal_button_manager_error_code', $notice_code);
             unset($_POST);
@@ -58,7 +58,6 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_generator {
             global $post, $post_ID;
             update_post_meta($post_ID, 'paypal_button_response', $PayPalResult['WEBSITECODE']);
             self::paypal_button_manager_write_error_log($PayPalResult);
-            
         }
     }
 
