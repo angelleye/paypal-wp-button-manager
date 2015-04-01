@@ -243,7 +243,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
                     'price' => $post['ddp_option_price'][$ddp_option_name_key],
                     'type' => ''
                 );
-               
+
                 array_push($BMButtonOptionSelections, $BMButtonOptionSelection);
             }
             $BMButtonOption = array(
@@ -251,11 +251,8 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
                 'selections' => $BMButtonOptionSelections
             );
             array_push($BMButtonOptions, $BMButtonOption);
-            
-            
-            
         }
-        
+
 
         for ($i = 1; $i <= 6; $i++) {
             if (isset($post['dd' . $i . '_option_name']) || !empty($post['dd' . $i . '_option_name'])) {

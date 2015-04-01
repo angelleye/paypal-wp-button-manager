@@ -118,23 +118,25 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
             echo "<style>.updated{display:none;}</style>";
             unset($timeout_notice[$post->ID]);
             update_option('paypal_button_manager_timeout_notice', $timeout_notice);
-        } else if (isset($success_notice) && !empty($success_notice)) {
-            echo '<div class="updated below-h2"><p>&nbsp;' . $success_notice[$post->ID] . '</p></div>';
-            unset($success_notice[$post->ID]);
-            update_option('paypal_button_manager_success_notice', $success_notice);
         }
     }
 
     public function paypal_button_manager_success_notice_display($messages) {
 
         global $post, $post_ID;
-
+        $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
+        $success_message = get_post_meta($post_ID, 'paypal_button_manager_success_notice', true);
+        if (isset($success_message) && !empty($success_message)) {
+            $custom_message = $success_message;
+        } else {
+            $custom_message = 'Button Updated Successfully.';
+        }
         $messages['paypal_buttons'] = array(
             0 => '', // Unused. Messages start at index 1.
-            1 => sprintf(__('Button Created Successfully')),
+            1 => sprintf(__($custom_message)),
             2 => __('Custom field updated.'),
             3 => __('Custom field deleted.'),
-            4 => __('Button updated successfully.'),
+            4 => __('Button Updated Successfully'),
             /* translators: %s: date and time of the revision */
             5 => isset($_GET['revision']) ? sprintf(__('Button restored to revision from %s'), wp_post_revision_title((int) $_GET['revision'], false)) : false,
             6 => sprintf(__('Button Created Successfully')),

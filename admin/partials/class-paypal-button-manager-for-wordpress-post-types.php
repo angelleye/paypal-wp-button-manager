@@ -151,23 +151,35 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
     }
 
     public static function paypal_button_manager_for_wordpress_metabox() {
+        global $post, $post_ID;
+        $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
+        if (isset($paypal_button_html) && !empty($paypal_button_html)) {
+            ?>
+            <h3>Paste the button code in your post or page editor:</h3><br/>
+            <textarea id="txtarea_response" cols="70" rows="10"><? echo $paypal_button_html; ?></textarea>
+            <br/><br/>
+            <h3>Paste the below wordpress shortcode in your post or page editor:</h3><br/>
+            <lable class='h3padding'><?php echo '[paypal_button_manager id=' . $post_ID . ']'; ?></lable>			
 
-        if (get_option('enable_sandbox') == 'yes') {
-
-            $APIUsername = get_option('paypal_api_username_sandbox');
-            $APIPassword = get_option('paypal_password_sandbox');
-            $APISignature = get_option('paypal_signature_sandbox');
+        <?php
         } else {
+            if (get_option('enable_sandbox') == 'yes') {
 
-            $APIUsername = get_option('paypal_api_username_live');
-            $APIPassword = get_option('paypal_password_live');
-            $APISignature = get_option('paypal_signature_live');
-        }
+                $APIUsername = get_option('paypal_api_username_sandbox');
+                $APIPassword = get_option('paypal_password_sandbox');
+                $APISignature = get_option('paypal_signature_sandbox');
+            } else {
 
-        if ((isset($APIUsername) && !empty($APIUsername)) && (isset($APIPassword) && !empty($APIPassword)) && (isset($APISignature) && !empty($APISignature))) {
-            do_action('paypal_button_manager_interface');
-        } else {
-            echo "Please fill your API credentials properly. &nbsp;&nbsp;<a href='/wp-admin/options-general.php?page=paypal-button-manager-for-wordpress-option'> Go to API Settings </a>";
+                $APIUsername = get_option('paypal_api_username_live');
+                $APIPassword = get_option('paypal_password_live');
+                $APISignature = get_option('paypal_signature_live');
+            }
+
+            if ((isset($APIUsername) && !empty($APIUsername)) && (isset($APIPassword) && !empty($APIPassword)) && (isset($APISignature) && !empty($APISignature))) {
+                do_action('paypal_button_manager_interface');
+            } else {
+                echo "Please fill your API credentials properly. &nbsp;&nbsp;<a href='/wp-admin/options-general.php?page=paypal-button-manager-for-wordpress-option'> Go to API Settings </a>";
+            }
         }
     }
 
@@ -175,9 +187,15 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
 
         global $post, $post_ID;
 
-        if (((isset($_POST['publish'])) || isset($_POST['save'])) && ($post->post_type == 'paypal_buttons')) {
+        $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
 
-            do_action('paypal_button_manager_button_generator');
+
+        if (((isset($_POST['publish'])) || isset($_POST['save'])) && ($post->post_type == 'paypal_buttons')) {
+            if (empty($paypal_button_html)) {
+                do_action('paypal_button_manager_button_generator');
+            } else {
+                update_post_meta($post_ID, 'paypal_button_manager_success_notice', '');
+            }
         }
     }
 

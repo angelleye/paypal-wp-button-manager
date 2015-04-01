@@ -47,17 +47,20 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_generator {
             self::paypal_button_manager_write_error_log($PayPalResult);
             update_option('paypal_button_manager_notice', $notice);
             update_option('paypal_button_manager_error_code', $notice_code);
+            update_post_meta($post_ID, 'paypal_button_manager_success_notice', '');
             unset($_POST);
         } else if ($PayPalResult['RAWRESPONSE'] == false) {
             global $post, $post_ID;
             $timeout_notice[$post_ID] = 'Internal server error occured';
             update_option('paypal_button_manager_timeout_notice', $timeout_notice);
             self::paypal_button_manager_write_error_log($PayPalResult);
+            update_post_meta($post_ID, 'paypal_button_manager_success_notice', '');
             unset($_POST);
         } else if (isset($PayPalResult['WEBSITECODE']) && !empty($PayPalResult['WEBSITECODE'])) {
             global $post, $post_ID;
             update_post_meta($post_ID, 'paypal_button_response', $PayPalResult['WEBSITECODE']);
             self::paypal_button_manager_write_error_log($PayPalResult);
+            update_post_meta($post_ID, 'paypal_button_manager_success_notice', 'Button Created Successfully.');
         }
     }
 
