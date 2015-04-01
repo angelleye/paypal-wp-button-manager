@@ -21,7 +21,8 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Public_Display {
                     'id' => ''), $atts));
 
         $paypal_button_response = get_post_meta($id, 'paypal_button_response', true);
-        if (!empty($paypal_button_response)) {
+        $post_status = get_post_status( $id );
+        if (!empty($paypal_button_response) && ($post_status =='publish')) {
             return $paypal_button_response;
         } else {
             return '[paypal_button_manager id=' . $id . ']';
