@@ -590,7 +590,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                     <div class="header">
                                                                         Advanced variables
                                                                     </div>
-                                                                    <div id="variablesSpacer">Use a line break between each variable. The variables will appear in your buttonÃ¢â‚¬â„¢s HTML code. <a target="_blank" href="https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_html_Appx_websitestandard_htmlvariables">Learn more</a></div>
+                                                                    <div id="variablesSpacer">Use a line break between each variable. The variables will appear in your button's HTML code. <a target="_blank" href="https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_html_Appx_websitestandard_htmlvariables">Learn more</a></div>
                                                                     <label for="addVariables"><input class="checkbox" type="checkbox" id="addVariables" name="add_variables" value="1">Add advanced variables</label>
                                                                     <div id="variablesTextareaContainer">
                                                                         <textarea cols="30" rows="10" id="variablesTextarea" name="variables_textarea"></textarea>
