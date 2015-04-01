@@ -74,20 +74,20 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
                         'parent' => __('Parent PayPal Button', 'paypal_button_manager_for_wordpress')
                     ),
                     'description' => __('This is where you can create new PayPal buttons.', 'paypal_button_manager_for_wordpress'),
-                    'public' => true,
+                    'public' => false,
                     'show_ui' => true,
                     'capability_type' => 'post',
                     'capabilities' => array(
                         'create_posts' => true, // Removes support for the "Add New" function
                     ),
                     'map_meta_cap' => true,
-                    'publicly_queryable' => true,
-                    'exclude_from_search' => false,
+                    'publicly_queryable' => false,
+                    'exclude_from_search' => true,
                     'hierarchical' => false, // Hierarchical causes memory issues - WP loads all records!
                     'rewrite' => array('slug' => 'paypal_buttons'),
                     'query_var' => true,
                     'menu_icon' => BMW_PLUGIN_URL . 'admin/images/paypal-button-manager-for-wordpress-icon.png',
-                    'supports' => array('title', 'editor'),
+                    'supports' => array('title'),
                     'has_archive' => true,
                     'show_in_nav_menus' => true
                         )
@@ -161,7 +161,7 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
             <h3>Paste the below wordpress shortcode in your post or page editor:</h3><br/>
             <lable class='h3padding'><?php echo '[paypal_button_manager id=' . $post_ID . ']'; ?></lable>			
 
-        <?php
+            <?php
         } else {
             if (get_option('enable_sandbox') == 'yes') {
 
