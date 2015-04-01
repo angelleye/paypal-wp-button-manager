@@ -163,7 +163,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'a1' => isset($_POST['subscription_trial_rate']) ? $_POST['subscription_trial_rate'] : '', // Trial period 1 price.  For a free trial period, specify 0.
             'p1' => isset($_POST['subscription_trial_duration']) ? $_POST['subscription_trial_duration'] : '', // Trial period 1 duration.  Required if you specify a1.
             't1' => isset($_POST['subscription_trial_duration_type']) ? $_POST['subscription_trial_duration_type'] : '', // Trial period 1 units of duration.  Values are:  D, W, M, Y
-            'a2' => isset($_POST['subscription_trial_rate']) ? $_POST['subscription_trial_rate'] : '', // Trial period 2 price.  Can be specified only if you also specify a1.
+            'a2' => isset($_POST['subscription_trial_2_rate']) ? $_POST['subscription_trial_2_rate'] : '', // Trial period 2 price.  Can be specified only if you also specify a1.
             'p2' => isset($_POST['subscription_trial_2_duration']) ? $_POST['subscription_trial_2_duration'] : '', // Trial period 2 duration.
             't2' => isset($_POST['subscription_trial_2_duration_type']) ? $_POST['subscription_trial_2_duration_type'] : '', // Trial period 2 units of duration.
             'a3' => isset($_POST['subscription_billing_amount']) ? $_POST['subscription_billing_amount'] : '', // Regular subscription price.
