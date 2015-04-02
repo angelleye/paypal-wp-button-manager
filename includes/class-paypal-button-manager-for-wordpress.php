@@ -139,8 +139,6 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress {
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/PayPal.php';
 
-
-
         $this->loader = new AngellEYE_PayPal_Button_Manager_for_WordPress_Loader();
     }
 
@@ -174,8 +172,8 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress {
 
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
-        $this->loader->add_action('admin_notices', $plugin_admin, 'paypal_button_manager_notice_display');
-        $this->loader->add_filter('post_updated_messages', $plugin_admin, 'paypal_button_manager_success_notice_display');
+        $this->loader->add_action('admin_notices', $plugin_admin, 'paypal_button_manager_for_wordpress_notice_display');
+        $this->loader->add_filter('post_updated_messages', $plugin_admin, 'paypal_button_manager_for_wordpress_success_notice_display');
     }
 
     /**

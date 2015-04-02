@@ -10,10 +10,15 @@
 class AngellEYE_PayPal_Button_Manager_for_WordPress_Public_Display {
 
     public static function init() {
-        add_shortcode('paypal_button_manager', array(__CLASS__, 'create_paypal_button_manager_shortcode'));
+        add_shortcode('paypal_button_manager', array(__CLASS__, 'paypal_button_manager_for_wordpress_create_shortcode'));
     }
 
-    public static function create_paypal_button_manager_shortcode($atts, $content = null) {
+    /**
+     * paypal_button_manager_for_wordpress_create_shortcode function is for generate
+     * @since 1.0.0
+     * @access public
+     */
+    public static function paypal_button_manager_for_wordpress_create_shortcode($atts, $content = null) {
 
         global $post, $post_ID;
 

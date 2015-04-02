@@ -21,11 +21,11 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         add_action('admin_print_scripts', array(__CLASS__, 'disable_autosave'));
         add_action('init', array(__CLASS__, 'paypal_button_manager_for_wordpress_register_post_types'), 5);
         add_action('add_meta_boxes', array(__CLASS__, 'paypal_button_manager_for_wordpress_add_meta_boxes'), 10);
-        add_filter('manage_edit-paypal_buttons_columns', array(__CLASS__, 'my_edit_paypal_buttons_columns'));
-        add_action('manage_paypal_buttons_posts_custom_column', array(__CLASS__, 'my_paypal_buttons_columns'), 10, 2);
-        add_action('init', array(__CLASS__, 'paypal_button_manager_remove_paypal_buttons_editor'), 10);
-        add_action('save_post', array(__CLASS__, 'paypal_button_manager_button_interface_display'));
-        add_filter('gettext', array(__CLASS__, 'paypal_button_manager_change_publish_button'), 10, 2);
+        add_filter('manage_edit-paypal_buttons_columns', array(__CLASS__, 'paypal_button_manager_for_wordpress_edit_paypal_buttons_columns'));
+        add_action('manage_paypal_buttons_posts_custom_column', array(__CLASS__, 'paypal_button_manager_for_wordpress_paypal_buttons_columns'), 10, 2);
+        add_action('init', array(__CLASS__, 'paypal_button_manager_for_wordpress_remove_paypal_buttons_editor'), 10);
+        add_action('save_post', array(__CLASS__, 'paypal_button_manager_for_wordpress_button_interface_display'));
+        add_filter('gettext', array(__CLASS__, 'paypal_button_manager_for_wordpress_change_publish_button'), 10, 2);
     }
 
     /**
@@ -43,7 +43,7 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
     }
 
     /**
-     * paypal_button_manager_for_wordpress_register_post_types function
+     * paypal_button_manager_for_wordpress_register_post_types function is user for register custom post type
      * @since    1.0.0
      * @access   public
      */
@@ -95,7 +95,16 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         );
     }
 
-    public static function paypal_button_manager_change_publish_button($translation, $text) {
+    /**
+     * paypal_button_manager_for_wordpress_change_publish_button function is for 
+     * change publish text to create button in custom post type
+     * @global type $post returns the globle post values.
+     * @param type $translation returns the translated text.
+     * @param type $text string which needs to change
+     * @since 1.0.0
+     * @access public
+     */
+    public static function paypal_button_manager_for_wordpress_change_publish_button($translation, $text) {
 
         global $post;
 
@@ -112,7 +121,14 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         return $translation;
     }
 
-    public static function my_edit_paypal_buttons_columns($columns) {
+    /**
+     * paypal_button_manager_for_wordpress_edit_paypal_buttons_columns function
+     * is use for register button shortcode column.
+     * @param type $columns returns attribute for custom column.
+     * @since 1.0.0
+     * @access public
+     */
+    public static function paypal_button_manager_for_wordpress_edit_paypal_buttons_columns($columns) {
 
         $columns = array(
             'cb' => '<input type="checkbox" />',
@@ -124,11 +140,27 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         return $columns;
     }
 
-    public static function paypal_button_manager_remove_paypal_buttons_editor() {
+    /**
+     * paypal_button_manager_for_wordpress_remove_paypal_buttons_editor function
+     * is use for remove editor for custom post type.
+     * @since 1.0.0
+     * @access public
+     */
+    public static function paypal_button_manager_for_wordpress_remove_paypal_buttons_editor() {
         remove_post_type_support('paypal_buttons', 'editor');
     }
 
-    public static function my_paypal_buttons_columns($column, $post_id) {
+    /**
+     * paypal_button_manager_for_wordpress_paypal_buttons_columns function is use
+     * for write content in custom registered column.
+     * @global type $post returns the post variable values.
+     * @param type $column Column name in which we want to write content.
+     * @param type $post_id Post id of post in which content will be written for
+     * the column.
+     * @since 1.0.0
+     * @access public
+     */
+    public static function paypal_button_manager_for_wordpress_paypal_buttons_columns($column, $post_id) {
         global $post;
         switch ($column) {
             case 'shortcodes' :
@@ -136,7 +168,7 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
                 if (isset($shortcode_avalabilty) && !empty($shortcode_avalabilty)) {
                     echo '[paypal_button_manager id=' . $post_id . ']';
                 } else {
-                    echo "Not Available";
+                    echo __('Not Available');
                 }
 
                 break;
@@ -146,19 +178,34 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         }
     }
 
+    /**
+     * paypal_button_manager_for_wordpress_add_meta_boxes function is use for
+     * register metabox for paypal_buttons custom post type.
+     * @since 1.0.0
+     * @access public
+     */
     public static function paypal_button_manager_for_wordpress_add_meta_boxes() {
         add_meta_box('paypal-buttons-meta-id', 'Paypal Button Generator', array(__CLASS__, 'paypal_button_manager_for_wordpress_metabox'), 'paypal_buttons', 'normal', 'high');
     }
 
+    /**
+     * paypal_button_manager_for_wordpress_metabox function is use for write data
+     * in metabox.
+     * @global type $post returns the post variable values.
+     * @global type $post_ID returns the post id of a post.
+     * @since 1.0.0
+     * @access public
+     */
     public static function paypal_button_manager_for_wordpress_metabox() {
         global $post, $post_ID;
         $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
         if (isset($paypal_button_html) && !empty($paypal_button_html)) {
+
+            echo '<h3>' . _e('Paste the button code in your post or page editor:', 'paypal-button-manager-for-wordpress') . '</h3>' . '<br/>';
             ?>
-            <h3>Paste the button code in your post or page editor:</h3><br/>
             <textarea id="txtarea_response" cols="70" rows="10"><? echo $paypal_button_html; ?></textarea>
             <br/><br/>
-            <h3>Paste the below wordpress shortcode in your post or page editor:</h3><br/>
+            <?php echo '<h3>' . _e('Paste the below wordpress shortcode in your post or page editor:', 'paypal-button-manager-for-wordpress') . '</h3><br/>'; ?>
             <lable class='h3padding'><?php echo '[paypal_button_manager id=' . $post_ID . ']'; ?></lable>			
 
             <?php
@@ -178,18 +225,23 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
             if ((isset($APIUsername) && !empty($APIUsername)) && (isset($APIPassword) && !empty($APIPassword)) && (isset($APISignature) && !empty($APISignature))) {
                 do_action('paypal_button_manager_interface');
             } else {
-                echo "Please fill your API credentials properly. &nbsp;&nbsp;<a href='/wp-admin/options-general.php?page=paypal-button-manager-for-wordpress-option'> Go to API Settings </a>";
+                echo __('Please fill your API credentials properly', 'paypal-button-manager-for-wordpress') . "&nbsp;&nbsp;<a href='/wp-admin/options-general.php?page=paypal-button-manager-for-wordpress-option'> Go to API Settings </a>";
             }
         }
     }
 
-    public static function paypal_button_manager_button_interface_display() {
+    /**
+     * paypal_button_manager_for_wordpress_button_interface_display is use for display
+     * paypal button generator interface.
+     * @global type $post returns the post variable values.
+     * @global type $post_ID returns the post id of a post.
+     * @since 1.0.0
+     * @access public
+     */
+    public static function paypal_button_manager_for_wordpress_button_interface_display() {
 
         global $post, $post_ID;
-
         $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
-
-
         if (((isset($_POST['publish'])) || isset($_POST['save'])) && ($post->post_type == 'paypal_buttons')) {
             if (empty($paypal_button_html)) {
                 do_action('paypal_button_manager_button_generator');

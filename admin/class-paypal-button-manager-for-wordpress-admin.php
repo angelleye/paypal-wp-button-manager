@@ -100,28 +100,42 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_Admin {
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php';
     }
 
-    public function paypal_button_manager_notice_display() {
+    /**
+     * paypal_button_manager_for_wordpress_notice_display function is use for display
+     * error of paypal response.
+     * @global type $post returns the post values.\
+     * @since 1.0.0
+     * @access public
+     */
+    public function paypal_button_manager_for_wordpress_notice_display() {
         global $post;
         $errors_notice = get_option('paypal_button_manager_notice');
         $error_code = get_option('paypal_button_manager_error_code');
         $timeout_notice = get_option('paypal_button_manager_timeout_notice');
         $success_notice = get_option('paypal_button_manager_success_notice');
         if ((isset($errors_notice) && !empty($errors_notice)) && (isset($error_code) && !empty($error_code)) && (empty($timeout_notice))) {
-            echo '<div class="error"><p>Error Code:&nbsp;' . $error_code[$post->ID] . '<br/>Error Details:&nbsp;' . $errors_notice[$post->ID] . '</p></div>';
+            echo _e('<div class="error"><p>Error Code:&nbsp;' . $error_code[$post->ID] . '<br/>Error Details:&nbsp;' . $errors_notice[$post->ID] . '</p></div>', 'paypal-button-manager-for-wordpress');
             echo "<style>.updated{display:none;}</style>";
             unset($errors_notice[$post->ID]);
             unset($error_code[$post->ID]);
             update_option('paypal_button_manager_notice', $errors_notice);
             update_option('paypal_button_manager_error_code', $error_code);
         } else if (isset($timeout_notice) && !empty($timeout_notice)) {
-            echo '<div class="error"><p>Error Details:&nbsp;' . $timeout_notice[$post->ID] . '</p></div>';
+            echo _e('<div class="error"><p>Error Details:&nbsp;' . $timeout_notice[$post->ID] . '</p></div>', 'paypal-button-manager-for-wordpress');
             echo "<style>.updated{display:none;}</style>";
             unset($timeout_notice[$post->ID]);
             update_option('paypal_button_manager_timeout_notice', $timeout_notice);
         }
     }
 
-    public function paypal_button_manager_success_notice_display($messages) {
+    /**
+     * paypal_button_manager_for_wordpress_success_notice_display function is use for
+     * change paypal_buttons post update message.
+     * @param type $messages returns the custom message.
+     * @since 1.0.0
+     * @access public
+     */
+    public function paypal_button_manager_for_wordpress_success_notice_display($messages) {
 
         global $post, $post_ID;
         $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);

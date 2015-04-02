@@ -19,6 +19,11 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
         $this->paypal_button_manager_for_wordpress_get_button_type();
     }
 
+    /**
+     * paypal_button_manager_for_wordpress_get_button_type prepairs array for button type.
+     * @since 1.0.0
+     * @access public
+     */
     public function paypal_button_manager_for_wordpress_get_button_type() {
         $button_type = $_POST['button_type'];
         switch ($button_type) {
@@ -38,6 +43,12 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
         return $button_type;
     }
 
+    /**
+     * paypal_button_manager_for_wordpress_get_paypalconfig function is for getting
+     * paypal api settings detail.
+     * @since 1.0.0
+     * @access public
+     */
     public function paypal_button_manager_for_wordpress_get_paypalconfig() {
         if (get_option('enable_sandbox') == 'yes') {
             $apitype = 'TRUE';
@@ -61,7 +72,12 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
         return $payapalconfig;
     }
 
-    // Prepare request arrays
+    /**
+     * paypal_button_manager_for_wordpress_get_buttonfields prepairs array for
+     * button fields.
+     * @since 1.0.0
+     * @access public
+     */
     public function paypal_button_manager_for_wordpress_get_buttonfields() {
 
         if (isset($_POST['enable_hosted_buttons'])) {
@@ -104,9 +120,10 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
 
     /**
      * You may pass in any variables from the Standard Payments list.
-     *
      * Depending on the type of button you are creating some variables will be required.
      * Refer to the HTML Standard Variable reference for more details on variables for specific button types.
+     * @since 1.0.0
+     * @access public
      */
     public function paypal_button_manager_for_wordpress_get_buttonvars() {
         if (isset($_POST['product_id'])) {
@@ -223,6 +240,12 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
         }
     }
 
+    /**
+     * paypal_button_manager_for_wordpress_get_dropdown_values function prepairs array
+     * for generate dropdown menu for button.
+     * @since 1.0.0
+     * @access public
+     */
     public function paypal_button_manager_for_wordpress_get_dropdown_values() {
 
         $BMButtonOptions = array();
@@ -252,7 +275,6 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             );
             array_push($BMButtonOptions, $BMButtonOption);
         }
-
 
         for ($i = 1; $i <= 6; $i++) {
             if (isset($post['dd' . $i . '_option_name']) || !empty($post['dd' . $i . '_option_name'])) {

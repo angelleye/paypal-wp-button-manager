@@ -25,18 +25,14 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_generator {
 
         // Create PayPal object.
         global $post, $post_ID;
-
         $payapal_helper = new AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper();
         $PayPalConfig = $payapal_helper->paypal_button_manager_for_wordpress_get_paypalconfig();
         $PayPal = new PayPal($PayPalConfig);
         $paypal_buttontype = $payapal_helper->paypal_button_manager_for_wordpress_get_button_type();
-
         $BMButtonVars = array();
         $BMButtonVars = $payapal_helper->paypal_button_manager_for_wordpress_get_buttonvars();
         $PayPalRequestData = $payapal_helper->paypal_button_manager_for_wordpress_get_dropdown_values();
-
         $PayPalResult = $PayPal->BMCreateButton($PayPalRequestData);
-
 
         // Write the contents of the response array to the screen for demo purposes.
         if (isset($PayPalResult['ERRORS']) && !empty($PayPalResult['ERRORS'])) {
@@ -64,6 +60,10 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_generator {
         }
     }
 
+    /**
+     * This function is for write log in error log folder
+     * @param type $error The error returns the string of a error.
+     */
     public static function paypal_button_manager_write_error_log($error) {
         $debug = (get_option('log_enable_button_manager') == 'yes') ? 'yes' : 'no';
         if ('yes' == $debug) {

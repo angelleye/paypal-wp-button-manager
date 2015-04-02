@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Get Currency symbol.
- * @param string $currency (default: '')
- * @return string
- */
 function get_paypal_button_currency_symbol($currency = '') {
     if (!$currency) {
         $currency = get_paypal_button_currency();
@@ -97,6 +92,7 @@ function get_paypal_button_currency_symbol($currency = '') {
     return apply_filters('paypal_button_currency_symbol', $currency_symbol, $currency);
 }
 
+
 function get_paypal_button_currency_with_symbole() {
 
     $paypal_button_currency_with_symbole = array(
@@ -169,6 +165,7 @@ function get_paypal_button_currency() {
     return array_unique($paypal_button_currency);
 }
 
+
 function get_paypal_button_subscriptions() {
     $paypal_button_subscriptions = ( array(
         "D" => "Daily",
@@ -177,6 +174,7 @@ function get_paypal_button_subscriptions() {
         "Y" => "Yearly"));
     return array_unique($paypal_button_subscriptions);
 }
+
 
 function get_paypal_button_subscriptions_cycle() {
     $paypal_button_subscriptions_cycle = ( array(
