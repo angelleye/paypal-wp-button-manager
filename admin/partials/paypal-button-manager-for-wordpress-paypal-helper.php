@@ -145,8 +145,8 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
         } else {
             $item_name = '';
         }
-        
-        
+
+
         $post = array();
         foreach (explode('&', file_get_contents('php://input')) as $keyValuePair) {
             list($key, $value) = explode('=', $keyValuePair);
@@ -154,13 +154,13 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
         }
         $ddp_option_name = isset($post['ddp_option_name']) ? $post['ddp_option_name'] : '';
         if ((isset($ddp_option_name) && !empty($ddp_option_name)) && (empty($_POST['dropdown_price_title']) || !empty($_POST['dropdown_price_title']))) {
-        	$item_price = '';
+            $item_price = '';
         } else {
-        	$item_price = $_POST['item_price'];
+            $item_price = $_POST['item_price'];
         }
-        
-        
-        
+
+
+
         $buttonvars = array(
             'notify_url' => '', // The URL to which PayPal posts information about the payment. in the form of an IPN message.
             'amount' => $item_price, // The price or amount of the product, service, or contribution, not including shipping, handling, or tax.  If this variable is omitted from Buy Now or Donate buttons, buyers enter their own amount at the time of the payment.
@@ -180,7 +180,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'undefined_quantity' => '', // Set to 1 to allow the buyer to specify the quantity.
             'weight' => '', // Weight of items.
             'weight_unit' => '', // The unit of measure if weight is specified.  Values are:  lbs, kgs
-            'address_override' => isset($_POST['add_variables']) ? $_POST['add_variables'] : '', // Set to 1 to override the payer's address stored in their PayPal account.
+            'address_override' => '', // Set to 1 to override the payer's address stored in their PayPal account.
             'currency_code' => $_POST['item_price_currency'], // The currency of the payment.  https://developer.paypal.com/docs/classic/api/currency_codes/#id09A6G0U0GYK
             'custom' => '', // Pass-through variable for your own tracking purposes, which buyers do not see.
             'invoice' => '', // Pass-through variable you can use to identify your invoice number for the purchase.
@@ -240,20 +240,8 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'night_phone_b' => '', // 3 digit prefix for US numbers or the entire phone number for numbers outside the US.
             'night_phone_c' => '' // 4 digit phone number for US numbers.
         );
-        if (isset($_POST['add_variables'])) {
-            $advance_finalarray = array();
-            $advance_subarray = array();
-            $advance_subarray = explode("\n", str_replace("\r", "", $_POST['variables_textarea']));
-            foreach ($advance_subarray as $subkey => $subvalue) {
-                $innersub = explode('=', $subvalue);
-                $advance_finalarray[$innersub[0]] = $innersub[1];
-            }
-            $advance_buttonvars = array();
-            $buttonvars = array_merge($buttonvars, $advance_finalarray);
-            return $buttonvars;
-        } else {
-            return $buttonvars;
-        }
+
+        return $buttonvars;
     }
 
     /**
@@ -304,7 +292,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
                 foreach ($ddall_option_name as $ddall_option_name_key => $ddall_option_name_value) {
                     $BMButtonOptionSelection_dd_all[] = array(
                         'value' => $ddall_option_name_value,
-                        'price' =>'',
+                        'price' => '',
                         'type' => ''
                     );
                 }

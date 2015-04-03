@@ -56,7 +56,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
 
                                         <div id="stepOne" class="box top defaultOpen open">
                                             <div class="header">
-        <?php echo '<h3>' . __('Step 1: Choose a button type and enter your payment details') . '</h3>'; ?>
+                                                <?php echo '<h3>' . __('Step 1: Choose a button type and enter your payment details') . '</h3>'; ?>
                                             </div>
 
                                             <div class="body" style="height: auto; opacity: 1;">
@@ -64,11 +64,11 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                     <div class="container">
                                                         <div class="group buttonType">
                                                             <label for="buttonType">Choose a button type</label>
-                                                                <?php $paypal_button_options = get_paypal_button_options(); ?>
+                                                            <?php $paypal_button_options = get_paypal_button_options(); ?>
                                                             <select id="buttonType" name="button_type">
                                                                 <?php foreach ($paypal_button_options as $paypal_button_options_key => $paypal_button_options_value) { ?>
                                                                     <option value="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_options_value; ?></option>
-        <?php } ?>
+                                                                <?php } ?>
 
                                                             </select>
 
@@ -96,23 +96,23 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                     <div class="floatLeft"><label for="itemPrice">Price</label><input class="text" type="text" id="itemPrice" size="9" name="item_price" value=""></div>
                                                                     <div class="floatLeft">
                                                                         <label for="itemPriceCurrency">Currency</label>
-        <?php $paypal_button_currency_with_symbole = get_paypal_button_currency_with_symbole(); ?>
+                                                                        <?php $paypal_button_currency_with_symbole = get_paypal_button_currency_with_symbole(); ?>
                                                                         <select id="BillingAmountCurrency" name="item_price_currency" class="currencySelect">
 
                                                                             <?php foreach ($paypal_button_currency_with_symbole as $paypal_button_currency_with_symbole_key => $paypal_button_currency_with_symbole_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_currency_with_symbole_key; ?>" title="<?php echo $paypal_button_currency_with_symbole_value; ?>"><?php echo $paypal_button_currency_with_symbole_key; ?></option>
-        <?php } ?>
+                                                                            <?php } ?>
                                                                         </select>
 
                                                                     </div>
                                                                 </div>
                                                                 <div class="group subscriptions accessAid fadedOut">
                                                                     <label for="subscriptionBillingAmountCurrency">Currency</label>
-                                                                        <?php $paypal_button_currency = get_paypal_button_currency(); ?>
+                                                                    <?php $paypal_button_currency = get_paypal_button_currency(); ?>
                                                                     <select id="subscriptionBillingAmountCurrency" name="item_price_currency" class="currencySelect" disabled="">
                                                                         <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                             <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
-        <?php } ?>
+                                                                        <?php } ?>
                                                                     </select>
                                                                 </div>
                                                                 <div class="group outerContainer" id="sBox">
@@ -129,17 +129,17 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                                         <p class="optionRow">
                                                                                             <input maxlength="64" type="text" class="ddpOptionName text" disabled="" name="ddp_option_name" value="Option 1">
                                                                                             <input type="text" class="ddpOptionPrice text" disabled="" name="ddp_option_price" value="">
-                                                                                                <?php $paypal_button_currency = get_paypal_button_currency(); ?>
+                                                                                            <?php $paypal_button_currency = get_paypal_button_currency(); ?>
                                                                                             <select class="ddpOptionCurrency show" name="ddp_option_currency">
                                                                                                 <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
-                                                                                            <?php } ?>
+                                                                                                <?php } ?>
                                                                                             </select>
-                                                                                                <?php $paypal_button_subscriptions = get_paypal_button_subscriptions(); ?>
+                                                                                            <?php $paypal_button_subscriptions = get_paypal_button_subscriptions(); ?>
                                                                                             <select class="subscriptions ddpOptionFrequency" name="ddp_option_frequency" disabled="">
                                                                                                 <?php foreach ($paypal_button_subscriptions as $paypal_button_subscriptions_key => $paypal_button_subscriptions_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_subscriptions_key; ?>"><?php echo $paypal_button_subscriptions_value; ?></option>
-        <?php } ?>
+                                                                                                <?php } ?>
                                                                                             </select>
                                                                                         </p>
                                                                                         <p class="optionRow clearfix">
@@ -149,7 +149,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                                             <select class="subscriptions ddpOptionFrequency accessAid fadedOut hide" name="ddp_option_frequency" disabled="">
                                                                                                 <?php foreach ($paypal_button_subscriptions as $paypal_button_subscriptions_key => $paypal_button_subscriptions_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_subscriptions_key; ?>"><?php echo $paypal_button_subscriptions_value; ?></option>
-        <?php } ?>
+                                                                                                <?php } ?>
                                                                                             </select>
                                                                                         </p>
                                                                                         <p class="optionRow clearfix">
@@ -158,7 +158,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                                             <select class="subscriptions ddpOptionFrequency accessAid fadedOut hide" name="ddp_option_frequency" disabled="">
                                                                                                 <?php foreach ($paypal_button_subscriptions as $paypal_button_subscriptions_key => $paypal_button_subscriptions_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_subscriptions_key; ?>"><?php echo $paypal_button_subscriptions_value; ?></option>
-        <?php } ?>
+                                                                                                <?php } ?>
                                                                                             </select>
                                                                                         </p>
                                                                                     </div>
@@ -259,12 +259,12 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                                         <p id="displayCcLogos" class="hideShow hide"><label for="ccLogos"><input class="checkbox" type="checkbox" id="ccLogos" checked="" name="cc_logos" value="createdButtonWithCCLogo">Display credit card logos</label></p>
                                                                                         <p id="buttonCountryLanguage">
                                                                                             <label for="">Country and language for button</label>
-        <?php $paypal_button_language = get_paypal_button_languages(); ?>
+                                                                                            <?php $paypal_button_language = get_paypal_button_languages(); ?>
                                                                                             <select id="selectCountryLanguage" name="select_country_language">
 
                                                                                                 <?php foreach ($paypal_button_language as $paypal_button_language_key => $paypal_button_language_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_language_key; ?>"><?php echo $paypal_button_language_value; ?></option>
-        <?php } ?>
+                                                                                                <?php } ?>
                                                                                             </select>
                                                                                             <input type="hidden" id="countryCode" name="country_code" value="US"><input type="hidden" id="langCode" name="lang_code" value="en"><input type="hidden" id="buttonUrl" name="button_url" value="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif"><input type="hidden" id="popupButtonUrl" name="popup_button_url" value=""><input type="hidden" id="flagInternational" name="flag_international" value="true" disabled=""><input type="hidden" id="titleStr" name="title_str" value="Title"><input type="hidden" id="optionStr" name="option_str" value="Option"><input type="hidden" id="addOptionStr" name="add_option_str" value="Add another option">
                                                                                         </p>
@@ -368,7 +368,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                         <select id="donationCurrency" name="item_price_currency" class="currencySelect" disabled="">
                                                                             <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
-        <?php } ?>
+                                                                            <?php } ?>
                                                                         </select>
                                                                     </div>
                                                                     <div class="group contributionAmount">
@@ -394,17 +394,17 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                         <div class="group"><label for="subscriptionBillingAmount">Billing amount each cycle</label><input type="text" id="subscriptionBillingAmount" size="22" class="text" name="subscription_billing_amount" value="" disabled=""><span class="currencyLabel">USD</span></div>
                                                                         <div class="group">
                                                                             <label for="subscriptionBillingCycleNumber">Billing cycle</label>
-                                                                                <?php $paypal_button_subscriptions_cycle_billing_limit = get_paypal_button_subscriptions_cycle_billing_limit(); ?>
+                                                                            <?php $paypal_button_subscriptions_cycle_billing_limit = get_paypal_button_subscriptions_cycle_billing_limit(); ?>
                                                                             <select name="subscription_billing_cycle_number" disabled="">
                                                                                 <?php foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
                                                                                     <option value="<?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?>"><?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?></option>
-                                                                            <?php } ?>
+                                                                                <?php } ?>
                                                                             </select>
-                                                                                <?php $paypal_button_subscriptions_cycle = get_paypal_button_subscriptions_cycle(); ?>
+                                                                            <?php $paypal_button_subscriptions_cycle = get_paypal_button_subscriptions_cycle(); ?>
                                                                             <select id="subscriptionBillingCyclePeriod" name="subscription_billing_cycle_period" disabled="">
                                                                                 <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
                                                                                     <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
-        <?php } ?>
+                                                                                <?php } ?>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -413,7 +413,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                         <select name="subscription_billing_limit" disabled="">
                                                                             <?php foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?>"><?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?></option>
-        <?php } ?>
+                                                                            <?php } ?>
                                                                         </select>
                                                                     </div>
                                                                     <div class="group">
@@ -428,17 +428,17 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                                 </label>
                                                                             </fieldset>
                                                                             <fieldset>
-        <?php $paypal_button_subscription_trial_duration = get_paypal_button_subscription_trial_duration(); ?>
+                                                                                <?php $paypal_button_subscription_trial_duration = get_paypal_button_subscription_trial_duration(); ?>
                                                                                 <legend>Define the trial period</legend>
                                                                                 <select name="subscription_trial_duration" disabled="">
                                                                                     <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
                                                                                         <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>"><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
-        <?php } ?>
+                                                                                    <?php } ?>
                                                                                 </select>
                                                                                 <select id="trialDurationType" name="subscription_trial_duration_type" disabled="">
                                                                                     <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
                                                                                         <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
-        <?php } ?>
+                                                                                    <?php } ?>
                                                                                 </select>
                                                                             </fieldset>
                                                                             <fieldset>
@@ -455,12 +455,12 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                                         <select name="subscription_trial_2_duration" disabled="">
                                                                                             <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
                                                                                                 <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>"><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
-        <?php } ?>
+                                                                                            <?php } ?>
                                                                                         </select>
                                                                                         <select id="secondTrialDurationType" name="subscription_trial_2_duration_type" disabled="">
                                                                                             <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
                                                                                                 <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
-        <?php } ?>
+                                                                                            <?php } ?>
                                                                                         </select>
                                                                                     </fieldset>
                                                                                 </div>
@@ -475,7 +475,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                         <select id="gcAmountCurrency" name="item_price_currency" class="currencySelect" disabled="">
                                                                             <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
-        <?php } ?>
+                                                                            <?php } ?>
                                                                         </select>
                                                                     </div>
                                                                     <div class="group">
@@ -495,22 +495,22 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                             <label for="gcBackgroundColor">
                                                                                 <input class="radio gcBackgroundType" type="radio" checked="" name="gc_background_type" value="color" disabled="">Color
                                                                                 <div class="labelOption">
-                                                                                        <?php $paypal_button_gcBackgroundColor = get_paypal_button_gcBackgroundColor(); ?>
+                                                                                    <?php $paypal_button_gcBackgroundColor = get_paypal_button_gcBackgroundColor(); ?>
                                                                                     <select id="gcBackgroundColor" name="gc_background_color" disabled="">
                                                                                         <?php foreach ($paypal_button_gcBackgroundColor as $paypal_button_gcBackgroundColor_key => $paypal_button_gcBackgroundColor_value) { ?>
                                                                                             <option value="<?php echo $paypal_button_gcBackgroundColor_key; ?>"><?php echo $paypal_button_gcBackgroundColor_value; ?></option>
-        <?php } ?>
+                                                                                        <?php } ?>
                                                                                     </select>
                                                                                 </div>
                                                                             </label>
                                                                             <label for="gcBackgroundTheme">
                                                                                 <input class="radio gcBackgroundType" type="radio" name="gc_background_type" value="theme" disabled="">Theme
                                                                                 <div class="labelOption">
-                                                                                        <?php $paypal_button_gcBackgroundTheme = get_paypal_button_gcBackgroundTheme(); ?>
+                                                                                    <?php $paypal_button_gcBackgroundTheme = get_paypal_button_gcBackgroundTheme(); ?>
                                                                                     <select id="gcBackgroundTheme" name="gc_background_theme" disabled="">
                                                                                         <?php foreach ($paypal_button_gcBackgroundTheme as $paypal_button_gcBackgroundTheme_key => $paypal_button_gcBackgroundTheme_value) { ?>
                                                                                             <option value="<?php echo $paypal_button_gcBackgroundTheme_key; ?>"><?php echo $paypal_button_gcBackgroundTheme_value; ?></option>
-        <?php } ?>
+                                                                                        <?php } ?>
                                                                                     </select>
                                                                                 </div>
                                                                             </label>
@@ -531,7 +531,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                 <div id="stepTwo" class="box">
                                                     <div class="header">
                                                         <?php echo '<h3 id="giftBasedHeading" class="accessAid hide">' . __('Step 2: Save your buttons (optional)', 'paypal-button-manager-for-wordpress') . '</h3>'; ?>
-        <?php echo '<h3 id="productBasedHeading" class="opened">' . __('Step 2: Save your buttons (optional)', 'paypal-button-manager-for-wordpress') . '</h3>'; ?>
+                                                        <?php echo '<h3 id="productBasedHeading" class="opened">' . __('Step 2: Save your buttons (optional)', 'paypal-button-manager-for-wordpress') . '</h3>'; ?>
                                                     </div>
                                                     <div class="body">
                                                         <div class="content">
@@ -558,7 +558,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                 </div>
                                                 <div id="stepThree" class="box last">
                                                     <div class="header">
-        <?php echo '<h3>' . __('Step 3: Customize advanced features (optional)', 'paypal-button-manager-for-wordpress') . '</h3>'; ?>
+                                                        <?php echo '<h3>' . __('Step 3: Customize advanced features (optional)', 'paypal-button-manager-for-wordpress') . '</h3>'; ?>
                                                     </div>
                                                     <div class="body">
                                                         <div class="content">
@@ -591,17 +591,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_interface {
                                                                         <div>Example: https://www.mystore.com/success</div>
                                                                     </div>
                                                                 </div>
-                                                                <div id="addVariablesContainer" class="opened">
-                                                                    <div class="header">
-                                                                        Advanced variables
-                                                                    </div>
-                                                                    <div id="variablesSpacer">Use a line break between each variable. The variables will appear in your button's HTML code. <a target="_blank" href="https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_html_Appx_websitestandard_htmlvariables">Learn more</a></div>
-                                                                    <label for="addVariables"><input class="checkbox" type="checkbox" id="addVariables" name="add_variables" value="1">Add advanced variables</label>
-                                                                    <div id="variablesTextareaContainer">
-                                                                        <textarea cols="30" rows="10" id="variablesTextarea" name="variables_textarea"></textarea>
-                                                                        <div id="variablesExamples"><span class="header">Example</span><br>address_override=1<br>notify_url=https://www.mywebsite.com/PayPal_IPN</div>
-                                                                    </div>
-                                                                </div>
+
                                                             </div>
                                                         </div>
                                                     </div>
