@@ -145,9 +145,25 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
         } else {
             $item_name = '';
         }
+        
+        
+        $post = array();
+        foreach (explode('&', file_get_contents('php://input')) as $keyValuePair) {
+            list($key, $value) = explode('=', $keyValuePair);
+            $post[$key][] = $value;
+        }
+        $ddp_option_name = isset($post['ddp_option_name']) ? $post['ddp_option_name'] : '';
+        if ((isset($ddp_option_name) && !empty($ddp_option_name)) && (empty($_POST['dropdown_price_title']) || !empty($_POST['dropdown_price_title']))) {
+        	$item_price = '';
+        } else {
+        	$item_price = $_POST['item_price'];
+        }
+        
+        
+        
         $buttonvars = array(
             'notify_url' => '', // The URL to which PayPal posts information about the payment. in the form of an IPN message.
-            'amount' => isset($_POST['item_price']) ? $_POST['item_price'] : '', // The price or amount of the product, service, or contribution, not including shipping, handling, or tax.  If this variable is omitted from Buy Now or Donate buttons, buyers enter their own amount at the time of the payment.
+            'amount' => $item_price, // The price or amount of the product, service, or contribution, not including shipping, handling, or tax.  If this variable is omitted from Buy Now or Donate buttons, buyers enter their own amount at the time of the payment.
             'discount_amount' => '', // Discount amount associated with an item.  Must be less than the selling price of the item.  Valid only for Buy Now and Add to Cart buttons.
             'discount_amount2' => '', // Discount amount associated with each additional quantity of the item.  Must be equal to or less than the selling price of the item.
             'discount_rate' => '', // Discount rate (percentage) associated with an item.  Must be set to a value less than 100.

@@ -225,7 +225,7 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
             if ((isset($APIUsername) && !empty($APIUsername)) && (isset($APIPassword) && !empty($APIPassword)) && (isset($APISignature) && !empty($APISignature))) {
                 do_action('paypal_button_manager_interface');
             } else {
-                echo __('Please fill your API credentials properly', 'paypal-button-manager-for-wordpress') . "&nbsp;&nbsp;<a href='/wp-admin/options-general.php?page=paypal-button-manager-for-wordpress-option'> Go to API Settings </a>";
+                echo __("Please fill your API credentials properly", "paypal-button-manager-for-wordpress") .'&nbsp;&nbsp;<a href="'.admin_url( 'options-general.php?page=paypal-button-manager-for-wordpress-option' ).'">Go to API Settings</a>';
             }
         }
     }
