@@ -199,15 +199,25 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
     public static function paypal_button_manager_for_wordpress_metabox() {
         global $post, $post_ID;
         $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
-        if (isset($paypal_button_html) && !empty($paypal_button_html)) {
-
-            echo '<h3>' . _e('Paste the button code in your post or page editor:', 'paypal-button-manager-for-wordpress') . '</h3>' . '<br/>';
-            ?>
-            <textarea id="txtarea_response" cols="70" rows="10"><? echo $paypal_button_html; ?></textarea>
-            <br/><br/>
-            <?php echo '<h3>' . _e('Paste the below wordpress shortcode in your post or page editor:', 'paypal-button-manager-for-wordpress') . '</h3><br/>'; ?>
-            <lable class='h3padding'><?php echo '[paypal_button_manager id=' . $post_ID . ']'; ?></lable>			
-
+        if (isset($paypal_button_html) && !empty($paypal_button_html)) {?>
+        	<table class="tbl_shortcode">
+        	<tr>
+        		<td class="td_title"><?php echo _e('Paste below wordpress shortcode in your post or page editor:', 'paypal-button-manager-for-wordpress'); ?></td>
+        	</tr>
+        	<tr>
+        		<td class="td_shortcode"><input type="text" onfocus="this.select();" value="<?php echo '[paypal_button_manager id=' . $post_ID . ']'; ?>" readonly="readonly" class="wp-ui-text-highlight code large-text large-text-own"></td>
+        	</tr>
+        	<tr>
+        		<td colspan="2" class="center-text">OR</td>
+        	</tr>
+        	<tr>
+        		<td class="td_title"><?php echo _e('If you would prefer to use the HTML directly use this snippet...','paypal-button-manager-for-wordpress');?></td>
+        	</tr>
+        	<tr>
+        		<td><textarea id="txtarea_response" readonly="readonly" onfocus="this.select();" class="wp-ui-text-highlight code" cols="70" rows="10"><? echo $paypal_button_html; ?></textarea></td>
+        	</tr>	
+        	</table>
+        	
             <?php
         } else {
             if (get_option('enable_sandbox') == 'yes') {
