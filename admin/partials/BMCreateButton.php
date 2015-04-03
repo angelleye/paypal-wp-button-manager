@@ -33,7 +33,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_generator {
         $BMButtonVars = $payapal_helper->paypal_button_manager_for_wordpress_get_buttonvars();
         $PayPalRequestData = $payapal_helper->paypal_button_manager_for_wordpress_get_dropdown_values();
         $PayPalResult = $PayPal->BMCreateButton($PayPalRequestData);
-
+		
         // Write the contents of the response array to the screen for demo purposes.
         if (isset($PayPalResult['ERRORS']) && !empty($PayPalResult['ERRORS'])) {
             global $post, $post_ID;
@@ -45,6 +45,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_generator {
             update_option('paypal_button_manager_error_code', $notice_code);
             update_post_meta($post_ID, 'paypal_button_manager_success_notice', '');
             unset($_POST);
+            unset($post);
         } else if ($PayPalResult['RAWRESPONSE'] == false) {
             global $post, $post_ID;
             $timeout_notice[$post_ID] = 'Internal server error occured';
@@ -52,12 +53,17 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_generator {
             self::paypal_button_manager_write_error_log($PayPalResult);
             update_post_meta($post_ID, 'paypal_button_manager_success_notice', '');
             unset($_POST);
+            unset($post);
         } else if (isset($PayPalResult['WEBSITECODE']) && !empty($PayPalResult['WEBSITECODE'])) {
             global $post, $post_ID;
             update_post_meta($post_ID, 'paypal_button_response', $PayPalResult['WEBSITECODE']);
             self::paypal_button_manager_write_error_log($PayPalResult);
             update_post_meta($post_ID, 'paypal_button_manager_success_notice', 'Button Created Successfully.');
+            unset($post);
+            unset($_POST);
+            
         }
+        
     }
 
     /**

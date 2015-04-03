@@ -315,7 +315,7 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper {
             'BMButtonVars' => AngellEYE_PayPal_Button_Manager_for_WordPress_PayPal_Helper::paypal_button_manager_for_wordpress_get_buttonvars(),
             'BMButtonOptions' => $BMButtonOptions
         );
-
+		
         return $paypalrequestdata;
     }
 
