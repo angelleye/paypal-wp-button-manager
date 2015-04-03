@@ -199,6 +199,14 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
     public static function paypal_button_manager_for_wordpress_metabox() {
         global $post, $post_ID;
         $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
+        $paypal_button_id = get_post_meta($post_ID, 'paypal_button_manager_button_id',true);
+        if (isset($paypal_button_id) && !empty($paypal_button_id)) {
+        	$button_id_text = $paypal_button_id;
+        }else {
+        	$button_id_text ='Not Available - Because this button is not saved at PayPal...';
+        }
+        
+        $paypal_email_link = get_post_meta($post_ID, 'paypal_button_manager_email_link',true);
         if (isset($paypal_button_html) && !empty($paypal_button_html)) {?>
         	<table class="tbl_shortcode">
         	<tr>
@@ -215,7 +223,24 @@ class Paypal_button_Manager_For_Wordpress_Post_types {
         	</tr>
         	<tr>
         		<td><textarea id="txtarea_response" readonly="readonly" onfocus="this.select();" class="wp-ui-text-highlight code" cols="70" rows="10"><? echo $paypal_button_html; ?></textarea></td>
-        	</tr>	
+        	</tr>
+        	<tr>
+        		<td colspan="2" class="center-text">OR</td>
+        	</tr>
+        	<tr>
+        		<td class="td_shortcode"><input type="text" onfocus="this.select();" value="<?php echo isset($paypal_email_link) ? $paypal_email_link : ''; ?>" readonly="readonly" class="wp-ui-text-highlight code large-text large-text-own"></td>
+        	</tr>
+        	
+        	<tr>
+        		<td colspan="2" class="center-text">OR</td>
+        	</tr>
+        	<tr>
+        		<td class="td_title"><?php echo _e('if you plan to use this button within an email you can use below code','paypal-button-manager-for-wordpress');?></td>
+        	</tr>
+        	<tr>
+        		<td class="td_shortcode"><input type="text" onfocus="this.select();" value="<?php echo $button_id_text; ?>" readonly="readonly" class="wp-ui-text-highlight code large-text large-text-own"></td>
+        	</tr>
+        	
         	</table>
         	
             <?php

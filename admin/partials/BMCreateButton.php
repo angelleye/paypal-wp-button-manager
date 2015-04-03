@@ -59,6 +59,11 @@ class AngellEYE_PayPal_Button_Manager_for_WordPress_button_generator {
             update_post_meta($post_ID, 'paypal_button_response', $PayPalResult['WEBSITECODE']);
             self::paypal_button_manager_write_error_log($PayPalResult);
             update_post_meta($post_ID, 'paypal_button_manager_success_notice', 'Button Created Successfully.');
+            if (isset($PayPalResult['HOSTEDBUTTONID']) && !empty($PayPalResult['HOSTEDBUTTONID'])){
+            update_post_meta($post_ID, 'paypal_button_manager_button_id',$PayPalResult['HOSTEDBUTTONID']);
+            }
+            update_post_meta($post_ID, 'paypal_button_manager_email_link',$PayPalResult['EMAILLINK']);
+            
             unset($post);
             unset($_POST);
             
