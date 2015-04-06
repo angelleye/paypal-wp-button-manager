@@ -75,6 +75,13 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         wp_enqueue_script($this->plugin_name . 'five', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-widgets.js', array('jquery'), $this->version, false);
         wp_enqueue_script($this->plugin_name . 'four', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-pp_jscode_080706.js', array('jquery'), $this->version, false);
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-admin.js', array('jquery'), $this->version, false);
+   		
+        if (wp_script_is($this->plugin_name)) {
+            wp_localize_script($this->plugin_name, 'paypal_wp_button_manager_plugin_url', apply_filters('paypal_wp_button_manager_plugin_url_filter', array(
+                'plugin_url' => plugin_dir_url(__FILE__)
+            )));
+        }
+    
     }
 
     private function load_dependencies() {
@@ -163,5 +170,51 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         );
         return $messages;
     }
+    
+    /**
+     *  paypal_wp_button_manager_shortcode_button_init function process for registering our button.
+     *
+     */
+    public function paypal_wp_button_manager_shortcode_button_init() {
+    	if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') && get_user_option('rich_editing') == 'true')
+           return;
+
+	      //Add a callback to regiser our tinymce plugin   
+	      add_filter('mce_external_plugins', array($this,'paypal_wp_button_manager_register_tinymce_plugin')); 
+	
+	      // Add a callback to add our button to the TinyMCE toolbar
+	      add_filter('mce_buttons', array($this,'paypal_wp_button_manager_add_tinymce_button'));
+	      
+	     
+    }
+    
+    public function paypal_wp_button_manager_register_tinymce_plugin($plugin_array) {
+    	 $plugin_array['pushortcodes'] =  plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-admin.js';
+   		 return $plugin_array;
+    }
+    
+    public function paypal_wp_button_manager_add_tinymce_button($buttons) {
+    	array_push( $buttons, 'separator', 'pushortcodes' );
+        return $buttons;
+    	
+    }
+    
+    public function paypal_wp_button_manager_print_shortcodes_in_js() {
+		global $post;
+		$args = array( 'post_type' => 'paypal_buttons', 'post_status' =>'publish' );
+		$myposts = get_posts( $args );
+        echo '<script type="text/javascript">
+        var shortcodes_button = new Array();';
+        $count = 0;
+        foreach( $myposts as $post) 
+        {
+            echo "shortcodes_button[{$count}] = '{$post->post_title}';";
+            $count++;
+        }
+
+        echo '</script>';
+    }
+    
+    
 
 }
