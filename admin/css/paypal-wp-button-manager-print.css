@@ -1,0 +1,28 @@
+/* Page Structure */
+#navFull{display:none;}
+
+#navPrimary * {background-image:none !important;}
+#navPrimary ul{margin:0 0 1em 0; padding:0;}
+#navPrimary ul li{display:none;}
+#navPrimary ul li.active {display:inline; margin:0; padding:0;} 
+#navPrimary ul li.active a{color:#999; text-decoration:none !important;}
+#navPrimary ul li.active a:after {content:" > "}
+#navPrimary ul ul { display:inline;}
+#navPrimary ul li.active ul li{display:none;}
+#navPrimary ul li.active ul li.active {display:inline; padding-left:0.5em;}
+#navPrimary ul li.active ul li.active a{color:#000; font-size:1.167em;}
+#navPrimary ul li.active ul li.active a:after {content:""}
+#navPrimary ul ul ul {display:none;}
+
+#page #content.sideposleft #main, #page #content.sideposright #main, #page #content.sideposleft #sidebar, #page #content.sideposright #sidebar{float:none;}
+
+div.messageBox {padding:0 12px; background-color:#fff !important; background-image: none !important; font-weight:bold;}
+div.messageBox ul, .legacyErrors div.messageBox ul {position:relative; height:auto; width:auto; left:0; top:0; text-indent:0; overflow:visible; line-height:1em;}
+.doNotPrint {display:none;}
+.accessAid, .balloonCallout, .balloon{display:none;}
+
+#navGlobal, #searchForm, #rosetta {display:none;}
+#footer * {display:none;}
+
+.cont {background-image:none !important; background-color: #fff !important;}
+/*#footer #legal, #footer #legal * {display:block;}*/
