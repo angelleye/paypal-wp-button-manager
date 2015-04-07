@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2015 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="paypal" unicode="&#xe800;" d="m771 610l8-4q38-22 60-62 20-38 20-96 0-130-110-210-106-80-306-80l-30 0q-16 0-32-12t-20-28l-36-156q-12-42-52-42l-106 0q-18 0-28 13t-6 29l6 24 68 0q16 0 32 13t20 29l36 156q10 40 52 40l30 0q196 0 306 80 110 82 110 210 0 56-22 96z m-580-516q-2-16-18-29t-32-13l-108 0q-18 0-27 13t-5 29l150 646q10 40 52 40l224 0q78 0 126-8 56-12 94-34 36-24 58-62 20-38 20-96 0-130-110-210-106-80-304-80l-32 0q-16 0-32-12t-18-28z m88 374q-4-16 6-28t26-12l28 0q86 0 134 36 48 34 48 98 0 44-30 64-32 20-94 20l-34 0q-42 0-52-40z" horiz-adv-x="859" />
+</font>
+</defs>
+</svg>

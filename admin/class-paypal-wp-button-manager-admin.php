@@ -57,6 +57,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         wp_enqueue_style($this->plugin_name . 'three', plugin_dir_url(__FILE__) . '/css/paypal-wp-button-manager-me2.css', array(), $this->version, false);
         wp_enqueue_style($this->plugin_name . 'four', plugin_dir_url(__FILE__) . '/css/paypal-wp-button-manager-print.css', array(), $this->version, false);
         wp_enqueue_style($this->plugin_name . 'five', plugin_dir_url(__FILE__) . 'css/paypal-wp-button-manager-admin.css', array(), $this->version, 'all');
+        wp_enqueue_style($this->plugin_name . 'seven', plugin_dir_url(__FILE__) . 'css/webkit/fontello.css', array(), $this->version, 'all');
     }
 
     /**
@@ -75,13 +76,30 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         wp_enqueue_script($this->plugin_name . 'five', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-widgets.js', array('jquery'), $this->version, false);
         wp_enqueue_script($this->plugin_name . 'four', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-pp_jscode_080706.js', array('jquery'), $this->version, false);
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-admin.js', array('jquery'), $this->version, false);
-   		
+
         if (wp_script_is($this->plugin_name)) {
             wp_localize_script($this->plugin_name, 'paypal_wp_button_manager_plugin_url', apply_filters('paypal_wp_button_manager_plugin_url_filter', array(
-                'plugin_url' => plugin_dir_url(__FILE__)
-            )));
+                        'plugin_url' => plugin_dir_url(__FILE__)
+                    )));
         }
-    
+        global $post;
+        $args = array('post_type' => 'paypal_buttons', 'posts_per_page' => '100', 'post_status' => 'publish');
+        $paypal_buttons_posts = get_posts($args);
+        $shortcodes = array();
+        $shortcodes_values = array();
+        foreach ($paypal_buttons_posts as $key_post => $paypal_buttons_posts_value) {
+            $shortcodes[$paypal_buttons_posts_value->ID] = $paypal_buttons_posts_value->post_title;
+        }
+
+        if (empty($shortcodes)) {
+
+            $shortcodes_values = array('0' => 'No shortcode Available');
+        } else {
+            $shortcodes_values = $shortcodes;
+        }
+        wp_localize_script('paypal-wp-button-manager', 'shortcodes_button_array', apply_filters('paypal_wp_button_manager_shortcode', array(
+                    'shortcodes_button' => $shortcodes_values
+                )));
     }
 
     private function load_dependencies() {
@@ -170,51 +188,34 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         );
         return $messages;
     }
-    
+
     /**
      *  paypal_wp_button_manager_shortcode_button_init function process for registering our button.
      *
      */
     public function paypal_wp_button_manager_shortcode_button_init() {
-    	if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') && get_user_option('rich_editing') == 'true')
-           return;
+        if (!current_user_can('edit_posts') && !current_user_can('edit_pages') && get_user_option('rich_editing') == 'true')
+            return;
 
-	      //Add a callback to regiser our tinymce plugin   
-	      add_filter('mce_external_plugins', array($this,'paypal_wp_button_manager_register_tinymce_plugin')); 
-	
-	      // Add a callback to add our button to the TinyMCE toolbar
-	      add_filter('mce_buttons', array($this,'paypal_wp_button_manager_add_tinymce_button'));
-	      
-	     
+        //Add a callback to regiser our tinymce plugin   
+        add_filter('mce_external_plugins', array($this, 'paypal_wp_button_manager_register_tinymce_plugin'));
+
+        // Add a callback to add our button to the TinyMCE toolbar
+        add_filter('mce_buttons', array($this, 'paypal_wp_button_manager_add_tinymce_button'));
     }
-    
+
     public function paypal_wp_button_manager_register_tinymce_plugin($plugin_array) {
-    	 $plugin_array['pushortcodes'] =  plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-admin.js';
-   		 return $plugin_array;
+        $plugin_array['pushortcodes'] = plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-admin.js';
+        return $plugin_array;
     }
-    
-    public function paypal_wp_button_manager_add_tinymce_button($buttons) {
-    	array_push( $buttons, 'separator', 'pushortcodes' );
-        return $buttons;
-    	
-    }
-    
-    public function paypal_wp_button_manager_print_shortcodes_in_js() {
-		global $post;
-		$args = array( 'post_type' => 'paypal_buttons', 'post_status' =>'publish' );
-		$myposts = get_posts( $args );
-        echo '<script type="text/javascript">
-        var shortcodes_button = new Array();';
-        $count = 0;
-        foreach( $myposts as $post) 
-        {
-            echo "shortcodes_button[{$count}] = '{$post->post_title}';";
-            $count++;
-        }
 
-        echo '</script>';
+    public function paypal_wp_button_manager_add_tinymce_button($buttons) {
+        array_push($buttons, 'separator', 'pushortcodes');
+        return $buttons;
     }
-    
-    
+
+    public function paypal_wp_button_manager_print_shortcodes_in_js() {
+        
+    }
 
 }

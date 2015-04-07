@@ -19,3 +19,8 @@ div#specialInstructionsContainer {margin-top: 6px;}
 .center-text{text-align: center; font-size: 20px;font-weight: bold;padding-bottom: 10px;padding-top: 10px;}
 .large-text-own {width:100% !important;}
 .tbl_shortcode {width:100%;}
+i.mce-ico.mce-i-paypal_icon {
+    background: url('/wp-content/plugins/paypal-wp-button-manager/admin//images/paypal-wp-button-manager-icon.png');
+}
+i.mce-ico.mce-i-.icon-paypal{float:left !important;}
+i.mce-ico.mce-i-.icon-paypal + span{width:100%;margin-right:20px;content:'Shortcodes'}
