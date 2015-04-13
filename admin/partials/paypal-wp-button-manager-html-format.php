@@ -516,7 +516,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             </label>
                                                                         </fieldset>
                                                                     </div>
-                                                                    <div class="group"><a target="_blank" href="https://www.paypal.com/us/cgi-bin/webscr#" onclick="PAYPAL.Merchant.ButtonDesigner.StepOne.buildGiftCertificatePreview();">Preview Gift Certificate</a></div>
+                                                                  
                                                                 </div>
                                                                 <div class="group notifications">
                                                                     <fieldset>

@@ -220,7 +220,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'image_url' => '', // The URL of the 150x50 image displayed as your logo on the PayPal checkout pages.
             'cpp_cart_border_color' => '', // The HTML hex code for your principal identifying color.  PayPal blends your color to white on the checkout pages.
             'cpp_header_image' => '', // The image at the top, left of the checkout page.  Max size is 750x90.
-            'cpp_headerback_color' => '', // The background color for the header of the checkout page.
+            'cpp_headerback_color' => isset($_POST['gc_background_color']) ? $_POST['gc_background_color'] : '', // The background color for the header of the checkout page.
             'cpp_headerborder_color' => '', // The border color around the header of the checkout page.
             'cpp_logo_image' => '', // A URL to your logo image.  Must be .gif, .jpg, or .png.  190x60
             'cpp_payflow_color' => '', // The background color for the checkout page below the header.
