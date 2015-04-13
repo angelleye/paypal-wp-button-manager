@@ -155,22 +155,27 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
         $ddp_option_name = isset($post['ddp_option_name']) ? $post['ddp_option_name'] : '';
         if ((isset($ddp_option_name) && !empty($ddp_option_name)) && (empty($_POST['dropdown_price_title']) || !empty($_POST['dropdown_price_title']))) {
             $item_price = '';
-        } else {
+        } else if (isset($_POST['gc_fixed_amount']) && !empty($_POST['gc_fixed_amount'])) {
+        	$item_price = $_POST['gc_fixed_amount'];
+        }
+        else if (isset($_POST['item_price']) && !empty($_POST['item_price'])) {
             $item_price = $_POST['item_price'];
+        } else {
+        	$item_price = '';
         }
 
 
 
         $buttonvars = array(
             'notify_url' => '', // The URL to which PayPal posts information about the payment. in the form of an IPN message.
-            'amount' => $item_price, // The price or amount of the product, service, or contribution, not including shipping, handling, or tax.  If this variable is omitted from Buy Now or Donate buttons, buyers enter their own amount at the time of the payment.
+            'amount' => isset($item_price) ? $item_price : '', // The price or amount of the product, service, or contribution, not including shipping, handling, or tax.  If this variable is omitted from Buy Now or Donate buttons, buyers enter their own amount at the time of the payment.
             'discount_amount' => '', // Discount amount associated with an item.  Must be less than the selling price of the item.  Valid only for Buy Now and Add to Cart buttons.
             'discount_amount2' => '', // Discount amount associated with each additional quantity of the item.  Must be equal to or less than the selling price of the item.
             'discount_rate' => '', // Discount rate (percentage) associated with an item.  Must be set to a value less than 100.
             'discount_rate2' => '', // Discount rate (percentage) associated with each additional quantity of the item.  Must be equal to or less than 100.
             'discount_num' => '', // Number of additional quantities of the item to which the discount applies.
-            'item_name' => $item_name, // Description of the item.  If this is omitted, buyers enter their own name during checkout.
-            'item_number' => $item_number, // Pass-through variable for you to track product or service purchased or the contribution made.
+            'item_name' => isset($item_name) ? $item_name : '', // Description of the item.  If this is omitted, buyers enter their own name during checkout.
+            'item_number' => isset($item_number) ? $item_number : '', // Pass-through variable for you to track product or service purchased or the contribution made.
             'quantity' => '', // Number of items.
             'shipping' => isset($_POST['item_shipping_amount']) ? $_POST['item_shipping_amount'] : '', // The cost of shipping this item.
             'shipping2' => '', // The cost of shipping each additional unit of this item.
@@ -181,7 +186,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'weight' => '', // Weight of items.
             'weight_unit' => '', // The unit of measure if weight is specified.  Values are:  lbs, kgs
             'address_override' => '', // Set to 1 to override the payer's address stored in their PayPal account.
-            'currency_code' => $_POST['item_price_currency'], // The currency of the payment.  https://developer.paypal.com/docs/classic/api/currency_codes/#id09A6G0U0GYK
+            'currency_code' => isset($_POST['item_price_currency']) ? $_POST['item_price_currency'] : '', // The currency of the payment.  https://developer.paypal.com/docs/classic/api/currency_codes/#id09A6G0U0GYK
             'custom' => '', // Pass-through variable for your own tracking purposes, which buyers do not see.
             'invoice' => '', // Pass-through variable you can use to identify your invoice number for the purchase.
             'tax_cart' => '', // Cart-wide tax, overriding any individual item tax_ value
@@ -219,7 +224,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'cpp_headerborder_color' => '', // The border color around the header of the checkout page.
             'cpp_logo_image' => '', // A URL to your logo image.  Must be .gif, .jpg, or .png.  190x60
             'cpp_payflow_color' => '', // The background color for the checkout page below the header.
-            'lc' => $_POST['select_country_language'], // The locale of the login or sign-up page.
+            'lc' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : '', // The locale of the login or sign-up page.
             'cn' => '', // Label that appears above the note field.
             'no_shipping' => '', // Do not prompt buyers for a shipping address.  Values are:  0 - prompt for an address but do not require.  1 - do not prompt.  2 - prompt and require address.
             'return' => isset($_POST['return']) ? $_POST['return'] : '', // The URL to which PayPal redirects buyers' browsers after they complete their payment.
