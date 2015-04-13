@@ -33,6 +33,17 @@ jQuery('#buttonType').change(function() {
 
 
 
+var select_all = function(control){
+       // alert(document.getElementById("showthis").value);
+       jQuery(control).focus().select();
+        var copy = $(control).val();
+       //window.prompt ("Copy to clipboard: Ctrl+C, Enter", copy);
+    }
+    jQuery(".txtarea_response").click(function(){
+       select_all(this);
+    })
+
+
  tinymce.PluginManager.add('pushortcodes', function( editor )
     {
         var shortcodeValues = [];
