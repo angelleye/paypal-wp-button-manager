@@ -197,7 +197,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         if (!current_user_can('edit_posts') && !current_user_can('edit_pages') && get_user_option('rich_editing') == 'true')
             return;
 
-        //Add a callback to regiser our tinymce plugin   
+        //Add a callback to regiser our tinymce plugin
         add_filter('mce_external_plugins', array($this, 'paypal_wp_button_manager_register_tinymce_plugin'));
 
         // Add a callback to add our button to the TinyMCE toolbar
@@ -216,6 +216,89 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
     public function paypal_wp_button_manager_print_shortcodes_in_js() {
         
+    }
+
+    public function paypal_wp_button_manager_print_mynote() {
+        global $typenow, $pagenow, $wpdb;
+        $table_name = $wpdb->prefix . "posts";
+        $viewcart_post = $wpdb->get_row("SELECT COUNT(*)as cnt_viewcart from  $table_name where post_status='publish' and post_type='paypal_buttons'");
+
+        if ($viewcart_post->cnt_viewcart <= 0) {
+            delete_option('paypal_wp_button_manager_view_cart_status');
+            delete_option('paypal_wp_button_manager_viewcart_button');
+        }
+        $view_cart_button_status = get_option('paypal_wp_button_manager_view_cart_status');
+        $paypal_wp_button_manager_viewcart_button = get_option('paypal_wp_button_manager_viewcart_button');
+        if ((isset($view_cart_button_status) && !empty($view_cart_button_status)) && (empty($paypal_wp_button_manager_viewcart_button))) {
+            $view_cart_button_status_message = "<div id='div_before_viewcart'>You should probably create a view cart button &nbsp;&nbsp;<span class''>Create View Cart Button</span></div>";
+        } else {
+            $view_cart_button_status_message = '';
+        }
+        if ((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' )) && !empty($view_cart_button_status_message)) {
+            ?>
+            <script>
+                jQuery( document ).ready(function() {
+
+                    jQuery(".wrap").find("h2").after('<div class="updated below-h2 msg_div"><p class="msg_text">You should probably create a view cart button </p>&nbsp;&nbsp;<p class="btn_para"><span class="button button-primary button-large btn_viewcart">Create View Cart Button</span></p> <img src="<?php echo plugin_dir_url(__FILE__) ?>images/ajax-loader.gif" id="gifimg"/></div>');
+                    jQuery( ".btn_viewcart" ).click(function() {
+                        jQuery('#gifimg').css('visibility','visible');
+                        jQuery('#gifimg').css('display','inline');
+                        var data = {
+                            'action': 'create_viewcart_action'
+                                        
+                        };
+
+                        // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+                        jQuery.post(ajaxurl, data, function(response) {
+                            jQuery(".msg_div").remove();
+                            jQuery(".wrap").find("h2").after('<div class="updated below-h2 msg_div"><p class="msg_text">View Cart button created successfully. <a href="<?php echo admin_url('edit.php?post_type=paypal_buttons'); ?>">Refresh Data</a></p></div>');
+                           					
+                            jQuery('#gifimg').css('display','none');
+                        });
+
+                    });
+
+                });
+            </script>
+            <?
+        }
+    }
+
+    public function paypal_wp_button_manager_create_viewcart_action() {
+        global $post, $post_ID;
+        $payapal_helper = new AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper();
+        $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();
+        $PayPal = new PayPal($PayPalConfig);
+        $BMCreateButtonFields_viewcart = array
+            (
+            'buttoncode' => 'CLEARTEXT', // The kind of button code to create.  It is one of the following values:  HOSTED, ENCRYPTED, CLEARTEXT, TOKEN
+            'buttontype' => 'VIEWCART', // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
+            'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
+        );
+
+
+        $PayPalRequestData_viewcart = array(
+            'BMCreateButtonFields' => $BMCreateButtonFields_viewcart,
+            'BMButtonVars' => ''
+        );
+
+        $PayPalResult_viewcart = $PayPal->BMCreateButton($PayPalRequestData_viewcart);
+
+        if (isset($PayPalResult_viewcart['WEBSITECODE']) && !empty($PayPalResult_viewcart['WEBSITECODE'])) {
+            // Create post object
+            $view_cart_post = array(
+                'post_title' => 'View Cart',
+                'post_content' => $PayPalResult_viewcart['WEBSITECODE'],
+                'post_status' => 'publish',
+                'post_author' => 1,
+                'post_type' => 'paypal_buttons'
+            );
+
+            // Insert the post into the database
+            $post_id = wp_insert_post($view_cart_post);
+            update_post_meta($post_id, 'paypal_button_response', $PayPalResult_viewcart['WEBSITECODE']);
+            update_option('paypal_wp_button_manager_viewcart_button', '1');
+        }
     }
 
 }

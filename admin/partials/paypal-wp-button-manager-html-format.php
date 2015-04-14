@@ -516,7 +516,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             </label>
                                                                         </fieldset>
                                                                     </div>
-                                                                  
+
                                                                 </div>
                                                                 <div class="group notifications">
                                                                     <fieldset>

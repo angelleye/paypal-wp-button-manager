@@ -229,14 +229,14 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                     <tr>
                         <td colspan="2" class="center-text">OR</td>
                     </tr>
-					 <tr>
-                    	<td class="td_title"><?php echo _e('if you plan to use this button within an email you can use below code', 'paypal-wp-button-manager'); ?></td>
-	                </tr>
+                    <tr>
+                        <td class="td_title"><?php echo _e('if you plan to use this button within an email you can use below code', 'paypal-wp-button-manager'); ?></td>
+                    </tr>
                     <tr>
                         <td class="td_shortcode"><input type="text"  value="<?php echo isset($paypal_email_link) ? $paypal_email_link : ''; ?>" readonly="readonly" class="wp-ui-text-highlight code large-text large-text-own txtarea_response"></td>
                     </tr>
                 <? } ?>
-               
+
             </table>
 
             <?php

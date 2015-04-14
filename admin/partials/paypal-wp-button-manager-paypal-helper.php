@@ -25,7 +25,12 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
      * @access public
      */
     public function paypal_wp_button_manager_get_button_type() {
-        $button_type = $_POST['button_type'];
+        if (isset($_POST['button_type']) && !empty($_POST['button_type'])) {
+            $button_type = $_POST['button_type'];
+        } else {
+            $button_type = 'CART';
+        }
+
         switch ($button_type) {
             case 'products' : $button_type = 'CART';
                 break;
@@ -156,12 +161,11 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
         if ((isset($ddp_option_name) && !empty($ddp_option_name)) && (empty($_POST['dropdown_price_title']) || !empty($_POST['dropdown_price_title']))) {
             $item_price = '';
         } else if (isset($_POST['gc_fixed_amount']) && !empty($_POST['gc_fixed_amount'])) {
-        	$item_price = $_POST['gc_fixed_amount'];
-        }
-        else if (isset($_POST['item_price']) && !empty($_POST['item_price'])) {
+            $item_price = $_POST['gc_fixed_amount'];
+        } else if (isset($_POST['item_price']) && !empty($_POST['item_price'])) {
             $item_price = $_POST['item_price'];
         } else {
-        	$item_price = '';
+            $item_price = '';
         }
 
 

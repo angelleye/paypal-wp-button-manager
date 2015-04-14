@@ -176,6 +176,8 @@ class AngellEYE_PayPal_WP_Button_Manager {
         $this->loader->add_filter('post_updated_messages', $plugin_admin, 'paypal_wp_button_manager_success_notice_display');
         $this->loader->add_filter('admin_init', $plugin_admin, 'paypal_wp_button_manager_shortcode_button_init');
         $this->loader->add_filter('admin_footer', $plugin_admin, 'paypal_wp_button_manager_print_shortcodes_in_js');
+        $this->loader->add_filter('admin_head', $plugin_admin, 'paypal_wp_button_manager_print_mynote');
+        $this->loader->add_filter('wp_ajax_create_viewcart_action', $plugin_admin, 'paypal_wp_button_manager_create_viewcart_action');
     }
 
     /**
