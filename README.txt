@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== PayPal WP Button Manager ===
 Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SG9SQU2GBXJNA
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
