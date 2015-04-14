@@ -32,6 +32,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
         $BMButtonVars = array();
         $BMButtonVars = $payapal_helper->paypal_wp_button_manager_get_buttonvars();
         $PayPalRequestData = $payapal_helper->paypal_wp_button_manager_get_dropdown_values();
+
         $PayPalResult = $PayPal->BMCreateButton($PayPalRequestData);
 
         // Write the contents of the response array to the screen for demo purposes.
@@ -67,6 +68,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
                 if (isset($PayPalResult['EMAILLINK']) && !empty($PayPalResult['EMAILLINK'])) {
                     update_post_meta($post_ID, 'paypal_wp_button_manager_email_link', $PayPalResult['EMAILLINK']);
                 }
+                $btn_shopping = $_POST['button_type'];
+                if (isset($btn_shopping) && $btn_shopping == 'products') {
+                    update_option('paypal_wp_button_manager_view_cart_status', 'yes');
+                }
+
                 unset($post);
                 unset($_POST);
             }

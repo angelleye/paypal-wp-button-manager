@@ -24,3 +24,8 @@ i.mce-ico.mce-i-paypal_icon {
 }
 i.mce-ico.mce-i-.icon-paypal{float:left !important;}
 i.mce-ico.mce-i-.icon-paypal + span{width:100%;margin-right:20px;content:'Shortcodes'}
+.msg_div {width:100%;display:inline-block;}
+.msg_text {float:left;display:inline-block;padding-top:7px !important;}
+.btn_para {float:left;display:inline-block;}
+img#gifimg { display: inline-block; margin-left: 10px; margin-top: 15px; display: none;}
+}
