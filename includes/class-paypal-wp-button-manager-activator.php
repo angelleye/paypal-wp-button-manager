@@ -13,7 +13,7 @@
 class AngellEYE_PayPal_WP_Button_Manager_Activator {
 
     /**
-     * @since    1.0.0
+     * @since    0.1.0
      */
     public static function activate() {
         /**

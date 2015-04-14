@@ -11,7 +11,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin_Display {
 
     /**
      * Hook in methods
-     * @since    1.0.0
+     * @since    0.1.0
      * @access   static
      */
     public static function init() {
@@ -20,7 +20,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin_Display {
 
     /**
      * add_settings_menu helper function used for add menu for pluging setting
-     * @since    1.0.0
+     * @since    0.1.0
      * @access   public
      */
     public static function add_settings_menu() {
@@ -29,7 +29,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin_Display {
 
     /**
      * paypal_wp_button_manager_options helper will trigger hook and handle all the settings section 
-     * @since    1.0.0
+     * @since    0.1.0
      * @access   public
      */
     public static function paypal_wp_button_manager_options() {

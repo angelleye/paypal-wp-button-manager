@@ -12,7 +12,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
     /**
      * Hook in methods
-     * @since    1.0.0
+     * @since    0.1.0
      * @access   static
      */
     public static function init() {

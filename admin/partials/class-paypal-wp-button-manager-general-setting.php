@@ -12,7 +12,7 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
 
     /**
      * Hook in methods
-     * @since    1.0.0
+     * @since    0.1.0
      * @access   static
      */
     public static function init() {
@@ -123,7 +123,7 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
 
     /**
      * paypal_wp_button_manager_general_setting function used for display general setting block from admin side
-     * @since    1.0.0
+     * @since    0.1.0
      * @access   public
      */
     public static function paypal_wp_button_manager_general_setting_save_field() {

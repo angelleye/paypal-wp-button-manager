@@ -14,7 +14,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
 
     /**
      * Hook in methods
-     * @since    1.0.0
+     * @since    0.1.0
      * @access   static
      */
     public static function init() {
@@ -30,7 +30,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
 
     /**
      * Disable the auto-save functionality for Paypal buttons.
-     * @since    1.0.0
+     * @since    0.1.0
      * @access   public
      * @return void
      */
@@ -44,7 +44,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
 
     /**
      * paypal_wp_button_manager_register_post_types function is user for register custom post type
-     * @since    1.0.0
+     * @since    0.1.0
      * @access   public
      */
     public static function paypal_wp_button_manager_register_post_types() {
