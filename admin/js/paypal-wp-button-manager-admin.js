@@ -36,7 +36,7 @@ window.send_to_editor = function(html) {
  jQuery('#wpss_upload_image').val(imgurl);
  tb_remove();
 
- jQuery('#wpss_upload_image_thumb').html("<img height='65' src='"+imgurl+"'/>");
+ jQuery('.previewCustomImageSection').html("<img height='65' src='"+imgurl+"'/>");
 }
 /////////////////////////////////////////////////////////////////////////////////////// 
     
