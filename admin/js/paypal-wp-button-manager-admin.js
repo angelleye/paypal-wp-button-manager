@@ -21,6 +21,26 @@ jQuery(function ($) {
 	
     });
 
+    
+   // media uploader function.
+   
+   
+   jQuery('#wpss_upload_image_button').click(function() {
+   var formfield = jQuery('#wpss_upload_image').attr('name');
+    tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+    return false;
+});
+
+window.send_to_editor = function(html) {
+ var imgurl = jQuery('img',html).attr('src');
+ jQuery('#wpss_upload_image').val(imgurl);
+ tb_remove();
+
+ jQuery('#wpss_upload_image_thumb').html("<img height='65' src='"+imgurl+"'/>");
+}
+/////////////////////////////////////////////////////////////////////////////////////// 
+    
+    
     jQuery('#buttonType').change(function() {
         var img_type = jQuery(this).val();
         if (img_type == 'donations') {

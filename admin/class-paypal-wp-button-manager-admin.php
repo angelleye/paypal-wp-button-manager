@@ -50,7 +50,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
      * @since    0.1.0
      */
     public function enqueue_styles() {
-
+        wp_enqueue_style('thickbox'); // call to media files in wp
         wp_enqueue_style($this->plugin_name . 'one', plugin_dir_url(__FILE__) . '/css/paypal-wp-button-manager-global.css', array(), $this->version, false);
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/paypal-wp-button-manager-master.css', array(), $this->version, false);
         wp_enqueue_style($this->plugin_name . 'two', plugin_dir_url(__FILE__) . '/css/paypal-wp-button-manager-coreLayout.css', array(), $this->version, false);
@@ -70,7 +70,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         wp_enqueue_script('jquery-ui-core');
         wp_enqueue_script('jquery-ui-accordion');
         wp_enqueue_script('jquery-ui-tabs');
-
+        wp_enqueue_script('thickbox');
+        wp_enqueue_script('media-upload');
         wp_enqueue_script($this->plugin_name . 'one', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-global.js', array('jquery'), $this->version, false);
         wp_enqueue_script($this->plugin_name . 'three', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-pa.js', array('jquery'), $this->version, false);
         wp_enqueue_script($this->plugin_name . 'five', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-widgets.js', array('jquery'), $this->version, false);
@@ -245,14 +246,14 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
                         jQuery('#gifimg').css('display','inline');
                         var data = {
                             'action': 'create_viewcart_action'
-                                        
+
                         };
 
                         // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
                         jQuery.post(ajaxurl, data, function(response) {
                             jQuery(".msg_div").remove();
                             jQuery(".wrap").find("h2").after('<div class="updated below-h2 msg_div"><p class="msg_text">View Cart button created successfully. <a href="<?php echo admin_url('edit.php?post_type=paypal_buttons'); ?>">Refresh Data</a></p></div>');
-                           					
+
                             jQuery('#gifimg').css('display','none');
                         });
 

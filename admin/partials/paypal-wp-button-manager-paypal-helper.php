@@ -98,14 +98,14 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
         } else {
             $buttonimage = 'SML';
         }
-        if (isset($_POST['custom_image_url']) && !empty($_POST['custom_image_url'])) {
+        if (isset($_POST['wpss_upload_image']) && !empty($_POST['wpss_upload_image'])) {
             $bmcreatebuttonfields = array
                 (
                 'buttoncode' => $buttontype, // The kind of button code to create.  It is one of the following values:  HOSTED, ENCRYPTED, CLEARTEXT, TOKEN
                 'buttontype' => AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper::paypal_wp_button_manager_get_button_type(), // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
                 'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
                 'buttonimage' => $buttonimage, //isset($_POST['cc_logos']) ? 'CC' : 'SML',
-                'buttonimageurl' => $_POST['custom_image_url'],
+                'buttonimageurl' => $_POST['wpss_upload_image'],
                 'buttonlanguage' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : ''
             );
             return $bmcreatebuttonfields;
