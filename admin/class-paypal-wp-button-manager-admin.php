@@ -173,10 +173,10 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         }
         $messages['paypal_buttons'] = array(
             0 => '', // Unused. Messages start at index 1.
-            1 => sprintf(__($custom_message)),
+            1 => sprintf(__('Button Updated Successfully')),
             2 => __('Custom field updated.'),
             3 => __('Custom field deleted.'),
-            4 => __('Button Updated Successfully'),
+            4 => __($custom_message),
             /* translators: %s: date and time of the revision */
             5 => isset($_GET['revision']) ? sprintf(__('Button restored to revision from %s'), wp_post_revision_title((int) $_GET['revision'], false)) : false,
             6 => sprintf(__('Button Created Successfully')),
@@ -220,13 +220,19 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
     }
 
     public function paypal_wp_button_manager_print_mynote() {
-        global $typenow, $pagenow, $wpdb;
+        global $typenow, $pagenow, $wpdb, $post, $post_ID;
         $table_name = $wpdb->prefix . "posts";
+        $postmeta_table = $wpdb->prefix . "postmeta";
         $viewcart_post = $wpdb->get_row("SELECT COUNT(*)as cnt_viewcart from  $table_name where post_status='publish' and post_type='paypal_buttons'");
 
         if ($viewcart_post->cnt_viewcart <= 0) {
             delete_option('paypal_wp_button_manager_view_cart_status');
             delete_option('paypal_wp_button_manager_viewcart_button');
+            $wpdb->query($wpdb->prepare("DELETE from $wpdb->postmeta  WHERE meta_key  = %s", 'paypal_wp_button_manager_shopping_post'));
+        }
+        $shopping_cart_post = get_post_meta($post_ID, 'paypal_wp_button_manager_shopping_post');
+        if (isset($shopping_cart_post) && !empty($shopping_cart_post)) {
+            $shopping_cart_post_value = $shopping_cart_post;
         }
         $view_cart_button_status = get_option('paypal_wp_button_manager_view_cart_status');
         $paypal_wp_button_manager_viewcart_button = get_option('paypal_wp_button_manager_viewcart_button');
@@ -235,7 +241,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         } else {
             $view_cart_button_status_message = '';
         }
-        if ((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' )) && !empty($view_cart_button_status_message)) {
+        if (((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' )) && !empty($view_cart_button_status_message)) || ((!empty($view_cart_button_status_message)) && in_array($pagenow, array('post.php', 'post-new.php')) && !empty($shopping_cart_post_value))) {
             ?>
             <script>
                 jQuery( document ).ready(function() {

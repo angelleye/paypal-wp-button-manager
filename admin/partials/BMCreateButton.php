@@ -71,6 +71,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
                 $btn_shopping = $_POST['button_type'];
                 if (isset($btn_shopping) && $btn_shopping == 'products') {
                     update_option('paypal_wp_button_manager_view_cart_status', 'yes');
+                    update_post_meta($post_ID, 'paypal_wp_button_manager_shopping_post', '1');
                 }
 
                 unset($post);
