@@ -223,11 +223,25 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         global $typenow, $pagenow, $wpdb, $post, $post_ID;
         $table_name = $wpdb->prefix . "posts";
         $postmeta_table = $wpdb->prefix . "postmeta";
-        $viewcart_post = $wpdb->get_row("SELECT COUNT(*)as cnt_viewcart from  $table_name where post_status='publish' and post_type='paypal_buttons'");
 
+        $viecart_post_id = get_option('paypal_wp_button_manager_viewcart_button_postid');
+        if (isset($viecart_post_id) && !empty($viecart_post_id)) {
+            $view_cart_postid_status = $wpdb->get_row("SELECT count(*) as cnt_viewcart_postid  from  $table_name where post_status='publish' and post_type='paypal_buttons' and ID='$viecart_post_id'");
+        }
+        $viewcart_post = $wpdb->get_row("SELECT COUNT(*)as cnt_viewcart from  $table_name where post_status='publish' and post_type='paypal_buttons'");
+        $is_shopping_button_count_obj = $wpdb->get_row("SELECT COUNT(*)as cnt_is_shopping from  $postmeta_table where meta_key='paypal_wp_button_manager_is_shopping' and meta_value='1'");
+
+
+
+        $is_shopping_button_count = $is_shopping_button_count_obj->cnt_is_shopping;
+
+        if ($view_cart_postid_status->cnt_viewcart_postid <= 0) {
+            delete_option('paypal_wp_button_manager_viewcart_button');
+        }
         if ($viewcart_post->cnt_viewcart <= 0) {
             delete_option('paypal_wp_button_manager_view_cart_status');
             delete_option('paypal_wp_button_manager_viewcart_button');
+            delete_option('paypal_wp_button_manager_viewcart_post_id');
             $wpdb->query($wpdb->prepare("DELETE from $wpdb->postmeta  WHERE meta_key  = %s", 'paypal_wp_button_manager_shopping_post'));
         }
         $shopping_cart_post = get_post_meta($post_ID, 'paypal_wp_button_manager_shopping_post');
@@ -236,7 +250,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         }
         $view_cart_button_status = get_option('paypal_wp_button_manager_view_cart_status');
         $paypal_wp_button_manager_viewcart_button = get_option('paypal_wp_button_manager_viewcart_button');
-        if ((isset($view_cart_button_status) && !empty($view_cart_button_status)) && (empty($paypal_wp_button_manager_viewcart_button))) {
+        if (isset($is_shopping_button_count) && $is_shopping_button_count <= 0) {
+            $view_cart_button_status_message = '';
+        } else if ((isset($view_cart_button_status) && !empty($view_cart_button_status)) && (empty($paypal_wp_button_manager_viewcart_button))) {
             $view_cart_button_status_message = "<div id='div_before_viewcart'>You should probably create a view cart button &nbsp;&nbsp;<span class''>Create View Cart Button</span></div>";
         } else {
             $view_cart_button_status_message = '';
@@ -305,6 +321,15 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
             $post_id = wp_insert_post($view_cart_post);
             update_post_meta($post_id, 'paypal_button_response', $PayPalResult_viewcart['WEBSITECODE']);
             update_option('paypal_wp_button_manager_viewcart_button', '1');
+            update_option('paypal_wp_button_manager_viewcart_button_postid', $post_id);
+        }
+    }
+
+    public function paypal_wp_button_manager_wp_trash_post($post_id) {
+        $post_type = get_post_type($post_id);
+        $post_status = get_post_status($post_id);
+        if ($post_type == 'paypal_buttons' && in_array($post_status, array('publish', 'draft'))) {
+            delete_post_meta($post_id, 'paypal_wp_button_manager_is_shopping');
         }
     }
 
