@@ -211,7 +211,8 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'a3' => isset($_POST['subscription_billing_amount']) ? $_POST['subscription_billing_amount'] : '', // Regular subscription price.
             'p3' => isset($_POST['subscription_billing_cycle_number']) ? $_POST['subscription_billing_cycle_number'] : '', // Regular subscription duration.
             't3' => isset($_POST['subscription_billing_cycle_period']) ? $_POST['subscription_billing_cycle_period'] : '', // Regular subscription units of duration.
-            'src' => '', // Recurring payments.  Subscription payments recur unless subscribers cancel.  Values are:  1, 0
+            'src' => isset($_POST['subscription_billing_limit']) ? '1' : '', // Recurring payments.  Subscription payments recur unless subscribers cancel.  Values are:  1, 0
+            'srt' => isset($_POST['subscription_billing_limit']) ? $_POST['subscription_billing_limit'] : '',
             'sra' => '', // Reattempt on failure.  If a recurring payment fails, PayPal attempts to collect the payment two more times before canceling.  Values are:  1, 0
             'no_note' => '', // Set to 1 to disable prompts for buyers to include a note with their payments.
             'modify' => '', // Modification behavior.  0 - allows subscribers only to sign up for new subscriptions.  1 - allows subscribers to sign up for new subscriptions and modify their current subscriptions.  2 - allows subscribers to modify only their current subscriptions.
@@ -224,7 +225,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'image_url' => '', // The URL of the 150x50 image displayed as your logo on the PayPal checkout pages.
             'cpp_cart_border_color' => '', // The HTML hex code for your principal identifying color.  PayPal blends your color to white on the checkout pages.
             'cpp_header_image' => '', // The image at the top, left of the checkout page.  Max size is 750x90.
-            'cpp_headerback_color' => isset($_POST['gc_background_color']) ? $_POST['gc_background_color'] : '', // The background color for the header of the checkout page.
+            'cpp_headerback_color' => '', // The background color for the header of the checkout page.
             'cpp_headerborder_color' => '', // The border color around the header of the checkout page.
             'cpp_logo_image' => '', // A URL to your logo image.  Must be .gif, .jpg, or .png.  190x60
             'cpp_payflow_color' => '', // The background color for the checkout page below the header.
