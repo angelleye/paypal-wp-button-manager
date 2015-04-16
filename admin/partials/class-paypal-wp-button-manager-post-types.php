@@ -111,9 +111,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
         if (isset($post->post_type) && !empty($post->post_type)) {
             if ('paypal_buttons' == $post->post_type) {
                 if ($text == 'Publish') {
-                    return 'Create Button';
+                    return __('Create PayPal Button');
                 } else if ($text == 'Update') {
-                    return 'Update Button';
+                    return __('Update PayPal Button');
                 }
             }
         }
@@ -185,7 +185,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
      * @access public
      */
     public static function paypal_wp_button_manager_add_meta_boxes() {
-        add_meta_box('paypal-buttons-meta-id', 'Paypal Button Generator', array(__CLASS__, 'paypal_wp_button_manager_metabox'), 'paypal_buttons', 'normal', 'high');
+        add_meta_box('paypal-buttons-meta-id', __('PayPal Button Generator'), array(__CLASS__, 'paypal_wp_button_manager_metabox'), 'paypal_buttons', 'normal', 'high');
     }
 
     /**
@@ -211,7 +211,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
             ?>
             <table class="tbl_shortcode">
                 <tr>
-                    <td class="td_title"><?php echo _e('Paste below wordpress shortcode in your post or page editor:', 'paypal-wp-button-manager'); ?></td>
+                    <td class="td_title"><?php echo _e('You may copy and paste this shortcode into any Page or Post to place the PayPal button where you would like it to be displayed.', 'paypal-wp-button-manager'); ?></td>
                 </tr>
                 <tr>
                     <td class="td_shortcode"><input type="text"  value="<?php echo '[paypal_wp_button_manager id=' . $post_ID . ']'; ?>" readonly="readonly" class="wp-ui-text-highlight code large-text large-text-own txtarea_response"></td>
@@ -220,7 +220,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                     <td colspan="2" class="center-text">OR</td>
                 </tr>
                 <tr>
-                    <td class="td_title"><?php echo _e('If you would prefer to use the HTML directly use this snippet...', 'paypal-wp-button-manager'); ?></td>
+                    <td class="td_title"><?php echo _e('If you would prefer to use the HTML directly use this snippet.', 'paypal-wp-button-manager'); ?></td>
                 </tr>
                 <tr>
                     <td><textarea  readonly="readonly" class="wp-ui-text-highlight code txtarea_response" cols="70" rows="10"><? echo $paypal_button_html; ?></textarea></td>
@@ -230,7 +230,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                         <td colspan="2" class="center-text">OR</td>
                     </tr>
                     <tr>
-                        <td class="td_title"><?php echo _e('if you plan to use this button within an email you can use below code', 'paypal-wp-button-manager'); ?></td>
+                        <td class="td_title"><?php echo _e('If you plan to use this button within an email or basic link of any kind you can use this URL.', 'paypal-wp-button-manager'); ?></td>
                     </tr>
                     <tr>
                         <td class="td_shortcode"><input type="text"  value="<?php echo isset($paypal_email_link) ? $paypal_email_link : ''; ?>" readonly="readonly" class="wp-ui-text-highlight code large-text large-text-own txtarea_response"></td>
