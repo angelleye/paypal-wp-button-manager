@@ -234,10 +234,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 
         $is_shopping_button_count = $is_shopping_button_count_obj->cnt_is_shopping;
-
-        if ($view_cart_postid_status->cnt_viewcart_postid <= 0) {
-            delete_option('paypal_wp_button_manager_viewcart_button');
-        }
+		if (isset($view_cart_postid_status) && !empty($view_cart_postid_status)) {
+	        if ($view_cart_postid_status->cnt_viewcart_postid <= 0) {
+	            delete_option('paypal_wp_button_manager_viewcart_button');
+	        }
+		}
         if ($viewcart_post->cnt_viewcart <= 0) {
             delete_option('paypal_wp_button_manager_view_cart_status');
             delete_option('paypal_wp_button_manager_viewcart_button');
