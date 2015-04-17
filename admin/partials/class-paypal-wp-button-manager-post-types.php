@@ -214,7 +214,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                     <td class="td_title"><?php echo _e('You can easily place this button in your pages and posts using this tool....', 'paypal-wp-button-manager'); ?></td>
                 </tr>
                 <tr>
-                    <td class="td_shortcode"><img src="<?php echo BMW_PLUGIN_URL; ?>/admin/images/paypal_tools.png" width="100%"/></td>
+                    <td class="td_shortcode text-center-align"><img src="<?php echo BMW_PLUGIN_URL; ?>/admin/images/paypal_tools.png" width="75%"/></td>
                 </tr>
                 <tr>
                 <tr>

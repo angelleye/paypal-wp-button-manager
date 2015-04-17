@@ -252,13 +252,13 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         $view_cart_button_status = get_option('paypal_wp_button_manager_view_cart_status');
         $paypal_wp_button_manager_viewcart_button = get_option('paypal_wp_button_manager_viewcart_button');
         if (isset($is_shopping_button_count) && $is_shopping_button_count <= 0) {
-            $view_cart_button_status_message = '';
+            $view_cart_button_status_value= '';
         } else if ((isset($view_cart_button_status) && !empty($view_cart_button_status)) && (empty($paypal_wp_button_manager_viewcart_button))) {
-            $view_cart_button_status_message = "<div id='div_before_viewcart'>You should probably create a view cart button &nbsp;&nbsp;<span class''>Create View Cart Button</span></div>";
+            $view_cart_button_status_value = "1";
         } else {
-            $view_cart_button_status_message = '';
+            $view_cart_button_status_value = '';
         }
-        if (((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' )) && !empty($view_cart_button_status_message)) || ((!empty($view_cart_button_status_message)) && in_array($pagenow, array('post.php', 'post-new.php')) && !empty($shopping_cart_post_value))) {
+        if (((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' )) && !empty($view_cart_button_status_value)) || ((!empty($view_cart_button_status_value)) && in_array($pagenow, array('post.php', 'post-new.php')) && !empty($shopping_cart_post_value))) {
             ?>
             <script>
                 jQuery( document ).ready(function() {
