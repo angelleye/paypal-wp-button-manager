@@ -86,3 +86,4 @@ img#gifimg { display: inline-block; margin-left: 10px; margin-top: 15px; display
     bottom: -20px;
     top: auto;
   }
+  .cls_tooltip {cursor:pointer;text-decoration:underline;color:#0074a2;}

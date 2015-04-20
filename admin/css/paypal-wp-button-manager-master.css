@@ -219,7 +219,7 @@ div.buyerViewSection p.heading{text-align:left}
 #stepOne .previewSection input{width:209px; margin:2px auto 0; padding:0}
 .previewSection .previewDropdown label{width:209px; overflow:hidden}
 .previewSection .previewImageSection, 
-.previewSection .previewCustomImageSection{margin:18px 0 0 0}
+.previewSection .previewCustomImageSection{margin:10px 0 0 0}
 /* New style for GC Text heading */
 .gcStyleHeader_new{margin-bottom:5px;}
 /* View Cart/Unsubscribe page */

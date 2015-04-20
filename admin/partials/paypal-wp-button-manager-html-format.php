@@ -461,7 +461,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 </select>
                                                                             </fieldset>
                                                                             <fieldset>
-                                                                                <legend>Do you want to offer a second trial period? <a href="#" class="cls_tooltip" title="Customers will receive just one bill for each trial period." tabindex="0">What's this?</a></legend>
+                                                                                <legend>Do you want to offer a second trial period? <span class="cls_tooltip" title="Customers will receive just one bill for each trial period." tabindex="0">What's this?</span></legend>
 
                                                                                 <label for="secondSubscriptionTrialOffer"><input class="radio secondTrialOfferOption" type="radio" id="secondSubscriptionTrialOffer" name="subscriptions_offer_another_trial" value="1" disabled="">Yes</label>
                                                                                 <div class="secondTrialOfferOptions accessAid">
