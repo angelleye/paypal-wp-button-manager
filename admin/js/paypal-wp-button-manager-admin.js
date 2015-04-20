@@ -22,23 +22,23 @@ jQuery(function ($) {
     });
 
     
-   // media uploader function.
+    // media uploader function.
    
    
-   jQuery('#wpss_upload_image_button').click(function() {
-   var formfield = jQuery('#wpss_upload_image').attr('name');
-    tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-    return false;
-});
+    jQuery('#wpss_upload_image_button').click(function() {
+        var formfield = jQuery('#wpss_upload_image').attr('name');
+        tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+        return false;
+    });
 
-window.send_to_editor = function(html) {
- var imgurl = jQuery('img',html).attr('src');
- jQuery('#wpss_upload_image').val(imgurl);
- tb_remove();
+    window.send_to_editor = function(html) {
+        var imgurl = jQuery('img',html).attr('src');
+        jQuery('#wpss_upload_image').val(imgurl);
+        tb_remove();
 
- jQuery('.previewCustomImageSection').html("<img height='65' src='"+imgurl+"'/>");
-}
-/////////////////////////////////////////////////////////////////////////////////////// 
+        jQuery('.previewCustomImageSection').html("<img height='65' src='"+imgurl+"'/>");
+    }
+    /////////////////////////////////////////////////////////////////////////////////////// 
     
     
     jQuery('#buttonType').change(function() {
@@ -49,9 +49,9 @@ window.send_to_editor = function(html) {
             jQuery('#previewImage').attr('src','https://www.paypalobjects.com/en_US/i/btn/btn_gift_LG.gif');
 	
         } else if (img_type == 'subscriptions') {
-        	jQuery('#addDropdownPrice').hide();
+            jQuery('#addDropdownPrice').hide();
         } else {
-        	jQuery('#addDropdownPrice').show();
+            jQuery('#addDropdownPrice').show();
         }
     });
 
@@ -64,6 +64,21 @@ window.send_to_editor = function(html) {
     jQuery(".txtarea_response").click(function(){
         select_all(this);
     })
+    
+    jQuery( document ).tooltip({
+        position: {
+            my: "center bottom-20",
+            at: "center top",
+            using: function( position, feedback ) {
+                jQuery( this ).css( position );
+                jQuery( "<div>" )
+                .addClass( "arrow" )
+                .addClass( feedback.vertical )
+                .addClass( feedback.horizontal )
+                .appendTo( this );
+            }
+        }
+    });
 
     if(typeof tinymce != 'undefined') {
         tinymce.PluginManager.add('pushortcodes', function( editor )

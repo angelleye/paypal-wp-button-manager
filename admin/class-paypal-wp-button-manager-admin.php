@@ -72,6 +72,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         wp_enqueue_script('jquery-ui-tabs');
         wp_enqueue_script('thickbox');
         wp_enqueue_script('media-upload');
+        wp_enqueue_script('jquery-ui-tooltip');
+
         wp_enqueue_script($this->plugin_name . 'one', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-global.js', array('jquery'), $this->version, false);
         wp_enqueue_script($this->plugin_name . 'three', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-pa.js', array('jquery'), $this->version, false);
         wp_enqueue_script($this->plugin_name . 'five', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-widgets.js', array('jquery'), $this->version, false);
@@ -252,7 +254,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         $view_cart_button_status = get_option('paypal_wp_button_manager_view_cart_status');
         $paypal_wp_button_manager_viewcart_button = get_option('paypal_wp_button_manager_viewcart_button');
         if (isset($is_shopping_button_count) && $is_shopping_button_count <= 0) {
-            $view_cart_button_status_value= '';
+            $view_cart_button_status_value = '';
         } else if ((isset($view_cart_button_status) && !empty($view_cart_button_status)) && (empty($paypal_wp_button_manager_viewcart_button))) {
             $view_cart_button_status_value = "1";
         } else {
