@@ -65,7 +65,7 @@ jQuery(function ($) {
         select_all(this);
     })
     
-    jQuery( document ).tooltip({
+    jQuery('.cls_tooltip' ).tooltip({
         position: {
             my: "center bottom-20",
             at: "center top",
