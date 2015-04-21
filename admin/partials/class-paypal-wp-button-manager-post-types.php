@@ -20,6 +20,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
     public static function init() {
         add_action('admin_print_scripts', array(__CLASS__, 'disable_autosave'));
         add_action('init', array(__CLASS__, 'paypal_wp_button_manager_register_post_types'), 5);
+        add_action('init', array(__CLASS__, 'paypal_wp_button_manager_register_post_status'), 10);
         add_action('add_meta_boxes', array(__CLASS__, 'paypal_wp_button_manager_add_meta_boxes'), 10);
         add_filter('manage_edit-paypal_buttons_columns', array(__CLASS__, 'paypal_wp_button_manager_edit_paypal_buttons_columns'));
         add_action('manage_paypal_buttons_posts_custom_column', array(__CLASS__, 'paypal_wp_button_manager_paypal_buttons_columns'), 10, 2);
@@ -93,6 +94,33 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                         )
                 )
         );
+    }
+
+    public static function paypal_wp_button_manager_status() {
+        global $wpdb;
+
+        return $wpdb->get_col($wpdb->prepare("SELECT DISTINCT post_status FROM {$wpdb->posts} WHERE post_type = %s AND post_status != %s  ORDER BY post_status", 'paypal_buttons', 'auto-draft'));
+    }
+
+    /**
+     * Register our custom post statuses, used for paypal_buttons status
+     */
+    public static function paypal_wp_button_manager_register_post_status() {
+        global $wpdb;
+
+        $paypalbutton_post_status_list = self::paypal_wp_button_manager_status();
+
+        foreach ($paypalbutton_post_status_list as $paypalbutton_post_status_list_status) {
+            $paypalbutton_display_name = ucfirst(str_replace('_', ' ', $paypalbutton_post_status_list_status));
+            register_post_status($paypalbutton_post_status_list_status, array(
+                'label' => _x($paypalbutton_display_name, 'Button Type', 'paypal_buttons'),
+                'public' => ($paypalbutton_post_status_list_status == 'trash') ? false : true,
+                'exclude_from_search' => false,
+                'show_in_admin_all_list' => ($paypalbutton_post_status_list_status == 'trash') ? false : true,
+                'show_in_admin_status_list' => true,
+                'label_count' => _n_noop($paypalbutton_display_name . ' <span class="count">(%s)</span>', $paypalbutton_display_name . ' <span class="count">(%s)</span>', 'paypal_buttons')
+            ));
+        }
     }
 
     /**
@@ -235,7 +263,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                 <tr>
                     <td><textarea  readonly="readonly" class="wp-ui-text-highlight code txtarea_response" cols="70" rows="10"><? echo $paypal_button_html; ?></textarea></td>
                 </tr>
-                <?php if (isset($paypal_email_link) && !empty($paypal_email_link)) { ?>
+            <?php if (isset($paypal_email_link) && !empty($paypal_email_link)) { ?>
                     <tr>
                         <td colspan="2" class="center-text">OR</td>
                     </tr>
@@ -245,53 +273,58 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                     <tr>
                         <td class="td_shortcode"><input type="text"  value="<?php echo isset($paypal_email_link) ? $paypal_email_link : ''; ?>" readonly="readonly" class="wp-ui-text-highlight code large-text large-text-own txtarea_response"></td>
                     </tr>
-                <? } ?>
+            <? } ?>
 
             </table>
 
-            <?php
-        } else {
-            if (get_option('enable_sandbox') == 'yes') {
-
-                $APIUsername = get_option('paypal_api_username_sandbox');
-                $APIPassword = get_option('paypal_password_sandbox');
-                $APISignature = get_option('paypal_signature_sandbox');
+                <?php
             } else {
+                if (get_option('enable_sandbox') == 'yes') {
 
-                $APIUsername = get_option('paypal_api_username_live');
-                $APIPassword = get_option('paypal_password_live');
-                $APISignature = get_option('paypal_signature_live');
-            }
+                    $APIUsername = get_option('paypal_api_username_sandbox');
+                    $APIPassword = get_option('paypal_password_sandbox');
+                    $APISignature = get_option('paypal_signature_sandbox');
+                } else {
 
-            if ((isset($APIUsername) && !empty($APIUsername)) && (isset($APIPassword) && !empty($APIPassword)) && (isset($APISignature) && !empty($APISignature))) {
-                do_action('paypal_wp_button_manager_interface');
-            } else {
-                echo __("Please fill your API credentials properly", "paypal-wp-button-manager") . '&nbsp;&nbsp;<a href="' . admin_url('options-general.php?page=paypal-wp-button-manager-option') . '">Go to API Settings</a>';
-            }
-        }
-    }
+                    $APIUsername = get_option('paypal_api_username_live');
+                    $APIPassword = get_option('paypal_password_live');
+                    $APISignature = get_option('paypal_signature_live');
+                }
 
-    /**
-     * paypal_wp_button_manager_button_interface_display is use for display
-     * paypal button generator interface.
-     * @global type $post returns the post variable values.
-     * @global type $post_ID returns the post id of a post.
-     * @since 1.0.0
-     * @access public
-     */
-    public static function paypal_wp_button_manager_button_interface_display() {
-
-        global $post, $post_ID;
-        $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
-        if (((isset($_POST['publish'])) || isset($_POST['save'])) && ($post->post_type == 'paypal_buttons')) {
-            if (empty($paypal_button_html)) {
-                do_action('paypal_wp_button_manager_button_generator');
-            } else {
-                update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
+                if ((isset($APIUsername) && !empty($APIUsername)) && (isset($APIPassword) && !empty($APIPassword)) && (isset($APISignature) && !empty($APISignature))) {
+                    do_action('paypal_wp_button_manager_interface');
+                } else {
+                    echo __("Please fill your API credentials properly", "paypal-wp-button-manager") . '&nbsp;&nbsp;<a href="' . admin_url('options-general.php?page=paypal-wp-button-manager-option') . '">Go to API Settings</a>';
+                }
             }
         }
+
+        /**
+         * paypal_wp_button_manager_button_interface_display is use for display
+         * paypal button generator interface.
+         * @global type $post returns the post variable values.
+         * @global type $post_ID returns the post id of a post.
+         * @since 1.0.0
+         * @access public
+         */
+        public static function paypal_wp_button_manager_button_interface_display() {
+
+            global $post, $post_ID, $wpdb;
+            $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
+            if (((isset($_POST['publish'])) || isset($_POST['save'])) && ($post->post_type == 'paypal_buttons')) {
+                if (empty($paypal_button_html)) {
+                    do_action('paypal_wp_button_manager_button_generator');
+                } else {
+                    update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
+                    $current_post_status = get_post_meta($post_ID, 'paypal_wp_button_manager_old_status', true);
+                    if (isset($current_post_status) && !empty($current_post_status)) {
+                        $tbl_name = $wpdb->prefix . "posts";
+                        $wpdb->query("UPDATE $tbl_name SET post_status='$current_post_status' WHERE ID='$post_ID'");
+                    }
+                }
+            }
+        }
+
     }
 
-}
-
-AngellEYE_PayPal_WP_Button_Manager_Post_types::init();
+    AngellEYE_PayPal_WP_Button_Manager_Post_types::init();

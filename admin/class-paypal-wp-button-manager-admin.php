@@ -86,7 +86,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
                     )));
         }
         global $post;
-        $args = array('post_type' => 'paypal_buttons', 'posts_per_page' => '100', 'post_status' => 'publish');
+        $args = array('post_type' => 'paypal_buttons', 'posts_per_page' => '100', 'post_status' => array('shopping_cart', 'buy_now', 'donations', 'gift_certificates', 'subscriptions'));
         $paypal_buttons_posts = get_posts($args);
         $shortcodes = array();
         $shortcodes_values = array();
@@ -228,9 +228,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
         $viecart_post_id = get_option('paypal_wp_button_manager_viewcart_button_postid');
         if (isset($viecart_post_id) && !empty($viecart_post_id)) {
-            $view_cart_postid_status = $wpdb->get_row("SELECT count(*) as cnt_viewcart_postid  from  $table_name where post_status='publish' and post_type='paypal_buttons' and ID='$viecart_post_id'");
+            $view_cart_postid_status = $wpdb->get_row("SELECT count(*) as cnt_viewcart_postid  from  $table_name where post_status in('shopping_cart','buy_now','donations','gift_certificates','subscriptions') and post_type='paypal_buttons' and ID='$viecart_post_id'");
         }
-        $viewcart_post = $wpdb->get_row("SELECT COUNT(*)as cnt_viewcart from  $table_name where post_status='publish' and post_type='paypal_buttons'");
+        $viewcart_post = $wpdb->get_row("SELECT COUNT(*)as cnt_viewcart from  $table_name where post_status in('shopping_cart','buy_now','donations','gift_certificates','subscriptions')  and post_type='paypal_buttons'");
         $is_shopping_button_count_obj = $wpdb->get_row("SELECT COUNT(*)as cnt_is_shopping from  $postmeta_table where meta_key='paypal_wp_button_manager_is_shopping' and meta_value='1'");
 
 
@@ -260,37 +260,37 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         } else {
             $view_cart_button_status_value = '';
         }
-         $screen = get_current_screen();
-         if ($screen->post_type == 'paypal_buttons') {
-		        if (((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' )) && !empty($view_cart_button_status_value)) || ((!empty($view_cart_button_status_value)) && in_array($pagenow, array('post.php', 'post-new.php')) && !empty($shopping_cart_post_value))) {
-		            ?>
-		            <script>
-		                jQuery( document ).ready(function() {
-		
-		                    jQuery(".wrap").find("h2").after('<div class="updated below-h2 msg_div"><p class="msg_text">You should probably create a view cart button </p>&nbsp;&nbsp;<p class="btn_para"><span class="button button-primary button-large btn_viewcart">Create View Cart Button</span></p> <img src="<?php echo plugin_dir_url(__FILE__) ?>images/ajax-loader.gif" id="gifimg"/></div>');
-		                    jQuery( ".btn_viewcart" ).click(function() {
-		                        jQuery('#gifimg').css('visibility','visible');
-		                        jQuery('#gifimg').css('display','inline');
-		                        var data = {
-		                            'action': 'create_viewcart_action'
-		
-		                        };
-		
-		                        // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-		                        jQuery.post(ajaxurl, data, function(response) {
-		                            jQuery(".msg_div").remove();
-		                            jQuery(".wrap").find("h2").after('<div class="updated below-h2 msg_div"><p class="msg_text">View Cart button created successfully. <a href="<?php echo admin_url('edit.php?post_type=paypal_buttons'); ?>">Refresh Data</a></p></div>');
-		
-		                            jQuery('#gifimg').css('display','none');
-		                        });
-		
-		                    });
-		
-		                });
-		            </script>
-		            <?
-		        }
-         }
+        $screen = get_current_screen();
+        if ($screen->post_type == 'paypal_buttons') {
+            if (((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' )) && !empty($view_cart_button_status_value)) || ((!empty($view_cart_button_status_value)) && in_array($pagenow, array('post.php', 'post-new.php')) && !empty($shopping_cart_post_value))) {
+                ?>
+                <script>
+                    jQuery( document ).ready(function() {
+                		
+                        jQuery(".wrap").find("h2").after('<div class="updated below-h2 msg_div"><p class="msg_text">You do not currently have a View Cart button setup in your system.  Without this, it may be difficult for users to find their way back to your shopping cart to complete their purchase.<p>Would you like to create a View Cart button now?</p> </p><p class="btn_para"><span class="button button-primary button-large btn_viewcart">Create View Cart Button</span></p> <img src="<?php echo plugin_dir_url(__FILE__) ?>images/ajax-loader.gif" id="gifimg"/></div>');
+                        jQuery( ".btn_viewcart" ).click(function() {
+                            jQuery('#gifimg').css('visibility','visible');
+                            jQuery('#gifimg').css('display','inline');
+                            var data = {
+                                'action': 'create_viewcart_action'
+                		
+                            };
+                		
+                            // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+                            jQuery.post(ajaxurl, data, function(response) {
+                                jQuery(".msg_div").remove();
+                                jQuery(".wrap").find("h2").after('<div class="updated below-h2 msg_div"><p class="msg_text">View Cart button created successfully. <a href="<?php echo admin_url('edit.php?post_type=paypal_buttons'); ?>">Refresh Data</a></p></div>');
+                		
+                                jQuery('#gifimg').css('display','none');
+                            });
+                		
+                        });
+                		
+                    });
+                </script>
+                <?
+            }
+        }
     }
 
     public function paypal_wp_button_manager_create_viewcart_action() {
@@ -318,7 +318,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
             $view_cart_post = array(
                 'post_title' => 'View Cart',
                 'post_content' => $PayPalResult_viewcart['WEBSITECODE'],
-                'post_status' => 'publish',
+                'post_status' => 'shopping_cart',
                 'post_author' => 1,
                 'post_type' => 'paypal_buttons'
             );
@@ -334,10 +334,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
     public function paypal_wp_button_manager_wp_trash_post($post_id) {
         $post_type = get_post_type($post_id);
         $post_status = get_post_status($post_id);
-        if ($post_type == 'paypal_buttons' && in_array($post_status, array('publish', 'draft'))) {
+        if ($post_type == 'paypal_buttons' && in_array($post_status, array('publish', 'draft', 'shopping_cart', 'buy_now', 'donations', 'gift_certificates', 'subscriptions'))) {
             delete_post_meta($post_id, 'paypal_wp_button_manager_is_shopping');
         }
     }
-    
-  
+
 }

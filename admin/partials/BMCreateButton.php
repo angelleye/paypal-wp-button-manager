@@ -60,24 +60,42 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             update_post_meta($post_ID, 'paypal_button_response', $PayPalResult['WEBSITECODE']);
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
             update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', 'Button Created Successfully.');
+
             if (isset($PayPalResult['HOSTEDBUTTONID']) && !empty($PayPalResult['HOSTEDBUTTONID'])) {
-                if (isset($PayPalResult['HOSTEDBUTTONID']) && !empty($PayPalResult['HOSTEDBUTTONID'])) {
-                    update_post_meta($post_ID, 'paypal_wp_button_manager_button_id', $PayPalResult['HOSTEDBUTTONID']);
-                }
-
-                if (isset($PayPalResult['EMAILLINK']) && !empty($PayPalResult['EMAILLINK'])) {
-                    update_post_meta($post_ID, 'paypal_wp_button_manager_email_link', $PayPalResult['EMAILLINK']);
-                }
-                $btn_shopping = $_POST['button_type'];
-                if (isset($btn_shopping) && $btn_shopping == 'products') {
-                    update_option('paypal_wp_button_manager_view_cart_status', 'yes');
-                    update_post_meta($post_ID, 'paypal_wp_button_manager_shopping_post', '1');
-                    add_post_meta($post_ID, 'paypal_wp_button_manager_is_shopping', '1');
-                }
-
-                unset($post);
-                unset($_POST);
+                update_post_meta($post_ID, 'paypal_wp_button_manager_button_id', $PayPalResult['HOSTEDBUTTONID']);
             }
+
+            if (isset($PayPalResult['EMAILLINK']) && !empty($PayPalResult['EMAILLINK'])) {
+                update_post_meta($post_ID, 'paypal_wp_button_manager_email_link', $PayPalResult['EMAILLINK']);
+            }
+            $btn_shopping = $_POST['button_type'];
+            if (isset($btn_shopping) && $btn_shopping == 'products') {
+                update_option('paypal_wp_button_manager_view_cart_status', 'yes');
+                update_post_meta($post_ID, 'paypal_wp_button_manager_shopping_post', '1');
+                add_post_meta($post_ID, 'paypal_wp_button_manager_is_shopping', '1');
+            }
+
+            if (isset($btn_shopping) && $btn_shopping == 'products') {
+                $button_post_status = 'shopping_cart';
+            } else if (isset($btn_shopping) && $btn_shopping == 'services') {
+                $button_post_status = 'buy_now';
+            } else if (isset($btn_shopping) && $btn_shopping == 'donations') {
+                $button_post_status = 'donations';
+            } else if (isset($btn_shopping) && $btn_shopping == 'gift_certs') {
+                $button_post_status = 'gift_certificates';
+            } else if (isset($btn_shopping) && $btn_shopping == 'subscriptions') {
+                $button_post_status = 'subscriptions';
+            }
+            $post_status = array(
+                'ID' => $post_ID,
+                'post_status' => $button_post_status,
+            );
+            update_post_meta($post_ID, 'paypal_wp_button_manager_old_status', $button_post_status);
+            // Update the post into the database
+            wp_update_post($post_status);
+
+            unset($post);
+            unset($_POST);
         }
     }
 
