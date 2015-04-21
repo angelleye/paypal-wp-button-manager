@@ -29,26 +29,37 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
      */
     public static function paypal_wp_button_manager_general_setting_fields() {
 
-        $fields[] = array('title' => __('Paypal API Sandbox Integration', 'paypal-wp-button-manager'), 'type' => 'title', 'desc' => '', 'id' => 'general_options_sandbox');
-
+        $fields[] = array(
+            'title' => __('PayPal API Credentials (Sandbox)', 'paypal-wp-button-manager'),
+            'type' => 'title',
+            'desc' => __('Use the PayPal sandbox to create fully functional test buttons. You will need to <a target="_blank" href="http://developer.paypal.com">create a developer account with PayPal</a> in order to create and use sandbox accounts for testing purposes.', 'paypal-wp-button-manager'),
+            'id' => 'general_options_sandbox'
+        );
 
         $fields[] = array(
-            'title' => __('API Sandbox Username', 'paypal-wp-button-manager'),
-            'desc' => __('Enter Your Username', 'paypal-wp-button-manager'),
+            'title' => __('Sandbox / Test Mode', 'paypal-wp-button-manager'),
+            'desc' => __("Enable this to create buttons in the PayPal sandbox for testing purposes.", 'paypal-wp-button-manager'),
+            'id' => 'enable_sandbox',
+            'type' => 'checkbox',
+        );
+
+        $fields[] = array(
+            'title' => __('API Username', 'paypal-wp-button-manager'),
+            'desc' => '',
             'id' => 'paypal_api_username_sandbox',
             'type' => 'text',
             'css' => 'min-width:300px;',
         );
         $fields[] = array(
-            'title' => __('API Sandbox Password', 'paypal-wp-button-manager'),
-            'desc' => __('Enter Your API Password', 'paypal-wp-button-manager'),
+            'title' => __('API Password', 'paypal-wp-button-manager'),
+            'desc' => '',
             'id' => 'paypal_password_sandbox',
             'type' => 'password',
             'css' => 'min-width:300px;',
         );
         $fields[] = array(
-            'title' => __('API Sandbox Signature', 'paypal-wp-button-manager'),
-            'desc' => __('Enter Your API Signature', 'paypal-wp-button-manager'),
+            'title' => __('API Signature', 'paypal-wp-button-manager'),
+            'desc' => '',
             'id' => 'paypal_signature_sandbox',
             'type' => 'text',
             'css' => 'min-width:300px;',
@@ -56,36 +67,33 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
 
         $fields[] = array('type' => 'sectionend', 'id' => 'general_options_sandbox');
 
-        $fields[] = array('title' => __('Paypal API Live Integration', 'paypal-wp-button-manager'), 'type' => 'title', 'desc' => '', 'id' => 'general_options_live');
+        $fields[] = array(
+            'title' => __('PayPal API Credentials (Live)', 'paypal-wp-button-manager'),
+            'type' => 'title',
+            'desc' => __('<a target="_blank" href="https://www.paypal-partners.com/assets/30?locale=en">Log in to this tool</a> with your PayPal account to quickly obtain your API credentials.', 'paypal-wp-button-manager'),
+            'id' => 'general_options_live'
+        );
 
         $fields[] = array(
-            'title' => __('API Live Username', 'paypal-wp-button-manager'),
-            'desc' => __('Enter Your Username', 'paypal-wp-button-manager'),
+            'title' => __('API Username', 'paypal-wp-button-manager'),
+            'desc' => '',
             'id' => 'paypal_api_username_live',
             'type' => 'text',
             'css' => 'min-width:300px;',
         );
         $fields[] = array(
-            'title' => __('API Live Password', 'paypal-wp-button-manager'),
-            'desc' => __('Enter Your API Password', 'paypal-wp-button-manager'),
+            'title' => __('API Password', 'paypal-wp-button-manager'),
+            'desc' => '',
             'id' => 'paypal_password_live',
             'type' => 'password',
             'css' => 'min-width:300px;',
         );
         $fields[] = array(
-            'title' => __('API Live Signature', 'paypal-wp-button-manager'),
-            'desc' => __('Enter Your API Signature', 'paypal-wp-button-manager'),
+            'title' => __('API Signature', 'paypal-wp-button-manager'),
+            'desc' => '',
             'id' => 'paypal_signature_live',
             'type' => 'text',
             'css' => 'min-width:300px;',
-        );
-
-
-        $fields[] = array(
-            'title' => __('Enable Sandbox', 'paypal-wp-button-manager'),
-            'desc' => __("Enables Sandbox mode.", 'paypal-wp-button-manager'),
-            'id' => 'enable_sandbox',
-            'type' => 'checkbox',
         );
 
         $fields[] = array(
@@ -94,7 +102,7 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
             'type' => 'checkbox',
             'label' => __('Enable logging', 'paypal-wp-button-manager'),
             'default' => 'no',
-            'desc' => sprintf(__('Log PayPal WP Button Manager events, inside <code>%s</code>', 'paypal-wp-button-manager'), PAYPAL_WP_BUTTON_MANAGER_LOG_DIR)
+            'desc' => sprintf(__('Log PayPal WP Button Manager events in <code>%s</code>', 'paypal-wp-button-manager'), PAYPAL_WP_BUTTON_MANAGER_LOG_DIR)
         );
 
         $fields[] = array('type' => 'sectionend', 'id' => 'general_options_live');
