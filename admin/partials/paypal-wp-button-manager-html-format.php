@@ -505,37 +505,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             <div class="labelOption gcFixedAmountContainer accessAid"><label for="gcFixedAmount">Amount</label><input type="text" id="gcFixedAmount" size="9" class="text" name="gc_fixed_amount" value="" disabled=""><span class="currencyLabel">USD</span></div>
                                                                         </fieldset>
                                                                     </div>
-                                                                    <div class="group">
-                                                                        <p class="gcStyleHeader_new"><strong>Gift certificate style</strong></p>
-                                                                        <label for="giftCertificateLogoURL">Add URL for logo image</label><input class="text" type="text" id="giftCertificateLogoURL" size="34" name="gc_logo_url" value="http://" disabled="">
-                                                                    </div>
-                                                                    <div class="group">
-                                                                        <fieldset>
-                                                                            <legend>Choose background</legend>
-                                                                            <label for="gcBackgroundColor">
-                                                                                <input class="radio gcBackgroundType" type="radio" checked="" name="gc_background_type" value="color" disabled="">Color
-                                                                                <div class="labelOption">
-                                                                                    <?php $paypal_button_gcBackgroundColor = get_paypal_button_gcBackgroundColor(); ?>
-                                                                                    <select id="gcBackgroundColor" name="gc_background_color" disabled="">
-                                                                                        <?php foreach ($paypal_button_gcBackgroundColor as $paypal_button_gcBackgroundColor_key => $paypal_button_gcBackgroundColor_value) { ?>
-                                                                                            <option value="<?php echo $paypal_button_gcBackgroundColor_key; ?>"><?php echo $paypal_button_gcBackgroundColor_value; ?></option>
-                                                                                        <?php } ?>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </label>
-                                                                            <label for="gcBackgroundTheme">
-                                                                                <input class="radio gcBackgroundType" type="radio" name="gc_background_type" value="theme" disabled="">Theme
-                                                                                <div class="labelOption">
-                                                                                    <?php $paypal_button_gcBackgroundTheme = get_paypal_button_gcBackgroundTheme(); ?>
-                                                                                    <select id="gcBackgroundTheme" name="gc_background_theme" disabled="">
-                                                                                        <?php foreach ($paypal_button_gcBackgroundTheme as $paypal_button_gcBackgroundTheme_key => $paypal_button_gcBackgroundTheme_value) { ?>
-                                                                                            <option value="<?php echo $paypal_button_gcBackgroundTheme_key; ?>"><?php echo $paypal_button_gcBackgroundTheme_value; ?></option>
-                                                                                        <?php } ?>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </label>
-                                                                        </fieldset>
-                                                                    </div>
+                                                                                                                                   
 
                                                                 </div>
                                                                 <div class="group notifications">

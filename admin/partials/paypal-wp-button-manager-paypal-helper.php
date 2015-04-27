@@ -160,8 +160,6 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
         $ddp_option_name = isset($post['ddp_option_name']) ? $post['ddp_option_name'] : '';
         if ((isset($ddp_option_name) && !empty($ddp_option_name)) && (empty($_POST['dropdown_price_title']) || !empty($_POST['dropdown_price_title']))) {
             $item_price = '';
-        } else if (isset($_POST['gc_fixed_amount']) && !empty($_POST['gc_fixed_amount'])) {
-            $item_price = $_POST['gc_fixed_amount'];
         } else if (isset($_POST['item_price']) && !empty($_POST['item_price'])) {
             $item_price = $_POST['item_price'];
         } else {
@@ -178,7 +176,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'discount_rate' => '', // Discount rate (percentage) associated with an item.  Must be set to a value less than 100.
             'discount_rate2' => '', // Discount rate (percentage) associated with each additional quantity of the item.  Must be equal to or less than 100.
             'discount_num' => '', // Number of additional quantities of the item to which the discount applies.
-            'item_name' => isset($item_name) ? $item_name : '', // Description of the item.  If this is omitted, buyers enter their own name during checkout.
+            'item_name' => isset($item_name) ? preg_replace("/[^a-zA-Z0-9_-\s]/", " ", $item_name) : '', // Description of the item.  If this is omitted, buyers enter their own name during checkout.
             'item_number' => isset($item_number) ? $item_number : '', // Pass-through variable for you to track product or service purchased or the contribution made.
             'quantity' => '', // Number of items.
             'shipping' => isset($_POST['item_shipping_amount']) ? $_POST['item_shipping_amount'] : '', // The cost of shipping this item.
@@ -201,7 +199,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'upload' => '', // Set to 1 to upload the contents of a third-party shopping cart or a custom shopping cart.
             'business' => isset($_POST['business']) ? $_POST['business'] : '', // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
             'paymentaction' => '', // Indicates whether the payment is a finale sale or an authorization for a final sale, to be captured later.  Values are:  sale, authorization, order
-            'shopping_url' => isset($_POST['gift_certificate_shop_url']) ? $_POST['gift_certificate_shop_url'] : '', // The URL of the page on the merchant website that buyers go to when they click the Continue Shopping button on the PayPal shopping cart page.
+            'shopping_url' => isset($_POST['gift_certificate_shop_url']) ? esc_url($_POST['gift_certificate_shop_url']) : '', // The URL of the page on the merchant website that buyers go to when they click the Continue Shopping button on the PayPal shopping cart page.
             'a1' => isset($_POST['subscription_trial_rate']) ? $_POST['subscription_trial_rate'] : '', // Trial period 1 price.  For a free trial period, specify 0.
             'p1' => isset($_POST['subscription_trial_duration']) ? $_POST['subscription_trial_duration'] : '', // Trial period 1 duration.  Required if you specify a1.
             't1' => isset($_POST['subscription_trial_duration_type']) ? $_POST['subscription_trial_duration_type'] : '', // Trial period 1 units of duration.  Values are:  D, W, M, Y
@@ -232,10 +230,10 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'lc' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : '', // The locale of the login or sign-up page.
             'cn' => '', // Label that appears above the note field.
             'no_shipping' => '', // Do not prompt buyers for a shipping address.  Values are:  0 - prompt for an address but do not require.  1 - do not prompt.  2 - prompt and require address.
-            'return' => isset($_POST['return']) ? $_POST['return'] : '', // The URL to which PayPal redirects buyers' browsers after they complete their payment.
+            'return' => isset($_POST['return']) ? esc_url($_POST['return']) : '', // The URL to which PayPal redirects buyers' browsers after they complete their payment.
             'rm' => '', // Return method.  Values are:  0 - all shopping cart payments use GET method.  1 - buyer's browser is redirected using the GET method. 2 - buyer's browser is redirected using POST.
             'cbt' => '', // Sets the text for the Return to Merchant button on the PayPal completed payment page.
-            'cancel_return' => isset($_POST['cancel_return']) ? $_POST['cancel_return'] : '', // A URL to which PayPal redirects buyers if they cancel the payment.
+            'cancel_return' => isset($_POST['cancel_return']) ? esc_url($_POST['cancel_return']) : '', // A URL to which PayPal redirects buyers if they cancel the payment.
             'address1' => '',
             'address2' => '',
             'city' => '',
@@ -248,7 +246,8 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'charset' => '', // Sets the character set and character encoding for the billing login page.
             'night_phone_a' => '', // Area code for US phone numbers or country code for phone numbers outside the US.
             'night_phone_b' => '', // 3 digit prefix for US numbers or the entire phone number for numbers outside the US.
-            'night_phone_c' => '' // 4 digit phone number for US numbers.
+            'night_phone_c' => '', // 4 digit phone number for US numbers.
+            'fixed_denom' => isset($_POST['gc_fixed_amount']) ? $_POST['gc_fixed_amount'] : ''
         );
 
         return $buttonvars;
@@ -276,7 +275,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             $BMButtonOptionSelections = array();
             foreach ($ddp_option_name as $ddp_option_name_key => $ddp_option_name_value) {
                 $BMButtonOptionSelection = array(
-                    'value' => $ddp_option_name_value,
+                    'value' => preg_replace("/[^a-zA-Z0-9_-\s]/", " ", $ddp_option_name_value),
                     'price' => $post['ddp_option_price'][$ddp_option_name_key],
                     'type' => ''
                 );
@@ -284,7 +283,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 array_push($BMButtonOptionSelections, $BMButtonOptionSelection);
             }
             $BMButtonOption = array(
-                'name' => isset($_POST['dropdown_price_title']) ? $_POST['dropdown_price_title'] : '',
+                'name' => isset($_POST['dropdown_price_title']) ? preg_replace("/[^a-zA-Z0-9_-\s]/", " ", $_POST['dropdown_price_title']) : '',
                 'selections' => $BMButtonOptionSelections
             );
             array_push($BMButtonOptions, $BMButtonOption);
@@ -301,14 +300,14 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
 
                 foreach ($ddall_option_name as $ddall_option_name_key => $ddall_option_name_value) {
                     $BMButtonOptionSelection_dd_all[] = array(
-                        'value' => $ddall_option_name_value,
+                        'value' => preg_replace("/[^a-zA-Z0-9_-\s]/", " ", $ddall_option_name_value),
                         'price' => '',
                         'type' => ''
                     );
                 }
 
                 $BMButtonOption_dd_all = array(
-                    'name' => $post['dropdown' . $i . '_title'][0],
+                    'name' => preg_replace("/[^a-zA-Z0-9_-\s]/", " ", $post['dropdown' . $i . '_title'][0]),
                     'selections' => $BMButtonOptionSelection_dd_all
                 );
 
