@@ -124,11 +124,11 @@ function get_paypal_button_currency_with_symbole() {
 
 function get_paypal_button_options() {
     $paypal_button_options = ( array(
-        "products" => "Shopping cart",
+        "products" => "Shopping Cart",
         "services" => "Buy Now",
-        "donations" => "Donations",
-        "gift_certs" => "Gift certificates",
-        "subscriptions" => "Subscriptions"
+        "donations" => "Donation",
+        "gift_certs" => "Gift Certificate",
+        "subscriptions" => "Subscription"
             ));
 
     return array_unique($paypal_button_options);

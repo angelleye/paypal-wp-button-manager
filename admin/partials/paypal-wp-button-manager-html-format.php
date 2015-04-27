@@ -76,18 +76,18 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="products"><input class="hide radio subButtonType" type="radio" id="radioAddToCartButton" checked="" name="sub_button_type" value="add_to_cart"><input class="hide radio subButtonType" type="radio" id="radioBuyNowButton" name="sub_button_type" value="buy_now"></div>
                                                         <div class="group details">
                                                             <div class="products">
-                                                                <div class="floatLeft"><label for="itemName">Item name</label><input class="text xlarge" maxlength="127" type="text" id="itemName" name="product_name" value=""></div>
+                                                                <div class="floatLeft"><label for="itemName">Item Name</label><input class="text xlarge" maxlength="127" type="text" id="itemName" name="product_name" value=""></div>
                                                                 <div class="floatLeft"><label for="itemID">Item ID<span class="fieldNote"> (optional) </span>
                                                                         <input class="text" maxlength="127" type="text" id="itemID" size="9" name="product_id" value=""></div>
                                                                         </div>
                                                                         <div class="donations accessAid fadedOut">
-                                                                            <div class="floatLeft"><label for="donationName">Organization name/service</label><input class="text xlarge" maxlength="127" type="text" id="donationName" name="donation_name" value="" disabled=""></div>
+                                                                            <div class="floatLeft"><label for="donationName">Organization Name/service</label><input class="text xlarge" maxlength="127" type="text" id="donationName" name="donation_name" value="" disabled=""></div>
                                                                             <div class="floatLeft"><label for="donationID">Donation ID<span class="fieldNote"> (optional) </span>
                                                                                 </label>
                                                                                 <input class="text" maxlength="127" type="text" id="donationID" size="27" name="donation_id" value="" disabled=""></div>
                                                                         </div>
                                                                         <div class="subscriptions accessAid fadedOut">
-                                                                            <div class="floatLeft"><label for="subscriptionName">Item name</label><input class="text xlarge" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="" disabled=""></div>
+                                                                            <div class="floatLeft"><label for="subscriptionName">Item Name</label><input class="text xlarge" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="" disabled=""></div>
                                                                             <div class="floatLeft"><label for="subscriptionID">Subscription ID<span class="fieldNote"> (optional) </span></label><input class="text" maxlength="127" type="text" id="subscriptionID" size="27" name="subscription_id" value="" disabled=""></div>
                                                                         </div>
                                                                         <div class="gift_certs accessAid fadedOut"><label for="giftCertificateShopURL">Enter the URL where recipients can shop and redeem this gift certificate.</label><input class="text" type="text" id="giftCertificateShopURL" size="34" name="gift_certificate_shop_url" value="http://" disabled=""></div>
