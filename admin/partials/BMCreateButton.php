@@ -44,7 +44,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
             update_option('paypal_wp_button_manager_notice', $notice);
             update_option('paypal_wp_button_manager_error_code', $notice_code);
-            update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
+            update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice','');
             unset($_POST);
             unset($post);
         } else if ($PayPalResult['RAWRESPONSE'] == false) {
@@ -52,7 +52,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             $timeout_notice[$post_ID] = 'Internal server error occured';
             update_option('paypal_wp_button_manager_timeout_notice', $timeout_notice);
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
-            update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
+            update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice','');
             unset($_POST);
             unset($post);
         } else if (isset($PayPalResult['WEBSITECODE']) && !empty($PayPalResult['WEBSITECODE'])) {

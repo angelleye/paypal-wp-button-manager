@@ -138,6 +138,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
 
         if (isset($post->post_type) && !empty($post->post_type)) {
             if ('paypal_buttons' == $post->post_type) {
+            	
                 if ($text == 'Publish') {
                     return __('Create PayPal Button');
                 } else if ($text == 'Update') {

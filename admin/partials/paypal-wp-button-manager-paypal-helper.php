@@ -176,7 +176,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'discount_rate' => '', // Discount rate (percentage) associated with an item.  Must be set to a value less than 100.
             'discount_rate2' => '', // Discount rate (percentage) associated with each additional quantity of the item.  Must be equal to or less than 100.
             'discount_num' => '', // Number of additional quantities of the item to which the discount applies.
-            'item_name' => isset($item_name) ? preg_replace("/[^a-zA-Z0-9_-\s]/", " ", $item_name) : '', // Description of the item.  If this is omitted, buyers enter their own name during checkout.
+            'item_name' => isset($item_name) ? $item_name : '', // Description of the item.  If this is omitted, buyers enter their own name during checkout.
             'item_number' => isset($item_number) ? $item_number : '', // Pass-through variable for you to track product or service purchased or the contribution made.
             'quantity' => '', // Number of items.
             'shipping' => isset($_POST['item_shipping_amount']) ? $_POST['item_shipping_amount'] : '', // The cost of shipping this item.
@@ -275,7 +275,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             $BMButtonOptionSelections = array();
             foreach ($ddp_option_name as $ddp_option_name_key => $ddp_option_name_value) {
                 $BMButtonOptionSelection = array(
-                    'value' => preg_replace("/[^a-zA-Z0-9_-\s]/", " ", $ddp_option_name_value),
+                    'value' =>$ddp_option_name_value,
                     'price' => $post['ddp_option_price'][$ddp_option_name_key],
                     'type' => ''
                 );
@@ -283,7 +283,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 array_push($BMButtonOptionSelections, $BMButtonOptionSelection);
             }
             $BMButtonOption = array(
-                'name' => isset($_POST['dropdown_price_title']) ? preg_replace("/[^a-zA-Z0-9_-\s]/", " ", $_POST['dropdown_price_title']) : '',
+                'name' => isset($_POST['dropdown_price_title']) ? $_POST['dropdown_price_title']: '',
                 'selections' => $BMButtonOptionSelections
             );
             array_push($BMButtonOptions, $BMButtonOption);
@@ -300,14 +300,14 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
 
                 foreach ($ddall_option_name as $ddall_option_name_key => $ddall_option_name_value) {
                     $BMButtonOptionSelection_dd_all[] = array(
-                        'value' => preg_replace("/[^a-zA-Z0-9_-\s]/", " ", $ddall_option_name_value),
+                        'value' => $ddall_option_name_value,
                         'price' => '',
                         'type' => ''
                     );
                 }
 
                 $BMButtonOption_dd_all = array(
-                    'name' => preg_replace("/[^a-zA-Z0-9_-\s]/", " ", $post['dropdown' . $i . '_title'][0]),
+                    'name' => $post['dropdown' . $i . '_title'][0],
                     'selections' => $BMButtonOptionSelection_dd_all
                 );
 

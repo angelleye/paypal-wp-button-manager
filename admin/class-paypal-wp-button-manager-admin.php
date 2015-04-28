@@ -146,13 +146,17 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
             echo "<style>.updated{display:none;}</style>";
             unset($errors_notice[$post->ID]);
             unset($error_code[$post->ID]);
-            update_option('paypal_wp_button_manager_notice', $errors_notice);
-            update_option('paypal_wp_button_manager_error_code', $error_code);
+            delete_option('paypal_wp_button_manager_notice');
+            delete_option('paypal_wp_button_manager_error_code');
+            
+           // update_option('paypal_wp_button_manager_notice', $errors_notice[$post->ID]);
+           // update_option('paypal_wp_button_manager_error_code', $error_code[$post->ID]);
         } else if (isset($timeout_notice) && !empty($timeout_notice)) {
             echo _e('<div class="error"><p>Error Details:&nbsp;' . $timeout_notice[$post->ID] . '</p></div>', 'paypal-wp-button-manager');
             echo "<style>.updated{display:none;}</style>";
             unset($timeout_notice[$post->ID]);
-            update_option('paypal_wp_button_manager_timeout_notice', $timeout_notice);
+            delete_option('paypal_wp_button_manager_timeout_notice');
+        //    update_option('paypal_wp_button_manager_timeout_notice', $timeout_notice[$post->ID]);
         }
     }
 
@@ -167,7 +171,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
         global $post, $post_ID;
         $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
-        $success_message = get_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', true);
+        $success_message = get_post_meta($post_ID, 'paypal_wp_button_manager_success_notice',true);
         if (isset($success_message) && !empty($success_message)) {
             $custom_message = $success_message;
         } else {
@@ -178,10 +182,10 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
             1 => sprintf(__('Button Updated Successfully')),
             2 => __('Custom field updated.'),
             3 => __('Custom field deleted.'),
-            4 => __($custom_message),
+            4 => __('Button Updated Successfully'),
             /* translators: %s: date and time of the revision */
             5 => isset($_GET['revision']) ? sprintf(__('Button restored to revision from %s'), wp_post_revision_title((int) $_GET['revision'], false)) : false,
-            6 => sprintf(__('Button Created Successfully')),
+            6 => sprintf(__('Button Created Successfully.')),
             7 => __('Button saved.'),
             8 => sprintf(__('Button submitted. <a target="_blank" href="%s">Preview Button</a>'), esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
             9 => sprintf(__('Button scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview Button</a>'),
