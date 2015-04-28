@@ -82,13 +82,26 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 1. Manage PayPal buttons in the WordPress admin panel.
 2. Create new buttons using the same experience that your PayPal.com profile provides, directly within WordPress.
-3. Something
+3. Multiple options for placing buttons on pages, posts, email/graphical links, etc.
 
 == Frequently Asked Questions ==
 
 = How is this plugin more secure than others? =
 
 * PayPal WP Button Manager utilizes the PayPal Button Manager API which provides tighter integration with PayPal's system and allows you to create PayPal hosted payment buttons.  These buttons remove all of the detail about the payment from the HTML viewable through view-source in a web browser, so they will not be able to hack the code and submit payments with bogus values.
+
+= How do I create sandbox accounts for testing? =
+
+* Login at http://developer.paypal.com.
+* Click the Applications tab in the top menu.
+* Click Sandbox Accounts in the left sidebar menu.
+* Click the Create Account button to create a new sandbox account.
+* TIP: Create at least one "seller" account and one "buyer" account if you want to fully test a button through the entire checkout experience.
+
+= Where do I get my API credentials? =
+
+* Live credentials can be obtained by signing in to your live PayPal account here:  https://www.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
+* Sandbox credentials can be obtained by viewing the sandbox account profile within your PayPal developer account, or by signing in with a sandbox account here:  https://www.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
 
 == Changelog ==
 
