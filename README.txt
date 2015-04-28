@@ -3,7 +3,7 @@ Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SG9SQU2GBXJNA
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
 Requires at least: 3.8
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: 0.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -12,7 +12,47 @@ Developed by an Ace Certified PayPal Developer, official PayPal Partner, PayPal 
 
 == Description ==
 
-Easily create and manage all types of PayPal Standard payment buttons within WordPress.
+= Introduction =
+
+Easily create and manage PayPal Standard payment buttons within WordPress, and place them on Pages / Posts using shortcodes.
+
+ * Buy Now Button
+ * Donation Button
+ * Subscription Button
+ * Shopping Cart Button / View Cart Button
+ * Shortcodes for easy placement of buttons on Pages / Posts
+
+= Security =
+
+The primary objective of this plugin is to provide a way to use PayPal Standard buttons in a secure way.
+
+Other similar PayPal button plugins will allow you to create a button and display on a page, however, these buttons are not protected in any way.  This allows potential fraudsters to obtain the HTML code that makes up the PayPal button, change the values (ie. item price, shipping amount, etc.) and then submit a payment using those bogus values.
+
+PayPal WP Button Manager is a more advanced solution which utilizes the [PayPal Button Manager API](https://developer.paypal.com/docs/classic/button-manager/integration-guide/NVP/ButtonMgrOverview/) to generate buttons as opposed to basic HTML, which gives you the option to create PayPal Hosted buttons.  These buttons and all of their details are saved in your PayPal account which keeps them safe from prying eyes.  The only thing one could see when viewing the HTML for a PayPal Hosted button is the button ID, and this is worthless to a potential fraudster.
+
+= User Friendly Interface =
+
+We have essentially replicated the PayPal Button Manager experience you see in your PayPal account, however, we have tightly integrated it into the WordPress admin panel.  This allows you to create and your PayPal buttons without ever leaving your site.
+
+= Options for Button Usage =
+
+After creating your PayPal button you will have multiple options for how to place it in various pages, posts, emails, etc.
+
+First, the Visual Editor in WordPress provides a Shortcodes menu with all of the buttons you have created available for point and click placement.  The actual shortcode values themselves are made available as well so you can simply type them out or copy/paste if you prefer.
+
+You will also have access to the entire HTML snippet that is returned by the PayPal Button Manager API as well as a basic URL link that could be used in emails, social network posts, graphical links, etc.
+
+With numerous options for placement of buttons, you will not have any problems using them wherever you would like.
+
+= Localization =
+
+The PayPal Express Checkout buttons and checkout pages will translate based off your WordPress language setting by default.  The rest of the plugin was also developed with localization in mind and is ready for translation.
+
+If you're interested in helping translate please [let us know](http://www.angelleye.com/contact-us/)!
+
+= Get Involved =
+
+Developers can contribute to the source code on the [PayPal WP Button Manager GitHub repository](https://github.com/angelleye/paypal-wp-button-manager).
 
 == Installation ==
 
@@ -27,18 +67,39 @@ In the search field type PayPal WP Button Manager and click Search Plugins. Once
 1. Unzip the files and upload the folder into your plugins folder (/wp-content/plugins/) overwriting older versions if they exist
 2. Activate the plugin in your WordPress admin area.
 
+= Updating =
+
+Automatic updates should work great for you.  As always, though, we recommend backing up your site prior to making any updates just to be sure nothing goes wrong.
+
+= Usage =
+
+1. Click the PayPal Buttons tab in your WordPress admin panel.
+2. Click Add PayPal Button to open the button creation interface.
+3. Follow the steps to create the type of button you are looking to create.
+4. Place the button on Pages / Posts using shortcodes or the provided HTML / URL snippets.
+
+== Screenshots ==
+
+1. Manage PayPal buttons in the WordPress admin panel.
+2. Create new buttons using the same experience that your PayPal.com profile provides, directly within WordPress.
+3. Something
+
 == Frequently Asked Questions ==
 
 = How is this plugin more secure than others? =
 
-* PayPal WP Button Manager utilizes the PayPal Button Manager API which provides tighter integration with PayPal's system and allows you to create PayPal hosted buttons.  These buttons remove all of the detail about the payment from the HTML viewers can see, so they will not be able to hack the code and submit payments with bogus values.
+* PayPal WP Button Manager utilizes the PayPal Button Manager API which provides tighter integration with PayPal's system and allows you to create PayPal hosted payment buttons.  These buttons remove all of the detail about the payment from the HTML viewable through view-source in a web browser, so they will not be able to hack the code and submit payments with bogus values.
 
 == Changelog ==
 
 = 0.1.0 =
-* Initial BETA release.
+* Feature - Buy Now Button
+* Feature - Donation Button
+* Feature - Subscription Button
+* Feature - Shopping Cart Button / View Cart Button
+* Feature - Shortcodes for easy placement of buttons on Pages / Posts
 
 == Upgrade Notice ==
 
 = 0.1.0 =
-PayPal WP Button Manager is currently in a BETA release stage.  We welcome any feedback you may have!
+PayPal WP Button Manager is currently in a BETA release stage.  It has been tested and is ready for use, but we will be adding more functionality and design changes for the final 1.0 release.  We would appreciate it if you would give it a try and provide any feedback you can.  Thanks!
