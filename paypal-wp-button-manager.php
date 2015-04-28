@@ -33,7 +33,7 @@ if (!defined('BMW_PLUGIN_URL'))
  *  define log file path
  */
 if (!defined('PAYPAL_WP_BUTTON_MANAGER_LOG_DIR')) {
-    define('PAYPAL_WP_BUTTON_MANAGER_LOG_DIR', ABSPATH . 'paypal-wp-button-manager-logs/');
+    define('PAYPAL_WP_BUTTON_MANAGER_LOG_DIR', ABSPATH . 'wp-content/uploads/paypal-wp-button-manager-logs/');
 }
 
 /**
