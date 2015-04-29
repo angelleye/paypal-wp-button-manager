@@ -86,7 +86,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
                     )));
         }
         global $post;
-        $args = array('post_type' => 'paypal_buttons', 'posts_per_page' => '100', 'post_status' => array('shopping_cart', 'buy_now', 'donations', 'gift_certificates', 'subscriptions'));
+        $args = array('post_type' => 'paypal_buttons', 'posts_per_page' => '100', 'post_status' => array('publish'));
         $paypal_buttons_posts = get_posts($args);
         $shortcodes = array();
         $shortcodes_values = array();
@@ -142,21 +142,21 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         $timeout_notice = get_option('paypal_wp_button_manager_timeout_notice');
         $success_notice = get_option('paypal_wp_button_manager_success_notice');
         if ((isset($errors_notice) && !empty($errors_notice)) && (isset($error_code) && !empty($error_code)) && (empty($timeout_notice))) {
-            echo _e('<div class="error"><p>Error Code:&nbsp;' . $error_code[$post->ID] . '<br/>Error Details:&nbsp;' . $errors_notice[$post->ID] . '</p></div>', 'paypal-wp-button-manager');
+            echo _e('<div class="error"><p>Error Code:&nbsp;' . $error_code[$post->ID] . '<br/>Error Details:&nbsp;' . $errors_notice[$post->ID] . '</p><input type="hidden" name="err_btn" value="err_btn"/></div>', 'paypal-wp-button-manager');
             echo "<style>.updated{display:none;}</style>";
             unset($errors_notice[$post->ID]);
             unset($error_code[$post->ID]);
             delete_option('paypal_wp_button_manager_notice');
             delete_option('paypal_wp_button_manager_error_code');
-            
-           // update_option('paypal_wp_button_manager_notice', $errors_notice[$post->ID]);
-           // update_option('paypal_wp_button_manager_error_code', $error_code[$post->ID]);
+
+            // update_option('paypal_wp_button_manager_notice', $errors_notice[$post->ID]);
+            // update_option('paypal_wp_button_manager_error_code', $error_code[$post->ID]);
         } else if (isset($timeout_notice) && !empty($timeout_notice)) {
             echo _e('<div class="error"><p>Error Details:&nbsp;' . $timeout_notice[$post->ID] . '</p></div>', 'paypal-wp-button-manager');
             echo "<style>.updated{display:none;}</style>";
             unset($timeout_notice[$post->ID]);
             delete_option('paypal_wp_button_manager_timeout_notice');
-        //    update_option('paypal_wp_button_manager_timeout_notice', $timeout_notice[$post->ID]);
+            //    update_option('paypal_wp_button_manager_timeout_notice', $timeout_notice[$post->ID]);
         }
     }
 
@@ -171,21 +171,29 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
         global $post, $post_ID;
         $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
-        $success_message = get_post_meta($post_ID, 'paypal_wp_button_manager_success_notice',true);
-        if (isset($success_message) && !empty($success_message)) {
+
+        $success_message = get_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', true);
+
+        if ((isset($paypal_button_html) && !empty($success_message))) {
             $custom_message = $success_message;
         } else {
             $custom_message = 'Button Updated Successfully.';
         }
+
+
+
+        $post_ID = $post->ID;
+        $post_type = get_post_type($post_ID);
+
         $messages['paypal_buttons'] = array(
             0 => '', // Unused. Messages start at index 1.
             1 => sprintf(__('Button Updated Successfully')),
             2 => __('Custom field updated.'),
             3 => __('Custom field deleted.'),
-            4 => __('Button Updated Successfully'),
+            4 => __($custom_message),
             /* translators: %s: date and time of the revision */
             5 => isset($_GET['revision']) ? sprintf(__('Button restored to revision from %s'), wp_post_revision_title((int) $_GET['revision'], false)) : false,
-            6 => sprintf(__('Button Created Successfully.')),
+            6 => sprintf(__($custom_message)),
             7 => __('Button saved.'),
             8 => sprintf(__('Button submitted. <a target="_blank" href="%s">Preview Button</a>'), esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
             9 => sprintf(__('Button scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview Button</a>'),
@@ -232,9 +240,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
         $viecart_post_id = get_option('paypal_wp_button_manager_viewcart_button_postid');
         if (isset($viecart_post_id) && !empty($viecart_post_id)) {
-            $view_cart_postid_status = $wpdb->get_row("SELECT count(*) as cnt_viewcart_postid  from  $table_name where post_status in('shopping_cart','buy_now','donations','gift_certificates','subscriptions') and post_type='paypal_buttons' and ID='$viecart_post_id'");
+            $view_cart_postid_status = $wpdb->get_row("SELECT count(*) as cnt_viewcart_postid  from  $table_name where post_status ='publish' and post_type='paypal_buttons' and ID='$viecart_post_id'");
         }
-        $viewcart_post = $wpdb->get_row("SELECT COUNT(*)as cnt_viewcart from  $table_name where post_status in('shopping_cart','buy_now','donations','gift_certificates','subscriptions')  and post_type='paypal_buttons'");
+        $viewcart_post = $wpdb->get_row("SELECT COUNT(*)as cnt_viewcart from  $table_name where post_status ='publish'  and post_type='paypal_buttons'");
         $is_shopping_button_count_obj = $wpdb->get_row("SELECT COUNT(*)as cnt_is_shopping from  $postmeta_table where meta_key='paypal_wp_button_manager_is_shopping' and meta_value='1'");
 
 
@@ -270,26 +278,26 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
                 ?>
                 <script>
                     jQuery( document ).ready(function() {
-                                		
+
                         jQuery(".wrap").find("h2").after('<div class="updated below-h2 msg_div"><p class="msg_text">You do not currently have a View Cart button setup in your system.  Without this, it may be difficult for users to find their way back to your shopping cart to complete their purchase.<p>Would you like to create a View Cart button now?</p> </p><p class="btn_para"><span class="button button-primary button-large btn_viewcart">Create View Cart Button</span></p> <img src="<?php echo plugin_dir_url(__FILE__) ?>images/ajax-loader.gif" id="gifimg"/></div>');
                         jQuery( ".btn_viewcart" ).click(function() {
                             jQuery('#gifimg').css('visibility','visible');
                             jQuery('#gifimg').css('display','inline');
                             var data = {
                                 'action': 'create_viewcart_action'
-                                		
+
                             };
-                                		
+
                             // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
                             jQuery.post(ajaxurl, data, function(response) {
                                 jQuery(".msg_div").remove();
                                 jQuery(".wrap").find("h2").after('<div class="updated below-h2 msg_div"><p class="msg_text">View Cart button created successfully. <a href="<?php echo admin_url('edit.php?post_type=paypal_buttons'); ?>">Refresh Data</a></p></div>');
-                                		
+
                                 jQuery('#gifimg').css('display','none');
                             });
-                                		
+
                         });
-                                		
+
                     });
                 </script>
                 <?
@@ -322,13 +330,18 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
             $view_cart_post = array(
                 'post_title' => 'View Cart',
                 'post_content' => $PayPalResult_viewcart['WEBSITECODE'],
-                'post_status' => 'shopping_cart',
+                'post_status' => 'publish',
                 'post_author' => 1,
                 'post_type' => 'paypal_buttons'
             );
 
             // Insert the post into the database
             $post_id = wp_insert_post($view_cart_post);
+            $term = term_exists('Shopping cart', 'paypal_button_types');
+            $tag[] = $term['term_id'];
+
+            $update_term = wp_set_post_terms($post_id, $tag, 'paypal_button_types');
+
             update_post_meta($post_id, 'paypal_button_response', $PayPalResult_viewcart['WEBSITECODE']);
             update_option('paypal_wp_button_manager_viewcart_button', '1');
             update_option('paypal_wp_button_manager_viewcart_button_postid', $post_id);
@@ -338,7 +351,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
     public function paypal_wp_button_manager_wp_trash_post($post_id) {
         $post_type = get_post_type($post_id);
         $post_status = get_post_status($post_id);
-        if ($post_type == 'paypal_buttons' && in_array($post_status, array('publish', 'draft', 'shopping_cart', 'buy_now', 'donations', 'gift_certificates', 'subscriptions'))) {
+        if ($post_type == 'paypal_buttons' && in_array($post_status, array('publish'))) {
             delete_post_meta($post_id, 'paypal_wp_button_manager_is_shopping');
         }
     }

@@ -27,7 +27,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Public_Display {
 
         $paypal_button_response = get_post_meta($id, 'paypal_button_response', true);
         $post_status = get_post_status($id);
-        if ((!empty($paypal_button_response)) && (($post_status == 'shopping_cart') || ($post_status == 'buy_now') ||($post_status == 'donations') || ($post_status == 'gift_certificates') || ($post_status == 'subscriptions') )) {
+        if ((!empty($paypal_button_response)) && (($post_status == 'publish')) && ($post_status !='auto-draft')) {
             return $paypal_button_response;
         } else {
             return '[paypal_wp_button_manager id=' . $id . ']';

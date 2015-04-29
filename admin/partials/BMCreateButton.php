@@ -35,6 +35,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
 
         $PayPalResult = $PayPal->BMCreateButton($PayPalRequestData);
 
+
+
         // Write the contents of the response array to the screen for demo purposes.
         if (isset($PayPalResult['ERRORS']) && !empty($PayPalResult['ERRORS'])) {
             global $post, $post_ID;
@@ -44,7 +46,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
             update_option('paypal_wp_button_manager_notice', $notice);
             update_option('paypal_wp_button_manager_error_code', $notice_code);
-            update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice','');
+            update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
+            delete_option('paypal_wp_button_manager_timeout_notice');
+
+            // Update the post into the database
+
+
+
             unset($_POST);
             unset($post);
         } else if ($PayPalResult['RAWRESPONSE'] == false) {
@@ -52,14 +60,26 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             $timeout_notice[$post_ID] = 'Internal server error occured';
             update_option('paypal_wp_button_manager_timeout_notice', $timeout_notice);
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
-            update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice','');
+            update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
+
+            delete_option('paypal_wp_button_manager_notice');
+            delete_option('paypal_wp_button_manager_error_code');
+
+
+
             unset($_POST);
             unset($post);
         } else if (isset($PayPalResult['WEBSITECODE']) && !empty($PayPalResult['WEBSITECODE'])) {
             global $post, $post_ID;
+            global $wp;
             update_post_meta($post_ID, 'paypal_button_response', $PayPalResult['WEBSITECODE']);
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
             update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', 'Button Created Successfully.');
+            delete_option('paypal_wp_button_manager_notice');
+            delete_option('paypal_wp_button_manager_error_code');
+            delete_option('paypal_wp_button_manager_timeout_notice');
+
+
 
             if (isset($PayPalResult['HOSTEDBUTTONID']) && !empty($PayPalResult['HOSTEDBUTTONID'])) {
                 update_post_meta($post_ID, 'paypal_wp_button_manager_button_id', $PayPalResult['HOSTEDBUTTONID']);
@@ -85,14 +105,26 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
                 $button_post_status = 'gift_certificates';
             } else if (isset($btn_shopping) && $btn_shopping == 'subscriptions') {
                 $button_post_status = 'subscriptions';
+            } else {
+                $button_post_status = "Other";
             }
-            $post_status = array(
-                'ID' => $post_ID,
-                'post_status' => $button_post_status,
-            );
-            update_post_meta($post_ID, 'paypal_wp_button_manager_old_status', $button_post_status);
-            // Update the post into the database
-            wp_update_post($post_status);
+
+            $button_post_status_ucfirst = ucfirst(str_replace('_', ' ', $button_post_status));
+            $term = term_exists($button_post_status_ucfirst, 'paypal_button_types');
+
+            if ($term !== 0 && $term !== null) {
+                
+            } else {
+
+                $term = wp_insert_term($button_post_status_ucfirst, 'paypal_button_types', array('slug' => $button_post_status));
+            }
+
+            $tag[] = $term['term_id'];
+
+            $update_term = wp_set_post_terms($post_ID, $tag, 'paypal_button_types');
+
+
+
 
             unset($post);
             unset($_POST);
