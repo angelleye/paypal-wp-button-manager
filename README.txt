@@ -105,7 +105,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 0.1.0 =
+= 0.1.0 - 05.04.2015 =
 * Feature - Buy Now Button
 * Feature - Donation Button
 * Feature - Subscription Button
