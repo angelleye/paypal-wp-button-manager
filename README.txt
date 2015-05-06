@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -104,6 +104,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * Sandbox credentials can be obtained by viewing the sandbox account profile within your PayPal developer account, or by signing in with a sandbox account here:  https://www.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
 
 == Changelog ==
+
+= 0.1.1 - 05.06.2015 =
+*Fix - Resolves a bug causing a "Security Header" failure to occur when creating live PayPal buttons.
 
 = 0.1.0 - 05.04.2015 =
 * Feature - Buy Now Button
