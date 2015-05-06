@@ -56,12 +56,12 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
      */
     public function paypal_wp_button_manager_get_paypalconfig() {
         if (get_option('enable_sandbox') == 'yes') {
-            $apitype = 'TRUE';
+            $apitype = TRUE;
             $APIUsername = get_option('paypal_api_username_sandbox');
             $APIPassword = get_option('paypal_password_sandbox');
             $APISignature = get_option('paypal_signature_sandbox');
         } else {
-            $apitype = 'FALSE';
+            $apitype = FALSE;
             $APIUsername = get_option('paypal_api_username_live');
             $APIPassword = get_option('paypal_password_live');
             $APISignature = get_option('paypal_signature_live');
