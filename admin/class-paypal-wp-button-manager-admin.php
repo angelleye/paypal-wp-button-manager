@@ -126,7 +126,20 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
          * The class responsible for defining function for display general setting tab
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/class-paypal-wp-button-manager-general-setting.php';
-    }
+        
+        /**
+         * The class responsible for defining function for display company setting tab
+         */
+        
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/class-paypal-wp-button-manager-companies.php';
+        
+        /**
+         * The class responsible for defining function for add edit delete operation on company
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/class-paypal-wp-button-manager-companies_operation.php';
+   
+    
+     }
 
     /**
      * paypal_wp_button_manager_notice_display function is use for display
