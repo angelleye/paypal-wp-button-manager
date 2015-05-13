@@ -56,7 +56,7 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
         $Html_output = new AngellEYE_PayPal_WP_Button_Manager_Html_output();
         ?>
         <form id="button_manager_integration_form_general" enctype="multipart/form-data" action="" method="post">
-        <?php $Html_output->init($genral_setting_fields); ?>
+            <?php $Html_output->init($genral_setting_fields); ?>
             <p class="submit">
                 <input type="submit" name="paypal_intigration" class="button-primary" value="<?php esc_attr_e('Save changes', 'Option'); ?>" />
             </p>

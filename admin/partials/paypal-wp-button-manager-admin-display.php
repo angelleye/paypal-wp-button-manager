@@ -49,12 +49,10 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin_Display {
                     do_action('paypal_wp_button_manager_' . $setting_tabkey . '_setting_save_field');
                     do_action('paypal_wp_button_manager_' . $setting_tabkey . '_setting');
                     do_action('paypal_wp_button_manager_' . $setting_tabkey . '_create_setting');
-
                     break;
             }
         }
     }
-
 }
 
 AngellEYE_PayPal_WP_Button_Manager_Admin_Display::init();

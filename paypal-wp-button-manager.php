@@ -53,18 +53,9 @@ function deactivate_paypal_wp_button_manager() {
     require_once plugin_dir_path(__FILE__) . 'includes/class-paypal-wp-button-manager-deactivator.php';
     AngellEYE_PayPal_WP_Button_Manager_Deactivator::deactivate();
 }
-/**
- * The code that runs during plugin uninstall.
- * This action is documented in includes/class-paypal-wp-button-manager-uninstall.php
- */
-function uninstall_paypal_wp_button_manager() {
-	  require_once plugin_dir_path(__FILE__) . 'includes/class-paypal-wp-button-manager-uninstall.php';
-   		 AngellEYE_PayPal_WP_Button_Manager_Uninstall::uninstall();
-}
 
 register_activation_hook(__FILE__, 'activate_paypal_wp_button_manager');
 register_deactivation_hook(__FILE__, 'deactivate_paypal_wp_button_manager');
-register_uninstall_hook(__FILE__, 'uninstall_paypal_wp_button_manager');
 
 /**
  * The core plugin class that is used to define internationalization,

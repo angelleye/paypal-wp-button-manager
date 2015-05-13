@@ -55,37 +55,36 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
      * @access public
      */
     public function paypal_wp_button_manager_get_paypalconfig() {
-    	
-    	               
+
+
         if (isset($_POST['ddl_companyname']) && !empty($_POST['ddl_companyname'])) {
-        	global $wpdb;
-        	$flag ='';
-        	$tbl_name = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
-        	$getconfig = $wpdb->get_row("SELECT * FROM `{$tbl_name}` where ID='$_POST[ddl_companyname]'");
-        	$is_sandbox = isset($getconfig->paypal_mode) ? $getconfig->paypal_mode : '';
-        	if (isset($is_sandbox) && !empty($is_sandbox)) {
-        		if ($is_sandbox == 'Sandbox'){
-        			$flag = TRUE;
-        		}
-        		else if ($is_sandbox == 'Live') {
-        			$flag = FALSE;
-        		}
-        	}
-        	
-        	$APIUsername = isset($getconfig->paypal_api_username) ? $getconfig->paypal_api_username : '' ;
-            $APIPassword = isset($getconfig->paypal_api_password) ? $getconfig->paypal_api_password : '' ;
+            global $wpdb;
+            $flag = '';
+            $tbl_name = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
+            $getconfig = $wpdb->get_row("SELECT * FROM `{$tbl_name}` where ID='$_POST[ddl_companyname]'");
+            $is_sandbox = isset($getconfig->paypal_mode) ? $getconfig->paypal_mode : '';
+            if (isset($is_sandbox) && !empty($is_sandbox)) {
+                if ($is_sandbox == 'Sandbox') {
+                    $flag = TRUE;
+                } else if ($is_sandbox == 'Live') {
+                    $flag = FALSE;
+                }
+            }
+
+            $APIUsername = isset($getconfig->paypal_api_username) ? $getconfig->paypal_api_username : '';
+            $APIPassword = isset($getconfig->paypal_api_password) ? $getconfig->paypal_api_password : '';
             $APISignature = isset($getconfig->paypal_api_signature) ? $getconfig->paypal_api_signature : '';
-        	
-        	$payapalconfig = array('Sandbox' => $flag,
-            'APIUsername' => isset($APIUsername) ? $APIUsername : '',
-            'APIPassword' => isset($APIPassword) ? $APIPassword : '',
-            'APISignature' => isset($APISignature) ? $APISignature : '',
-            'PrintHeaders' => isset($print_headers) ? $print_headers : '',
-            'LogResults' => isset($log_results) ? $log_results : '',
-            'LogPath' => isset($log_path) ? $log_path : ''
-        );
+
+            $payapalconfig = array('Sandbox' => $flag,
+                'APIUsername' => isset($APIUsername) ? $APIUsername : '',
+                'APIPassword' => isset($APIPassword) ? $APIPassword : '',
+                'APISignature' => isset($APISignature) ? $APISignature : '',
+                'PrintHeaders' => isset($print_headers) ? $print_headers : '',
+                'LogResults' => isset($log_results) ? $log_results : '',
+                'LogPath' => isset($log_path) ? $log_path : ''
+            );
         }
-        	
+
         return $payapalconfig;
     }
 
@@ -287,7 +286,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             $BMButtonOptionSelections = array();
             foreach ($ddp_option_name as $ddp_option_name_key => $ddp_option_name_value) {
                 $BMButtonOptionSelection = array(
-                    'value' =>$ddp_option_name_value,
+                    'value' => $ddp_option_name_value,
                     'price' => $post['ddp_option_price'][$ddp_option_name_key],
                     'type' => ''
                 );
@@ -295,7 +294,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 array_push($BMButtonOptionSelections, $BMButtonOptionSelection);
             }
             $BMButtonOption = array(
-                'name' => isset($_POST['dropdown_price_title']) ? $_POST['dropdown_price_title']: '',
+                'name' => isset($_POST['dropdown_price_title']) ? $_POST['dropdown_price_title'] : '',
                 'selections' => $BMButtonOptionSelections
             );
             array_push($BMButtonOptions, $BMButtonOption);
