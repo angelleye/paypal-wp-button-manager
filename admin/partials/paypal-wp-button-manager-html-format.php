@@ -608,6 +608,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <div>Example: https://www.mystore.com/success</div>
                                                                     </div>
                                                                 </div>
+                                                                 <div id="successfulRedirectURLContainer" class="opened">
+                                                                    <label for="ipnurl"><input class="checkbox" type="checkbox" id="ipn_url_chk" name="ipn_url_chk" value="1">Set PayPal IPN URL for this button</label>
+                                                                    <div class="redirectContainer">
+                                                                        <input type="text" id="ipn_urlinput" size="30" class="text" disabled name="ipn_urlinput" value="">
+                                                                        <div>Example: https://www.mystore.com/ipn</div>
+                                                                    </div>
+                                                                </div>
 
                                                             </div>
                                                         </div>
