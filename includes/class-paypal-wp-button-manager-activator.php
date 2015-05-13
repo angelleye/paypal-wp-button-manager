@@ -12,44 +12,67 @@
  */
 class AngellEYE_PayPal_WP_Button_Manager_Activator {
 
-    /**
+	/**
      * @since    0.1.0
      */
-    public static function activate() {
-        /**
+	public static function activate() {
+		/**
          *  call create_files function when plugin active
          */
-        self::create_files();
-    }
+		self::create_files();
 
-    /**
+		global $wpdb;
+	
+
+   	$table_name = $wpdb->prefix . "paypal_wp_button_manager_companies"; 
+		$charset_collate = $wpdb->get_charset_collate();
+	
+	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {	
+	$sql = "CREATE TABLE " . $table_name . " (
+		`ID` mediumint(9) NOT NULL AUTO_INCREMENT,
+		`title` mediumtext  NULL,
+		`paypal_person_name` mediumtext  NULL,
+		`paypal_person_email` text  NULL,
+		`paypal_api_username` text  NULL,
+		`paypal_api_password` text  NULL,
+		`paypal_api_signature` text  NULL,
+		`paypal_mode` tinytext  NULL,
+		UNIQUE KEY ID (ID)
+		) $charset_collate;";
+ 
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		dbDelta( $sql );
+	}
+	}
+
+	/**
      * Create files/directories
      */
-    public static function create_files() {
-        // Install files and folders for uploading files and prevent hotlinking
-        $upload_dir = wp_upload_dir();
+	public static function create_files() {
+		// Install files and folders for uploading files and prevent hotlinking
+		$upload_dir = wp_upload_dir();
 
-        $files = array(
-            array(
-                'base' => PAYPAL_WP_BUTTON_MANAGER_LOG_DIR,
-                'file' => '.htaccess',
-                'content' => 'deny from all'
-            ),
-            array(
-                'base' => PAYPAL_WP_BUTTON_MANAGER_LOG_DIR,
-                'file' => 'index.html',
-                'content' => ''
-            )
-        );
+		$files = array(
+		array(
+		'base' => PAYPAL_WP_BUTTON_MANAGER_LOG_DIR,
+		'file' => '.htaccess',
+		'content' => 'deny from all'
+		),
+		array(
+		'base' => PAYPAL_WP_BUTTON_MANAGER_LOG_DIR,
+		'file' => 'index.html',
+		'content' => ''
+		)
+		);
 
-        foreach ($files as $file) {
-            if (wp_mkdir_p($file['base']) && !file_exists(trailingslashit($file['base']) . $file['file'])) {
-                if ($file_handle = @fopen(trailingslashit($file['base']) . $file['file'], 'w')) {
-                    fwrite($file_handle, $file['content']);
-                    fclose($file_handle);
-                }
-            }
-        }
-    }
+		foreach ($files as $file) {
+			if (wp_mkdir_p($file['base']) && !file_exists(trailingslashit($file['base']) . $file['file'])) {
+				if ($file_handle = @fopen(trailingslashit($file['base']) . $file['file'], 'w')) {
+					fwrite($file_handle, $file['content']);
+					fclose($file_handle);
+				}
+			}
+		}
+	}
 
 }

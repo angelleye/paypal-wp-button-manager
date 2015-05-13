@@ -41,6 +41,52 @@ jQuery(function ($) {
     /////////////////////////////////////////////////////////////////////////////////////// 
     
     
+    jQuery('#ddl_paypal_mode').change(function() {
+    	var paymode = jQuery(this).val();
+	    var data = {
+				'action': 'get_company_list',
+				'paypal_mode': paymode
+			};
+	    jQuery('.cls_wrap').css('display','none');
+	    jQuery('#go_to_settings').html('');
+	    jQuery.post(ajaxurl, data, function(response) {
+				
+	    	jQuery('#ddl_companyname').html(response);
+					
+			});
+    
+  });  
+  
+  //////////////////////////////////////////////////////////////////////////////////////
+  
+  jQuery('#ddl_companyname').change(function() {
+    	var ddl_companyname = jQuery(this).val();
+	    var data = {
+				'action': 'checkconfig',
+				'ddl_companyname': ddl_companyname
+			};
+	    var wp_adminurl = paypal_wp_button_manager_wpurl.wp_admin_url;
+	    jQuery.post(ajaxurl, data, function(response) {
+					
+				if (response == '1'){
+					jQuery('#go_to_settings').html('');
+					jQuery('.cls_wrap').css('display','inline');
+				}else if (response == '2'){
+					jQuery('.cls_wrap').css('display','none');
+					
+					jQuery('#go_to_settings').html("Please fill your API credentials properly for that account to work.&nbsp;&nbsp;<a href='" + wp_adminurl + "'>Go to API Settings</a>");
+																
+				}else {
+					
+				}
+	    	
+				
+			});
+    
+  });  
+  
+  
+    
     jQuery('#buttonType').change(function() {
         var img_type = jQuery(this).val();
         if (img_type == 'donations') {

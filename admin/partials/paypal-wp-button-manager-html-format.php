@@ -17,7 +17,34 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
      */
     public static function init() {
         add_action('paypal_wp_button_manager_interface', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_html'));
+        add_action('paypal_wp_button_manager_before_interface', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_html_before'));
     }
+    
+    
+    
+    public static function paypal_wp_button_manager_for_wordpress_button_interface_html_before() {
+    	 global $wpdb;
+        $companies = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
+        $results_companis = $wpdb->get_results("SELECT * FROM `{$companies}`", ARRAY_A);?>
+        <div class="div_companies_dropdown" >
+        	<div class="div_paypal_mode">
+        	<label for="paypalmode"><strong>Choose PayPal mode:</strong></label>
+		        <select id="ddl_paypal_mode" name="ddl_paypal_mode">
+		        <option value="">--Select Mode--</option>
+		        <option value="Sandbox">Sandbox</option>
+		        <option value="Live">Live</option>
+		        </select>
+	        </div>
+	        <div class="div_companyname">
+	        <label for="paypalcompanyname"><strong>Choose Company Name:</strong></label>
+	          	<select id="ddl_companyname" name="ddl_companyname">
+		        <option>--Select Company--</option>
+		        </select>
+	        </div>
+        </div>
+    <?php }
+    
+    
 
     /**
      * paypal_wp_button_manager_for_wordpress_button_interface_html function is for
@@ -27,7 +54,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
      */
     public static function paypal_wp_button_manager_for_wordpress_button_interface_html() {
         ?>
-        <div id="wrap">
+        <div id="wrap" class="cls_wrap">
             <div id="main" class="legacyErrors">
                 <div class="layout1">
                     <script type="text/javascript">var oPage = document.getElementById('main').getElementsByTagName('div')[0];var oContainer = document.createElement('div');oContainer.id = 'pageLoadMsg';oContainer.innerHTML = "Loading...";oPage.appendChild(oContainer);</script>
