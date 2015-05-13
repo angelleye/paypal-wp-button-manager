@@ -204,10 +204,14 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
         <form action="" enctype="multipart/form-data" id="button_manager_integration_form" method="post" name="button_manager_integration_form">
             <h3>Add Company and PayPal API Credentials</h3>
 
-            <p>Use the PayPal sandbox to create fully functional test buttons. You
-                will need to <a href="http://developer.paypal.com" target=
-                                "_blank">create a developer account with PayPal</a> in order to create
-                and use sandbox accounts for testing purposes.</p>
+            <p>You may setup one or more companies (PayPal accounts) that you would like to use
+            to create buttons.  When creating a button you will be able to choose which company
+            the button is for.</p>
+
+            <p><a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true"
+                  target="_blank">Log in to this tool</a> with your PayPal account to
+                quickly obtain your API credentials.</p>
+
             <?php
             if (isset($_GET['action']) && $_GET['action'] == 'edit') {
                 if (isset($_GET['cmp_id']) && !empty($_GET['cmp_id'])) {
@@ -253,7 +257,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
                     <tr valign="top">
                         <th class="titledesc" scope="row"><label for=
-                                                                 "paypal_person_name"><?php _e('Person Name', 'paypal-wp-button-manager'); ?></label></th>
+                                                                 "paypal_person_name"><?php _e('Contact Name', 'paypal-wp-button-manager'); ?></label></th>
 
                         <td class="forminp forminp-text"><input class="" id=
                                                                 "paypal_person_name" name="paypal_person_name" style=
@@ -262,7 +266,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
                     <tr valign="top">
                         <th class="titledesc" scope="row"><label for=
-                                                                 "paypal_person_email"><?php _e('Person Email', 'paypal-wp-button-manager'); ?></label></th>
+                                                                 "paypal_person_email"><?php _e('Contact Email', 'paypal-wp-button-manager'); ?></label></th>
 
                         <td class="forminp forminp-text"><input class="" id=
                                                                 "paypal_person_email" name="paypal_person_email" style=
@@ -297,7 +301,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
                     <tr valign="top">
                         <th class="titledesc" scope="row"><label for=
-                                                                 "paypal_mode"><?php _e('Paypal Mode', 'paypal-wp-button-manager'); ?></label></th>
+                                                                 "paypal_mode"><?php _e('PayPal Mode', 'paypal-wp-button-manager'); ?></label></th>
 
                         <td class="forminp forminp-radio">
                             <fieldset>
@@ -315,11 +319,18 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                 </tbody>
             </table>
 
-            <p><a href="https://www.paypal-partners.com/assets/30?locale=en"
-                  target="_blank">Log in to this tool</a> with your PayPal account to
-                quickly obtain your API credentials.</p>
+            <h3>PayPal Sandbox Notes</h3>
 
+            <p>Use the PayPal sandbox to create fully functional test buttons. You
+                will need to <a href="http://developer.paypal.com" target=
+                "_blank">create a developer account with PayPal</a> in order to create
+                and use sandbox accounts for testing purposes.</p>
 
+            <p>Once you have created a sandbox account from within
+                    your developer account, you can
+                <a href="https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true"
+                   target="_blank">log in to this tool</a>
+                 to quickly obtain your API credentials.</p>
 
             <p class="submit"><input class="button-primary" name="paypal_intigration_form" type="submit" value="<?php echo $button_text; ?>"></p>
         </form>
