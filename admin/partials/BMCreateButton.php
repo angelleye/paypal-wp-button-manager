@@ -24,7 +24,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
     public static function paypal_wp_button_manager_button_interface_generator() {
 
         // Create PayPal object.
-        global $post, $post_ID;
+        global $post, $post_ID,$wpdb;
         $payapal_helper = new AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper();
         $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();
         $PayPal = new PayPal($PayPalConfig);
@@ -35,6 +35,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
 
         $PayPalResult = $PayPal->BMCreateButton($PayPalRequestData);
 
+        
+  
 
 
         // Write the contents of the response array to the screen for demo purposes.
@@ -89,11 +91,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
                 update_post_meta($post_ID, 'paypal_wp_button_manager_email_link', $PayPalResult['EMAILLINK']);
             }
             $btn_shopping = $_POST['button_type'];
-            if (isset($btn_shopping) && $btn_shopping == 'products') {
+          /*  if (isset($btn_shopping) && $btn_shopping == 'products') {
                 update_option('paypal_wp_button_manager_view_cart_status', 'yes');
                 update_post_meta($post_ID, 'paypal_wp_button_manager_shopping_post', '1');
                 add_post_meta($post_ID, 'paypal_wp_button_manager_is_shopping', '1');
-            }
+            }*/
 
             if (isset($btn_shopping) && $btn_shopping == 'products') {
                 $button_post_status = 'shopping_cart';
@@ -123,12 +125,86 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
 
             $update_term = wp_set_post_terms($post_ID, $tag, 'paypal_button_types');
 
-
-
+             if (isset($btn_shopping) && $btn_shopping == 'products') { 
+            if (isset($_POST['ddl_companyname']) && !empty($_POST['ddl_companyname'])) {
+        	
+       		 $postmeta_table = $wpdb->prefix . "postmeta";
+       		 $is_viewcart_created_for_cid = $wpdb->get_row("SELECT COUNT(*)as cnt_cid from  $postmeta_table where meta_key='paypal_wp_button_manager_viewcart_button_companyid' and meta_value='$_POST[ddl_companyname]'");
+        	 $total_viewcart_for_cid = $is_viewcart_created_for_cid->cnt_cid;
+			
+       		 $companies_name = $wpdb->prefix . 'paypal_wp_button_manager_companies'; 
+        	 
+        	 $company_name = $wpdb->get_row("SELECT *from  $companies_name where ID='$_POST[ddl_companyname]'");
+        	 if  (isset($company_name->title) && !empty ($company_name->title)) {
+        	 	$cname = $company_name->title;
+        	 }
+        	 if (isset($total_viewcart_for_cid) && empty ($total_viewcart_for_cid)) {
+		
+		       		if ($total_viewcart_for_cid <= 0){ 	  	
+				         $BMCreateButtonFields_viewcart = array
+				            (
+				            'buttoncode' => 'CLEARTEXT', // The kind of button code to create.  It is one of the following values:  HOSTED, ENCRYPTED, CLEARTEXT, TOKEN
+				            'buttontype' => 'VIEWCART', // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
+				            'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
+				        );
+				
+				
+				        $PayPalRequestData_viewcart = array(
+				            'BMCreateButtonFields' => $BMCreateButtonFields_viewcart,
+				            'BMButtonVars' => ''
+				        );
+				
+				        $PayPalResult_viewcart = $PayPal->BMCreateButton($PayPalRequestData_viewcart);
+				
+				        if (isset($PayPalResult_viewcart['WEBSITECODE']) && !empty($PayPalResult_viewcart['WEBSITECODE'])) {
+				            // Create post object
+				            $view_cart_post = array(
+				                'post_title' => 'View Cart -'.$cname,
+				                'post_content' => $PayPalResult_viewcart['WEBSITECODE'],
+				                'post_status' => 'publish',
+				                'post_author' => 1,
+				                'post_type' => 'paypal_buttons'
+				            );
+				
+				            // Insert the post into the database
+				            $post_id = wp_insert_post($view_cart_post);
+				            $term = term_exists('Shopping cart', 'paypal_button_types');
+				            $tag[] = $term['term_id'];
+				
+				            $update_term = wp_set_post_terms($post_id, $tag, 'paypal_button_types');
+				
+				            update_post_meta($post_id, 'paypal_button_response', $PayPalResult_viewcart['WEBSITECODE']);
+							update_post_meta($post_id,'paypal_wp_button_manager_viewcart_button_companyid',$_POST['ddl_companyname']);
+				        
+				         }
+			        
+		      	 }
+		       }
+		        
+        }
+            
+             }   
+            
+            
 
             unset($post);
             unset($_POST);
         }
+        
+        
+              
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        
+       
+	        
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+	        
+	        
+        
+        
+        
+        
     }
 
     /**

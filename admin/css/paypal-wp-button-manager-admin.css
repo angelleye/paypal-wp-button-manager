@@ -96,3 +96,28 @@ form#button_manager_integration_form {
 ul.ul_paypal_mode {
   margin-top: 0px !important;
 }
+h2.floatleft {
+  float: left;
+}
+select#ddl_paypal_mode {
+  margin-left: 20px;
+}
+.div_paypal_mode {
+  margin-bottom: 10px;
+}
+.cls_wrap {display:none;}
+
+div#go_to_settings {
+  margin-top: 15px;
+}
+
+a.cls_addcompany {
+  float: left;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+a.cls_addcompany.button-primary {
+  float: left !important;
+  margin-top: 13px !important;
+  margin-left: 20px !important;
+}

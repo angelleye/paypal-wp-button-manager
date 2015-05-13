@@ -22,14 +22,14 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
      * REQUIRED. Set up a constructor that references the parent constructor. We 
      * use the parent reference to set some default configs.
      * ************************************************************************* */
-    function __construct() {
+   public function __construct() {
         global $status, $page;
 
         //Set parent defaults
         parent::__construct(array(
             'singular' => 'company', //singular name of the listed records
             'plural' => 'companies', //plural name of the listed records
-            'ajax' => false        //does this table support ajax?
+            'ajax' => true        //does this table support ajax?
         ));
     }
 
@@ -57,14 +57,12 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
             case 'paypal_person_name':
             case 'paypal_person_email':
             case 'paypal_mode':
-
-                return $item[$column_name];
-            default:
-                return print_r($item, true); //Show the whole array for troubleshooting purposes
+            return $item[$column_name];
+           
         }
     }
 
-    function column_title($item) {
+   function column_title($item) {
 
         //Build row actions
         $nonce = wp_create_nonce('delete_company' . $item['ID']);
@@ -109,20 +107,6 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
         return $sortable_columns;
     }
 
-    function get_bulk_actions() {
-        $actions = array(
-            'delete' => 'Delete'
-        );
-        return $actions;
-    }
-
-    function process_bulk_action() {
-
-        //Detect when a bulk action is being triggered...
-        if ('delete' === $this->current_action()) {
-            wp_die('Items deleted (or they would be if we had items to delete)!');
-        }
-    }
 
     function prepare_items() {
         global $wpdb; //This is used only if making any database queries
@@ -159,21 +143,53 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
         ));
     }
 
-    public function paypal_wp_button_manager_company_setting() {
+    public static function paypal_wp_button_manager_company_setting() {
         global $wpdb;
-
+		
         $table = new AngellEYE_PayPal_WP_Button_Manager_Company_Setting();
+        
+         if (isset($_GET['action']) && $_GET['action'] == 'delete') {
+                if (isset($_GET['cmp_id']) && !empty($_GET['cmp_id'])) {
+                	$obj_company_operation_delete = new AngellEYE_PayPal_WP_Button_Manager_Company_Operations();
+                 	$delete_result = $obj_company_operation_delete->paypal_wp_button_manager_delete_company();
+
+                    if ($delete_result == false) {
+                        ?>
+                        <div id="setting-error-settings_updated" class="error settings-error"> 
+                            <p><?php echo '<strong>' . __('Something went wrong item not deleted.', 'paypal-wp-button-manager') . '</strong>'; ?>
+                            </p>
+                        </div>
+
+                    <?php } else { ?>
+                        <div id="setting-error-settings_updated" class="updated settings-error"> 
+                            <p><?php echo '<strong>' . __('Company deleted Successfully.', 'paypal-wp-button-manager') . '</strong>'; ?>
+                            </p>
+                        </div>
+                        <?php
+                    }
+                }
+            } 
+        
+        
         $table->prepare_items();
         $test = $table->get_data();
         $message = '';
-        if ('delete' === $table->current_action()) {
+       /* if ('delete' === $table->current_action()) {
             $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'custom_table_example'), count($_REQUEST['id'])) . '</p></div>';
-        }
+        }*/
+       
+           if (isset($_GET['action']) && $_GET['action'] == 'edit') {
+                if (isset($_GET['cmp_id']) && !empty($_GET['cmp_id'])) {
         ?>
         <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
+        <h2 class="floatleft"><?php _e('Companies List', 'custom_table_example') ?> </h2>
+        <a href="/wp-admin/admin.php?page=paypal-wp-button-manager-option&tab=company" class="cls_addcompany button-primary">Add Company</a>
+        <?php }  else {?>
+         <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
         <h2><?php _e('Companies List', 'custom_table_example') ?> 
-
+	
         </h2>
+        <?php } }?>
         <?php echo $message; ?>
 
         <form id="companies-table" method="GET">
@@ -220,7 +236,12 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                         $live_checked = '';
                     }
                 }
+                $button_text = 'Edit Company';
+            }else {
+            	$button_text = 'Add Company';
             }
+            
+         
             ?>
             <table class="form-table">
                 <tbody>
@@ -230,7 +251,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
                         <td class="forminp forminp-text"><input class="" id=
                                                                 "company_title" name="company_title" style=
-                                                                "min-width:300px;" type="text" value="<?php echo $title; ?>"></td>
+                                                                "min-width:300px;" type="text" value="<?php echo isset($title) ? $title :''; ?>"></td>
                     </tr>
 
                     <tr valign="top">
@@ -239,7 +260,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
                         <td class="forminp forminp-text"><input class="" id=
                                                                 "paypal_person_name" name="paypal_person_name" style=
-                                                                "min-width:300px;" type="text" value="<?php echo $paypal_person_name; ?>"></td>
+                                                                "min-width:300px;" type="text" value="<?php echo isset($paypal_person_name) ? $paypal_person_name :'' ; ?>"></td>
                     </tr>
 
                     <tr valign="top">
@@ -248,7 +269,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
                         <td class="forminp forminp-text"><input class="" id=
                                                                 "paypal_person_email" name="paypal_person_email" style=
-                                                                "min-width:300px;" type="text" value="<?php echo $paypal_person_email; ?>"></td>
+                                                                "min-width:300px;" type="text" value="<?php echo isset($paypal_person_email) ? $paypal_person_email :''; ?>"></td>
                     </tr>
 
                     <tr valign="top">
@@ -257,7 +278,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
                         <td class="forminp forminp-text"><input class="" id=
                                                                 "paypal_api_username" name="paypal_api_username" style=
-                                                                "min-width:300px;" type="text" value="<?php echo $paypal_api_username; ?>"></td>
+                                                                "min-width:300px;" type="text" value="<?php echo isset($paypal_api_username) ? $paypal_api_username:'' ; ?>"></td>
                     </tr>
 
                     <tr valign="top">
@@ -266,7 +287,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
                         <td class="forminp forminp-password">
                             <input class="" id="paypal_api_password" name="paypal_api_password" 
-                                   style="min-width:300px;" type="password" value="<?php echo $paypal_api_password; ?>"></td>
+                                   style="min-width:300px;" type="password" value="<?php echo isset($paypal_api_password) ? $paypal_api_password : '' ; ?>"></td>
                     </tr>
 
                     <tr valign="top">
@@ -274,7 +295,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                                                                  "paypal_api_signature"><?php _e('API Signature', 'paypal-wp-button-manager'); ?></label></th>
 
                         <td class="forminp forminp-text"><input class="" id="paypal_api_signature"
-                                                                name="paypal_api_signature" style="min-width:300px;" type="text" value="<?php echo $paypal_api_signature; ?>"></td>
+                                                                name="paypal_api_signature" style="min-width:300px;" type="text" value="<?php echo isset($paypal_api_signature) ? $paypal_api_signature : ''; ?>"></td>
                     </tr>
 
                     <tr valign="top">
@@ -284,10 +305,10 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                         <td class="forminp forminp-radio">
                             <fieldset>
                                 <ul class="ul_paypal_mode">
-                                    <li><label><input class="" <?php echo $sandbox_checked; ?> name="paypal_mode" type="radio" value="Sandbox" >
+                                    <li><label><input class="" <?php echo isset($sandbox_checked) ? $sandbox_checked : ''; ?> name="paypal_mode" type="radio" value="Sandbox" >
                                             Sandbox</label></li>
 
-                                    <li><label><input class="" <?php echo $live_checked; ?> name="paypal_mode"
+                                    <li><label><input class="" <?php echo isset($live_checked) ? $live_checked : ''; ?> name="paypal_mode"
                                                       type="radio" value="Live">
                                             Live</label></li>
                                 </ul>
@@ -303,7 +324,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
 
 
-            <p class="submit"><input class="button-primary" name="paypal_intigration_form" type="submit" value="Add Company"></p>
+            <p class="submit"><input class="button-primary" name="paypal_intigration_form" type="submit" value="<?php echo $button_text;?>"></p>
         </form>
         <?php
     }
@@ -318,14 +339,14 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
         $table_name = $wpdb->prefix . "paypal_wp_button_manager_companies";
         $obj_company_operation = new AngellEYE_PayPal_WP_Button_Manager_Company_Operations();
 
-
+		
         if (isset($_POST['paypal_intigration_form'])) {
 
             if (isset($_GET['action']) && $_GET['action'] == 'edit') {
                 if (isset($_GET['cmp_id']) && !empty($_GET['cmp_id'])) {
-                    $obj_company_operation->paypal_wp_button_manager_edit_company();
+                   $edit_result = $obj_company_operation->paypal_wp_button_manager_edit_company();
 
-                    if ($result == false) {
+                    if ($edit_result == false) {
                         ?>
                         <div id="setting-error-settings_updated" class="error settings-error"> 
                             <p><?php echo '<strong>' . __('Settings were not saved.', 'paypal-wp-button-manager') . '</strong>'; ?></p></div>
@@ -336,30 +357,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                         <?php
                     }
                 }
-            } else if (isset($_GET['action']) && $_GET['action'] == 'delete') {
-                if (isset($_GET['cmp_id']) && !empty($_GET['cmp_id'])) {
-                    $obj_company_operation->paypal_wp_button_manager_delete_company();
-
-                    if ($result == false) {
-                        ?>
-                        <div id="setting-error-settings_updated" class="error settings-error"> 
-                            <p><?php echo '<strong>' . __('Settings were not saved.', 'paypal-wp-button-manager') . '</strong>'; ?>
-                            </p>
-                        </div>
-
-                    <?php } else { ?>
-                        <div id="setting-error-settings_updated" class="updated settings-error"> 
-                            <p><?php echo '<strong>' . __('Settings were saved successfully.', 'paypal-wp-button-manager') . '</strong>'; ?>
-                            </p>
-                        </div>
-                        <?php
-                    }
-                }
             } else {
 
-                $obj_company_operation->paypal_wp_button_manager_add_company();
+              $add_result = $obj_company_operation->paypal_wp_button_manager_add_company();
 
-                if ($result == false) {
+                if ($add_result == false) {
                     ?>
                     <div id="setting-error-settings_updated" class="error settings-error"> 
                         <p><?php echo '<strong>' . __('Settings were not saved.', 'paypal-wp-button-manager') . '</strong>'; ?>

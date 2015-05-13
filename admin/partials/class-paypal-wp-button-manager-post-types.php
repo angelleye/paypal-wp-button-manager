@@ -22,7 +22,6 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
 		add_action('admin_print_scripts', array(__CLASS__, 'disable_autosave'));
 		add_action('init', array(__CLASS__, 'paypal_wp_button_manager_register_post_types'), 5);
 		add_action('init', array(__CLASS__, 'paypal_wp_button_manager_register_taxonomy'), 5);
-		add_action('init', array(__CLASS__, 'paypal_wp_button_manager_register_post_status'), 10);
 		add_action('add_meta_boxes', array(__CLASS__, 'paypal_wp_button_manager_add_meta_boxes'), 10);
 		add_action('restrict_manage_posts', array(__CLASS__, 'paypal_wp_button_manager_restrict_manage_posts'));
 		add_action('parse_query', array(__CLASS__, 'paypal_wp_button_manager_parse_query'));
@@ -170,26 +169,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
 		return $wpdb->get_col($wpdb->prepare("SELECT DISTINCT post_status FROM {$wpdb->posts} WHERE post_type = %s AND post_status != %s  ORDER BY post_status", 'paypal_buttons', 'auto-draft'));
 	}
 
-	/**
-     * Register our custom post statuses, used for paypal_buttons status
-     */
-	public static function paypal_wp_button_manager_register_post_status() {
-		global $wpdb;
-
-		$paypalbutton_post_status_list = self::paypal_wp_button_manager_status();
-
-		foreach ($paypalbutton_post_status_list as $paypalbutton_post_status_list_status) {
-			$paypalbutton_display_name = ucfirst(str_replace('_', ' ', $paypalbutton_post_status_list_status));
-			register_post_status($paypalbutton_post_status_list_status, array(
-			'label' => _x($paypalbutton_display_name, 'Button Type', 'paypal_buttons'),
-			'public' => ($paypalbutton_post_status_list_status == 'trash') ? false : true,
-			'exclude_from_search' => false,
-			'show_in_admin_all_list' => ($paypalbutton_post_status_list_status == 'trash') ? false : true,
-			'show_in_admin_status_list' => true,
-			'label_count' => _n_noop($paypalbutton_display_name . ' <span class="count">(%s)</span>', $paypalbutton_display_name . ' <span class="count">(%s)</span>', 'paypal_buttons')
-			));
-		}
-	}
+	
 
 	/**
      * paypal_wp_button_manager_change_publish_button function is for 
@@ -355,23 +335,21 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
 
             <?php
 		} else {
-			if (get_option('enable_sandbox') == 'yes') {
-
-				$APIUsername = get_option('paypal_api_username_sandbox');
-				$APIPassword = get_option('paypal_password_sandbox');
-				$APISignature = get_option('paypal_signature_sandbox');
-			} else {
-
-				$APIUsername = get_option('paypal_api_username_live');
-				$APIPassword = get_option('paypal_password_live');
-				$APISignature = get_option('paypal_signature_live');
-			}
-
-			if ((isset($APIUsername) && !empty($APIUsername)) && (isset($APIPassword) && !empty($APIPassword)) && (isset($APISignature) && !empty($APISignature))) {
+			
+				global $wpdb;
+        		$tbl_company_name = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
+       			$results_companis = $wpdb->get_row("SELECT count(*) as cnt_totalcompany FROM $tbl_company_name");
+       			if (isset($results_companis) && $results_companis->cnt_totalcompany <=0) {?>
+       				
+       					<div id="div_no_company">You have not set up any account, please add an account for create button <a href='<?php echo admin_url()."admin.php?page=paypal-wp-button-manager-option&tab=company"?>'>Add Company</a></a> </div>
+       				
+       			<?php }else {
+       			
+				do_action ('paypal_wp_button_manager_before_interface');
 				do_action('paypal_wp_button_manager_interface');
-			} else {
-				echo __("Please fill your API credentials properly", "paypal-wp-button-manager") . '&nbsp;&nbsp;<a href="' . admin_url('options-general.php?page=paypal-wp-button-manager-option') . '">Go to API Settings</a>';
-			}
+				echo '<div id="go_to_settings"></div>';
+       			}
+			
 		}
 	}
 
@@ -387,11 +365,18 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
 
 		global $post, $post_ID, $wpdb;
 		$paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
+		$paysuccessnotice = get_post_meta($post_ID, 'paypal_wp_button_manager_success_notice',true);
 		if (((isset($_POST['publish'])) || isset($_POST['save'])) && ($post->post_type == 'paypal_buttons')) {
 			if (empty($paypal_button_html)) {
 				do_action('paypal_wp_button_manager_button_generator');
 			} else {
-				update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
+				if (isset($_POST['button_type']) && !empty($_POST['button_type'])) {
+					update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', 'Button Created Successfully.');
+				}else {
+					update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
+				}
+				
+				
 			}
 		}
 	}

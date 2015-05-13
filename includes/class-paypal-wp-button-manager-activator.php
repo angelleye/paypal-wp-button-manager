@@ -24,9 +24,10 @@ class AngellEYE_PayPal_WP_Button_Manager_Activator {
 		global $wpdb;
 	
 
-   $table_name = $wpdb->prefix . "paypal_wp_button_manager_companies"; 
+   	$table_name = $wpdb->prefix . "paypal_wp_button_manager_companies"; 
 		$charset_collate = $wpdb->get_charset_collate();
-		
+	
+	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {	
 	$sql = "CREATE TABLE " . $table_name . " (
 		`ID` mediumint(9) NOT NULL AUTO_INCREMENT,
 		`title` mediumtext  NULL,
@@ -36,12 +37,12 @@ class AngellEYE_PayPal_WP_Button_Manager_Activator {
 		`paypal_api_password` text  NULL,
 		`paypal_api_signature` text  NULL,
 		`paypal_mode` tinytext  NULL,
-		UNIQUE KEY id (id)
+		UNIQUE KEY ID (ID)
 		) $charset_collate;";
  
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-		dbDelta($sql);
- 
+		dbDelta( $sql );
+	}
 	}
 
 	/**

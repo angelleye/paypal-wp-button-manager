@@ -85,6 +85,15 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
                         'plugin_url' => plugin_dir_url(__FILE__)
                     )));
         }
+        
+        if (wp_script_is($this->plugin_name)) {
+            wp_localize_script($this->plugin_name, 'paypal_wp_button_manager_wpurl', apply_filters('paypal_wp_button_manager_wpurl_filter', array(
+                        'wp_admin_url' => admin_url().'admin.php?page=paypal-wp-button-manager-option&tab=company'
+                    )));
+        }
+        
+        
+        
         global $post;
         $args = array('post_type' => 'paypal_buttons', 'posts_per_page' => '100', 'post_status' => array('publish'));
         $paypal_buttons_posts = get_posts($args);
@@ -185,7 +194,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         global $post, $post_ID;
         $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
 
-        $success_message = get_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', true);
+        $success_message = get_post_meta($post_ID, 'paypal_wp_button_manager_success_notice',true);
 
         if ((isset($paypal_button_html) && !empty($success_message))) {
             $custom_message = $success_message;
@@ -261,7 +270,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 
         $is_shopping_button_count = $is_shopping_button_count_obj->cnt_is_shopping;
-        if (isset($view_cart_postid_status) && !empty($view_cart_postid_status)) {
+        if (isset($view_cart_postid_status) && !empty($view_cart_postid_status)) {	
             if ($view_cart_postid_status->cnt_viewcart_postid <= 0) {
                 delete_option('paypal_wp_button_manager_viewcart_button');
             }
@@ -285,37 +294,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         } else {
             $view_cart_button_status_value = '';
         }
-        $screen = get_current_screen();
-        if ($screen->post_type == 'paypal_buttons') {
-            if (((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' )) && !empty($view_cart_button_status_value)) || ((!empty($view_cart_button_status_value)) && in_array($pagenow, array('post.php', 'post-new.php')) && !empty($shopping_cart_post_value))) {
-                ?>
-                <script>
-                    jQuery( document ).ready(function() {
-
-                        jQuery(".wrap").find("h2").after('<div class="updated below-h2 msg_div"><p class="msg_text">You do not currently have a View Cart button setup in your system.  Without this, it may be difficult for users to find their way back to your shopping cart to complete their purchase.<p>Would you like to create a View Cart button now?</p> </p><p class="btn_para"><span class="button button-primary button-large btn_viewcart">Create View Cart Button</span></p> <img src="<?php echo plugin_dir_url(__FILE__) ?>images/ajax-loader.gif" id="gifimg"/></div>');
-                        jQuery( ".btn_viewcart" ).click(function() {
-                            jQuery('#gifimg').css('visibility','visible');
-                            jQuery('#gifimg').css('display','inline');
-                            var data = {
-                                'action': 'create_viewcart_action'
-
-                            };
-
-                            // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-                            jQuery.post(ajaxurl, data, function(response) {
-                                jQuery(".msg_div").remove();
-                                jQuery(".wrap").find("h2").after('<div class="updated below-h2 msg_div"><p class="msg_text">View Cart button created successfully. <a href="<?php echo admin_url('edit.php?post_type=paypal_buttons'); ?>">Refresh Data</a></p></div>');
-
-                                jQuery('#gifimg').css('display','none');
-                            });
-
-                        });
-
-                    });
-                </script>
-                <?
-            }
-        }
+       
+        
     }
 
     public function paypal_wp_button_manager_create_viewcart_action() {
@@ -356,7 +336,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
             $update_term = wp_set_post_terms($post_id, $tag, 'paypal_button_types');
 
             update_post_meta($post_id, 'paypal_button_response', $PayPalResult_viewcart['WEBSITECODE']);
-            update_option('paypal_wp_button_manager_viewcart_button', '1');
+			update_post_meta($post_id,'paypal_wp_button_manager_viewcart_button_companyid',$cid);
+            
+           // update_option('paypal_wp_button_manager_viewcart_button', '1');
             update_option('paypal_wp_button_manager_viewcart_button_postid', $post_id);
         }
     }
@@ -365,8 +347,45 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         $post_type = get_post_type($post_id);
         $post_status = get_post_status($post_id);
         if ($post_type == 'paypal_buttons' && in_array($post_status, array('publish'))) {
-            delete_post_meta($post_id, 'paypal_wp_button_manager_is_shopping');
+            $getcompanyid = get_post_meta($post_id,'paypal_wp_button_manager_viewcart_button_companyid',true);
+			if (isset($getcompanyid) && !empty($getcompanyid)) {
+				delete_post_meta($post_id, 'paypal_wp_button_manager_viewcart_button_companyid');
+			}
+            
         }
+    }
+    
+    
+    public function paypal_wp_button_manager_get_company_list() {
+    	
+    	global $wpdb;
+        $companies = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
+        $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE paypal_mode ='$_POST[paypal_mode]'", ARRAY_A);?>
+       	<option value="">--Select Company--</option>
+       <?php foreach ($result_records as $result_records_value) {?>
+       		<option value="<?php echo $result_records_value['ID'];?>"><?php echo $result_records_value['title'];?></option>
+       	<?}
+       	exit(1);
+       	
+        
+    }
+    
+    public static function paypal_wp_button_manager_checkconfig() {
+    	
+    	global $wpdb;
+    	$companies = $wpdb->prefix . 'paypal_wp_button_manager_companies'; 
+    	$result_config = $wpdb->get_row("SELECT * FROM `{$companies}` WHERE ID ='$_POST[ddl_companyname]'");
+    	
+   				$APIUsername = $result_config->paypal_api_username;
+				$APIPassword = $result_config->paypal_api_password;
+				$APISignature = $result_config->paypal_api_signature;
+			if ((isset($APIUsername) && !empty($APIUsername)) && (isset($APIPassword) && !empty($APIPassword)) && (isset($APISignature) && !empty($APISignature))) {
+				echo '1';
+			} else {
+				echo "2";
+			}
+			exit(1);
+    
     }
 
 }
