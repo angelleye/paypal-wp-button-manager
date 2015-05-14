@@ -285,7 +285,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                             <label for="">Country and language for button</label>
                                                                                             <?php $paypal_button_language = get_paypal_button_languages(); ?>
                                                                                             <select id="selectCountryLanguage" name="select_country_language">
-
+																								<option value="">--Select--</option>
                                                                                                 <?php foreach ($paypal_button_language as $paypal_button_language_key => $paypal_button_language_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_language_key; ?>"><?php echo $paypal_button_language_value; ?></option>
                                                                                                 <?php } ?>

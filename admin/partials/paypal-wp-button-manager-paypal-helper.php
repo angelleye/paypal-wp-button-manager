@@ -253,7 +253,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'cpp_headerborder_color' => '', // The border color around the header of the checkout page.
             'cpp_logo_image' => '', // A URL to your logo image.  Must be .gif, .jpg, or .png.  190x60
             'cpp_payflow_color' => '', // The background color for the checkout page below the header.
-            'lc' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : '', // The locale of the login or sign-up page.
+            'lc' =>'', // The locale of the login or sign-up page.
             'cn' => '', // Label that appears above the note field.
             'no_shipping' => '', // Do not prompt buyers for a shipping address.  Values are:  0 - prompt for an address but do not require.  1 - do not prompt.  2 - prompt and require address.
             'return' => isset($_POST['return']) ? esc_url($_POST['return']) : '', // The URL to which PayPal redirects buyers' browsers after they complete their payment.
