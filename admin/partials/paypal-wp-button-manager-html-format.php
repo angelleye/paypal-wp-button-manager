@@ -25,20 +25,17 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
     public static function paypal_wp_button_manager_for_wordpress_button_interface_html_before() {
     	 global $wpdb;
         $companies = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
-        $results_companis = $wpdb->get_results("SELECT * FROM `{$companies}`", ARRAY_A);?>
-        <div class="div_companies_dropdown" >
-        	<div class="div_paypal_mode">
-        	<label for="paypalmode"><strong>Choose PayPal mode:</strong></label>
-		        <select id="ddl_paypal_mode" name="ddl_paypal_mode">
-		        <option value="">--Select Mode--</option>
-		        <option value="Sandbox">Sandbox</option>
-		        <option value="Live">Live</option>
-		        </select>
-	        </div>
+        $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE paypal_mode !=''", ARRAY_A);
+        ?> <div class="div_companies_dropdown" >
+    
 	        <div class="div_companyname">
 	        <label for="paypalcompanyname"><strong>Choose Company Name:</strong></label>
 	          	<select id="ddl_companyname" name="ddl_companyname">
-		        <option>--Select Company--</option>
+		        <option value="">--Select Company--</option>
+        <?php foreach ($result_records as $result_records_value) { ?>
+            <option value="<?php echo $result_records_value['ID']; ?>"><?php echo $result_records_value['title']; ?></option>
+        <?php
+        }?>
 		        </select>
 	        </div>
         </div>
@@ -535,12 +532,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                                                                    
 
                                                                 </div>
-                                                                <div class="group notifications">
-                                                                    <fieldset>
-                                                                        <legend>Enter your PayPal Email Address or Merchant Account ID <a target="_blank" class="infoLink" href="https://www.paypal.com/businessstaticpage/BDMerchantIdInformation" onclick="PAYPAL.core.openWindow(event,{height:500, width: 450});">Learn more</a></legend>
-                                                                        <label for="merchantIDNotificationMethod"><input type="text" class="custom_text" name="business" id="business" /></label>
-                                                                    </fieldset>
-                                                                </div>
+                                                               
                                                             </div>
                                                         </div>
                                                     </div>

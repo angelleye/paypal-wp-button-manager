@@ -345,19 +345,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         }
     }
 
-    public function paypal_wp_button_manager_get_company_list() {
-
-        global $wpdb;
-        $companies = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
-        $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE paypal_mode ='$_POST[paypal_mode]'", ARRAY_A);
-        ?>
-        <option value="">--Select Company--</option>
-        <?php foreach ($result_records as $result_records_value) { ?>
-            <option value="<?php echo $result_records_value['ID']; ?>"><?php echo $result_records_value['title']; ?></option>
-        <?php
-        }
-        exit(1);
-    }
+   
 
     public static function paypal_wp_button_manager_checkconfig() {
 

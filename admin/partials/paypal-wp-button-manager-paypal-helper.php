@@ -177,8 +177,22 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
         } else {
             $item_price = '';
         }
-
-
+		
+         if (isset($_POST['ddl_companyname']) && !empty($_POST['ddl_companyname'])) {
+        	global $wpdb;
+        	
+        	$get_business_tbl = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
+        	$get_business = $wpdb->get_row("SELECT * FROM `{$get_business_tbl}` where ID='$_POST[ddl_companyname]'");
+        	if (isset($get_business)) {
+        		
+        		if (isset($get_business->paypal_person_email) && !empty($get_business->paypal_person_email)) {
+        			$get_business_email =  $get_business->paypal_person_email;
+        		}else {
+        			$get_business_email = '';
+        		}
+        		
+        	}
+         }
 
         $buttonvars = array(
             'notify_url' => isset($_POST['ipn_urlinput']) ? $_POST['ipn_urlinput'] : '' , // The URL to which PayPal posts information about the payment. in the form of an IPN message.
@@ -209,7 +223,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'add' => '', // Set to 1 to add an item to the PayPal shopping cart.
             'display' => '', // Set to 1 to display the contents of the PayPal shopping cart to the buyer.
             'upload' => '', // Set to 1 to upload the contents of a third-party shopping cart or a custom shopping cart.
-            'business' => isset($_POST['business']) ? $_POST['business'] : '', // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
+            'business' => $get_business_email, // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
             'paymentaction' => '', // Indicates whether the payment is a finale sale or an authorization for a final sale, to be captured later.  Values are:  sale, authorization, order
             'shopping_url' => isset($_POST['gift_certificate_shop_url']) ? esc_url($_POST['gift_certificate_shop_url']) : '', // The URL of the page on the merchant website that buyers go to when they click the Continue Shopping button on the PayPal shopping cart page.
             'a1' => isset($_POST['subscription_trial_rate']) ? $_POST['subscription_trial_rate'] : '', // Trial period 1 price.  For a free trial period, specify 0.

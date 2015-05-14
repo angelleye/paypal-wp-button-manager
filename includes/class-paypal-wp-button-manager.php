@@ -179,7 +179,6 @@ class AngellEYE_PayPal_WP_Button_Manager {
         $this->loader->add_filter('post_updated_messages', $plugin_admin, 'paypal_wp_button_manager_success_notice_display');
         $this->loader->add_action('admin_init', $plugin_admin, 'paypal_wp_button_manager_shortcode_button_init');
         $this->loader->add_action('wp_trash_post', $plugin_admin, 'paypal_wp_button_manager_wp_trash_post');
-        $this->loader->add_action('wp_ajax_get_company_list', $plugin_admin, 'paypal_wp_button_manager_get_company_list');
         $this->loader->add_action('wp_ajax_checkconfig', $plugin_admin, 'paypal_wp_button_manager_checkconfig');
     }
 

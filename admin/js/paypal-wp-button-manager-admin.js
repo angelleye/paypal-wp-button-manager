@@ -46,24 +46,8 @@ jQuery(function ($) {
 
         jQuery('.previewCustomImageSection').html("<img height='65' src='"+imgurl+"'/>");
     }
-    /////////////////////////////////////////////////////////////////////////////////////// 
+ 
     
-    
-    jQuery('#ddl_paypal_mode').change(function() {
-    	var paymode = jQuery(this).val();
-	    var data = {
-				'action': 'get_company_list',
-				'paypal_mode': paymode
-			};
-	    jQuery('.cls_wrap').css('display','none');
-	    jQuery('#go_to_settings').html('');
-	    jQuery.post(ajaxurl, data, function(response) {
-				
-	    	jQuery('#ddl_companyname').html(response);
-					
-			});
-    
-  });  
   
   //////////////////////////////////////////////////////////////////////////////////////
   
