@@ -299,7 +299,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                                                                  "paypal_api_signature"><?php _e('API Signature', 'paypal-wp-button-manager'); ?></label></th>
 
                         <td class="forminp forminp-text"><input class="" id="paypal_api_signature"
-                                                                name="paypal_api_signature" style="min-width:300px;" type="text" value="<?php echo isset($paypal_api_signature) ? $paypal_api_signature : ''; ?>"></td>
+                                                                name="paypal_api_signature" style="min-width:300px;" type="password" value="<?php echo isset($paypal_api_signature) ? $paypal_api_signature : ''; ?>"></td>
                     </tr>
 
                     <tr valign="top">
