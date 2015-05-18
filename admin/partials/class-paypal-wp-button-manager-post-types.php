@@ -312,9 +312,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                     <td class="td_title"><?php echo _e('If you would prefer to use the HTML directly use this snippet.', 'paypal-wp-button-manager'); ?></td>
                 </tr>
                 <tr>
-                    <td><textarea  readonly="readonly" class="wp-ui-text-highlight code txtarea_response" cols="70" rows="10"><? echo $paypal_button_html; ?></textarea></td>
+                    <td><textarea  readonly="readonly" class="wp-ui-text-highlight code txtarea_response" cols="70" rows="10"><?php echo $paypal_button_html; ?></textarea></td>
                 </tr>
-            <?php if (isset($paypal_email_link) && !empty($paypal_email_link)) { ?>
+                <?php if (isset($paypal_email_link) && !empty($paypal_email_link)) { ?>
                     <tr>
                         <td colspan="2" class="center-text">OR</td>
                     </tr>
@@ -324,22 +324,22 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                     <tr>
                         <td class="td_shortcode"><input type="text"  value="<?php echo isset($paypal_email_link) ? $paypal_email_link : ''; ?>" readonly="readonly" class="wp-ui-text-highlight code large-text large-text-own txtarea_response"></td>
                     </tr>
-            <? } ?>
+                <?php } ?>
 
             </table>
 
-                <?php
-            } else {
+            <?php
+        } else {
 
-                global $wpdb;
-                $tbl_company_name = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
-                $results_companis = $wpdb->get_row("SELECT count(*) as cnt_totalcompany FROM $tbl_company_name");
-                if (isset($results_companis) && $results_companis->cnt_totalcompany <= 0) {
-                    ?>
+            global $wpdb;
+            $tbl_company_name = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
+            $results_companis = $wpdb->get_row("SELECT count(*) as cnt_totalcompany FROM $tbl_company_name");
+            if (isset($results_companis) && $results_companis->cnt_totalcompany <= 0) {
+                ?>
 
                 <div id="div_no_company">You have not set up any account, please add an account for create button <a href='<?php echo admin_url() . "admin.php?page=paypal-wp-button-manager-option&tab=company" ?>'>Add Company</a></a> </div>
 
-            <?php
+                <?php
             } else {
                 do_action('paypal_wp_button_manager_before_interface');
                 do_action('paypal_wp_button_manager_interface');

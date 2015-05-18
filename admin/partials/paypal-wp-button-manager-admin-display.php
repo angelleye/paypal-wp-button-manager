@@ -53,6 +53,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin_Display {
             }
         }
     }
+
 }
 
 AngellEYE_PayPal_WP_Button_Manager_Admin_Display::init();

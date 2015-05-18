@@ -188,12 +188,13 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
                 </h2>
             <?php }
-        } ?>
+        }
+        ?>
         <?php echo $message; ?>
 
         <form id="companies-table" method="GET">
             <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>"/>
-            <?php $table->display() ?>
+        <?php $table->display() ?>
         </form>
 
         <?php
@@ -205,15 +206,15 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
             <h3>Add Company and PayPal API Credentials</h3>
 
             <p>You may setup one or more companies (PayPal accounts) that you would like to use
-            for creating buttons.  When creating a button you will be able to choose which company / PayPal account
-            the button is for.</p>
+                for creating buttons.  When creating a button you will be able to choose which company / PayPal account
+                the button is for.</p>
 
             <h4>API Credentials Lookup</h4>
 
             <p>You may login to this tool using your PayPal account to quickly obtain your API credentials.</p>
             <p><a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true"
                   target="_blank">Get Live API Credentials</a> | <a href="https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true"
-                                                                    target="_blank">Get Sandbox API Credentials</a></p>
+                  target="_blank">Get Sandbox API Credentials</a></p>
 
             <?php
             if (isset($_GET['action']) && $_GET['action'] == 'edit') {
@@ -330,7 +331,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                 a fake PayPal site where you can create sandbox PayPal accounts for testing purposes.
                 This allows you to create buttons and test them without spending real money to do so.</p>
             <p>In order to create PayPal sandbox accounts you must first create
-            a <a href="http://developer.paypal.com" target="_blank">PayPal developer account</a>.
+                a <a href="http://developer.paypal.com" target="_blank">PayPal developer account</a>.
                 Your sandbox accounts will be created within that.</p>
             <p>For more details on that you may refer to
                 <a href="https://developer.paypal.com/docs/classic/lifecycle/ug_sandbox/">PayPal's sandbox documentation</a>.</p>
