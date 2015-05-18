@@ -35,10 +35,6 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
 
         $PayPalResult = $PayPal->BMCreateButton($PayPalRequestData);
 
-
-
-
-
         // Write the contents of the response array to the screen for demo purposes.
         if (isset($PayPalResult['ERRORS']) && !empty($PayPalResult['ERRORS'])) {
             global $post, $post_ID;
@@ -175,8 +171,20 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             }
 
 
+            /// below code start for track inventory///////////////////////////////////////////////////////
+
+
+            if (isset($PayPalResult['HOSTEDBUTTONID']) && !empty($PayPalResult['HOSTEDBUTTONID'])) {
+                if ((isset($_POST['enable_inventory']) && !empty($_POST['enable_inventory'])) || (isset($_POST['enable_profit_and_loss']) && !empty($_POST['enable_profit_and_loss']))) {
+                    $PayPalRequestData_Inventory = $payapal_helper->paypal_wp_button_manager_set_inventory();
+                    $PayPalSet_InventoryResult = $PayPal->BMSetInventory($PayPalRequestData_Inventory);
+                }
+            }
+
+            ///////////////////////////// track inventory end ////////////////////////////////////////////////
 
             unset($post);
+
             unset($_POST);
         }
     }

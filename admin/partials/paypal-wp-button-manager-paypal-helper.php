@@ -55,37 +55,36 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
      * @access public
      */
     public function paypal_wp_button_manager_get_paypalconfig() {
-    	
-    	               
+
+
         if (isset($_POST['ddl_companyname']) && !empty($_POST['ddl_companyname'])) {
-        	global $wpdb;
-        	$flag ='';
-        	$tbl_name = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
-        	$getconfig = $wpdb->get_row("SELECT * FROM `{$tbl_name}` where ID='$_POST[ddl_companyname]'");
-        	$is_sandbox = isset($getconfig->paypal_mode) ? $getconfig->paypal_mode : '';
-        	if (isset($is_sandbox) && !empty($is_sandbox)) {
-        		if ($is_sandbox == 'Sandbox'){
-        			$flag = TRUE;
-        		}
-        		else if ($is_sandbox == 'Live') {
-        			$flag = FALSE;
-        		}
-        	}
-        	
-        	$APIUsername = isset($getconfig->paypal_api_username) ? $getconfig->paypal_api_username : '' ;
-            $APIPassword = isset($getconfig->paypal_api_password) ? $getconfig->paypal_api_password : '' ;
+            global $wpdb;
+            $flag = '';
+            $tbl_name = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
+            $getconfig = $wpdb->get_row("SELECT * FROM `{$tbl_name}` where ID='$_POST[ddl_companyname]'");
+            $is_sandbox = isset($getconfig->paypal_mode) ? $getconfig->paypal_mode : '';
+            if (isset($is_sandbox) && !empty($is_sandbox)) {
+                if ($is_sandbox == 'Sandbox') {
+                    $flag = TRUE;
+                } else if ($is_sandbox == 'Live') {
+                    $flag = FALSE;
+                }
+            }
+
+            $APIUsername = isset($getconfig->paypal_api_username) ? $getconfig->paypal_api_username : '';
+            $APIPassword = isset($getconfig->paypal_api_password) ? $getconfig->paypal_api_password : '';
             $APISignature = isset($getconfig->paypal_api_signature) ? $getconfig->paypal_api_signature : '';
-        	
-        	$payapalconfig = array('Sandbox' => $flag,
-            'APIUsername' => isset($APIUsername) ? $APIUsername : '',
-            'APIPassword' => isset($APIPassword) ? $APIPassword : '',
-            'APISignature' => isset($APISignature) ? $APISignature : '',
-            'PrintHeaders' => isset($print_headers) ? $print_headers : '',
-            'LogResults' => isset($log_results) ? $log_results : '',
-            'LogPath' => isset($log_path) ? $log_path : ''
-        );
+
+            $payapalconfig = array('Sandbox' => $flag,
+                'APIUsername' => isset($APIUsername) ? $APIUsername : '',
+                'APIPassword' => isset($APIPassword) ? $APIPassword : '',
+                'APISignature' => isset($APISignature) ? $APISignature : '',
+                'PrintHeaders' => isset($print_headers) ? $print_headers : '',
+                'LogResults' => isset($log_results) ? $log_results : '',
+                'LogPath' => isset($log_path) ? $log_path : ''
+            );
         }
-        	
+
         return $payapalconfig;
     }
 
@@ -177,25 +176,24 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
         } else {
             $item_price = '';
         }
-		
-         if (isset($_POST['ddl_companyname']) && !empty($_POST['ddl_companyname'])) {
-        	global $wpdb;
-        	
-        	$get_business_tbl = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
-        	$get_business = $wpdb->get_row("SELECT * FROM `{$get_business_tbl}` where ID='$_POST[ddl_companyname]'");
-        	if (isset($get_business)) {
-        		
-        		if (isset($get_business->paypal_person_email) && !empty($get_business->paypal_person_email)) {
-        			$get_business_email =  $get_business->paypal_person_email;
-        		}else {
-        			$get_business_email = '';
-        		}
-        		
-        	}
-         }
+
+        if (isset($_POST['ddl_companyname']) && !empty($_POST['ddl_companyname'])) {
+            global $wpdb;
+
+            $get_business_tbl = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
+            $get_business = $wpdb->get_row("SELECT * FROM `{$get_business_tbl}` where ID='$_POST[ddl_companyname]'");
+            if (isset($get_business)) {
+
+                if (isset($get_business->paypal_person_email) && !empty($get_business->paypal_person_email)) {
+                    $get_business_email = $get_business->paypal_person_email;
+                } else {
+                    $get_business_email = '';
+                }
+            }
+        }
 
         $buttonvars = array(
-            'notify_url' => isset($_POST['ipn_urlinput']) ? $_POST['ipn_urlinput'] : '' , // The URL to which PayPal posts information about the payment. in the form of an IPN message.
+            'notify_url' => isset($_POST['ipn_urlinput']) ? $_POST['ipn_urlinput'] : '', // The URL to which PayPal posts information about the payment. in the form of an IPN message.
             'amount' => isset($item_price) ? $item_price : '', // The price or amount of the product, service, or contribution, not including shipping, handling, or tax.  If this variable is omitted from Buy Now or Donate buttons, buyers enter their own amount at the time of the payment.
             'discount_amount' => '', // Discount amount associated with an item.  Must be less than the selling price of the item.  Valid only for Buy Now and Add to Cart buttons.
             'discount_amount2' => '', // Discount amount associated with each additional quantity of the item.  Must be equal to or less than the selling price of the item.
@@ -253,7 +251,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'cpp_headerborder_color' => '', // The border color around the header of the checkout page.
             'cpp_logo_image' => '', // A URL to your logo image.  Must be .gif, .jpg, or .png.  190x60
             'cpp_payflow_color' => '', // The background color for the checkout page below the header.
-            'lc' =>'', // The locale of the login or sign-up page.
+            'lc' => '', // The locale of the login or sign-up page.
             'cn' => '', // Label that appears above the note field.
             'no_shipping' => '', // Do not prompt buyers for a shipping address.  Values are:  0 - prompt for an address but do not require.  1 - do not prompt.  2 - prompt and require address.
             'return' => isset($_POST['return']) ? esc_url($_POST['return']) : '', // The URL to which PayPal redirects buyers' browsers after they complete their payment.
@@ -301,7 +299,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             $BMButtonOptionSelections = array();
             foreach ($ddp_option_name as $ddp_option_name_key => $ddp_option_name_value) {
                 $BMButtonOptionSelection = array(
-                    'value' =>$ddp_option_name_value,
+                    'value' => $ddp_option_name_value,
                     'price' => $post['ddp_option_price'][$ddp_option_name_key],
                     'type' => ''
                 );
@@ -309,7 +307,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 array_push($BMButtonOptionSelections, $BMButtonOptionSelection);
             }
             $BMButtonOption = array(
-                'name' => isset($_POST['dropdown_price_title']) ? $_POST['dropdown_price_title']: '',
+                'name' => isset($_POST['dropdown_price_title']) ? $_POST['dropdown_price_title'] : '',
                 'selections' => $BMButtonOptionSelections
             );
             array_push($BMButtonOptions, $BMButtonOption);
@@ -352,6 +350,122 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
         );
 
         return $paypalrequestdata;
+    }
+
+    public function paypal_wp_button_manager_set_inventory() {
+        global $post, $post_ID;
+        // Prepare request arrays
+        if (isset($_POST['enable_inventory']) && !empty($_POST['enable_inventory'])) {
+            $trackinv = '1';
+        } else {
+            $trackinv = '0';
+        }
+
+        if (isset($_POST['enable_profit_and_loss']) && !empty($_POST['enable_profit_and_loss'])) {
+            $trackpnl = '1';
+        } else {
+            $trackpnl = '0';
+        }
+
+        $post_track = array();
+        foreach (explode('&', file_get_contents('php://input')) as $keyValuePair) {
+            list($key, $value) = explode('=', $keyValuePair);
+            $post_track[$key][] = $value;
+        }
+
+
+        $hostedbtn = get_post_meta($post_ID, 'paypal_wp_button_manager_button_id', true);
+        if (isset($hostedbtn) && !empty($hostedbtn)) {
+            $hostedbuttonid = get_post_meta($post_ID, 'paypal_wp_button_manager_button_id', true);
+        }
+        $BMSetInventoryFields = array(
+            'hostedbuttonid' => isset($hostedbuttonid) ? $hostedbuttonid : '', // Required.  The ID of the hosted button whose inventory you want to set.
+            'trackinv' => $trackinv, // Required.  Whether to track inventory levels associated with the button.  Values are:  0 - do not track, 1 - track
+            'trackpnl' => $trackpnl, // Required.  Whether to track the gross profit associated with inventory changes.  Values are:  0 - do not track, 1 - track
+            'optionnameindex' => '', // Option index, which identifies the button.  Option index 0 is the menu that contains the price if one exists; otherwise, it is the first menu without a price.
+            'soldouturl' => isset($_POST['sold_out_url']) ? $_POST['sold_out_url'] : '', // The URL to which the buyer's browser is redreicted when the inventory drops to 0.  This also prevents a sale when the inventory drops to 0.
+            'reusedigitaldownloadkeys' => '0', // Whether to reuse download keys.  Values are:  0 - do not reuse keys (default), 1 - reuse keys.
+            'appenddigitaldownloadkeys' => '1', // Whether to append download keys.  Values are:  0 - do not append keys (defeault), 1 - append keys.  If you do not append, unused keys will be replaced.
+        );
+
+
+        $DigitalDownloadKeys = array(
+            'key1',
+            'key2',
+            'etc',
+        );
+
+        $ItemTrackingDetails = array(
+            'itemnumber' => '', // The ID for an item associated with this button.
+            'itemqty' => '', // The qty you want to specify for the item associated with t his button.  specify either the absolute quantity in this field or the change in qty in the qty delta field
+            'itemqtydelta' => '', // The change in qty  you want to specify for the item associated with this button.  Specify either the change in qty in this field or the absolute qty in the item qty field.
+            'itemalert' => '', // The qty of the item associated with this button below which PayPal sends you an email notification.
+            'itemcost' => '', // The cost of the item associated with this button.
+        );
+
+
+        if (isset($_POST['track_button_by']) && !empty($_POST['track_button_by'])) {
+            if ($_POST['track_button_by'] == 'trackdByItem') {
+                if (isset($_POST['item_id']) && !empty($_POST['item_id'])) {
+                    $post_item_id = $_POST['item_id'];
+                } else {
+                    $post_item_id = '';
+                }
+
+                if (isset($_POST['items_in_stock']) && !empty($_POST['items_in_stock'])) {
+                    $post_item_in_stock = $_POST['items_in_stock'];
+                }
+                if (isset($_POST['alert_quantity']) && !empty($_POST['alert_quantity'])) {
+                    $post_alert_quantity = $_POST['alert_quantity'];
+                } else {
+                    $post_alert_quantity = '';
+                }
+                if (isset($_POST['item_cost']) && !empty($_POST['item_cost'])) {
+                    $post_item_cost = $_POST['item_cost'];
+                } else {
+                    $post_item_cost = '';
+                }
+                $ItemTrackingDetails = array(
+                    'itemnumber' => isset($post_item_id) ? $post_item_id : '', // The ID for an item associated with this button.
+                    'itemqty' => isset($post_item_in_stock) ? $post_item_in_stock : '', // The qty you want to specify for the item associated with t his button.  specify either the absolute quantity in this field or the change in qty in the qty delta field
+                    'itemqtydelta' => '', // The change in qty  you want to specify for the item associated with this button.  Specify either the change in qty in this field or the absolute qty in the item qty field.
+                    'itemalert' => isset($post_alert_quantity) ? $post_alert_quantity : '', // The qty of the item associated with this button below which PayPal sends you an email notification.
+                    'itemcost' => isset($post_item_cost) ? $post_item_cost : '', // The cost of the item associated with this button.
+                );
+            } else if ($_POST['track_button_by'] == 'trackdByOption') {
+                $inventory_start = 0;
+                $inventroy_count = count($post_track['item_id']);
+                $OptionTrackingDetails = array();
+
+                for ($inventory_start = 0; $inventory_start < $inventroy_count; $inventory_start++) {
+
+
+                    // Here we can have up to 10 $OptionTrackingDetail arrays loaded into $OptionTrackingDetails
+
+                    $OptionTrackingDetail = array(
+                        'number' => isset($post_track['item_id'][$inventory_start]) ? $post_track['item_id'][$inventory_start] : '', // The menu item's ID for an option in the dropdown menu.
+                        'qty' => isset($post_track['items_in_stock'][$inventory_start]) ? $post_track['items_in_stock'][$inventory_start] : '', // The qty you want to specify for the option associated with this menu item.
+                        'select' => isset($post_track['ddp_option_name'][$inventory_start]) ? $post_track['ddp_option_name'][$inventory_start] : '', // The menu item's name in a dropdown menu.
+                        'qtydelta' => '',
+                        'alert' => isset($post_track['alert_quantity'][$inventory_start]) ? $post_track['alert_quantity'][$inventory_start] : '', // The qty of the option associated with this menu item below which PayPal sends you an email notification.
+                        'cost' => isset($post_track['item_cost'][$inventory_start]) ? $post_track['item_cost'][$inventory_start] : '', // The cost of the option associated with this menu item.
+                    );
+
+                    array_push($OptionTrackingDetails, $OptionTrackingDetail);
+                }
+            }
+        }
+
+        $PayPal_Inventory_RequestData = array(
+            'BMSetInventoryFields' => isset($BMSetInventoryFields) ? $BMSetInventoryFields : '',
+            'DigitalDownloadKeys' => isset($DigitalDownloadKeys) ? $DigitalDownloadKeys : '',
+            'ItemTrackingDetails' => isset($ItemTrackingDetails) ? $ItemTrackingDetails : array(),
+            'OptionTrackingDetails' => isset($OptionTrackingDetails) ? $OptionTrackingDetails : array(),
+        );
+
+
+
+        return $PayPal_Inventory_RequestData;
     }
 
 }
