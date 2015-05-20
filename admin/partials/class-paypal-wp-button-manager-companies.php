@@ -187,14 +187,15 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                 <h2><?php _e('Companies List', 'custom_table_example') ?> 
 
                 </h2>
-            <?php }
+                <?php
+            }
         }
         ?>
         <?php echo $message; ?>
 
         <form id="companies-table" method="GET">
             <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>"/>
-        <?php $table->display() ?>
+            <?php $table->display() ?>
         </form>
 
         <?php

@@ -31,14 +31,14 @@ jQuery(function ($) {
         return false;
     });
     
-     jQuery('#ipn_url_chk').click(function() {
-       if (jQuery(this).is(':checked')) {
+    jQuery('#ipn_url_chk').click(function() {
+        if (jQuery(this).is(':checked')) {
             jQuery('#ipn_urlinput').removeAttr('disabled');
         } else {
             
             jQuery('#ipn_urlinput').attr('disabled', 'disabled');
         }
- });
+    });
     window.send_to_editor = function(html) {
         var imgurl = jQuery('img',html).attr('src');
         jQuery('#wpss_upload_image').val(imgurl);
@@ -49,35 +49,77 @@ jQuery(function ($) {
  
     
   
-  //////////////////////////////////////////////////////////////////////////////////////
+    /*=========================================================================================================================*/
   
-  jQuery('#ddl_companyname').change(function() {
-    	var ddl_companyname = jQuery(this).val();
-	    var data = {
-				'action': 'checkconfig',
-				'ddl_companyname': ddl_companyname
-			};
-	    var wp_adminurl = paypal_wp_button_manager_wpurl.wp_admin_url;
-	    jQuery.post(ajaxurl, data, function(response) {
+    jQuery('#ddl_companyname').change(function() {
+        var ddl_companyname = jQuery(this).val();
+        var data = {
+            'action': 'checkconfig',
+            'ddl_companyname': ddl_companyname
+        };
+        var wp_adminurl = paypal_wp_button_manager_wpurl.wp_admin_url;
+        jQuery.post(ajaxurl, data, function(response) {
 					
-				if (response == '1'){
-					jQuery('#go_to_settings').html('');
-					jQuery('.cls_wrap').css('display','inline');
-				}else if (response == '2'){
-					jQuery('.cls_wrap').css('display','none');
+            if (response == '1'){
+                jQuery('#go_to_settings').html('');
+                jQuery('.cls_wrap').css('display','inline');
+            }else if (response == '2'){
+                jQuery('.cls_wrap').css('display','none');
 					
-					jQuery('#go_to_settings').html("Please fill your API credentials properly for that account to work.&nbsp;&nbsp;<a href='" + wp_adminurl + "'>Go to API Settings</a>");
+                jQuery('#go_to_settings').html("Please fill your API credentials properly for that account to work.&nbsp;&nbsp;<a href='" + wp_adminurl + "'>Go to API Settings</a>");
 																
-				}else {
+            }else {
 					
-				}
+            }
 	    	
 				
-			});
+        });
     
-  });  
+    });  
+  
+    jQuery('#post-query-submit').click(function() {
+        alert('test');
+    });
   
   
+    jQuery('.submitdelete').click(function() {
+        var post_id = jQuery(this).attr('href');
+        var cur_post_type = jQuery(location).attr('href');  
+        var del_post_id = parseURL(post_id);
+        var action_name = parseURL_action(post_id);
+        var current_post_page = parseURL_post_type(cur_post_type);
+        if (current_post_page == 'paypal_buttons' && action_name == 'delete') {
+         	              
+            if (!confirm("Do you want to also delete the button from PayPal ?")) {
+           	
+            }else {
+          
+                var data = {
+                    'action': 'delete_paypal_button',
+                    'del_post_id': del_post_id
+                };
+                jQuery.post(ajaxurl, data, function(response) {
+                    if (response == '2') {
+                        alert('This button is not hosted on PayPal');
+                    }else {
+					
+                    }
+				
+                });
+			
+            }
+        }
+    });
+ 
+    function parseURL(theLink) {
+        return decodeURI((RegExp("post" + '=' + '(.+?)(&|$)').exec(theLink) || [, null])[1]);
+    }
+    function parseURL_action(theAction) {
+        return decodeURI((RegExp("action" + '=' + '(.+?)(&|$)').exec(theAction) || [, null])[1]);
+    }
+    function parseURL_post_type(thePosttype) {
+        return decodeURI((RegExp("post_type" + '=' + '(.+?)(&|$)').exec(thePosttype) || [, null])[1]);
+    }
     
     jQuery('#buttonType').change(function() {
         var img_type = jQuery(this).val();

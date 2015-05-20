@@ -345,8 +345,6 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         }
     }
 
-   
-
     public static function paypal_wp_button_manager_checkconfig() {
 
         global $wpdb;
@@ -362,6 +360,64 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
             echo "2";
         }
         exit(1);
+    }
+
+    public static function paypal_wp_button_manager_before_delete_post() {
+        global $wpdb;
+        $obj_for_log = new AngellEYE_PayPal_WP_Button_Manager_button_generator();
+
+        $button_hosted_id = get_post_meta($_POST['del_post_id'], 'paypal_wp_button_manager_button_id', true);
+        $ddl_companyname = get_post_meta($_POST['del_post_id'], 'paypal_wp_button_manager_company_rel', true);
+        if ((isset($ddl_companyname) && !empty($ddl_companyname)) && (isset($button_hosted_id) && !empty($button_hosted_id))) {
+            // Prepare request arrays
+
+            global $wpdb;
+            $flag = '';
+            $tbl_name = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
+            $getconfig = $wpdb->get_row("SELECT * FROM `{$tbl_name}` where ID='$ddl_companyname'");
+            $is_sandbox = isset($getconfig->paypal_mode) ? $getconfig->paypal_mode : '';
+            if (isset($is_sandbox) && !empty($is_sandbox)) {
+                if ($is_sandbox == 'Sandbox') {
+                    $flag = TRUE;
+                } else if ($is_sandbox == 'Live') {
+                    $flag = FALSE;
+                }
+            }
+
+            $APIUsername = isset($getconfig->paypal_api_username) ? $getconfig->paypal_api_username : '';
+            $APIPassword = isset($getconfig->paypal_api_password) ? $getconfig->paypal_api_password : '';
+            $APISignature = isset($getconfig->paypal_api_signature) ? $getconfig->paypal_api_signature : '';
+
+            $payapalconfig = array('Sandbox' => $flag,
+                'APIUsername' => isset($APIUsername) ? $APIUsername : '',
+                'APIPassword' => isset($APIPassword) ? $APIPassword : '',
+                'APISignature' => isset($APISignature) ? $APISignature : '',
+                'PrintHeaders' => isset($print_headers) ? $print_headers : '',
+                'LogResults' => isset($log_results) ? $log_results : '',
+                'LogPath' => isset($log_path) ? $log_path : ''
+            );
+
+            $PayPal = new PayPal($payapalconfig);
+
+            $BMManageButtonStatusFields = array
+                (
+                'hostedbuttonid' => $button_hosted_id, // Required.  The ID of the hosted button whose inventory information you want to obtain.
+                'buttonstatus' => 'DELETE', // Required.  The new status of the button.  Values are:  DELETE
+            );
+
+            $PayPalRequestData = array(
+                'BMManageButtonStatusFields' => $BMManageButtonStatusFields,
+            );
+
+            // Pass data into class for processing with PayPal and load the response array into $PayPalResult
+            $PayPal_Delete_Button_Result = $PayPal->BMManageButtonStatus($PayPalRequestData);
+            $obj_for_log->paypal_wp_button_manager_write_error_log($PayPal_Delete_Button_Result);
+
+            exit(1);
+        } else {
+            echo "2";
+            exit(1);
+        }
     }
 
 }
