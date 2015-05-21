@@ -99,12 +99,7 @@ jQuery(function ($) {
                     'del_post_id': del_post_id
                 };
                 jQuery.post(ajaxurl, data, function(response) {
-                    if (response == '2') {
-                        alert('This button is not hosted on PayPal');
-                    }else {
-					
-                    }
-				
+                    				
                 });
 			
             }
