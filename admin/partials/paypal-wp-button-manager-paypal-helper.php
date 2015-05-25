@@ -276,6 +276,9 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
 
         return $buttonvars;
     }
+    
+    
+   
 
     /**
      * paypal_wp_button_manager_get_dropdown_values function prepairs array
@@ -288,7 +291,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
         $BMButtonOptions = array();
         $ddp_option_name = array();
 
-
+      
         $post = array();
         foreach (explode('&', urldecode(file_get_contents('php://input'))) as $keyValuePair) {
             list($key, $value) = explode('=', $keyValuePair);
@@ -462,6 +465,8 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'ItemTrackingDetails' => isset($ItemTrackingDetails) ? $ItemTrackingDetails : array(),
             'OptionTrackingDetails' => isset($OptionTrackingDetails) ? $OptionTrackingDetails : array(),
         );
+
+
 
         return $PayPal_Inventory_RequestData;
     }

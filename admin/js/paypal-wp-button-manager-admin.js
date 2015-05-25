@@ -59,7 +59,7 @@ jQuery(function ($) {
         };
         var wp_adminurl = paypal_wp_button_manager_wpurl.wp_admin_url;
         if (ddl_companyname == '') {
-            jQuery('.cls_wrap').css('display','none');
+        	jQuery('.cls_wrap').css('display','none');
 				
         }
         jQuery.post(ajaxurl, data, function(response) {
@@ -81,9 +81,12 @@ jQuery(function ($) {
     
     });  
   
+    jQuery('#post-query-submit').click(function() {
+        alert('test');
+    });
   
   
-    jQuery('.submitdelete').click(function(e) {
+ jQuery('.submitdelete').click(function(e) {
  		
         var post_id = jQuery(this).attr('href');
         var cur_post_type = jQuery(location).attr('href');  
@@ -91,65 +94,65 @@ jQuery(function ($) {
         var action_name = parseURL_action(post_id);
         var current_post_page = parseURL_post_type(cur_post_type);
         if (current_post_page == 'paypal_buttons' && action_name == 'delete') {
-            e.preventDefault();
-            var data1 = {
-                'action': 'checkhosted_button',
-                'btnid': del_post_id
-            };
-            jQuery.post(ajaxurl, data1, function(response) {
+			e.preventDefault();
+			 var data1 = {
+                    'action': 'checkhosted_button',
+                    'btnid': del_post_id
+                };
+        	jQuery.post(ajaxurl, data1, function(response) {
         	
-                if(response) {
-                    var istrue = (confirm('Do you want to also delete the button from PayPal ?'));
+        		if(response) {
+        			var istrue = (confirm('Do you want to also delete the button from PayPal ?'));
         				
-                    if (istrue)  {
+        			if (istrue)  {
         				
-                        var data = {
-                            'action': 'delete_paypal_button',
-                            'del_post_id': del_post_id
-                        };
+        					 var data = {
+	                   		 'action': 'delete_paypal_button',
+	                  		 'del_post_id': del_post_id
+	              			  };
         					
-                        jQuery.post(ajaxurl, data, function(response) {
-                            location.reload();		
-                        });
+        					 jQuery.post(ajaxurl, data, function(response) {
+	                    		location.reload();		
+	              			  });
         				
-                    }else {
+        				}else {
         					
-                        var data3 = {
-                            'action': 'delete_post_own',
-                            'del_post': del_post_id
-                        };
+							var data3 = {
+	                   		 'action': 'delete_post_own',
+	                  		 'del_post': del_post_id
+	              			  };
         					
-                        jQuery.post(ajaxurl, data3, function(response) {
-                            location.reload();
-                        });
-                    }
+        					 jQuery.post(ajaxurl, data3, function(response) {
+	                    				location.reload();
+	              			  });
+        				}
         			
-                }else {
-                    var data2 = {
-                        'action': 'delete_post_own',
-                        'del_post': del_post_id
-                    };
+        		}else {
+        			 		var data2 = {
+	                   		 'action': 'delete_post_own',
+	                  		 'del_post': del_post_id
+	              			  };
         					
-                    jQuery.post(ajaxurl, data2, function(response) {
-                        location.reload();
-                    });
+        					 jQuery.post(ajaxurl, data2, function(response) {
+	                    				location.reload();
+	              			  });
         		
-                }
+	              }
         		
 				
-            });
+			});
         }
     });
  
     
-    function sleep(milliseconds) {
-        var start = new Date().getTime();
-        for (var i = 0; i < 1e7; i++) {
-            if ((new Date().getTime() - start) > milliseconds){
-                break;
-            }
-        }
+     function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
     }
+  }
+}
     function parseURL(theLink) {
         return decodeURI((RegExp("post" + '=' + '(.+?)(&|$)').exec(theLink) || [, null])[1]);
     }
@@ -175,10 +178,10 @@ jQuery(function ($) {
     });
 
     var select_all = function(control){
-       
+        // alert(document.getElementById("showthis").value);
         jQuery(control).focus().select();
         var copy = $(control).val();
-  
+    //window.prompt ("Copy to clipboard: Ctrl+C, Enter", copy);
     }
     jQuery(".txtarea_response").click(function(){
         select_all(this);

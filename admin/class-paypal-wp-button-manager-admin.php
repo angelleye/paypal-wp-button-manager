@@ -333,33 +333,36 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
             update_option('paypal_wp_button_manager_viewcart_button_postid', $post_id);
         }
     }
-
+    
+    
+    
+    
     public function paypal_wp_button_manager_print_emptytrash() {
         global $typenow, $pagenow, $wpdb, $post, $post_ID;
         $table_name = $wpdb->prefix . "paypal_wp_button_manager_companies";
         $postmeta_table = $wpdb->prefix . "postmeta";
-        $post_tablename = $wpdb->prefix . "posts";
-        $get_companycount = $wpdb->get_row("SELECT count(*) as cnt_company from $table_name");
-        $get_trashpost_count = $wpdb->get_row("SELECT count(*) as cnt_count_trash from $post_tablename where post_status = 'trash' and post_type = 'paypal_buttons'");
-        $get_hosted_button_count = $wpdb->get_row("SELECT count(*) as cnt_hosted from $postmeta_table where meta_key ='paypal_wp_button_manager_trash_hosted_id'");
-
-
-        if (isset($get_companycount->cnt_company) && !empty($get_companycount->cnt_company)) {
-            $count_companies = $get_companycount->cnt_company;
-        }
-
-        if (isset($get_trashpost_count->cnt_count_trash) && !empty($get_trashpost_count->cnt_count_trash)) {
-            $count_trashpost = $get_trashpost_count->cnt_count_trash;
-        }
-
-        if (isset($get_hosted_button_count->cnt_hosted) && !empty($get_hosted_button_count->cnt_hosted)) {
-            $count_hostedbuttons = $get_hosted_button_count->cnt_hosted;
-        }
-
-
-
-
-
+        $post_tablename = $wpdb->prefix."posts";
+       	$get_companycount =   $wpdb->get_row("SELECT count(*) as cnt_company from $table_name");
+       	$get_trashpost_count = $wpdb->get_row("SELECT count(*) as cnt_count_trash from $post_tablename where post_status = 'trash' and post_type = 'paypal_buttons'");
+       	$get_hosted_button_count = $wpdb->get_row("SELECT count(*) as cnt_hosted from $postmeta_table where meta_key ='paypal_wp_button_manager_trash_hosted_id'");
+       	
+		
+       	if (isset($get_companycount->cnt_company) && !empty($get_companycount->cnt_company)){
+       		$count_companies = $get_companycount->cnt_company;
+       	}
+       	
+		if (isset($get_trashpost_count->cnt_count_trash) && !empty($get_trashpost_count->cnt_count_trash)){
+       		$count_trashpost = $get_trashpost_count->cnt_count_trash;
+       	}
+       	
+       	if (isset($get_hosted_button_count->cnt_hosted) && !empty($get_hosted_button_count->cnt_hosted)){
+       		$count_hostedbuttons = $get_hosted_button_count->cnt_hosted;
+       	}
+       	
+       	
+     
+       	
+      
         $screen = get_current_screen();
         if ($screen->post_type == 'paypal_buttons') {
             if (((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' ))) && (isset($count_companies) && $count_companies > 0) && (isset($count_hostedbuttons) && !empty($count_hostedbuttons)) && ((isset($count_trashpost) && $count_trashpost > 0))) {
@@ -393,91 +396,109 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         }
     }
 
+    
+    
+    
+    
+    
     public static function paypal_wp_button_manager_del_all_hostedbutton() {
-        global $wpdb, $post;
+    	global $wpdb, $post;
         $table_name = $wpdb->prefix . "posts";
         $postmeta_table = $wpdb->prefix . "postmeta";
-        $get_trashpost = $wpdb->get_results("SELECT *from $table_name where post_status = 'trash' and post_type = 'paypal_buttons'");
+       	$get_trashpost =   $wpdb->get_results("SELECT *from $table_name where post_status = 'trash' and post_type = 'paypal_buttons'");
+       	
+    	if (isset($get_trashpost) && !empty ($get_trashpost)) {
+    	
+       	foreach ($get_trashpost as $get_trashpost_obj) {    	
+       	
+       	
+        $obj_for_log = new AngellEYE_PayPal_WP_Button_Manager_button_generator();
 
-        if (isset($get_trashpost) && !empty($get_trashpost)) {
+        $button_hosted_id = get_post_meta($get_trashpost_obj->ID, 'paypal_wp_button_manager_button_id', true);
+        $ddl_companyname = get_post_meta($get_trashpost_obj->ID, 'paypal_wp_button_manager_company_rel', true);
+        if ((isset($ddl_companyname) && !empty($ddl_companyname)) && (isset($button_hosted_id) && !empty($button_hosted_id))) {
+            // Prepare request arrays
 
-            foreach ($get_trashpost as $get_trashpost_obj) {
-
-
-                $obj_for_log = new AngellEYE_PayPal_WP_Button_Manager_button_generator();
-
-                $button_hosted_id = get_post_meta($get_trashpost_obj->ID, 'paypal_wp_button_manager_button_id', true);
-                $ddl_companyname = get_post_meta($get_trashpost_obj->ID, 'paypal_wp_button_manager_company_rel', true);
-                if ((isset($ddl_companyname) && !empty($ddl_companyname)) && (isset($button_hosted_id) && !empty($button_hosted_id))) {
-                    // Prepare request arrays
-
-                    global $wpdb;
-                    $flag = '';
-                    $tbl_name = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
-                    $getconfig = $wpdb->get_row("SELECT * FROM `{$tbl_name}` where ID='$ddl_companyname'");
-                    $is_sandbox = isset($getconfig->paypal_mode) ? $getconfig->paypal_mode : '';
-                    if (isset($is_sandbox) && !empty($is_sandbox)) {
-                        if ($is_sandbox == 'Sandbox') {
-                            $flag = TRUE;
-                        } else if ($is_sandbox == 'Live') {
-                            $flag = FALSE;
-                        }
-                    }
-
-                    $APIUsername = isset($getconfig->paypal_api_username) ? $getconfig->paypal_api_username : '';
-                    $APIPassword = isset($getconfig->paypal_api_password) ? $getconfig->paypal_api_password : '';
-                    $APISignature = isset($getconfig->paypal_api_signature) ? $getconfig->paypal_api_signature : '';
-
-                    $payapalconfig = array('Sandbox' => $flag,
-                        'APIUsername' => isset($APIUsername) ? $APIUsername : '',
-                        'APIPassword' => isset($APIPassword) ? $APIPassword : '',
-                        'APISignature' => isset($APISignature) ? $APISignature : '',
-                        'PrintHeaders' => isset($print_headers) ? $print_headers : '',
-                        'LogResults' => isset($log_results) ? $log_results : '',
-                        'LogPath' => isset($log_path) ? $log_path : ''
-                    );
-
-                    $PayPal = new PayPal($payapalconfig);
-
-                    $BMManageButtonStatusFields = array
-                        (
-                        'hostedbuttonid' => $button_hosted_id, // Required.  The ID of the hosted button whose inventory information you want to obtain.
-                        'buttonstatus' => 'DELETE', // Required.  The new status of the button.  Values are:  DELETE
-                    );
-
-                    $PayPalRequestData = array(
-                        'BMManageButtonStatusFields' => $BMManageButtonStatusFields,
-                    );
-
-                    // Pass data into class for processing with PayPal and load the response array into $PayPalResult
-                    $PayPal_Delete_Button_Result = $PayPal->BMManageButtonStatus($PayPalRequestData);
-                    $obj_for_log->paypal_wp_button_manager_write_error_log($PayPal_Delete_Button_Result);
-
-                    global $wpdb;
-                    $tbl_name = $wpdb->prefix . "posts";
-                    $post_meta = $wpdb->prefix . "postmeta";
-                    $wpdb->query($wpdb->prepare("DELETE FROM $tbl_name WHERE ID = %d", $get_trashpost_obj->ID));
-                    $wpdb->query($wpdb->prepare("DELETE FROM $post_meta WHERE post_id = %d", $get_trashpost_obj->ID));
+            global $wpdb;
+            $flag = '';
+            $tbl_name = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
+            $getconfig = $wpdb->get_row("SELECT * FROM `{$tbl_name}` where ID='$ddl_companyname'");
+            $is_sandbox = isset($getconfig->paypal_mode) ? $getconfig->paypal_mode : '';
+            if (isset($is_sandbox) && !empty($is_sandbox)) {
+                if ($is_sandbox == 'Sandbox') {
+                    $flag = TRUE;
+                } else if ($is_sandbox == 'Live') {
+                    $flag = FALSE;
                 }
             }
-        }
 
-        echo "1";
-        exit(0);
+            $APIUsername = isset($getconfig->paypal_api_username) ? $getconfig->paypal_api_username : '';
+            $APIPassword = isset($getconfig->paypal_api_password) ? $getconfig->paypal_api_password : '';
+            $APISignature = isset($getconfig->paypal_api_signature) ? $getconfig->paypal_api_signature : '';
+
+            $payapalconfig = array('Sandbox' => $flag,
+                'APIUsername' => isset($APIUsername) ? $APIUsername : '',
+                'APIPassword' => isset($APIPassword) ? $APIPassword : '',
+                'APISignature' => isset($APISignature) ? $APISignature : '',
+                'PrintHeaders' => isset($print_headers) ? $print_headers : '',
+                'LogResults' => isset($log_results) ? $log_results : '',
+                'LogPath' => isset($log_path) ? $log_path : ''
+            );
+
+            $PayPal = new PayPal($payapalconfig);
+
+            $BMManageButtonStatusFields = array
+                (
+                'hostedbuttonid' => $button_hosted_id, // Required.  The ID of the hosted button whose inventory information you want to obtain.
+                'buttonstatus' => 'DELETE', // Required.  The new status of the button.  Values are:  DELETE
+            );
+
+            $PayPalRequestData = array(
+                'BMManageButtonStatusFields' => $BMManageButtonStatusFields,
+            );
+
+            // Pass data into class for processing with PayPal and load the response array into $PayPalResult
+            $PayPal_Delete_Button_Result = $PayPal->BMManageButtonStatus($PayPalRequestData);
+            $obj_for_log->paypal_wp_button_manager_write_error_log($PayPal_Delete_Button_Result);
+
+         global $wpdb;
+    	 $tbl_name = $wpdb->prefix."posts";
+    	 $post_meta = $wpdb->prefix."postmeta";
+    	 $wpdb->query( $wpdb->prepare( "DELETE FROM $tbl_name WHERE ID = %d", $get_trashpost_obj->ID ) );
+    	 $wpdb->query( $wpdb->prepare( "DELETE FROM $post_meta WHERE post_id = %d", $get_trashpost_obj->ID ) );
+       
+        }
+       	
+        
+       	}
+       	
+    	}
+       	
+       	 echo "1";
+    	 exit(0);
+       	
+    	
     }
+    
+    
+    
+    
+    
+    
 
     public function paypal_wp_button_manager_wp_trash_post($post_id) {
         $post_type = get_post_type($post_id);
         $post_status = get_post_status($post_id);
         if ($post_type == 'paypal_buttons' && in_array($post_status, array('publish'))) {
             $getcompanyid = get_post_meta($post_id, 'paypal_wp_button_manager_viewcart_button_companyid', true);
-            $get_hosted_id = get_post_meta($post_id, 'paypal_wp_button_manager_button_id', true);
+            $get_hosted_id = get_post_meta($post_id, 'paypal_wp_button_manager_button_id',true);
             if (isset($getcompanyid) && !empty($getcompanyid)) {
                 delete_post_meta($post_id, 'paypal_wp_button_manager_viewcart_button_companyid');
+                
             }
             // below code is for keeep record that is there any hosted button is in trash.
             if (isset($get_hosted_id) && !empty($get_hosted_id)) {
-                update_post_meta($post_id, 'paypal_wp_button_manager_trash_hosted_id', $get_hosted_id);
+            	update_post_meta($post_id,'paypal_wp_button_manager_trash_hosted_id',$get_hosted_id);
             }
         }
     }
@@ -487,16 +508,16 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         global $wpdb;
         $companies = $wpdb->prefix . 'paypal_wp_button_manager_companies';
         $result_config = $wpdb->get_row("SELECT * FROM `{$companies}` WHERE ID ='$_POST[ddl_companyname]'");
-        if (isset($result_config) && !empty($result_config)) {
-            $APIUsername = isset($result_config->paypal_api_username) ? $result_config->paypal_api_username : '';
-            $APIPassword = isset($result_config->paypal_api_password) ? $result_config->paypal_api_password : '';
-            $APISignature = isset($result_config->paypal_api_signature) ? $result_config->paypal_api_signature : '';
-            if ((isset($APIUsername) && !empty($APIUsername)) && (isset($APIPassword) && !empty($APIPassword)) && (isset($APISignature) && !empty($APISignature))) {
-                echo '1';
-            } else {
-                echo "2";
-            }
-        }
+		if (isset($result_config) && !empty($result_config)) {
+	        $APIUsername = isset($result_config->paypal_api_username) ? $result_config->paypal_api_username : '';
+	        $APIPassword = isset($result_config->paypal_api_password) ? $result_config->paypal_api_password : '';
+	        $APISignature = isset($result_config->paypal_api_signature) ? $result_config->paypal_api_signature : '' ;
+	        if ((isset($APIUsername) && !empty($APIUsername)) && (isset($APIPassword) && !empty($APIPassword)) && (isset($APISignature) && !empty($APISignature))) {
+	            echo '1';
+	        } else {
+	            echo "2";
+	        }
+		}
         exit(1);
     }
 
@@ -551,35 +572,39 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
             $PayPal_Delete_Button_Result = $PayPal->BMManageButtonStatus($PayPalRequestData);
             $obj_for_log->paypal_wp_button_manager_write_error_log($PayPal_Delete_Button_Result);
 
-            global $wpdb;
-            $tbl_name = $wpdb->prefix . "posts";
-            $post_meta = $wpdb->prefix . "postmeta";
-            $wpdb->query($wpdb->prepare("DELETE FROM $tbl_name WHERE ID = %d", $_POST['del_post_id']));
-            $wpdb->query($wpdb->prepare("DELETE FROM $post_meta WHERE post_id = %d", $_POST['del_post_id']));
-            echo "1";
-            exit(0);
-        }
+             global $wpdb;
+    	 $tbl_name = $wpdb->prefix."posts";
+    	 $post_meta = $wpdb->prefix."postmeta";
+    	 $wpdb->query( $wpdb->prepare( "DELETE FROM $tbl_name WHERE ID = %d", $_POST['del_post_id'] ) );
+    	 $wpdb->query( $wpdb->prepare( "DELETE FROM $post_meta WHERE post_id = %d", $_POST['del_post_id'] ) );
+         echo "1";
+    	 exit(0);
+        } 
     }
-
+    
     public static function paypal_wp_button_manager_checkhosted_button() {
-        $btnid = get_post_meta($_POST['btnid'], 'paypal_wp_button_manager_button_id', true);
-
-        if (isset($btnid) && !empty($btnid)) {
-            echo "1";
-        } else {
-            echo "";
-        }
-        exit(0);
+    	$btnid = get_post_meta($_POST['btnid'], 'paypal_wp_button_manager_button_id', true);
+    	
+    	if (isset($btnid) && !empty($btnid)) {
+    		echo "1";
+    	}else {
+    		echo "";
+    	}
+    	
+    	
+    	exit(0);
+    	
     }
-
+    
     public static function paypal_wp_button_manager_delete_post_own() {
-        global $wpdb;
-        $tbl_name = $wpdb->prefix . "posts";
-        $post_meta = $wpdb->prefix . "postmeta";
-        $wpdb->query($wpdb->prepare("DELETE FROM $tbl_name WHERE ID = %d", $_POST['del_post']));
-        $wpdb->query($wpdb->prepare("DELETE FROM $post_meta WHERE post_id = %d", $_POST['del_post']));
-        echo "1";
-        exit(0);
+    	 global $wpdb;
+    	 $tbl_name = $wpdb->prefix."posts";
+    	 $post_meta = $wpdb->prefix."postmeta";
+    	 $wpdb->query( $wpdb->prepare( "DELETE FROM $tbl_name WHERE ID = %d", $_POST['del_post'] ) );
+    	 $wpdb->query( $wpdb->prepare( "DELETE FROM $post_meta WHERE post_id = %d", $_POST['del_post'] ) );
+    	echo "1";
+    	 exit(0);
+    		
     }
 
 }
