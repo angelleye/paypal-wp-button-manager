@@ -81,9 +81,6 @@ jQuery(function ($) {
     
     });  
   
-    jQuery('#post-query-submit').click(function() {
-        alert('test');
-    });
   
   
  jQuery('.submitdelete').click(function(e) {
@@ -178,7 +175,7 @@ jQuery(function ($) {
     });
 
     var select_all = function(control){
-        // alert(document.getElementById("showthis").value);
+       
         jQuery(control).focus().select();
         var copy = $(control).val();
     //window.prompt ("Copy to clipboard: Ctrl+C, Enter", copy);
