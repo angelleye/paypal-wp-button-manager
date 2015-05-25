@@ -22,27 +22,33 @@ class AngellEYE_PayPal_WP_Button_Manager_Activator {
 		self::create_files();
 
 		global $wpdb;
+
+        // Log activation in Angell EYE database via web service.
+        $log_url = $_SERVER['HTTP_HOST'];
+        $log_plugin_id = 9;
+        $log_activation_status = 1;
+        wp_remote_request('http://www.angelleye.com/web-services/wordpress/update-plugin-status.php?url='.$log_url.'&plugin_id='.$log_plugin_id.'&activation_status='.$log_activation_status);
 	
 
-   	$table_name = $wpdb->prefix . "paypal_wp_button_manager_companies"; 
-		$charset_collate = $wpdb->get_charset_collate();
+        $table_name = $wpdb->prefix . "paypal_wp_button_manager_companies";
+            $charset_collate = $wpdb->get_charset_collate();
 	
-	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {	
-	$sql = "CREATE TABLE " . $table_name . " (
-		`ID` mediumint(9) NOT NULL AUTO_INCREMENT,
-		`title` mediumtext  NULL,
-		`paypal_person_name` mediumtext  NULL,
-		`paypal_person_email` text  NULL,
-		`paypal_api_username` text  NULL,
-		`paypal_api_password` text  NULL,
-		`paypal_api_signature` text  NULL,
-		`paypal_mode` tinytext  NULL,
-		UNIQUE KEY ID (ID)
-		) $charset_collate;";
- 
-		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-		dbDelta( $sql );
-	}
+        if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+        $sql = "CREATE TABLE " . $table_name . " (
+            `ID` mediumint(9) NOT NULL AUTO_INCREMENT,
+            `title` mediumtext  NULL,
+            `paypal_person_name` mediumtext  NULL,
+            `paypal_person_email` text  NULL,
+            `paypal_api_username` text  NULL,
+            `paypal_api_password` text  NULL,
+            `paypal_api_signature` text  NULL,
+            `paypal_mode` tinytext  NULL,
+            UNIQUE KEY ID (ID)
+            ) $charset_collate;";
+
+            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+            dbDelta( $sql );
+        }
 	}
 
 	/**
