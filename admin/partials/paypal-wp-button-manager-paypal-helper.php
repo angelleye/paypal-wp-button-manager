@@ -288,9 +288,9 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
         $BMButtonOptions = array();
         $ddp_option_name = array();
 
-        $rawQueryString = file_get_contents('php://input');
+
         $post = array();
-        foreach (explode('&', file_get_contents('php://input')) as $keyValuePair) {
+        foreach (explode('&', urldecode(file_get_contents('php://input'))) as $keyValuePair) {
             list($key, $value) = explode('=', $keyValuePair);
             $post[$key][] = $value;
         }
@@ -462,8 +462,6 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'ItemTrackingDetails' => isset($ItemTrackingDetails) ? $ItemTrackingDetails : array(),
             'OptionTrackingDetails' => isset($OptionTrackingDetails) ? $OptionTrackingDetails : array(),
         );
-
-
 
         return $PayPal_Inventory_RequestData;
     }
