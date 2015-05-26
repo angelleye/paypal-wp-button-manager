@@ -73,6 +73,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Operations {
             'paypal_account_mode' => isset($_POST['paypal_account_mode']) ? $_POST['paypal_account_mode'] : '',
             'paypal_merchant_id' => isset($merchant_account_id) ? $merchant_account_id : '',
             ));
+            
+            unset($PayPalConfig);
         return $add_result;
     }
 
@@ -80,6 +82,46 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Operations {
         global $wpdb;
         $table_name = $wpdb->prefix . "paypal_wp_button_manager_companies";
         $id = $_GET['cmp_id'];
+             
+               
+        if ((isset($_POST['paypal_mode']) && !empty($_POST['paypal_mode'])) && (isset($_POST['paypal_api_username']) && !empty($_POST['paypal_api_username']))  && (isset($_POST['paypal_api_password']) && !empty($_POST['paypal_api_password'])) && (isset($_POST['paypal_api_signature']) && !empty($_POST['paypal_api_signature']))) {
+        	$flag_mode = '';
+        	if (isset($_POST['paypal_mode']) && !empty ($_POST['paypal_mode'])) {
+        		if ($_POST['paypal_mode'] == 'Sandbox') {
+        			$flag_mode = true;
+        		}else if ($_POST['paypal_mode'] == 'Live') {
+        			$flag_mode = false;
+        		}else {
+        			$flag_mode ='';
+        		}
+        		
+        	}
+        	
+        	$PayPalConfig = array(
+					'Sandbox' => $flag_mode,
+					'APIUsername' => isset($_POST['paypal_api_username']) ? $_POST['paypal_api_username'] : '',
+					'APIPassword' => isset($_POST['paypal_api_password']) ? $_POST['paypal_api_password'] : '',
+					'APISignature' => isset($_POST['paypal_api_signature']) ? $_POST['paypal_api_signature'] : '', 
+					'PrintHeaders' => isset($print_headers) ? $print_headers : '', 
+					'LogResults' => isset($log_results) ? $log_results : '',
+					'LogPath' => isset($log_path) ? $log_path : '',
+					);
+
+        	
+        	
+        	$PayPal = new PayPal($PayPalConfig);
+        	$PayPalResult = $PayPal->GetPalDetails();
+        	
+        	if (isset($PayPalResult['ACK']) && $PayPalResult['ACK'] == 'Success'){
+        		if (isset($PayPalResult['PAL']) && !empty($PayPalResult['PAL'])){
+        			$merchant_account_id = $PayPalResult['PAL'];
+        		}
+        	}
+        	
+        }
+        
+        
+        
         $edit_result = $wpdb->update($table_name, array('title' => isset($_POST['company_title']) ? $_POST['company_title'] : '',
             'paypal_person_name' => isset($_POST['paypal_person_name']) ? $_POST['paypal_person_name'] : '',
             'paypal_person_email' => isset($_POST['paypal_person_email']) ? $_POST['paypal_person_email'] : '',
@@ -87,9 +129,12 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Operations {
             'paypal_api_password' => isset($_POST['paypal_api_password']) ? $_POST['paypal_api_password'] : '',
             'paypal_api_signature' => isset($_POST['paypal_api_signature']) ? $_POST['paypal_api_signature'] : '',
             'paypal_mode' => isset($_POST['paypal_mode']) ? $_POST['paypal_mode'] : '',
-            'paypal_account_mode' => isset($_POST['paypal_account_mode']) ? $_POST['paypal_account_mode'] : ''),
-             array('ID' => $id), array('%s', '%s', '%s', '%s', '%s', '%s','%s'), array('%d'));
-        return $edit_result;
+            'paypal_account_mode' => isset($_POST['paypal_account_mode']) ? $_POST['paypal_account_mode'] : '',
+            'paypal_merchant_id' => isset($merchant_account_id) ? $merchant_account_id : ''),
+             array('ID' => $id), array('%s', '%s', '%s', '%s', '%s', '%s','%s','%s'), array('%d'));
+
+             unset($PayPalConfig);
+             return $edit_result;
     }
 
     public function paypal_wp_button_manager_delete_company() {

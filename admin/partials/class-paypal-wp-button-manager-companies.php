@@ -151,7 +151,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                 $obj_company_operation_delete = new AngellEYE_PayPal_WP_Button_Manager_Company_Operations();
                 $delete_result = $obj_company_operation_delete->paypal_wp_button_manager_delete_company();
 
-                if ($delete_result == false) {
+                if (!$delete_result) {
                     ?>
                     <div id="setting-error-settings_updated" class="error settings-error"> 
                         <p><?php echo '<strong>' . __('Something went wrong item not deleted.', 'paypal-wp-button-manager') . '</strong>'; ?>
@@ -410,7 +410,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                 if (isset($_GET['cmp_id']) && !empty($_GET['cmp_id'])) {
                     $edit_result = $obj_company_operation->paypal_wp_button_manager_edit_company();
 
-                    if ($edit_result == false) {
+                    if (!$edit_result) {
                         ?>
                         <div id="setting-error-settings_updated" class="error settings-error"> 
                             <p><?php echo '<strong>' . __('Settings were not saved.', 'paypal-wp-button-manager') . '</strong>'; ?></p></div>
