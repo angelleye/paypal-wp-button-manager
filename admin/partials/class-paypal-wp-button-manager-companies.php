@@ -232,7 +232,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                     $paypal_api_password = isset($records->paypal_api_password) ? $records->paypal_api_password : '';
                     $paypal_api_signature = isset($records->paypal_api_signature) ? $records->paypal_api_signature : '';
                     $paypal_mode = isset($records->paypal_mode) ? $records->paypal_mode : '';
-
+					
+                    $pal_id = isset($records->paypal_merchant_id) ? $records->paypal_merchant_id : '';
+                    $paypal_account_mode = isset($records->paypal_account_mode) ? $records->paypal_account_mode : '';
+                    
+                    
                     if ($paypal_mode == 'Sandbox') {
                         $sandbox_checked = 'checked';
                     } else {
@@ -243,6 +247,21 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                     } else {
                         $live_checked = '';
                     }
+                    
+                    
+                    if ($paypal_account_mode == 'paypal_account_id') {
+                        $paypal_account_id = 'checked';
+                    } else {
+                        $paypal_account_id = '';
+                    }
+                    if ($paypal_account_mode == 'email_id') {
+                        $email_id = 'checked';
+                    } else {
+                        $email_id = '';
+                    }
+                    
+                    
+                    
                 }
                 $button_text = 'Edit Company';
             } else {
@@ -251,6 +270,15 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
             ?>
             <table class="form-table">
                 <tbody>
+                <tr valign="top">
+                        <th class="titledesc" scope="row"><label for=
+                                                                 "paypalaccontid"><?php _e('PayPal Account ID', 'paypal-wp-button-manager'); ?></label></th>
+
+                        <td class="forminp forminp-text"><input class="" id=
+                                                                "paypal_merchant_id" name="paypal_merchant_id" style=
+                                                                "min-width:300px;" disabled type="text" value="<?php echo isset($pal_id) ? $pal_id : 'Please set up Credentials'; ?>"></td>
+                    </tr>
+                
                     <tr valign="top">
                         <th class="titledesc" scope="row"><label for=
                                                                  "CompanyTitle"><?php _e('Company Name', 'paypal-wp-button-manager'); ?></label></th>
@@ -321,6 +349,31 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                             </fieldset>
                         </td>
                     </tr>
+                    
+                    
+                     <tr valign="top">
+                        <th class="titledesc" scope="row"><label for=
+                                                                 "account_mode"><?php _e('Button Account ID', 'paypal-wp-button-manager'); ?></label></th>
+
+                        <td class="forminp forminp-radio">
+                            <fieldset>
+                                <ul class="ul_account_mode">
+                                    <li><label><input class="" <?php echo isset($paypal_account_id) ? $paypal_account_id : ''; ?> name="paypal_account_mode" type="radio" value="paypal_account_id" >
+                                            PayPal Account ID</label></li>
+
+                                    <li><label><input class="" <?php echo isset($email_id) ? $email_id : ''; ?> name="paypal_account_mode"
+                                                      type="radio" value="email_id">
+                                            Email Address</label></li>
+                                </ul>
+                            </fieldset>
+                        </td>
+                    </tr>
+                    
+                    
+                    
+                    
+                    
+                    
                 </tbody>
             </table>
 
