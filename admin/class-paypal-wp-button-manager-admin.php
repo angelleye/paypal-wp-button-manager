@@ -414,7 +414,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
             $obj_for_log->paypal_wp_button_manager_write_error_log($PayPal_Delete_Button_Result);
 
             exit(1);
-        } 
+        }
     }
 
 }
