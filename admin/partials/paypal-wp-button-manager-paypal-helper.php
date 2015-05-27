@@ -183,12 +183,21 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             $get_business_tbl = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
             $get_business = $wpdb->get_row("SELECT * FROM `{$get_business_tbl}` where ID='$_POST[ddl_companyname]'");
             if (isset($get_business)) {
+				
+            	if (isset($get_business->paypal_account_mode) && !empty ($get_business->paypal_account_mode)) {
+            		$paypal_account_mode = $get_business->paypal_account_mode;
+            	}
 
-                if (isset($get_business->paypal_person_email) && !empty($get_business->paypal_person_email)) {
-                    $get_business_email = $get_business->paypal_person_email;
-                } else {
-                    $get_business_email = '';
-                }
+            	
+            	if (isset($paypal_account_mode) && !empty($paypal_account_mode)) {
+               			if ($paypal_account_mode == 'paypal_account_id') {
+               				$get_business_email = $get_business->paypal_merchant_id;	
+               			}else {
+               				$get_business_email = $get_business->paypal_person_email;
+               			}
+            		
+            	}
+                
             }
         }
 

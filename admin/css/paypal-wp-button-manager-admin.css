@@ -93,7 +93,7 @@ form#button_manager_integration_form {
   float: left;
   width: 44%;
 }
-ul.ul_paypal_mode {
+ul.ul_paypal_mode, ul.ul_account_mode {
   margin-top: 0px !important;
 }
 h2.floatleft {
