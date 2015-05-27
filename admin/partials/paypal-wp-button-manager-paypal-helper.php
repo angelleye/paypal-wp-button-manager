@@ -230,7 +230,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'add' => '', // Set to 1 to add an item to the PayPal shopping cart.
             'display' => '', // Set to 1 to display the contents of the PayPal shopping cart to the buyer.
             'upload' => '', // Set to 1 to upload the contents of a third-party shopping cart or a custom shopping cart.
-            'business' => $get_business_email, // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
+            'business' => isset($get_business_email) ? $get_business_email: '', // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
             'paymentaction' => '', // Indicates whether the payment is a finale sale or an authorization for a final sale, to be captured later.  Values are:  sale, authorization, order
             'shopping_url' => isset($_POST['gift_certificate_shop_url']) ? esc_url($_POST['gift_certificate_shop_url']) : '', // The URL of the page on the merchant website that buyers go to when they click the Continue Shopping button on the PayPal shopping cart page.
             'a1' => isset($_POST['subscription_trial_rate']) ? $_POST['subscription_trial_rate'] : '', // Trial period 1 price.  For a free trial period, specify 0.
