@@ -167,6 +167,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
 
                                 update_post_meta($post_id, 'paypal_button_response', $PayPalResult_viewcart['WEBSITECODE']);
                                 update_post_meta($post_id, 'paypal_wp_button_manager_viewcart_button_companyid', $_POST['ddl_companyname']);
+                                self::paypal_wp_button_manager_write_error_log($PayPalResult_viewcart);
                             }
                         }
                     }

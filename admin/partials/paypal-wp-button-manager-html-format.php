@@ -567,7 +567,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 <div class="left-edge">&nbsp;</div>
                                                                                 <div>Item ID</div>
                                                                                 <div class="invRelated">Qty. in stock</div>
-                                                                                <div class="invRelated">Alert qty. (optional) <span class="autoTooltip helpText" title="" tabindex="0">What's this?<span class="accessAid">When your inventory falls to this number, PayPal will send you an e-mail alert.</span></span></div>
+                                                                                <div class="invRelated">Alert qty. (optional) 
+                                                                              
+                                                                                </div>
                                                                                 <div class="PNLRelated">Price</div>
                                                                                 <div class="right-edge">&nbsp;</div>
                                                                             </div>
@@ -608,7 +610,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <h5 id="shoppingHead" class="opened">Can customers buy an item when it is sold out?</h5>
                                                                     <div class="pre-order opened" id="shoppingPreOrder"><input class="radio" type="radio" id="enablePreOrder" name="enable_pre_order" value="enabledPreOrder" disabled=""><label for="enablePreOrder">Yes, customers can buy the item as usual.</label></div>
                                                                     <div class="no-pre-order">
-                                                                        <input class="radio opened" type="radio" id="dontEnablePreOrder" checked="" name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened">No, don't let customers buy the item. <a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDSoldOutExample" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Preview</a></label>
+                                                                        <input class="radio opened" type="radio" id="dontEnablePreOrder" checked="" name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened">No, don't let customers buy the item. 
+                                                                        
+                                                                        </label>
                                                                         <p class="hint opened fadedOut" id="shoppingURL"><span class="littleHint">Take customers to specific page when they click <strong>Continue Shopping</strong> button on "item sold out" page</span><input class="type-text" type="text" id="soldOutURL" name="sold_out_url" value="" disabled=""><span class="littleHint">Ex: http://www.mybuynowstore.com</span></p>
                                                                     </div>
                                                                 </div>
