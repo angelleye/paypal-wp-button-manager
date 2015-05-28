@@ -379,9 +379,10 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
                             // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
                             jQuery.post(ajaxurl, data, function(response) {
                                 jQuery(".msg_div").remove();
-                                jQuery(".wrap").find("h2").after('<div class="updated below-h2 msg_div"><p class="msg_text">All PayPal Hosted button deleted <a href="<?php echo admin_url('edit.php?post_type=paypal_buttons'); ?>">Refresh</a></p></div>');
-
                                 jQuery('#gifimg').css('display','none');
+                                location.reload();
+                               
+                                
                             });
 
                         });

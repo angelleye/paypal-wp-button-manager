@@ -48,9 +48,6 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             delete_option('paypal_wp_button_manager_timeout_notice');
 
             // Update the post into the database
-
-
-
             unset($_POST);
             unset($post);
         } else if ($PayPalResult['RAWRESPONSE'] == false) {
@@ -174,22 +171,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
                 }
             }
 
-
-            /// below code start for track inventory///////////////////////////////////////////////////////
-
-
-            if (isset($PayPalResult['HOSTEDBUTTONID']) && !empty($PayPalResult['HOSTEDBUTTONID'])) {
-                if ((isset($_POST['enable_inventory']) && !empty($_POST['enable_inventory'])) || (isset($_POST['enable_profit_and_loss']) && !empty($_POST['enable_profit_and_loss']))) {
-                    $PayPalRequestData_Inventory = $payapal_helper->paypal_wp_button_manager_set_inventory();
-                    $PayPalSet_InventoryResult = $PayPal->BMSetInventory($PayPalRequestData_Inventory);
-                    self::paypal_wp_button_manager_write_error_log($PayPalSet_InventoryResult);
-                }
-            }
-
-            ///////////////////////////// track inventory end ////////////////////////////////////////////////
-
             unset($post);
-
             unset($_POST);
         }
     }

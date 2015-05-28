@@ -30,14 +30,14 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 <label for="paypalcompanyname"><strong>Choose Company Name:</strong></label>
                 <select id="ddl_companyname" name="ddl_companyname">
                     <option value="">--Select Company--</option>
-        <?php foreach ($result_records as $result_records_value) { ?>
+                    <?php foreach ($result_records as $result_records_value) { ?>
                         <option value="<?php echo $result_records_value['ID']; ?>"><?php echo $result_records_value['title']; ?></option>
-                        <?php }
+                    <?php }
                     ?>
                 </select>
             </div>
         </div>
-    <?php
+        <?php
     }
 
     /**
@@ -77,7 +77,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
                                         <div id="stepOne" class="box top defaultOpen open">
                                             <div class="header">
-        <?php echo '<h3>' . __('Step 1: Choose a button type and enter your payment details') . '</h3>'; ?>
+                                                <?php echo '<h3>' . __('Step 1: Choose a button type and enter your payment details') . '</h3>'; ?>
                                             </div>
 
                                             <div class="body" style="height: auto; opacity: 1;">
@@ -85,9 +85,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     <div class="container">
                                                         <div class="group buttonType">
                                                             <label for="buttonType">Choose a button type</label>
-        <?php $paypal_button_options = get_paypal_button_options(); ?>
+                                                            <?php $paypal_button_options = get_paypal_button_options(); ?>
                                                             <select id="buttonType" name="button_type">
-                                                            <?php foreach ($paypal_button_options as $paypal_button_options_key => $paypal_button_options_value) { ?>
+                                                                <?php foreach ($paypal_button_options as $paypal_button_options_key => $paypal_button_options_value) { ?>
                                                                     <option value="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_options_value; ?></option>
                                                                 <?php } ?>
 
@@ -117,10 +117,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="floatLeft"><label for="itemPrice">Price</label><input class="text" type="text" id="itemPrice" size="9" name="item_price" value=""></div>
                                                                     <div class="floatLeft">
                                                                         <label for="itemPriceCurrency">Currency</label>
-        <?php $paypal_button_currency_with_symbole = get_paypal_button_currency_with_symbole(); ?>
+                                                                        <?php $paypal_button_currency_with_symbole = get_paypal_button_currency_with_symbole(); ?>
                                                                         <select id="BillingAmountCurrency" name="item_price_currency" class="currencySelect">
 
-                                                                        <?php foreach ($paypal_button_currency_with_symbole as $paypal_button_currency_with_symbole_key => $paypal_button_currency_with_symbole_value) { ?>
+                                                                            <?php foreach ($paypal_button_currency_with_symbole as $paypal_button_currency_with_symbole_key => $paypal_button_currency_with_symbole_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_currency_with_symbole_key; ?>" title="<?php echo $paypal_button_currency_with_symbole_value; ?>"><?php echo $paypal_button_currency_with_symbole_key; ?></option>
                                                                             <?php } ?>
                                                                         </select>
@@ -129,9 +129,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 </div>
                                                                 <div class="group subscriptions accessAid fadedOut">
                                                                     <label for="subscriptionBillingAmountCurrency">Currency</label>
-        <?php $paypal_button_currency = get_paypal_button_currency(); ?>
+                                                                    <?php $paypal_button_currency = get_paypal_button_currency(); ?>
                                                                     <select id="subscriptionBillingAmountCurrency" name="item_price_currency" class="currencySelect" disabled="">
-                                                                    <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
+                                                                        <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                             <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
                                                                         <?php } ?>
                                                                     </select>
@@ -150,15 +150,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                         <p class="optionRow">
                                                                                             <input maxlength="64" type="text" class="ddpOptionName text" disabled="" name="ddp_option_name" value="Option 1">
                                                                                             <input type="text" class="ddpOptionPrice text" disabled="" name="ddp_option_price" value="">
-        <?php $paypal_button_currency = get_paypal_button_currency(); ?>
+                                                                                            <?php $paypal_button_currency = get_paypal_button_currency(); ?>
                                                                                             <select class="ddpOptionCurrency show" name="ddp_option_currency">
-                                                                                            <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
+                                                                                                <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
                                                                                                 <?php } ?>
                                                                                             </select>
-                                                                                                <?php $paypal_button_subscriptions = get_paypal_button_subscriptions(); ?>
+                                                                                            <?php $paypal_button_subscriptions = get_paypal_button_subscriptions(); ?>
                                                                                             <select class="subscriptions ddpOptionFrequency" name="ddp_option_frequency" disabled="">
-                                                                                            <?php foreach ($paypal_button_subscriptions as $paypal_button_subscriptions_key => $paypal_button_subscriptions_value) { ?>
+                                                                                                <?php foreach ($paypal_button_subscriptions as $paypal_button_subscriptions_key => $paypal_button_subscriptions_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_subscriptions_key; ?>"><?php echo $paypal_button_subscriptions_value; ?></option>
                                                                                                 <?php } ?>
                                                                                             </select>
@@ -168,7 +168,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                             <input type="text" class="ddpOptionPrice text" disabled="" name="ddp_option_price" value=""><label class="ddpOptionCurrency show" for="">USD</label>
 
                                                                                             <select class="subscriptions ddpOptionFrequency accessAid fadedOut hide" name="ddp_option_frequency" disabled="">
-        <?php foreach ($paypal_button_subscriptions as $paypal_button_subscriptions_key => $paypal_button_subscriptions_value) { ?>
+                                                                                                <?php foreach ($paypal_button_subscriptions as $paypal_button_subscriptions_key => $paypal_button_subscriptions_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_subscriptions_key; ?>"><?php echo $paypal_button_subscriptions_value; ?></option>
                                                                                                 <?php } ?>
                                                                                             </select>
@@ -177,7 +177,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                             <input maxlength="64" type="text" class="ddpOptionName text" disabled="" name="ddp_option_name" value="Option 3"><input type="text" class="ddpOptionPrice text" disabled="" name="ddp_option_price" value=""><label class="ddpOptionCurrency show" for="">USD</label>
 
                                                                                             <select class="subscriptions ddpOptionFrequency accessAid fadedOut hide" name="ddp_option_frequency" disabled="">
-        <?php foreach ($paypal_button_subscriptions as $paypal_button_subscriptions_key => $paypal_button_subscriptions_value) { ?>
+                                                                                                <?php foreach ($paypal_button_subscriptions as $paypal_button_subscriptions_key => $paypal_button_subscriptions_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_subscriptions_key; ?>"><?php echo $paypal_button_subscriptions_value; ?></option>
                                                                                                 <?php } ?>
                                                                                             </select>
@@ -280,10 +280,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                         <p id="displayCcLogos" class="hideShow hide"><label for="ccLogos"><input class="checkbox" type="checkbox" id="ccLogos" checked="" name="cc_logos" value="createdButtonWithCCLogo">Display credit card logos</label></p>
                                                                                         <p id="buttonCountryLanguage">
                                                                                             <label for="">Country and language for button</label>
-        <?php $paypal_button_language = get_paypal_button_languages(); ?>
+                                                                                            <?php $paypal_button_language = get_paypal_button_languages(); ?>
                                                                                             <select id="selectCountryLanguage" name="select_country_language">
                                                                                                 <option value="">--Select--</option>
-                                                                                            <?php foreach ($paypal_button_language as $paypal_button_language_key => $paypal_button_language_value) { ?>
+                                                                                                <?php foreach ($paypal_button_language as $paypal_button_language_key => $paypal_button_language_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_language_key; ?>"><?php echo $paypal_button_language_value; ?></option>
                                                                                                 <?php } ?>
                                                                                             </select>
@@ -314,12 +314,12 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                    <!-- <input type="text" id="customImageUrl" class="text" name="custom_image_url" value="">-->
 
                                                                                         <div id="wpss_upload_image_thumb" class="wpss-file wpss-file-own">
-        <?php if (isset($record->security_image) && $record->security_image != '') { ?>
+                                                                                            <?php if (isset($record->security_image) && $record->security_image != '') { ?>
                                                                                                 <img src="<?php echo $record->security_image; ?>"  width="65"/><?php
-        } else {
-            echo (isset($defaultImage) ? $defaultImage : '');
-        }
-        ?>
+                                                                                } else {
+                                                                                    echo (isset($defaultImage) ? $defaultImage : '');
+                                                                                }
+                                                                                            ?>
                                                                                         </div>
                                                                                         <input id="wpss_upload_image" type="text" size="36" name="wpss_upload_image" value="" class="wpss_text wpss-file wpss_text_own" />
                                                                                         <input id="wpss_upload_image_button" type="button" value="Upload Image" class="wpss-filebtn button button-hero button button-hero-own" />
@@ -405,7 +405,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="group donationCurrency">
                                                                         <label for="donationCurrency">Currency</label>
                                                                         <select id="donationCurrency" name="item_price_currency" class="currencySelect" disabled="">
-        <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
+                                                                            <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
                                                                             <?php } ?>
                                                                         </select>
@@ -433,15 +433,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <div class="group"><label for="subscriptionBillingAmount">Billing amount each cycle</label><input type="text" id="subscriptionBillingAmount" size="22" class="text" name="subscription_billing_amount" value="" disabled=""><span class="currencyLabel">USD</span></div>
                                                                         <div class="group">
                                                                             <label for="subscriptionBillingCycleNumber">Billing cycle</label>
-        <?php $paypal_button_subscriptions_cycle_billing_limit = get_paypal_button_subscriptions_cycle_billing_limit(); ?>
+                                                                            <?php $paypal_button_subscriptions_cycle_billing_limit = get_paypal_button_subscriptions_cycle_billing_limit(); ?>
                                                                             <select name="subscription_billing_cycle_number" disabled="">
-                                                                            <?php foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
+                                                                                <?php foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
                                                                                     <option value="<?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?>"><?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?></option>
                                                                                 <?php } ?>
                                                                             </select>
-                                                                                <?php $paypal_button_subscriptions_cycle = get_paypal_button_subscriptions_cycle(); ?>
+                                                                            <?php $paypal_button_subscriptions_cycle = get_paypal_button_subscriptions_cycle(); ?>
                                                                             <select id="subscriptionBillingCyclePeriod" name="subscription_billing_cycle_period" disabled="">
-                                                                            <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
+                                                                                <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
                                                                                     <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
                                                                                 <?php } ?>
                                                                             </select>
@@ -451,7 +451,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <label for="subscriptionBillingLimit">After how many cycles should billing stop?</label>
                                                                         <select name="subscription_billing_limit" disabled="">
                                                                             <option>Never</option>
-        <?php foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
+                                                                            <?php foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?>"><?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?></option>
                                                                             <?php } ?>
                                                                         </select>
@@ -468,10 +468,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 </label>
                                                                             </fieldset>
                                                                             <fieldset>
-        <?php $paypal_button_subscription_trial_duration = get_paypal_button_subscription_trial_duration(); ?>
+                                                                                <?php $paypal_button_subscription_trial_duration = get_paypal_button_subscription_trial_duration(); ?>
                                                                                 <legend>Define the trial period</legend>
                                                                                 <select name="subscription_trial_duration" disabled="">
-                                                                                <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
+                                                                                    <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
                                                                                         <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>"><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
                                                                                     <?php } ?>
                                                                                 </select>
@@ -494,7 +494,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                     <fieldset>
                                                                                         <legend>How long should the trial period last?</legend>
                                                                                         <select name="subscription_trial_2_duration" disabled="">
-        <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
+                                                                                            <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
                                                                                                 <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>"><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
                                                                                             <?php } ?>
                                                                                         </select>
@@ -514,7 +514,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="group gcCurrency">
                                                                         <label for="gcAmountCurrency">Currency</label>
                                                                         <select id="gcAmountCurrency" name="item_price_currency" class="currencySelect" disabled="">
-        <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
+                                                                            <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
                                                                             <?php } ?>
                                                                         </select>
@@ -536,8 +536,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                 </div>
                                                 <div id="stepTwo" class="box">
                                                     <div class="header">
-        <?php echo '<h3 id="giftBasedHeading" class="accessAid hide">' . __('Step 2: Save your buttons (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
-        <?php echo '<h3 id="productBasedHeading" class="opened">' . __('Step 2: Save your buttons (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
+                                                        <?php echo '<h3 id="giftBasedHeading" class="accessAid hide">' . __('Step 2: Save your buttons (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
+                                                        <?php echo '<h3 id="productBasedHeading" class="opened">' . __('Step 2: Save your buttons (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
                                                     </div>
                                                     <div class="body">
                                                         <div class="content">
@@ -552,78 +552,17 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             <li>Edit your buttons with PayPal's tools</li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="step2-inventory" id="inventoryOptions">
-                                                                        <input class="checkbox" type="checkbox" id="enableInventory" name="enable_inventory" value="enabledInventory"><label for="enableInventory">Track inventory</label>
-                                                                        <p class="hint">Don't oversell items not in stock -- Get an email alert when inventory is low.</p>
-                                                                        <input class="checkbox" type="checkbox" id="enableProfitAndLoss" name="enable_profit_and_loss" value="enabledProfitAndLoss"><label for="enableProfitAndLoss">Track profit and losses</label>
-                                                                        <p class="hint">View profit and loss report by product/service.</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="step2-extra-fields opened" id="inventoryTable">
-                                                                    <div id="trackByItemTable" class="fadedOut">
-                                                                        <input class="radio" type="radio" id="trackByItem" checked="" name="track_button_by" value="trackdByItem" disabled=""><label id="byItemLabel" for="trackByItem"><strong>By item</strong></label>
-                                                                        <div id="byItemTableBody">
-                                                                            <div class="inventory-table-row">
-                                                                                <div class="left-edge">&nbsp;</div>
-                                                                                <div>Item ID</div>
-                                                                                <div class="invRelated">Qty. in stock</div>
-                                                                                <div class="invRelated">Alert qty. (optional) 
-                                                                              
-                                                                                </div>
-                                                                                <div class="PNLRelated">Price</div>
-                                                                                <div class="right-edge">&nbsp;</div>
-                                                                            </div>
-                                                                            <div class="inventory-table-row">
-                                                                                <div class="left-edge">&nbsp;</div>
-                                                                                <div><input class="type-text" type="text" name="item_id" value="" disabled=""></div>
-                                                                                <div class="invRelated"><input class="type-text" type="text" name="items_in_stock" value="" disabled=""></div>
-                                                                                <div class="invRelated"><input class="type-text" type="text" name="alert_quantity" value="" disabled=""></div>
-                                                                                <div class="PNLRelated"><input class="type-text" type="text" name="item_cost" value="" disabled=""></div>
-                                                                                <div class="right-edge">USD</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div id="trackByOptionTable" class="fadedOut accessAid">
-                                                                        <input class="radio" type="radio" id="trackByOption" name="track_button_by" value="trackdByOption" disabled=""><label for="trackByOption"><strong>By option</strong> (in drop-down menu) <a id="chooseAnotherDropDown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#chooseAnotherDropDown" class="accessAid">Choose a different drop-down</a></label>
-                                                                        <div id="byOptionTableBody" class="accessAid">
-                                                                            <div class="inventory-table-row">
-                                                                                <div class="left-edge">&nbsp;</div>
-                                                                                <div>Item ID</div>
-                                                                                <div class="invRelated">Qty in stock</div>
-                                                                                <div class="invRelated">Alert qty. (optional) <span class="autoTooltip helpText" title="" tabindex="0">What's this?<span class="accessAid">When your inventory falls to this number, PayPal will send you an e-mail alert.</span></span></div>
-                                                                                <div class="PNLRelated">Cost</div>
-                                                                                <div class="right-edge">&nbsp;</div>
-                                                                            </div>
-                                                                            <div class="inventory-table-row">
-                                                                                <div class="left-edge">&nbsp;</div>
-                                                                                <div><input class="type-text" type="text" name="item_id" value="" disabled=""></div>
-                                                                                <div class="invRelated"><input class="type-text" type="text" name="items_in_stock" value="" disabled=""></div>
-                                                                                <div class="invRelated"><input class="type-text" type="text" name="alert_quantity" value="" disabled=""></div>
-                                                                                <div class="PNLRelated"><input class="type-text" type="text" name="item_cost" value="" disabled=""></div>
-                                                                                <div class="right-edge">&nbsp;</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                    <!--- inventory space -->
 
-                                                                <div class="step2-bottom-fields fadedOut opened" id="soldOutOption">
-                                                                    <h5 id="shoppingHead" class="opened">Can customers buy an item when it is sold out?</h5>
-                                                                    <div class="pre-order opened" id="shoppingPreOrder"><input class="radio" type="radio" id="enablePreOrder" name="enable_pre_order" value="enabledPreOrder" disabled=""><label for="enablePreOrder">Yes, customers can buy the item as usual.</label></div>
-                                                                    <div class="no-pre-order">
-                                                                        <input class="radio opened" type="radio" id="dontEnablePreOrder" checked="" name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened">No, don't let customers buy the item. 
-                                                                        
-                                                                        </label>
-                                                                        <p class="hint opened fadedOut" id="shoppingURL"><span class="littleHint">Take customers to specific page when they click <strong>Continue Shopping</strong> button on "item sold out" page</span><input class="type-text" type="text" id="soldOutURL" name="sold_out_url" value="" disabled=""><span class="littleHint">Ex: http://www.mybuynowstore.com</span></p>
-                                                                    </div>
                                                                 </div>
-
+                                                                <!--- Inventory end --->
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div id="stepThree" class="box last">
                                                     <div class="header">
-        <?php echo '<h3>' . __('Step 3: Customize advanced features (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
+                                                        <?php echo '<h3>' . __('Step 3: Customize advanced features (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
                                                     </div>
                                                     <div class="body">
                                                         <div class="content">
@@ -681,10 +620,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                     </div>
                 </div>
                 <script type="text/javascript">var imageUrls = {en: {BuyNow: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fbuynow\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fbuynow\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fbuynowCC\x5fLG\x2egif"},PayNow: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fpaynow\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fpaynow\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fpaynowCC\x5fLG\x2egif"},AddToCart: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fcart\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fcart\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fcart\x5fLG\x2egif"},Donate: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fdonate\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fdonate\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fdonateCC\x5fLG\x2egif"},GiftCertificate: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fgift\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fgift\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fgiftCC\x5fLG\x2egif"},Subscribe: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fsubscribe\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fsubscribe\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fsubscribeCC\x5fLG\x2egif"},PaymentPlan: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5finstallment\x5fplan\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5finstallment\x5fplan\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5finstallment\x5fplan\x5fCC\x5fLG\x2egif"},AutoBilling: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fauto\x5fbilling\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fauto\x5fbilling\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fauto\x5fbilling\x5fCC\x5fLG\x2egif"}},fr: {BuyNow: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fbuynow\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fbuynow\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fbuynowCC\x5fLG\x2egif"},PayNow: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fpaynow\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fpaynow\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fpaynowCC\x5fLG\x2egif"},AddToCart: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fcart\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fcart\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fcart\x5fLG\x2egif"},Donate: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fdonate\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fdonate\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fdonateCC\x5fLG\x2egif"},GiftCertificate: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fgift\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fgift\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fgiftCC\x5fLG\x2egif"},Subscribe: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fsubscribe\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fsubscribe\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fsubscribeCC\x5fLG\x2egif"},PaymentPlan: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5finstallment\x5fplan\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5finstallment\x5fplan\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5finstallment\x5fplan\x5fCC\x5fLG\x2egif"},AutoBilling: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fauto\x5fbilling\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fauto\x5fbilling\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2ffr\x5fXC\x2fi\x2fbtn\x2fbtn\x5fauto\x5fbilling\x5fCC\x5fLG\x2egif"}},es: {BuyNow: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fbuynow\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fbuynow\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fbuynowCC\x5fLG\x2egif"},PayNow: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fpaynow\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fpaynow\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fpaynowCC\x5fLG\x2egif"},AddToCart: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fcart\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fcart\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fcart\x5fLG\x2egif"},Donate: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fdonate\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fdonate\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fdonateCC\x5fLG\x2egif"},GiftCertificate: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fgift\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fgift\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fgiftCC\x5fLG\x2egif"},Subscribe: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fsubscribe\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fsubscribe\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fsubscribeCC\x5fLG\x2egif"},PaymentPlan: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5finstallment\x5fplan\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5finstallment\x5fplan\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5finstallment\x5fplan\x5fCC\x5fLG\x2egif"},AutoBilling: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fauto\x5fbilling\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fauto\x5fbilling\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fes\x5fXC\x2fi\x2fbtn\x2fbtn\x5fauto\x5fbilling\x5fCC\x5fLG\x2egif"}},zh: {BuyNow: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fbuynow\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fbuynow\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fbuynowCC\x5fLG\x2egif"},PayNow: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fpaynow\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fpaynow\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fpaynowCC\x5fLG\x2egif"},AddToCart: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fcart\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fcart\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fcart\x5fLG\x2egif"},Donate: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fdonate\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fdonate\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fdonateCC\x5fLG\x2egif"},GiftCertificate: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fgift\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fgift\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fgiftCC\x5fLG\x2egif"},Subscribe: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fsubscribe\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fsubscribe\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fsubscribeCC\x5fLG\x2egif"},PaymentPlan: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5finstallment\x5fplan\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5finstallment\x5fplan\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5finstallment\x5fplan\x5fCC\x5fLG\x2egif"},AutoBilling: {small: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fauto\x5fbilling\x5fSM\x2egif", large: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fauto\x5fbilling\x5fLG\x2egif", cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fzh\x5fXC\x2fi\x2fbtn\x2fbtn\x5fauto\x5fbilling\x5fCC\x5fLG\x2egif"}},int: {BuyNow: {cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fbuynowCC\x5fLG\x5fglobal\x2egif"},Donate: {cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fdonateCC\x5fLG\x5fglobal\x2egif"},GiftCertificate: {cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fgiftCC\x5fLG\x5fglobal\x2egif"},PayNow: {cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fpaynowCC\x5fLG\x5fglobal\x2egif"},Subscribe: {cc: "https\x3a\x2f\x2fwww\x2epaypalobjects\x2ecom\x2fen\x5fUS\x2fi\x2fbtn\x2fbtn\x5fsubscribeCC\x5fLG\x5fglobal\x2egif"}}};</script>
-        <?php
-        wp_enqueue_script('button-designer-js', BMW_PLUGIN_URL . 'admin/js/paypal-wp-button-manager-buttonDesigner.js', array(), '1.0', true);
-    }
+                <?php
+                wp_enqueue_script('button-designer-js', BMW_PLUGIN_URL . 'admin/js/paypal-wp-button-manager-buttonDesigner.js', array(), '1.0', true);
+            }
 
-}
+        }
 
-AngellEYE_PayPal_WP_Button_Manager_button_interface::init();
+        AngellEYE_PayPal_WP_Button_Manager_button_interface::init();
