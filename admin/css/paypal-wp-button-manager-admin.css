@@ -88,10 +88,10 @@ img#gifimg { display: inline-block; margin-left: 10px; margin-top: 15px; display
 }
 .cls_tooltip {cursor:pointer;text-decoration:underline;color:#0074a2;}
 .msg_div p { padding: 0px !important; padding-left: 10px !important;}
-#companies-table {width:52%; float:right;margin-right:1%;}
+#companies-table {width:58%; float:right;margin-right:1%;}
 form#button_manager_integration_form {
   float: left;
-  width: 44%;
+  width: 40%;
 }
 ul.ul_paypal_mode, ul.ul_account_mode {
   margin-top: 0px !important;
