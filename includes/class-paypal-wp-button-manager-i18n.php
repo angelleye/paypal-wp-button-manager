@@ -28,10 +28,14 @@ class AngellEYE_PayPal_WP_Button_Manager_i18n {
      * @since    0.1.0
      */
     public function load_plugin_textdomain() {
-
-        load_plugin_textdomain(
+		$locale = apply_filters( 'plugin_locale', get_locale(), $this->domain );
+       /* load_plugin_textdomain(
                 $this->domain, false, dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
-        );
+        );*/
+        
+       
+		load_textdomain( $this->domain, BMW_PLUGIN_URL . 'languages/' . $this->domain . '-' . $locale . '.po' );
+		load_plugin_textdomain( $this->domain, FALSE, BMW_PLUGIN_URL . '/languages/' );
     }
 
     /**
