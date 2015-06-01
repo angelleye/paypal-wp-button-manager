@@ -62,6 +62,33 @@ class AngellEYE_PayPal_WP_Button_Manager {
         $this->set_locale();
         $this->define_admin_hooks();
         $this->define_public_hooks();
+
+        /**
+         * Add action links
+         * http://stackoverflow.com/questions/22577727/problems-adding-action-links-to-wordpress-plugin
+         */
+        $prefix = is_network_admin() ? 'network_admin_' : '';
+        add_filter("{$prefix}plugin_action_links_" . PAYPAL_WP_BUTTON_MANAGER_PLUGIN_BASENAME, array($this, 'plugin_action_links'), 10, 4);
+    }
+
+    /**
+     * Return the plugin action links.  This will only be called if the plugin
+     * is active.
+     *
+     * @since 1.0.0
+     * @param array $actions associative array of action names to anchor tags
+     * @return array associative array of plugin action links
+     */
+    public function plugin_action_links($actions, $plugin_file, $plugin_data, $context) {
+        $custom_actions = array(
+            'configure' => sprintf('<a href="%s">%s</a>', admin_url('options-general.php?page=paypal-wp-button-manager-option'), __('Configure', 'paypal-wp-button-manager')),
+            'docs' => sprintf('<a href="%s" target="_blank">%s</a>', 'http://www.angelleye.com/category/docs/paypal-wp-button-manager/?utm_source=paypal_wp_button_manager&utm_medium=docs_link&utm_campaign=paypal_wp_button_manager', __('Docs', 'paypal-wp-button-manager')),
+            'support' => sprintf('<a href="%s" target="_blank">%s</a>', 'http://wordpress.org/support/plugin/paypal-wp-button-manager/', __('Support', 'paypal-wp-button-manager')),
+            'review' => sprintf('<a href="%s" target="_blank">%s</a>', 'http://wordpress.org/support/view/plugin-reviews/paypal-wp-button-manager', __('Write a Review', 'paypal-wp-button-manager')),
+        );
+
+        // add the links to the front of the actions list
+        return array_merge($custom_actions, $actions);
     }
 
     /**

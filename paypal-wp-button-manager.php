@@ -37,6 +37,13 @@ if (!defined('PAYPAL_WP_BUTTON_MANAGER_LOG_DIR')) {
 }
 
 /**
+ * define plugin basename
+ */
+if (!defined('PAYPAL_WP_BUTTON_MANAGER_PLUGIN_BASENAME')) {
+    define('PAYPAL_WP_BUTTON_MANAGER_PLUGIN_BASENAME', plugin_basename(__FILE__));
+}
+
+/**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-paypal-wp-button-manager-activator.php
  */
