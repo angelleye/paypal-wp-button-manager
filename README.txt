@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 0.1.1
+Stable tag: 1.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -33,6 +33,10 @@ PayPal WP Button Manager is a more advanced solution which utilizes the [PayPal 
 = User Friendly Interface =
 
 We have essentially replicated the PayPal Button Manager experience you see in your PayPal account, however, we have tightly integrated it into the WordPress admin panel.  This allows you to create and your PayPal buttons without ever leaving your site.
+
+= Create Buttons for Multiple PayPal Accounts =
+
+Within the plugin you may create one or more companies (PayPal accounts).  When creating a new button, the first step is to choose which company / account you will be creating the button for.  This provides the ability to create and manage buttons for any number of PayPal accounts within a single installation.
 
 = Options for Button Usage =
 
@@ -105,6 +109,15 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 1.0.0 - 06.01.2015 =
+* Feature - Adds option to include a notify URL (used for IPN) with created buttons.
+* Feature - Adds the ability to create multiple companies (PayPal accounts) so that buttons can be created for any account.
+* Feature - Adds the ability to use the PayPal account merchant ID or the email address within non-hosted buttons.
+* Feature - Adds internationalization and a default.po file for translation.
+* Feature - Adds the option to delete a hosted button from your PayPal account when it's deleted from WordPress.
+* Fix - Resolves a potential SQL injection vulnerability.
+* Fix - Resolves an encoding issue causing plus signs (+) to show up in button drop-down lists.
+
 = 0.1.1 - 05.06.2015 =
 *Fix - Resolves a bug causing a "Security Header" failure to occur when creating live PayPal buttons.
 
@@ -117,5 +130,5 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Upgrade Notice ==
 
-= 0.1.0 =
-PayPal WP Button Manager is currently in a BETA release stage.  It has been tested and is ready for use, but we will be adding more functionality and design changes for the final 1.0 release.  We would appreciate it if you would give it a try and provide any feedback you can.  Thanks!
+= 1.0.0 =
+This is the final 1.0 release of the plugin and has quite a few changes from the previous beta release.  You may need to disable and then re-activate the plugin after applying the update in order to trigger required database updates.

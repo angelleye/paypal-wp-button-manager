@@ -5,7 +5,7 @@
  * Plugin Name:       PayPal WP Button Manager
  * Plugin URI:        http://www.angelleye.com/
  * Description:       Easily create and manage secure PayPal buttons for WordPress
- * Version:           0.1.1
+ * Version:           1.0.0
  * Author:            Angell EYE
  * Author URI:        http://www.angelleye.com/
  * License:           GNU General Public License v3.0
