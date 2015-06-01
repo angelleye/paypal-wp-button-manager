@@ -389,7 +389,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
                     });
                 </script>
-                <?
+                <?php
             }
         }
     }
