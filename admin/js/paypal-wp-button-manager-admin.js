@@ -5,8 +5,6 @@ jQuery(function ($) {
         jQuery(".spanOptionCurrency").html(jQuery(this).val());
     });
 
-
-
     jQuery( ".removeOptionPrice" ).click(function() {
         var rowCount = jQuery('#tblOption tr').length;
 	
@@ -16,39 +14,9 @@ jQuery(function ($) {
         }else {
             jQuery("#tblOption tr:last").remove();
         }
-		
-		
 	
     });
 
-    
-    // media uploader function.
-   
-   
-    jQuery('#wpss_upload_image_button').click(function() {
-        var formfield = jQuery('#wpss_upload_image').attr('name');
-        tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-        return false;
-    });
-    
-    jQuery('#ipn_url_chk').click(function() {
-        if (jQuery(this).is(':checked')) {
-            jQuery('#ipn_urlinput').removeAttr('disabled');
-        } else {
-            
-            jQuery('#ipn_urlinput').attr('disabled', 'disabled');
-        }
-    });
-    window.send_to_editor = function(html) {
-        var imgurl = jQuery('img',html).attr('src');
-        jQuery('#wpss_upload_image').val(imgurl);
-        tb_remove();
-
-        jQuery('.previewCustomImageSection').html("<img height='65' src='"+imgurl+"'/>");
-    }
- 
-    
-  
     /*=========================================================================================================================*/
   
     jQuery('#ddl_companyname').change(function() {
@@ -81,9 +49,7 @@ jQuery(function ($) {
     
     });  
   
-  
-  
- jQuery('.submitdelete').click(function(e) {
+    jQuery('.submitdelete').click(function(e) {
  		
         var post_id = jQuery(this).attr('href');
         var cur_post_type = jQuery(location).attr('href');  
@@ -141,15 +107,15 @@ jQuery(function ($) {
         }
     });
  
-    
-     function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
     }
-  }
-}
+
     function parseURL(theLink) {
         return decodeURI((RegExp("post" + '=' + '(.+?)(&|$)').exec(theLink) || [, null])[1]);
     }
@@ -178,8 +144,9 @@ jQuery(function ($) {
        
         jQuery(control).focus().select();
         var copy = $(control).val();
-    //window.prompt ("Copy to clipboard: Ctrl+C, Enter", copy);
+        //window.prompt ("Copy to clipboard: Ctrl+C, Enter", copy);
     }
+
     jQuery(".txtarea_response").click(function(){
         select_all(this);
     })
@@ -233,14 +200,9 @@ jQuery(function ($) {
                 },
            		
                 values: shortcodeValues
-           			
             
             });
         });
     }
-   
-
-
 	
 });
-
