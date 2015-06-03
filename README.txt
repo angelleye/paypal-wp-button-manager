@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
 Requires at least: 3.8
 Tested up to: 4.2.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -108,6 +108,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * Sandbox credentials can be obtained by viewing the sandbox account profile within your PayPal developer account, or by signing in with a sandbox account here:  https://www.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
 
 == Changelog ==
+
+= 1.0.2 - 06.02.2015 =
+* Fix - Resolves a conflict with the WordPress media uploader.
 
 = 1.0.1 - 06.01.2015 =
 * Fix - Removes PHP short tag to resolve an error when activating on servers that do not have short tags enabled.
