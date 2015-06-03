@@ -67,6 +67,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
      */
     public function enqueue_scripts() {
 
+        $screen = get_current_screen();
+
         wp_enqueue_script('jquery-ui-core');
         wp_enqueue_script('jquery-ui-accordion');
         wp_enqueue_script('jquery-ui-tabs');
@@ -78,6 +80,12 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         wp_enqueue_script($this->plugin_name . 'three', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-pa.js', array('jquery'), $this->version, false);
         wp_enqueue_script($this->plugin_name . 'five', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-widgets.js', array('jquery'), $this->version, false);
         wp_enqueue_script($this->plugin_name . 'four', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-pp_jscode_080706.js', array('jquery'), $this->version, false);
+
+        if($screen->post_type == 'paypal_buttons')
+        {
+            wp_enqueue_script($this->plugin_name . 'admin-image-uploader', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-admin-image-uploader.js', array('jquery'), $this->version, false);
+        }
+
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-admin.js', array('jquery'), $this->version, false);
 
         if (wp_script_is($this->plugin_name)) {
