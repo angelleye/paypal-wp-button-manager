@@ -124,6 +124,7 @@ a.cls_addcompany.button-primary {
 
 .div_bymebeer {
   border: 2px dashed #000;
+  width:98%;
 }
 .div_cancel_donate {
   float: right;

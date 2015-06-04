@@ -62,7 +62,7 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
        if (isset($is_cancel) && empty($is_cancel)): ?>
                 
         <div class="div_bymebeer">
-    	 <a href="https://www.angelleye.com/product/buy-beer/?utm_source=paypal_wp_button_manager&utm_medium=buy_me_a_beer&utm_campaign=beer_me"><img src="<?php echo BMW_PLUGIN_URL ?>/admin/images/buy-us-a-beer.png" id="img_beer"/></a>
+    	 <a href="https://www.angelleye.com/product/buy-beer/?utm_source=paypal_wp_button_manager&utm_medium=buy_me_a_beer&utm_campaign=beer_me" target="_blank"><img src="<?php echo BMW_PLUGIN_URL ?>/admin/images/buy-us-a-beer.png" id="img_beer"/></a>
 
     	  <div class="div_cancel_donate">
         		<span class="button-primary btn_can_notice">Dismiss</span>
