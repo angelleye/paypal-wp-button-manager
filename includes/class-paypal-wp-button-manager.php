@@ -211,6 +211,8 @@ class AngellEYE_PayPal_WP_Button_Manager {
         $this->loader->add_action('wp_ajax_checkhosted_button', $plugin_admin, 'paypal_wp_button_manager_checkhosted_button');
         $this->loader->add_action('wp_ajax_delete_post_own', $plugin_admin, 'paypal_wp_button_manager_delete_post_own');
         $this->loader->add_action('wp_ajax_del_all_hostedbutton', $plugin_admin, 'paypal_wp_button_manager_del_all_hostedbutton');
+        $this->loader->add_action('wp_ajax_cancel_donate', $plugin_admin, 'paypal_wp_button_manager_cancel_donate');
+        
         $this->loader->add_filter('admin_head', $plugin_admin, 'paypal_wp_button_manager_print_emptytrash');
 
     }

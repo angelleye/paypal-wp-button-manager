@@ -48,6 +48,19 @@ jQuery(function ($) {
         });
     
     });  
+    
+    jQuery('.btn_can_notice').click(function(e) {
+    var data = {
+			'action': 'cancel_donate'
+			
+		};
+
+		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+		jQuery.post(ajaxurl, data, function(response) {
+			location.reload();		
+		});
+		
+		});
   
     jQuery('.submitdelete').click(function(e) {
  		

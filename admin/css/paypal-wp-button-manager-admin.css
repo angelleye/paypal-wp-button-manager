@@ -121,3 +121,12 @@ a.cls_addcompany.button-primary {
   margin-top: 13px !important;
   margin-left: 20px !important;
 }
+
+.div_bymebeer {
+  border: 2px dashed #000;
+}
+.div_cancel_donate {
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
+}

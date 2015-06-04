@@ -593,5 +593,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         exit(0);
 
     }
+    
+    public static function paypal_wp_button_manager_cancel_donate() {
+    	update_option('paypal_wp_button_cancel','y');
+    	exit(1);
+        
+    }
 
 }
