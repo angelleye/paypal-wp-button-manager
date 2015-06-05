@@ -133,8 +133,7 @@ a.cls_addcompany.button-primary {
 .div_log_settings .form-table{width:100%;}
 
 .div_log_settings .form-table th {width:100px !important;}
-.div_bymebeer {
-  border: 2px dashed #000;
+.div_buymebeer {
   width: 210px;
   display: inline-block;
   float: left;
