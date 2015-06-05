@@ -55,7 +55,17 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
         $genral_setting_fields = self::paypal_wp_button_manager_general_setting_fields();
         $Html_output = new AngellEYE_PayPal_WP_Button_Manager_Html_output();
         ?>
-        <?php 
+       
+        <div class="div_general_settings">
+        <div class="div_log_settings">
+	        <form id="button_manager_integration_form_general" enctype="multipart/form-data" action="" method="post">
+	            <?php $Html_output->init($genral_setting_fields); ?>
+	            <p class="submit">
+	                <input type="submit" name="paypal_intigration" class="button-primary" value="<?php esc_attr_e('Save Settings', 'Option'); ?>" />
+	            </p>
+	        </form>
+        </div>
+         <?php 
         
        
       	 $is_cancel = get_option('paypal_wp_button_cancel');
@@ -72,12 +82,7 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
         
        
         <?php  endif; ?>
-        <form id="button_manager_integration_form_general" enctype="multipart/form-data" action="" method="post">
-            <?php $Html_output->init($genral_setting_fields); ?>
-            <p class="submit">
-                <input type="submit" name="paypal_intigration" class="button-primary" value="<?php esc_attr_e('Save changes', 'Option'); ?>" />
-            </p>
-        </form>
+        </div>
         <?php
     }
 
