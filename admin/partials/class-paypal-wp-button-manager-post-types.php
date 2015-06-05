@@ -94,6 +94,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                     'supports' => array('title'),
                     'has_archive' => true,
                     'show_in_nav_menus' => true
+                   
+
                         )
                 )
         );
