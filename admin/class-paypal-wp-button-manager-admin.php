@@ -634,8 +634,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			return;
 		}
 
-		$welcome_page_name  = __( 'About Paypal Button Manager', 'paypal-wp-button-manager' );
-		$welcome_page_title = __( 'Welcome to Paypal Button Manager', 'paypal-wp-button-manager' );
+		$welcome_page_name  = __( 'About the PayPal Button Manager', 'paypal-wp-button-manager' );
+		$welcome_page_title = __( 'Welcome to the PayPal Button Manager', 'paypal-wp-button-manager' );
 
 		switch ( $_GET['page'] ) {
 			case 'paypal-wp-button-manager-about' :
@@ -651,16 +651,16 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 	public function about_screen() {
 		?>
 		<div class="wrap about-wrap">
-			<h1><?php printf( __( 'Welcome to Paypal Button Manager %s', 'paypal-wp-button-manager' ),  $this->version ); ?></h1>
+			<h1><?php printf( __( 'Welcome to PayPal Button Manager %s', 'paypal-wp-button-manager' ),  $this->version ); ?></h1>
 	
 			<div class="about-text woocommerce-about-text">
 				<?php
 					$message = __( 'Thanks for installing!', 'paypal-wp-button-manager' );
 	
-					printf( __( '%s Paypal Button Manager %s is more powerful, stable and secure than ever before. We hope you enjoy using it.', 'paypal-wp-button-manager' ), $message,  $this->version );
+					printf( __( '%s PayPal WP Button Manager %s is more powerful, stable and secure than ever before. We hope you enjoy using it.', 'paypal-wp-button-manager' ), $message,  $this->version );
 					
 					$tweets  = array(
-						'Paypal Wordpress Button Manager'
+						'PayPal Button Manager for WordPress'
 					);
 					shuffle( $tweets );
 				?>
