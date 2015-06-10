@@ -244,6 +244,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 		// Add a callback to add our button to the TinyMCE toolbar
 		add_filter('mce_buttons', array($this, 'paypal_wp_button_manager_add_tinymce_button'));
+		
 	}
 
 	public function paypal_wp_button_manager_register_tinymce_plugin($plugin_array) {
@@ -344,6 +345,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 	public function paypal_wp_button_manager_print_emptytrash() {
 		global $typenow, $pagenow, $wpdb, $post, $post_ID;
+		
 		$table_name = $wpdb->prefix . "paypal_wp_button_manager_companies";
 		$postmeta_table = $wpdb->prefix . "postmeta";
 		$post_tablename = $wpdb->prefix . "posts";
@@ -363,10 +365,6 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 		if (isset($get_hosted_button_count->cnt_hosted) && !empty($get_hosted_button_count->cnt_hosted)) {
 			$count_hostedbuttons = $get_hosted_button_count->cnt_hosted;
 		}
-
-
-
-
 
 		$screen = get_current_screen();
 		if ($screen->post_type == 'paypal_buttons') {
@@ -602,7 +600,6 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 	public static function paypal_wp_button_manager_beer_metabox() {
 		add_meta_box('bmw_meta', __( 'Buy Us a Beer!', 'paypal-wp-button-manager' ), array(__CLASS__,'paypal_wp_button_manager_meta_callback'), 'paypal_buttons', 'side', 'default',10,1);
-
 	}
 
 
@@ -618,12 +615,189 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
     	  <div class="div_cancel_donate">
         		<span class="button-primary btn_can_notice">Dismiss</span>
-        </div>
+          </div>
     	 
     	 </div>
         
-       
       <?php  endif; 
 	}
+	
+	/**
+     * paypal_wp_button_manager_welcome_page function is use for
+     * Welcome Page when User is Active plugin.
+     * @since 1.0.0
+     * @access public
+     */
+	
+	public function paypal_wp_button_manager_welcome_page() {
+		if ( empty( $_GET['page'] ) ) {
+			return;
+		}
 
+		$welcome_page_name  = __( 'About Paypal Button Manager', 'paypal-wp-button-manager' );
+		$welcome_page_title = __( 'Welcome to Paypal Button Manager', 'paypal-wp-button-manager' );
+
+		switch ( $_GET['page'] ) {
+			case 'paypal-wp-button-manager-about' :
+				$page = add_dashboard_page( $welcome_page_title, $welcome_page_name, 'manage_options', 'paypal-wp-button-manager-about', array( $this, 'about_screen' ) );
+				add_action( 'admin_print_styles-' . $page, array( $this, 'admin_css' ) );
+			break;
+		}
+	}
+	
+	/**
+	 * Output the about screen.
+	 */
+	public function about_screen() {
+		?>
+		<div class="wrap about-wrap">
+			<h1><?php printf( __( 'Welcome to Paypal Button Manager %s', 'paypal-wp-button-manager' ),  $this->version ); ?></h1>
+	
+			<div class="about-text woocommerce-about-text">
+				<?php
+					$message = __( 'Thanks for installing!', 'paypal-wp-button-manager' );
+	
+					printf( __( '%s Paypal Button Manager %s is more powerful, stable and secure than ever before. We hope you enjoy using it.', 'paypal-wp-button-manager' ), $message,  $this->version );
+					
+					$tweets  = array(
+						'Paypal Wordpress Button Manager'
+					);
+					shuffle( $tweets );
+				?>
+			</div>
+			
+			<div class="angelleye-badge"><img src="<?php echo BMW_PLUGIN_URL ?>/admin/images/angelleye.png" id="angelleye_logo" alt="angelleye" /></div>
+
+			<div class="woocommerce-actions">
+				<a href="<?php echo admin_url('/options-general.php?page=paypal-wp-button-manager-option'); ?>" id="paypal-wp-button-manage-settings" class="button button-primary"><?php _e( 'Settings', 'paypal-wp-button-manager' ); ?></a>
+				<a href="<?php echo esc_url( apply_filters( 'woocommerce_docs_url', 'http://docs.woothemes.com/documentation/plugins/woocommerce/', 'paypal-wp-button-manager' ) ); ?>" id="paypal-wp-button-manage-document" class="docs button button-primary"><?php _e( 'Docs', 'paypal-wp-button-manager' ); ?></a>
+				<a id="paypal-wp-button-manage-twitter" href="https://twitter.com/share" class="twitter-share-button" data-url="http://angelleye.com/" data-text="<?php echo esc_attr( $tweets[0] ); ?>" data-via="angelleye" data-size="large">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				
+				<!-- Place this tag where you want the share button to render. -->
+				<div class="g-plus" data-action="share" data-annotation="bubble" data-height="24" data-href="http://angelleye.com/"></div>
+				
+				<!-- Place this tag after the last share tag. -->
+				<script type="text/javascript">
+				(function() {
+				var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+				po.src = 'https://apis.google.com/js/platform.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+				})();
+				</script>
+				
+				<div id="fb-root"></div>
+				<script>(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+				fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));</script>
+			
+				<div class="fb-share-button" data-href="http://angelleye.com/" data-layout="button_count"></div>
+
+			</div>
+			
+			<h2 id="paypal-wp-button-manage-tab-wrapper" class="nav-tab-wrapper">
+				<a class="nav-tab <?php if ( $_GET['page'] == 'wc-about' ) echo 'nav-tab-active'; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wc-about' ), 'index.php' ) ) ); ?>">
+					<?php _e( "What's New", 'paypal-wp-button-manager' ); ?>
+				</a><a class="nav-tab <?php if ( $_GET['page'] == 'wc-credits' ) echo 'nav-tab-active'; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wc-credits' ), 'index.php' ) ) ); ?>">
+					<?php _e( 'Credits', 'paypal-wp-button-manager' ); ?>
+				</a><a class="nav-tab <?php if ( $_GET['page'] == 'wc-translators' ) echo 'nav-tab-active'; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wc-translators' ), 'index.php' ) ) ); ?>">
+					<?php _e( 'Translators', 'paypal-wp-button-manager' ); ?>
+				</a>
+			</h2>
+			
+			<div class="changelog">
+				<h4><?php _e( 'UI Overhaul', 'paypal-wp-button-manager' ); ?></h4>
+				<p><?php _e( 'We\'ve updated the user interface on both the front and backend of WooCommerce 2.3 "Handsome Hippo".', 'paypal-wp-button-manager' ); ?></p>
+			
+				<div class="changelog about-integrations">
+					<div class="wc-feature feature-section col three-col">
+						<div>
+							<h4><?php _e( 'Frontend UI Improvements', 'paypal-wp-button-manager' ); ?></h4>
+							<p><?php _e( 'On the frontend there are several UX enhancements such as the undo-remove-from cart link and responsive table design as well as a fresh, modern look which meshes more fluidly with the current design trends of default WordPress themes.', 'paypal-wp-button-manager' ); ?></p>
+						</div>
+						<div>
+							<h4><?php _e( 'Backend UI Improvements', 'paypal-wp-button-manager' ); ?></h4>
+							<p><?php _e( 'On the backend, settings have been re-organised and perform better on hand-held devices for an all round improved user experience. ', 'paypal-wp-button-manager' ); ?></p>
+						</div>
+						<div class="last-feature">
+							<h4><?php _e( 'Webhooks UI', 'paypal-wp-button-manager' ); ?></h4>
+						<p><?php printf( __( 'As part of the API, we\'ve introduced a UI for the Webhook system in WooCommerce 2.3. This makes it easier for 3rd party apps to integrate with WooCommerce. Read more in our %sdocs%s.', 'paypal-wp-button-manager' ), '<a href="http://docs.woothemes.com/document/webhooks/">', '</a>' ); ?></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="changelog">
+				<div class="feature-section col three-col">
+					<div>
+						<h4><?php _e( 'Geo-locating Customer Location', 'paypal-wp-button-manager' ); ?></h4>
+						<p><?php printf( __( 'We have added a new option to geolocate the "Default Customer Location". Coupled with ability to show taxes in your store based on this location, you can show relevant prices store-wide. Enable this in the %ssettings%s.', 'paypal-wp-button-manager' ), '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=tax' ) . '">', '</a>' ); ?></p>
+					</div>
+					<div>
+						<h4><?php _e( 'Color Customization', 'paypal-wp-button-manager' ); ?></h4>
+						<p><?php printf( __( 'If you\'re looking to customise the look and feel of the frontend in 2.3, take a look at the free %sWooCommerce Colors plugin%s. This lets you change the colors with a live preview.', 'paypal-wp-button-manager' ), '<a href="https://wordpress.org/plugins/woocommerce-colors/">', '</a>' ); ?></p>
+					</div>
+					<div class="last-feature">
+						<h4><?php _e( 'Improved Reports', 'paypal-wp-button-manager' ); ?></h4>
+						<p><?php _e( 'Sales reports can now show net and gross amounts, we\'ve added a print stylesheet, and added extra data on refunds to reports.', 'paypal-wp-button-manager' ); ?></p>
+					</div>
+				</div>
+				<div class="feature-section col three-col">
+					<div>
+						<h4><?php _e( 'Improved Simplify Gateway', 'paypal-wp-button-manager' ); ?></h4>
+						<p><?php printf( __( 'The built in Simplify Commerce Gateway (available in the US) now supports %sHosted Payments%s - a PCI Compliant hosted payment platform.', 'paypal-wp-button-manager' ), '<a href="https://www.simplify.com/commerce/docs/tools/hosted-payments">', '</a>' ); ?></p>
+					</div>
+					<div>
+						<h4><?php _e( 'Email Template Improvements', 'paypal-wp-button-manager' ); ?></h4>
+						<p><?php printf( __( 'To make email customization simpler, we\'ve included a CSS Inliner in this release, some new template files for styling emails, and some additional hooks for developers. Read more on our %sdeveloper blog%s.', 'paypal-wp-button-manager' ), '<a href="http://develop.woothemes.com/woocommerce/2014/10/2-3-emails/">', '</a>' ); ?></p>
+					</div>
+					<div class="last-feature">
+						<h4><?php _e( 'Simplified Coupon System', 'paypal-wp-button-manager' ); ?></h4>
+						<p><?php printf( __( 'We have simplified the coupon system to ensure discounts are never applied to taxes, and we\'ve improved support for discounting products inclusive of tax. Read more on our %sdevelop blog%s.', 'paypal-wp-button-manager' ), '<a href="http://develop.woothemes.com/woocommerce/2014/12/upcoming-coupon-changes-in-woocommerce-2-3/">', '</a>' ); ?></p>
+					</div>
+				</div>
+			</div>
+			
+			<hr />
+			
+			<div class="return-to-dashboard">
+				<a href="<?php echo admin_url('/options-general.php?page=paypal-wp-button-manager-option'); ?>"><?php _e( 'Go to Paypal Button Manager Settings', 'paypal-wp-button-manager' ); ?></a>
+			</div>
+		</div>
+		<?php
+	}
+	
+	/**
+	 * admin_css function.
+	 */
+	public function admin_css() {
+		wp_enqueue_style($this->plugin_name . 'welcome-page', plugin_dir_url(__FILE__) . 'css/activation.css', array(), $this->version, 'all');
+	}
+	
+	/**
+	 * paypal_wp_button_manager_redirect.
+	 */
+	public function paypal_wp_button_manager_redirect(){
+		
+		if ( ! is_network_admin() && ! isset( $_GET['activate-multi']  ) ) {
+			set_transient( 'paypal_wp_button_manager_activation_redirect', 1, 30 );
+		}
+		
+		// Bail if no activation redirect transient is set
+		if ( ! get_transient( 'paypal_wp_button_manager_activation_redirect' ) ) {
+			return;
+		}
+		
+		// Delete the redirect transient
+		delete_transient( 'paypal_wp_button_manager_activation_redirect' );
+		
+		if ( ( ! empty( $_GET['activate'] ) && ( $_GET['activate']  == 'true' ) ) ) {
+			wp_redirect( admin_url( 'index.php?page=paypal-wp-button-manager-about' ) );
+			exit;
+		}
+		
+	}
 }

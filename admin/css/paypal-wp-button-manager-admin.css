@@ -148,3 +148,17 @@ img#img_beer {
   margin-bottom: 10px;
 }
 .div_buymebeer_meta {float:none !important;width:auto !important;}
+.angelleye-badge {
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+
+img#angelleye_logo {
+  float: right;
+}
+#paypal-wp-button-manage-tab-wrapper{margin-top:20px;}
+#___plus_0,.g-plus{float: left !important; margin-right: 10px !important;}
+#paypal-wp-button-manage-settings,#paypal-wp-button-manage-document ,#paypal-wp-button-manage-twitter{ float: left; margin-right: 10px;}
+.fb_iframe_widget span{width: 99px; height: 28px; float:left;}
+.woocommerce-actions #paypal-wp-button-manage-settings,.woocommerce-actions #paypal-wp-button-manage-document{ background: #63ab40; border-color: #63ab40;}
