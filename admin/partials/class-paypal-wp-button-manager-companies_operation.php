@@ -38,9 +38,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Operations {
 
             $PayPalConfig = array(
                 'Sandbox' => $flag_mode,
-                'APIUsername' => isset($_POST['paypal_api_username']) ? $_POST['paypal_api_username'] : '',
-                'APIPassword' => isset($_POST['paypal_api_password']) ? $_POST['paypal_api_password'] : '',
-                'APISignature' => isset($_POST['paypal_api_signature']) ? $_POST['paypal_api_signature'] : '',
+                'APIUsername' => isset($_POST['paypal_api_username']) ? trim($_POST['paypal_api_username']) : '',
+                'APIPassword' => isset($_POST['paypal_api_password']) ? trim($_POST['paypal_api_password']) : '',
+                'APISignature' => isset($_POST['paypal_api_signature']) ? trim($_POST['paypal_api_signature']) : '',
                 'PrintHeaders' => isset($print_headers) ? $print_headers : '',
                 'LogResults' => isset($log_results) ? $log_results : '',
                 'LogPath' => isset($log_path) ? $log_path : '',
@@ -69,7 +69,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Operations {
             'paypal_api_signature' => isset($_POST['paypal_api_signature']) ? trim($_POST['paypal_api_signature']) : '',
             'paypal_mode' => isset($_POST['paypal_mode']) ? trim($_POST['paypal_mode']) : '',
             'paypal_account_mode' => isset($_POST['paypal_account_mode']) ? trim($_POST['paypal_account_mode']) : '',
-            'paypal_merchant_id' => isset($merchant_account_id) ? trim($merchant_account_id) : '',
+            'paypal_merchant_id' => isset($merchant_account_id) ? $merchant_account_id : '',
                 ));
 
         unset($PayPalConfig);
