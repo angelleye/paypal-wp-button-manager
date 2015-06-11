@@ -61,15 +61,15 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Operations {
 
 
 
-        $add_result = $wpdb->insert($table_name, array('title' => isset($_POST['company_title']) ? $_POST['company_title'] : '',
-            'paypal_person_name' => isset($_POST['paypal_person_name']) ? $_POST['paypal_person_name'] : '',
-            'paypal_person_email' => isset($_POST['paypal_person_email']) ? $_POST['paypal_person_email'] : '',
-            'paypal_api_username' => isset($_POST['paypal_api_username']) ? $_POST['paypal_api_username'] : '',
-            'paypal_api_password' => isset($_POST['paypal_api_password']) ? $_POST['paypal_api_password'] : '',
-            'paypal_api_signature' => isset($_POST['paypal_api_signature']) ? $_POST['paypal_api_signature'] : '',
-            'paypal_mode' => isset($_POST['paypal_mode']) ? $_POST['paypal_mode'] : '',
-            'paypal_account_mode' => isset($_POST['paypal_account_mode']) ? $_POST['paypal_account_mode'] : '',
-            'paypal_merchant_id' => isset($merchant_account_id) ? $merchant_account_id : '',
+        $add_result = $wpdb->insert($table_name, array('title' => isset($_POST['company_title']) ? trim($_POST['company_title']) : '',
+            'paypal_person_name' => isset($_POST['paypal_person_name']) ? trim($_POST['paypal_person_name']) : '',
+            'paypal_person_email' => isset($_POST['paypal_person_email']) ? trim($_POST['paypal_person_email']) : '',
+            'paypal_api_username' => isset($_POST['paypal_api_username']) ? trim($_POST['paypal_api_username']) : '',
+            'paypal_api_password' => isset($_POST['paypal_api_password']) ? trim($_POST['paypal_api_password']) : '',
+            'paypal_api_signature' => isset($_POST['paypal_api_signature']) ? trim($_POST['paypal_api_signature']) : '',
+            'paypal_mode' => isset($_POST['paypal_mode']) ? trim($_POST['paypal_mode']) : '',
+            'paypal_account_mode' => isset($_POST['paypal_account_mode']) ? trim($_POST['paypal_account_mode']) : '',
+            'paypal_merchant_id' => isset($merchant_account_id) ? trim($merchant_account_id) : '',
                 ));
 
         unset($PayPalConfig);
