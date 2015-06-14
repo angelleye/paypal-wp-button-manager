@@ -105,7 +105,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 = Where do I get my API credentials? =
 
 * Live credentials can be obtained by signing in to your live PayPal account here:  https://www.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
-* Sandbox credentials can be obtained by viewing the sandbox account profile within your PayPal developer account, or by signing in with a sandbox account here:  https://www.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
+* Sandbox credentials can be obtained by viewing the sandbox account profile within your PayPal developer account, or by signing in with a sandbox account here:  https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
 
 == Changelog ==
 
