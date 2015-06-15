@@ -244,7 +244,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 		// Add a callback to add our button to the TinyMCE toolbar
 		add_filter('mce_buttons', array($this, 'paypal_wp_button_manager_add_tinymce_button'));
-		
+
 	}
 
 	public function paypal_wp_button_manager_register_tinymce_plugin($plugin_array) {
@@ -345,7 +345,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 	public function paypal_wp_button_manager_print_emptytrash() {
 		global $typenow, $pagenow, $wpdb, $post, $post_ID;
-		
+
 		$table_name = $wpdb->prefix . "paypal_wp_button_manager_companies";
 		$postmeta_table = $wpdb->prefix . "postmeta";
 		$post_tablename = $wpdb->prefix . "posts";
@@ -621,14 +621,14 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         
       <?php  endif; 
 	}
-	
+
 	/**
      * paypal_wp_button_manager_welcome_page function is use for
      * Welcome Page when User is Active plugin.
      * @since 1.0.0
      * @access public
      */
-	
+
 	public function paypal_wp_button_manager_welcome_page() {
 		if ( empty( $_GET['page'] ) ) {
 			return;
@@ -641,11 +641,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			case 'paypal-wp-button-manager-about' :
 				$page = add_dashboard_page( $welcome_page_title, $welcome_page_name, 'manage_options', 'paypal-wp-button-manager-about', array( $this, 'about_screen' ) );
 				add_action( 'admin_print_styles-' . $page, array( $this, 'admin_css' ) );
-				
+
 				break;
 		}
 	}
-	
+
 	/**
 	 * Output the about screen.
 	 */
@@ -656,14 +656,14 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 	
 			<div class="about-text woocommerce-about-text">
 				<?php
-					$message = __( 'Thanks for installing!', 'paypal-wp-button-manager' );
-	
-					printf( __( '%s PayPal WP Button Manager %s is more powerful, stable and secure than ever before. We hope you enjoy using it.', 'paypal-wp-button-manager' ), $message,  $this->version );
-					
-					$tweets  = array(
-						'PayPal Button Manager for WordPress'
-					);
-					shuffle( $tweets );
+				$message = __( 'Thanks for installing!', 'paypal-wp-button-manager' );
+
+				printf( __( '%s PayPal WP Button Manager %s is more powerful, stable and secure than ever before. We hope you enjoy using it.', 'paypal-wp-button-manager' ), $message,  $this->version );
+
+				$tweets  = array(
+				'PayPal Button Manager for WordPress'
+				);
+				shuffle( $tweets );
 				?>
 			</div>
 			
@@ -681,19 +681,19 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 				<!-- Place this tag after the last share tag. -->
 				<script type="text/javascript">
 				(function() {
-				var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-				po.src = 'https://apis.google.com/js/platform.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					po.src = 'https://apis.google.com/js/platform.js';
+					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 				})();
 				</script>
 				
 				<div id="fb-root"></div>
 				<script>(function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) return;
-				js = d.createElement(s); js.id = id;
-				js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
-				fjs.parentNode.insertBefore(js, fjs);
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) return;
+					js = d.createElement(s); js.id = id;
+					js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));</script>
 			
 				<div class="fb-share-button" data-href="http://angelleye.com/" data-layout="button_count"></div>
@@ -702,25 +702,25 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			
 			
 			<?php
-				$setting_tabs_wc = apply_filters('paypal_wp_button_manager_setting_tab', array("pbm_about" => "What's New", "pbm_credits" => "Credits", "pbm_translators" => "Translators"));
-			 $current_tab_wc = (isset($_GET['tab'])) ? $_GET['tab'] : 'general';
-			 $aboutpage = isset($_GET['page'])
+			$setting_tabs_wc = apply_filters('paypal_wp_button_manager_setting_tab', array("pbm_about" => "What's New", "pbm_credits" => "Credits", "pbm_translators" => "Translators"));
+			$current_tab_wc = (isset($_GET['tab'])) ? $_GET['tab'] : 'general';
+			$aboutpage = isset($_GET['page'])
 			?>
 			 <h2 id="paypal-wp-button-manage-tab-wrapper" class="nav-tab-wrapper">
             <?php
             foreach ($setting_tabs_wc as $name => $label)
-                echo '<a href="' . admin_url('admin.php?page=paypal-wp-button-manager-about&tab=' . $name) . '" class="nav-tab ' . ( $current_tab_wc == $name ? 'nav-tab-active' : '' ) . '">' . $label . '</a>';
+            echo '<a href="' . admin_url('admin.php?page=paypal-wp-button-manager-about&tab=' . $name) . '" class="nav-tab ' . ( $current_tab_wc == $name ? 'nav-tab-active' : '' ) . '">' . $label . '</a>';
             ?>
         </h2>
 			
 			 <?php
-        foreach ($setting_tabs_wc as $setting_tabkey_wc => $setting_tabvalue) {
-            switch ($setting_tabkey_wc) {
-                case $current_tab_wc:
-                   do_action('paypal_wp_button_manager_' . $current_tab_wc);
-                   break;
-               
-            }
+			 foreach ($setting_tabs_wc as $setting_tabkey_wc => $setting_tabvalue) {
+			 	switch ($setting_tabkey_wc) {
+			 		case $current_tab_wc:
+			 			do_action('paypal_wp_button_manager_' . $current_tab_wc);
+			 			break;
+
+			 	}
         }?>
 			
 				
@@ -732,36 +732,33 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 		</div>
 		<?php
 	}
-	
+
 	/**
 	 * admin_css function.
 	 */
 	public function admin_css() {
 		wp_enqueue_style($this->plugin_name . 'welcome-page', plugin_dir_url(__FILE__) . 'css/activation.css', array(), $this->version, 'all');
 	}
-	
+
 	/**
 	 * paypal_wp_button_manager_redirect.
 	 */
 	public function paypal_wp_button_manager_redirect(){
+
 		
-		if ( ! is_network_admin() && ! isset( $_GET['activate-multi']  ) ) {
-			set_transient( 'paypal_wp_button_manager_activation_redirect', 1, 30 );
-		}
-		
-		// Bail if no activation redirect transient is set
-		if ( ! get_transient( 'paypal_wp_button_manager_activation_redirect' ) ) {
+		// Bail if activating from network, or bulk
+		if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
 			return;
 		}
-		
-		// Delete the redirect transient
-		delete_transient( 'paypal_wp_button_manager_activation_redirect' );
-		
-		if ( ( ! empty( $_GET['activate'] ) && ( $_GET['activate']  == 'true' ) ) ) {
-			wp_redirect( admin_url( 'index.php?page=paypal-wp-button-manager-about&tab=pbm_about' ) );
-			exit;
+
+		if (get_option('paypal_wp_button_manager_do_activation_redirect', false)) {
+			delete_option('paypal_wp_button_manager_do_activation_redirect');
+			wp_redirect(admin_url( 'index.php?page=paypal-wp-button-manager-about&tab=pbm_about' ));
 		}
-		
+
+
+
+
 	}
 	public function paypal_wp_button_manager_pbm_about() { ?>
 		<div class="changelog">
@@ -823,6 +820,6 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 	public function paypal_wp_button_manager_pbm_translators() {
 		echo "<h2>Translator Content Goes Here...</h2>";
 	}
-	
-	
+
+
 }

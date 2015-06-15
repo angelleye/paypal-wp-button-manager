@@ -63,6 +63,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Activator {
 			}
 			
 		}
+		
+		add_option('paypal_wp_button_manager_do_activation_redirect', true);
 	}
 
 	/**
