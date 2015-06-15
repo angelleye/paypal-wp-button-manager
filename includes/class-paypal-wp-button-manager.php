@@ -219,6 +219,10 @@ class AngellEYE_PayPal_WP_Button_Manager {
        	if (isset($is_cancel) && empty($is_cancel)):
       	  $this->loader->add_filter('add_meta_boxes', $plugin_admin, 'paypal_wp_button_manager_beer_metabox');
 		endif;
+		$this->loader->add_action('paypal_wp_button_manager_pbm_about', $plugin_admin, 'paypal_wp_button_manager_pbm_about');
+		$this->loader->add_action('paypal_wp_button_manager_pbm_credits', $plugin_admin, 'paypal_wp_button_manager_pbm_credits');
+		$this->loader->add_action('paypal_wp_button_manager_pbm_translators', $plugin_admin, 'paypal_wp_button_manager_pbm_translators');
+		
     }
 
     /**

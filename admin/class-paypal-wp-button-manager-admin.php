@@ -641,7 +641,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			case 'paypal-wp-button-manager-about' :
 				$page = add_dashboard_page( $welcome_page_title, $welcome_page_name, 'manage_options', 'paypal-wp-button-manager-about', array( $this, 'about_screen' ) );
 				add_action( 'admin_print_styles-' . $page, array( $this, 'admin_css' ) );
-			break;
+				
+				break;
 		}
 	}
 	
@@ -668,7 +669,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			
 			<div class="angelleye-badge"><img src="<?php echo BMW_PLUGIN_URL ?>/admin/images/angelleye.png" id="angelleye_logo" alt="angelleye" /></div>
 
-			<div class="woocommerce-actions">
+			<div class="woocommerce-actions woocommerce-actions-own">
 				<a href="<?php echo admin_url('/options-general.php?page=paypal-wp-button-manager-option'); ?>" id="paypal-wp-button-manage-settings" class="button button-primary"><?php _e( 'Settings', 'paypal-wp-button-manager' ); ?></a>
 				<a href="<?php echo esc_url( apply_filters( 'woocommerce_docs_url', 'http://docs.woothemes.com/documentation/plugins/woocommerce/', 'paypal-wp-button-manager' ) ); ?>" id="paypal-wp-button-manage-document" class="docs button button-primary"><?php _e( 'Docs', 'paypal-wp-button-manager' ); ?></a>
 				<a id="paypal-wp-button-manage-twitter" href="https://twitter.com/share" class="twitter-share-button" data-url="http://angelleye.com/" data-text="<?php echo esc_attr( $tweets[0] ); ?>" data-via="angelleye" data-size="large">Tweet</a>
@@ -699,17 +700,71 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 			</div>
 			
-			<h2 id="paypal-wp-button-manage-tab-wrapper" class="nav-tab-wrapper">
-				<a class="nav-tab <?php if ( $_GET['page'] == 'wc-about' ) echo 'nav-tab-active'; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wc-about' ), 'index.php' ) ) ); ?>">
-					<?php _e( "What's New", 'paypal-wp-button-manager' ); ?>
-				</a><a class="nav-tab <?php if ( $_GET['page'] == 'wc-credits' ) echo 'nav-tab-active'; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wc-credits' ), 'index.php' ) ) ); ?>">
-					<?php _e( 'Credits', 'paypal-wp-button-manager' ); ?>
-				</a><a class="nav-tab <?php if ( $_GET['page'] == 'wc-translators' ) echo 'nav-tab-active'; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wc-translators' ), 'index.php' ) ) ); ?>">
-					<?php _e( 'Translators', 'paypal-wp-button-manager' ); ?>
-				</a>
-			</h2>
 			
-			<div class="changelog">
+			<?php
+				$setting_tabs_wc = apply_filters('paypal_wp_button_manager_setting_tab', array("pbm_about" => "What's New", "pbm_credits" => "Credits", "pbm_translators" => "Translators"));
+			 $current_tab_wc = (isset($_GET['tab'])) ? $_GET['tab'] : 'general';
+			 $aboutpage = isset($_GET['page'])
+			?>
+			 <h2 id="paypal-wp-button-manage-tab-wrapper" class="nav-tab-wrapper">
+            <?php
+            foreach ($setting_tabs_wc as $name => $label)
+                echo '<a href="' . admin_url('admin.php?page=paypal-wp-button-manager-about&tab=' . $name) . '" class="nav-tab ' . ( $current_tab_wc == $name ? 'nav-tab-active' : '' ) . '">' . $label . '</a>';
+            ?>
+        </h2>
+			
+			 <?php
+        foreach ($setting_tabs_wc as $setting_tabkey_wc => $setting_tabvalue) {
+            switch ($setting_tabkey_wc) {
+                case $current_tab_wc:
+                   do_action('paypal_wp_button_manager_' . $current_tab_wc);
+                   break;
+               
+            }
+        }?>
+			
+				
+			<hr />
+			
+			<div class="return-to-dashboard">
+				<a href="<?php echo admin_url('/options-general.php?page=paypal-wp-button-manager-option'); ?>"><?php _e( 'Go to Paypal Button Manager Settings', 'paypal-wp-button-manager' ); ?></a>
+			</div>
+		</div>
+		<?php
+	}
+	
+	/**
+	 * admin_css function.
+	 */
+	public function admin_css() {
+		wp_enqueue_style($this->plugin_name . 'welcome-page', plugin_dir_url(__FILE__) . 'css/activation.css', array(), $this->version, 'all');
+	}
+	
+	/**
+	 * paypal_wp_button_manager_redirect.
+	 */
+	public function paypal_wp_button_manager_redirect(){
+		
+		if ( ! is_network_admin() && ! isset( $_GET['activate-multi']  ) ) {
+			set_transient( 'paypal_wp_button_manager_activation_redirect', 1, 30 );
+		}
+		
+		// Bail if no activation redirect transient is set
+		if ( ! get_transient( 'paypal_wp_button_manager_activation_redirect' ) ) {
+			return;
+		}
+		
+		// Delete the redirect transient
+		delete_transient( 'paypal_wp_button_manager_activation_redirect' );
+		
+		if ( ( ! empty( $_GET['activate'] ) && ( $_GET['activate']  == 'true' ) ) ) {
+			wp_redirect( admin_url( 'index.php?page=paypal-wp-button-manager-about&tab=pbm_about' ) );
+			exit;
+		}
+		
+	}
+	public function paypal_wp_button_manager_pbm_about() { ?>
+		<div class="changelog">
 				<h4><?php _e( 'UI Overhaul', 'paypal-wp-button-manager' ); ?></h4>
 				<p><?php _e( 'We\'ve updated the user interface on both the front and backend of WooCommerce 2.3 "Handsome Hippo".', 'paypal-wp-button-manager' ); ?></p>
 			
@@ -760,44 +815,14 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 					</div>
 				</div>
 			</div>
-			
-			<hr />
-			
-			<div class="return-to-dashboard">
-				<a href="<?php echo admin_url('/options-general.php?page=paypal-wp-button-manager-option'); ?>"><?php _e( 'Go to Paypal Button Manager Settings', 'paypal-wp-button-manager' ); ?></a>
-			</div>
-		</div>
-		<?php
+		
+	<?php }
+	public function paypal_wp_button_manager_pbm_credits() {
+		echo "<h2>Credit Content Goes Here...</h2>";
+	}
+	public function paypal_wp_button_manager_pbm_translators() {
+		echo "<h2>Translator Content Goes Here...</h2>";
 	}
 	
-	/**
-	 * admin_css function.
-	 */
-	public function admin_css() {
-		wp_enqueue_style($this->plugin_name . 'welcome-page', plugin_dir_url(__FILE__) . 'css/activation.css', array(), $this->version, 'all');
-	}
 	
-	/**
-	 * paypal_wp_button_manager_redirect.
-	 */
-	public function paypal_wp_button_manager_redirect(){
-		
-		if ( ! is_network_admin() && ! isset( $_GET['activate-multi']  ) ) {
-			set_transient( 'paypal_wp_button_manager_activation_redirect', 1, 30 );
-		}
-		
-		// Bail if no activation redirect transient is set
-		if ( ! get_transient( 'paypal_wp_button_manager_activation_redirect' ) ) {
-			return;
-		}
-		
-		// Delete the redirect transient
-		delete_transient( 'paypal_wp_button_manager_activation_redirect' );
-		
-		if ( ( ! empty( $_GET['activate'] ) && ( $_GET['activate']  == 'true' ) ) ) {
-			wp_redirect( admin_url( 'index.php?page=paypal-wp-button-manager-about' ) );
-			exit;
-		}
-		
-	}
 }

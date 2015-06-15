@@ -162,3 +162,4 @@ img#angelleye_logo {
 #paypal-wp-button-manage-settings,#paypal-wp-button-manage-document ,#paypal-wp-button-manage-twitter{ float: left; margin-right: 10px;}
 .fb_iframe_widget span{width: 99px; height: 28px; float:left;}
 .woocommerce-actions #paypal-wp-button-manage-settings,.woocommerce-actions #paypal-wp-button-manage-document{ background: #63ab40; border-color: #63ab40;}
+.woocommerce-actions-own {float:left; width:100%;margin-bottom:20px;}
