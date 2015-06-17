@@ -301,7 +301,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 		global $post, $post_ID;
 		$payapal_helper = new AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper();
 		$PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();
-		$PayPal = new PayPal($PayPalConfig);
+		$PayPal = new Angelleye_PayPal($PayPalConfig);
 		$BMCreateButtonFields_viewcart = array
 		(
 		'buttoncode' => 'CLEARTEXT', // The kind of button code to create.  It is one of the following values:  HOSTED, ENCRYPTED, CLEARTEXT, TOKEN
@@ -446,7 +446,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 					'LogPath' => isset($log_path) ? $log_path : ''
 					);
 
-					$PayPal = new PayPal($payapalconfig);
+					$PayPal = new Angelleye_PayPal($payapalconfig);
 
 					$BMManageButtonStatusFields = array
 					(
@@ -544,7 +544,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			'LogPath' => isset($log_path) ? $log_path : ''
 			);
 
-			$PayPal = new PayPal($payapalconfig);
+			$PayPal = new Angelleye_PayPal($payapalconfig);
 
 			$BMManageButtonStatusFields = array
 			(

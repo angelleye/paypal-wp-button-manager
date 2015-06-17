@@ -1,6 +1,6 @@
 <?php
 
-//namespace \PayPal;
+//namespace \Angelleye_PayPal;
 /**
  * 	An open source PHP library written to easily work with PayPal's API's
  * 	
@@ -38,7 +38,7 @@
  * @package 		paypal-php-library
  * @author			Andrew Angell <service@angelleye.com>
  */
-class PayPal {
+class Angelleye_PayPal {
 
     var $APIUsername = '';
     var $APIPassword = '';
