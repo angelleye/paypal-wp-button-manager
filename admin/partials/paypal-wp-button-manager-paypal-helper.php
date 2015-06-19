@@ -76,9 +76,9 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             $APISignature = isset($getconfig->paypal_api_signature) ? $getconfig->paypal_api_signature : '';
 
             $payapalconfig = array('Sandbox' => $flag,
-                'APIUsername' => isset($APIUsername) ? trim($APIUsername) : '',
-                'APIPassword' => isset($APIPassword) ? trim($APIPassword) : '',
-                'APISignature' => isset($APISignature) ? trim($APISignature) : '',
+                'APIUsername' => isset($APIUsername) ? $APIUsername : '',
+                'APIPassword' => isset($APIPassword) ? $APIPassword : '',
+                'APISignature' => isset($APISignature) ? $APISignature : '',
                 'PrintHeaders' => isset($print_headers) ? $print_headers : '',
                 'LogResults' => isset($log_results) ? $log_results : '',
                 'LogPath' => isset($log_path) ? $log_path : ''

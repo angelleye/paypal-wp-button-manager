@@ -67,8 +67,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Operations {
             'paypal_api_username' => isset($_POST['paypal_api_username']) ? trim($_POST['paypal_api_username']) : '',
             'paypal_api_password' => isset($_POST['paypal_api_password']) ? trim($_POST['paypal_api_password']) : '',
             'paypal_api_signature' => isset($_POST['paypal_api_signature']) ? trim($_POST['paypal_api_signature']) : '',
-            'paypal_mode' => isset($_POST['paypal_mode']) ? trim($_POST['paypal_mode']) : '',
-            'paypal_account_mode' => isset($_POST['paypal_account_mode']) ? trim($_POST['paypal_account_mode']) : '',
+            'paypal_mode' => isset($_POST['paypal_mode']) ? $_POST['paypal_mode'] : '',
+            'paypal_account_mode' => isset($_POST['paypal_account_mode']) ? $_POST['paypal_account_mode'] : '',
             'paypal_merchant_id' => isset($merchant_account_id) ? $merchant_account_id : '',
                 ));
 
