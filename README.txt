@@ -22,6 +22,9 @@ Easily create and manage PayPal Standard payment buttons within WordPress, and p
  * Shopping Cart Button / View Cart Button
  * Shortcodes for easy placement of buttons on Pages / Posts
 
+= Video Demo =
+[youtube https://www.youtube.com/watch?t=53&v=TVZhXxmPil4]
+
 = Security =
 
 The primary objective of this plugin is to provide a way to use PayPal Standard buttons in a secure way.
