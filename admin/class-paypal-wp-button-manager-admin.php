@@ -710,7 +710,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			 <h2 id="paypal-wp-button-manage-tab-wrapper" class="nav-tab-wrapper">
             <?php
             foreach ($setting_tabs_wc as $name => $label)
-            echo '<a href="' . admin_url('admin.php?page=paypal-wp-button-manager-about&tab=' . $name) . '" class="nav-tab ' . ( $current_tab_wc == $name ? 'nav-tab-active' : '' ) . '">' . $label . '</a>';
+            echo '<a  href="' . admin_url('admin.php?page=paypal-wp-button-manager-about&tab=' . $name) . '" class="nav-tab ' . ( $current_tab_wc == $name ? 'nav-tab-active' : '' ) . '">' . $label . '</a>';
             ?>
         </h2>
 			
@@ -829,6 +829,10 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         <p><?php _e( 'If you can help, please <a target="_blank" href="https://www.angelleye.com/support">submit your translation here.</a>', 'paypal-wp-button-manager' ); ?></p>
     <?php
 	}
+	
+	
+	public function paypal_wp_button_manager_remove_wcpage_link() {
+		remove_submenu_page( 'index.php', 'paypal-wp-button-manager-about' );
+	}
 
-
-}
+} 

@@ -222,6 +222,7 @@ class AngellEYE_PayPal_WP_Button_Manager {
 		$this->loader->add_action('paypal_wp_button_manager_pbm_about', $plugin_admin, 'paypal_wp_button_manager_pbm_about');
 		$this->loader->add_action('paypal_wp_button_manager_pbm_credits', $plugin_admin, 'paypal_wp_button_manager_pbm_credits');
 		$this->loader->add_action('paypal_wp_button_manager_pbm_translators', $plugin_admin, 'paypal_wp_button_manager_pbm_translators');
+		$this->loader->add_action('admin_head', $plugin_admin, 'paypal_wp_button_manager_remove_wcpage_link');
 		
     }
 
