@@ -747,26 +747,6 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 		wp_enqueue_style($this->plugin_name . 'welcome-page', plugin_dir_url(__FILE__) . 'css/activation.css', array(), $this->version, 'all');
 	}
 
-	/**
-	 * paypal_wp_button_manager_redirect.
-	 */
-	public function paypal_wp_button_manager_redirect(){
-
-		
-		// Bail if activating from network, or bulk
-		if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
-			return;
-		}
-
-		if (get_option('paypal_wp_button_manager_do_activation_redirect', false)) {
-			delete_option('paypal_wp_button_manager_do_activation_redirect');
-			wp_redirect(admin_url( 'index.php?page=paypal-wp-button-manager-about&tab=pbm_about' ));
-		}
-
-
-
-
-	}
 	public function paypal_wp_button_manager_pbm_about() { ?>
 		<div class="changelog">
 				<h4><?php _e( 'Initial Release', 'paypal-wp-button-manager' ); ?></h4>
