@@ -838,7 +838,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         public function paypal_wp_button_manager_ignore_update_notice() {
             global $current_user;
             $user_id = $current_user->ID;
-            if ( isset($_GET['ignore_pwbm_update_notice']) && '0' == $_GET['ignore_pwbm_update_notice'] ) {
+            if ( (isset($_GET['ignore_pwbm_update_notice']) && '0' == $_GET['ignore_pwbm_update_notice']) || ( isset($_GET['tab']) && 'pbm_about' == $_GET['tab'] ) ) {
                 update_user_meta($user_id, '_ignore_pwbm_update_notice', true);
             }
         }
