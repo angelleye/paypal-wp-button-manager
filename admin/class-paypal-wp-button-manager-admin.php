@@ -38,7 +38,6 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
      * @param      string    $version    The version of this plugin.
      */
 	public function __construct($plugin_name, $version) {
-
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		$this->load_dependencies();
@@ -844,6 +843,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         }
         
         public function paypal_wp_button_manager_upgrader_process_complete($upgrader_object, $context_array) {
+            global $wpdb;
             if( (isset($context_array['type']) && $context_array['type'] == 'plugin') && (isset($context_array['action']) && $context_array['action'] == 'update')) {
                 if( isset($context_array['plugins']) && !empty($context_array['plugins']) ) {
                     if (in_array('paypal-wp-button-manager/paypal-wp-button-manager.php', $context_array['plugins'])) {
