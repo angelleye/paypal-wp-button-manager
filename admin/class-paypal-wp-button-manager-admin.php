@@ -185,6 +185,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			delete_option('paypal_wp_button_manager_timeout_notice');
 			//    update_option('paypal_wp_button_manager_timeout_notice', $timeout_notice[$post->ID]);
 		}
+                
+                
+                if( $this->pwbm_display_plugin_update_notice() ){
+                    echo "<div class='error'><p>" . sprintf(__("You have recently updated PayPal WP Button Manager. <a href=%s>%s</a> to see what's new! | <a href=%s>%s</a>", 'paypal-for-woocommerce'), esc_url(admin_url( 'index.php?page=paypal-wp-button-manager-about&tab=pbm_about' )) , __("Click here", 'paypal-for-woocommerce') , esc_url(add_query_arg("ignore_pwbm_update_notice",0)) , __("Hide this notice", 'paypal-for-woocommerce')) . "</p></div>";
+                }
 	}
 
 	/**
@@ -718,6 +723,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			 foreach ($setting_tabs_wc as $setting_tabkey_wc => $setting_tabvalue) {
 			 	switch ($setting_tabkey_wc) {
 			 		case $current_tab_wc:
+                                                $this->paypal_wp_button_manager_ignore_update_notice();
 			 			do_action('paypal_wp_button_manager_' . $current_tab_wc);
 			 			break;
 
@@ -834,5 +840,37 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 	public function paypal_wp_button_manager_remove_wcpage_link() {
 		remove_submenu_page( 'index.php', 'paypal-wp-button-manager-about' );
 	}
+        
+        public function pwbm_display_plugin_update_notice() {
+            global $current_user;
+            $user_id = $current_user->ID;
+            if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
+                return false;
+            }	
+            $ignore_pwbm_update_notice = get_user_meta( $user_id, '_ignore_pwbm_update_notice', true ); 
+            if( empty($ignore_pwbm_update_notice) ) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
+        public function paypal_wp_button_manager_ignore_update_notice() {
+            global $current_user;
+            $user_id = $current_user->ID;
+            if ( isset($_GET['ignore_pwbm_update_notice']) && '0' == $_GET['ignore_pwbm_update_notice'] ) {
+                update_user_meta($user_id, '_ignore_pwbm_update_notice', true);
+            }
+        }
+        
+        public function paypal_wp_button_manager_upgrader_process_complete($upgrader_object, $context_array) {
+            if( (isset($context_array['type']) && $context_array['type'] == 'plugin') && (isset($context_array['action']) && $context_array['action'] == 'update')) {
+                if( isset($context_array['plugins']) && !empty($context_array['plugins']) ) {
+                    if (in_array('paypal-wp-button-manager/paypal-wp-button-manager.php', $context_array['plugins'])) {
+                        $delete = $wpdb->delete( $wpdb->prefix . 'usermeta', array( 'meta_key' => '_ignore_pwbm_update_notice' ), array( '%s' ) );
+                    }
+                }
+            }
+        }
 
 } 

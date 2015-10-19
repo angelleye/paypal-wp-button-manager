@@ -216,13 +216,15 @@ class AngellEYE_PayPal_WP_Button_Manager {
         $this->loader->add_action('admin_init', $plugin_admin, 'paypal_wp_button_manager_redirect');
         $this->loader->add_filter('admin_head', $plugin_admin, 'paypal_wp_button_manager_print_emptytrash');
         $is_cancel = get_option('paypal_wp_button_cancel');
-       	if (isset($is_cancel) && empty($is_cancel)):
-      	  $this->loader->add_filter('add_meta_boxes', $plugin_admin, 'paypal_wp_button_manager_beer_metabox');
-		endif;
-		$this->loader->add_action('paypal_wp_button_manager_pbm_about', $plugin_admin, 'paypal_wp_button_manager_pbm_about');
-		$this->loader->add_action('paypal_wp_button_manager_pbm_credits', $plugin_admin, 'paypal_wp_button_manager_pbm_credits');
-		$this->loader->add_action('paypal_wp_button_manager_pbm_translators', $plugin_admin, 'paypal_wp_button_manager_pbm_translators');
-		$this->loader->add_action('admin_head', $plugin_admin, 'paypal_wp_button_manager_remove_wcpage_link');
+       	if (isset($is_cancel) && empty($is_cancel)) {
+            $this->loader->add_filter('add_meta_boxes', $plugin_admin, 'paypal_wp_button_manager_beer_metabox');
+        }
+        $this->loader->add_action('paypal_wp_button_manager_pbm_about', $plugin_admin, 'paypal_wp_button_manager_pbm_about');
+        $this->loader->add_action('paypal_wp_button_manager_pbm_credits', $plugin_admin, 'paypal_wp_button_manager_pbm_credits');
+        $this->loader->add_action('paypal_wp_button_manager_pbm_translators', $plugin_admin, 'paypal_wp_button_manager_pbm_translators');
+        $this->loader->add_action('admin_head', $plugin_admin, 'paypal_wp_button_manager_remove_wcpage_link');
+        $this->loader->add_action( 'admin_init', $plugin_admin, 'paypal_wp_button_manager_ignore_update_notice');
+        $this->loader->add_action( 'upgrader_process_complete', 'paypal_wp_button_manager_upgrader_process_complete', 10, 2 );
 		
     }
 
