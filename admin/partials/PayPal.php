@@ -2880,7 +2880,11 @@ class PayPal {
                 $n++;
             }
         }
-
+        
+        if($DataArray['BMTextField']) {
+            $BMCreateButtonNVP .= $DataArray['BMTextField'];
+        }
+        
         $n = 0;
         $BMButtonOptions = isset($DataArray['BMButtonOptions']) ? $DataArray['BMButtonOptions'] : array();
         foreach ($BMButtonOptions as $BMButtonOption) {
@@ -2900,6 +2904,8 @@ class PayPal {
 
             $n++;
         }
+        
+       
 
         $NVPRequest = $this->NVPCredentials . $BMCreateButtonNVP;
         $NVPResponse = $this->CURLRequest($NVPRequest);

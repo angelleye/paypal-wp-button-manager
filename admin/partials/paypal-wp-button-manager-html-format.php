@@ -48,7 +48,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
      */
     public static function paypal_wp_button_manager_for_wordpress_button_interface_html() {
         ?>
-        <div id="wrap" class="cls_wrap">
+         <div id="wrap">
             <div id="main" class="legacyErrors">
                 <div class="layout1">
                     <script type="text/javascript">var oPage = document.getElementById('main').getElementsByTagName('div')[0];var oContainer = document.createElement('div');oContainer.id = 'pageLoadMsg';oContainer.innerHTML = "Loading...";oPage.appendChild(oContainer);</script>
@@ -97,18 +97,18 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="products"><input class="hide radio subButtonType" type="radio" id="radioAddToCartButton" checked="" name="sub_button_type" value="add_to_cart"><input class="hide radio subButtonType" type="radio" id="radioBuyNowButton" name="sub_button_type" value="buy_now"></div>
                                                         <div class="group details">
                                                             <div class="products">
-                                                                <div class="floatLeft"><label for="itemName">Item Name</label><input class="text xlarge" maxlength="127" type="text" id="itemName" name="product_name" value=""></div>
+                                                                <div class="floatLeft"><label for="itemName">Item name</label><input class="text xlarge" maxlength="127" type="text" id="itemName" name="product_name" value=""></div>
                                                                 <div class="floatLeft"><label for="itemID">Item ID<span class="fieldNote"> (optional) </span>
                                                                         <input class="text" maxlength="127" type="text" id="itemID" size="9" name="product_id" value=""></div>
                                                                         </div>
                                                                         <div class="donations accessAid fadedOut">
-                                                                            <div class="floatLeft"><label for="donationName">Organization Name/service</label><input class="text xlarge" maxlength="127" type="text" id="donationName" name="donation_name" value="" disabled=""></div>
+                                                                            <div class="floatLeft"><label for="donationName">Organization name/service</label><input class="text xlarge" maxlength="127" type="text" id="donationName" name="donation_name" value="" disabled=""></div>
                                                                             <div class="floatLeft"><label for="donationID">Donation ID<span class="fieldNote"> (optional) </span>
                                                                                 </label>
                                                                                 <input class="text" maxlength="127" type="text" id="donationID" size="27" name="donation_id" value="" disabled=""></div>
                                                                         </div>
                                                                         <div class="subscriptions accessAid fadedOut">
-                                                                            <div class="floatLeft"><label for="subscriptionName">Item Name</label><input class="text xlarge" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="" disabled=""></div>
+                                                                            <div class="floatLeft"><label for="subscriptionName">Item name</label><input class="text xlarge" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="" disabled=""></div>
                                                                             <div class="floatLeft"><label for="subscriptionID">Subscription ID<span class="fieldNote"> (optional) </span></label><input class="text" maxlength="127" type="text" id="subscriptionID" size="27" name="subscription_id" value="" disabled=""></div>
                                                                         </div>
                                                                         <div class="gift_certs accessAid fadedOut"><label for="giftCertificateShopURL">Enter the URL where recipients can shop and redeem this gift certificate.</label><input class="text" type="text" id="giftCertificateShopURL" size="34" name="gift_certificate_shop_url" value="http://" disabled=""></div>
@@ -254,7 +254,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                     <p class="editDelete"><a class="editDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                                 </div>
                                                                                 <p id="addNewDropdownSection" class="editDelete hideShow accessAid hide"><a id="addNewDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add another drop-down menu</a></p>
-
+                                                                                <p class="hideShow opened" id="addTextfield"><label for="textfield"><input type="checkbox" value="createdTextfield" name="textfield" id="textfield" class="checkbox">Add text field&nbsp;<a onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})" href="https://www.paypal.com/uk/cgi-bin/webscr?cmd=_display-textfield-example" class="infoLink exampleLink" target="_blank">Example</a></label></p>
                                                                                 <div class="hideShow accessAid textfieldSection hide" id="textfieldSection1">
                                                                                     <p class="title"><label for="textfieldTitle1">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle1" class="text" disabled="" name="textfield1_title" value=""></p>
                                                                                     <p class="saveCancel"><input class="saveTextfield primary button" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
@@ -282,7 +282,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                             <label for="">Country and language for button</label>
                                                                                             <?php $paypal_button_language = get_paypal_button_languages(); ?>
                                                                                             <select id="selectCountryLanguage" name="select_country_language">
-                                                                                                <option value="">--Select--</option>
+
                                                                                                 <?php foreach ($paypal_button_language as $paypal_button_language_key => $paypal_button_language_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_language_key; ?>"><?php echo $paypal_button_language_value; ?></option>
                                                                                                 <?php } ?>
@@ -310,25 +310,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                     </div>
                                                                                     <p id="addCustomButton"><label for="customButton"><input class="radio" type="radio" id="customButton" name="paypal_button" value="false">Use your own button image</label>
                                                                                     </p>
-                                                                                    <div id="customButtonSection" class="hideShow accessAid hide">
-                                                                                   <!-- <input type="text" id="customImageUrl" class="text" name="custom_image_url" value="">-->
-
-                                                                                        <div id="wpss_upload_image_thumb" class="wpss-file wpss-file-own">
-                                                                                            <?php if (isset($record->security_image) && $record->security_image != '') { ?>
-                                                                                                <img src="<?php echo $record->security_image; ?>"  width="65"/><?php
-                                                                                } else {
-                                                                                    echo (isset($defaultImage) ? $defaultImage : '');
-                                                                                }
-                                                                                            ?>
-                                                                                        </div>
-                                                                                        <input id="wpss_upload_image" type="text" size="36" name="wpss_upload_image" value="" class="wpss_text wpss-file wpss_text_own" />
-                                                                                        <input id="wpss_upload_image_button" type="button" value="Upload Image" class="wpss-filebtn button button-hero button button-hero-own" />
-
-
-
-
-                                                                                        <!--nishit-->
-                                                                                    </div>
+                                                                                    <div id="customButtonSection" class="hideShow accessAid hide"><input type="text" id="customImageUrl" class="text" name="custom_image_url" value=""></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -379,8 +361,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 </p>
                                                                                 <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection1"><label id="previewTextfieldTitle1" for="buttonTextfield1">Title</label><input type="text" id="buttonTextfield1" class="text readOnlyLabel" name="button_textfield1" value=""></p>
                                                                                 <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection2"><label id="previewTextfieldTitle2" for="buttonTextfield2">Title</label><input type="text" id="buttonTextfield2" class="text readOnlyLabel" name="button_textfield2" value=""></p>
-                                                                                <p class="hideShow opened previewImageSection"><img id="previewImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/btn_cart_LG.gif" border="0" alt="Preview Image"></p>
-                                                                                <p class="hideShow accessAid previewCustomImageSection hide"><img id="previewCustomImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/info_nobuttonpreview_121wx26h.gif" border="0" alt="Use your own button image"></p>
+                                                                                <p class="hideShow opened previewImageSection"><img id="previewImage" src="<? echo BMW_PLUGIN_URL ?>/admin/images/btn_cart_LG.gif" border="0" alt="Preview Image"></p>
+                                                                                <p class="hideShow accessAid previewCustomImageSection hide"><img id="previewCustomImage" src="<? echo BMW_PLUGIN_URL ?>/admin/images/info_nobuttonpreview_121wx26h.gif" border="0" alt="Use your own button image"></p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -450,7 +432,6 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="group">
                                                                         <label for="subscriptionBillingLimit">After how many cycles should billing stop?</label>
                                                                         <select name="subscription_billing_limit" disabled="">
-                                                                            <option>Never</option>
                                                                             <?php foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?>"><?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?></option>
                                                                             <?php } ?>
@@ -482,8 +463,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 </select>
                                                                             </fieldset>
                                                                             <fieldset>
-                                                                                <legend>Do you want to offer a second trial period? <span class="cls_tooltip" title="Customers will receive just one bill for each trial period." tabindex="0">What's this?</span></legend>
-
+                                                                                <legend>Do you want to offer a second trial period? <span class="autoTooltip" title="" tabindex="0">What's this?<span class="accessAid">Customers will receive just one bill for each trial period.</span></span></legend>
                                                                                 <label for="secondSubscriptionTrialOffer"><input class="radio secondTrialOfferOption" type="radio" id="secondSubscriptionTrialOffer" name="subscriptions_offer_another_trial" value="1" disabled="">Yes</label>
                                                                                 <div class="secondTrialOfferOptions accessAid">
                                                                                     <fieldset>
@@ -526,10 +506,45 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             <div class="labelOption gcFixedAmountContainer accessAid"><label for="gcFixedAmount">Amount</label><input type="text" id="gcFixedAmount" size="9" class="text" name="gc_fixed_amount" value="" disabled=""><span class="currencyLabel">USD</span></div>
                                                                         </fieldset>
                                                                     </div>
-
+                                                                    <div class="group">
+                                                                        <p class="gcStyleHeader_new"><strong>Gift certificate style</strong></p>
+                                                                        <label for="giftCertificateLogoURL">Add URL for logo image</label><input class="text" type="text" id="giftCertificateLogoURL" size="34" name="gc_logo_url" value="http://" disabled="">
+                                                                    </div>
+                                                                    <div class="group">
+                                                                        <fieldset>
+                                                                            <legend>Choose background</legend>
+                                                                            <label for="gcBackgroundColor">
+                                                                                <input class="radio gcBackgroundType" type="radio" checked="" name="gc_background_type" value="color" disabled="">Color
+                                                                                <div class="labelOption">
+                                                                                    <?php $paypal_button_gcBackgroundColor = get_paypal_button_gcBackgroundColor(); ?>
+                                                                                    <select id="gcBackgroundColor" name="gc_background_color" disabled="">
+                                                                                        <?php foreach ($paypal_button_gcBackgroundColor as $paypal_button_gcBackgroundColor_key => $paypal_button_gcBackgroundColor_value) { ?>
+                                                                                            <option value="<?php echo $paypal_button_gcBackgroundColor_key; ?>"><?php echo $paypal_button_gcBackgroundColor_value; ?></option>
+                                                                                        <?php } ?>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </label>
+                                                                            <label for="gcBackgroundTheme">
+                                                                                <input class="radio gcBackgroundType" type="radio" name="gc_background_type" value="theme" disabled="">Theme
+                                                                                <div class="labelOption">
+                                                                                    <?php $paypal_button_gcBackgroundTheme = get_paypal_button_gcBackgroundTheme(); ?>
+                                                                                    <select id="gcBackgroundTheme" name="gc_background_theme" disabled="">
+                                                                                        <?php foreach ($paypal_button_gcBackgroundTheme as $paypal_button_gcBackgroundTheme_key => $paypal_button_gcBackgroundTheme_value) { ?>
+                                                                                            <option value="<?php echo $paypal_button_gcBackgroundTheme_key; ?>"><?php echo $paypal_button_gcBackgroundTheme_value; ?></option>
+                                                                                        <?php } ?>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </label>
+                                                                        </fieldset>
+                                                                    </div>
 
                                                                 </div>
-
+                                                                <div class="group notifications">
+                                                                    <fieldset>
+                                                                        <legend>Enter your PayPal Email Address or Merchant Account ID <a target="_blank" class="infoLink" href="https://www.paypal.com/businessstaticpage/BDMerchantIdInformation" onclick="PAYPAL.core.openWindow(event,{height:500, width: 450});">Learn more</a></legend>
+                                                                        <label for="merchantIDNotificationMethod"><input type="text" class="custom_text" name="business" id="business" /></label>
+                                                                    </fieldset>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -552,10 +567,12 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             <li>Edit your buttons with PayPal's tools</li>
                                                                         </ul>
                                                                     </div>
-                                                                    <!--- inventory space -->
+                                                                    <div class="step2-inventory" id="inventoryOptions">
 
+                                                                    </div>
                                                                 </div>
-                                                                <!--- Inventory end --->
+
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -595,13 +612,6 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <div>Example: https://www.mystore.com/success</div>
                                                                     </div>
                                                                 </div>
-                                                                <div id="successfulRedirectURLContainer" class="opened">
-                                                                    <label for="ipnurl"><input class="checkbox" type="checkbox" id="ipn_url_chk" name="ipn_url_chk" value="1">Set PayPal IPN URL for this button</label>
-                                                                    <div class="redirectContainer">
-                                                                        <input type="text" id="ipn_urlinput" size="30" class="text" disabled name="ipn_urlinput" value="">
-                                                                        <div>Example: https://www.mystore.com/ipn</div>
-                                                                    </div>
-                                                                </div>
 
                                                             </div>
                                                         </div>
@@ -623,7 +633,6 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 <?php
                 wp_enqueue_script('button-designer-js', BMW_PLUGIN_URL . 'admin/js/paypal-wp-button-manager-buttonDesigner.js', array(), '1.0', true);
             }
-
-        }
+}
 
         AngellEYE_PayPal_WP_Button_Manager_button_interface::init();
