@@ -48,7 +48,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Operations {
 
 
 
-            $PayPal = new PayPal($PayPalConfig);
+            $PayPal = new Angelleye_PayPal($PayPalConfig);
             $PayPalResult = $PayPal->GetPalDetails();
 
             if (isset($PayPalResult['ACK']) && $PayPalResult['ACK'] == 'Success') {
@@ -106,7 +106,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Operations {
 
 
 
-            $PayPal = new PayPal($PayPalConfig);
+            $PayPal = new Angelleye_PayPal($PayPalConfig);
             $PayPalResult = $PayPal->GetPalDetails();
 
             if (isset($PayPalResult['ACK']) && $PayPalResult['ACK'] == 'Success') {
