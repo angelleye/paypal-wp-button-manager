@@ -474,7 +474,8 @@ class Angelleye_PayPal {
             'CHF' => 'Swiss Franc',
             'TWD' => 'Taiwan New Dollar',
             'THB' => 'Thai Baht',
-            'USD' => 'U.S. Dollar'
+            'USD' => 'U.S. Dollar',
+            'TRY' => 'Turkish Lira',
         );
     }
 

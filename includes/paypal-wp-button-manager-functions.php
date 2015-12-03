@@ -41,7 +41,7 @@ function get_paypal_button_currency_symbol($currency = '') {
             break;
         case 'KRW' : $currency_symbol = '&#8361;';
             break;
-        case 'TRY' : $currency_symbol = '&#84;&#76;';
+        case 'TRY' : $currency_symbol = '&#8378;';
             break;
         case 'NOK' : $currency_symbol = '&#107;&#114;';
             break;
@@ -108,6 +108,7 @@ function get_paypal_button_currency_with_symbole() {
         "ILS" => "&#8362;",
         "JPY" => "&yen;",
         "MXN" => "&#36;",
+        "MYR" => "&#82;&#77;",
         "TWD" => "&#78;&#84;&#36;",
         "NZD" => "&#36;",
         "NOK" => "&#107;&#114;",
@@ -117,7 +118,8 @@ function get_paypal_button_currency_with_symbole() {
         "SGD" => "&#36;",
         "SEK" => "&#107;&#114;",
         "CHF" => "&#67;&#72;&#70;",
-        "THB" => "&#3647;"
+        "THB" => "&#3647;",
+		"TRY" => "&#8378;"
     );
     return $paypal_button_currency_with_symbole;
 }
@@ -150,6 +152,7 @@ function get_paypal_button_currency() {
         "ILS" => "ILS",
         "JPY" => "JPY",
         "MXN" => "MXN",
+        "MYR" =>"MYR",
         "TWD" => "TWD",
         "NZD" => "NZD",
         "NOK" => "NOK",
@@ -159,7 +162,10 @@ function get_paypal_button_currency() {
         "SGD" => "SGD",
         "SEK" => "SEK",
         "CHF" => "CHF",
-        "THB" => "THB"
+        "THB" => "THB",
+        "TRY" => "TRY",
+        
+        
             ));
     return array_unique($paypal_button_currency);
 }
