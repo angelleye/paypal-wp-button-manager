@@ -81,9 +81,6 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                     'public' => false,
                     'show_ui' => true,
                     'capability_type' => 'post',
-                    'capabilities' => array(
-                        'create_posts' => true, // Removes support for the "Add New" function
-                    ),
                     'map_meta_cap' => true,
                     'publicly_queryable' => false,
                     'exclude_from_search' => true,
