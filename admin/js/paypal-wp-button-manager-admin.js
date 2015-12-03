@@ -146,11 +146,7 @@ jQuery(function ($) {
         } else if (img_type == 'gift_certs') {
             jQuery('#previewImage').attr('src','https://www.paypalobjects.com/en_US/i/btn/btn_gift_LG.gif');
 	
-        } else if (img_type == 'subscriptions') {
-            jQuery('#addDropdownPrice').hide();
-        } else {
-            jQuery('#addDropdownPrice').show();
-        }
+        } 
     });
 
     var select_all = function(control){
