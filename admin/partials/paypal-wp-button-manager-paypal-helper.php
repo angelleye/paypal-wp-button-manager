@@ -313,7 +313,8 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 $BMButtonOptionSelection = array(
                     'value' => $ddp_option_name_value,
                     'price' => $post['ddp_option_price'][$ddp_option_name_key],
-                    'type' => ''
+                    'type' => '',
+                    'billingperiod' => ( isset($post['ddp_option_frequency'][$ddp_option_name_key]) && !empty($post['ddp_option_frequency'][$ddp_option_name_key]) ) ? $post['ddp_option_frequency'][$ddp_option_name_key] : ''
                 );
 
                 array_push($BMButtonOptionSelections, $BMButtonOptionSelection);
