@@ -112,7 +112,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 1.1.0 - 12.17.2015 =
+= 1.0.3 - 12.17.2015 =
 * Fix - Resolves an issue where the preview of a custom button would not display correctly. ([#56](https://github.com/angelleye/paypal-wp-button-manager/issues/56))
 * Fix - General code improvements and bug fixes.
 * Fix - Resolves a conflict with the bbPress plugin. ([#63](https://github.com/angelleye/paypal-wp-button-manager/issues/63))
