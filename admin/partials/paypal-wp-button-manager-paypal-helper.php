@@ -313,7 +313,8 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 $BMButtonOptionSelection = array(
                     'value' => $ddp_option_name_value,
                     'price' => $post['ddp_option_price'][$ddp_option_name_key],
-                    'type' => ''
+                    'type' => '',
+                    'billingperiod' => ( isset($post['ddp_option_frequency'][$ddp_option_name_key]) && !empty($post['ddp_option_frequency'][$ddp_option_name_key]) ) ? $post['ddp_option_frequency'][$ddp_option_name_key] : ''
                 );
 
                 array_push($BMButtonOptionSelections, $BMButtonOptionSelection);
@@ -353,12 +354,19 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 unset($BMButtonOptionSelection_dd_all);
             }
         }
-
+        
+        $BMTextField = false;
+        if( isset($post['textfield'][0]) && 'createdTextfield' == $post['textfield'][0]) {
+            if( isset($post['textfield1_title'][0]) && !empty($post['textfield1_title'][0])) {
+                $BMTextField = '&L_TextBox0='. $post['textfield1_title'][0];
+            }
+        }
 
         $paypalrequestdata = array(
             'BMCreateButtonFields' => AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper::paypal_wp_button_manager_get_buttonfields(),
             'BMButtonVars' => AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper::paypal_wp_button_manager_get_buttonvars(),
-            'BMButtonOptions' => $BMButtonOptions
+            'BMButtonOptions' => $BMButtonOptions,
+            'BMTextField' => $BMTextField
         );
 
         return $paypalrequestdata;

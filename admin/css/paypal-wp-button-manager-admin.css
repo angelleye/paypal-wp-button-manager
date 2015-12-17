@@ -121,3 +121,45 @@ a.cls_addcompany.button-primary {
   margin-top: 13px !important;
   margin-left: 20px !important;
 }
+
+
+
+
+
+.div_log_settings {
+  width: 80%;
+  float: left;
+}
+.div_log_settings .form-table{width:100%;}
+
+.div_log_settings .form-table th {width:100px !important;}
+.div_buymebeer {
+  width: 210px;
+  display: inline-block;
+  float: left;
+}
+img#img_beer {
+  max-width: 100%;
+}
+.div_cancel_donate {
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.div_buymebeer_meta {float:none !important;width:auto !important;}
+.angelleye-badge {
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+
+img#angelleye_logo {
+  float: right;
+}
+#paypal-wp-button-manage-tab-wrapper{margin-top:20px;}
+#___plus_0,.g-plus{float: left !important; margin-right: 10px !important;}
+#paypal-wp-button-manage-settings,#paypal-wp-button-manage-document ,#paypal-wp-button-manage-twitter{ float: left; margin-right: 10px;}
+.fb_iframe_widget span{width: 99px; height: 28px; float:left;}
+.woocommerce-actions #paypal-wp-button-manage-settings,.woocommerce-actions #paypal-wp-button-manage-document{ background: #63ab40; border-color: #63ab40;}
+.woocommerce-actions-own {float:left; width:100%;margin-bottom:20px;}

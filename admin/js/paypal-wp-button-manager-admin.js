@@ -48,6 +48,19 @@ jQuery(function ($) {
         });
     
     });  
+    
+    jQuery('.btn_can_notice').click(function(e) {
+    var data = {
+			'action': 'cancel_donate'
+			
+		};
+
+		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+		jQuery.post(ajaxurl, data, function(response) {
+			location.reload();		
+		});
+		
+		});
   
     jQuery('.submitdelete').click(function(e) {
  		
@@ -133,11 +146,7 @@ jQuery(function ($) {
         } else if (img_type == 'gift_certs') {
             jQuery('#previewImage').attr('src','https://www.paypalobjects.com/en_US/i/btn/btn_gift_LG.gif');
 	
-        } else if (img_type == 'subscriptions') {
-            jQuery('#addDropdownPrice').hide();
-        } else {
-            jQuery('#addDropdownPrice').show();
-        }
+        } 
     });
 
     var select_all = function(control){

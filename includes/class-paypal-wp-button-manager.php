@@ -56,7 +56,7 @@ class AngellEYE_PayPal_WP_Button_Manager {
     public function __construct() {
 
         $this->plugin_name = 'paypal-wp-button-manager';
-        $this->version = '1.0.2';
+        $this->version = '1.0.3';
 
         $this->load_dependencies();
         $this->set_locale();
@@ -164,7 +164,7 @@ class AngellEYE_PayPal_WP_Button_Manager {
         /**
          * PayPal php class file included.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/PayPal.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/Angelleye_PayPal.php';
 
         /**
          * Included for inherit wordpress table style.
@@ -211,8 +211,20 @@ class AngellEYE_PayPal_WP_Button_Manager {
         $this->loader->add_action('wp_ajax_checkhosted_button', $plugin_admin, 'paypal_wp_button_manager_checkhosted_button');
         $this->loader->add_action('wp_ajax_delete_post_own', $plugin_admin, 'paypal_wp_button_manager_delete_post_own');
         $this->loader->add_action('wp_ajax_del_all_hostedbutton', $plugin_admin, 'paypal_wp_button_manager_del_all_hostedbutton');
+        $this->loader->add_action('wp_ajax_cancel_donate', $plugin_admin, 'paypal_wp_button_manager_cancel_donate');
+        $this->loader->add_action('admin_menu', $plugin_admin, 'paypal_wp_button_manager_welcome_page');
         $this->loader->add_filter('admin_head', $plugin_admin, 'paypal_wp_button_manager_print_emptytrash');
-
+        $is_cancel = get_option('paypal_wp_button_cancel');
+       	if (isset($is_cancel) && empty($is_cancel)) {
+            $this->loader->add_filter('add_meta_boxes', $plugin_admin, 'paypal_wp_button_manager_beer_metabox');
+        }
+        $this->loader->add_action('paypal_wp_button_manager_pbm_about', $plugin_admin, 'paypal_wp_button_manager_pbm_about');
+        $this->loader->add_action('paypal_wp_button_manager_pbm_credits', $plugin_admin, 'paypal_wp_button_manager_pbm_credits');
+        $this->loader->add_action('paypal_wp_button_manager_pbm_translators', $plugin_admin, 'paypal_wp_button_manager_pbm_translators');
+        $this->loader->add_action('admin_head', $plugin_admin, 'paypal_wp_button_manager_remove_wcpage_link');
+        $this->loader->add_action( 'admin_init', $plugin_admin, 'paypal_wp_button_manager_ignore_update_notice');
+        $this->loader->add_action( 'upgrader_process_complete', 'paypal_wp_button_manager_upgrader_process_complete', 10, 2 );
+		
     }
 
     /**

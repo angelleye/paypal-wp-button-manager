@@ -27,7 +27,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
         global $post, $post_ID, $wpdb;
         $payapal_helper = new AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper();
         $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();
-        $PayPal = new PayPal($PayPalConfig);
+        $PayPal = new Angelleye_PayPal($PayPalConfig);
         $paypal_buttontype = $payapal_helper->paypal_wp_button_manager_get_button_type();
         $BMButtonVars = array();
         $BMButtonVars = $payapal_helper->paypal_wp_button_manager_get_buttonvars();

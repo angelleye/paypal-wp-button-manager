@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
 Requires at least: 3.8
 Tested up to: 4.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,6 +21,9 @@ Easily create and manage PayPal Standard payment buttons within WordPress, and p
  * Subscription Button
  * Shopping Cart Button / View Cart Button
  * Shortcodes for easy placement of buttons on Pages / Posts
+
+= Video Demo =
+[youtube https://www.youtube.com/watch?t=53&v=TVZhXxmPil4]
 
 = Security =
 
@@ -105,9 +108,17 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 = Where do I get my API credentials? =
 
 * Live credentials can be obtained by signing in to your live PayPal account here:  https://www.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
-* Sandbox credentials can be obtained by viewing the sandbox account profile within your PayPal developer account, or by signing in with a sandbox account here:  https://www.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
+* Sandbox credentials can be obtained by viewing the sandbox account profile within your PayPal developer account, or by signing in with a sandbox account here:  https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
 
 == Changelog ==
+
+= 1.1.0 - 12.17.2015 =
+* Fix - Resolves an issue where the preview of a custom button would not display correctly. ([#56](https://github.com/angelleye/paypal-wp-button-manager/issues/56))
+* Fix - General code improvements and bug fixes.
+* Fix - Resolves a conflict with the bbPress plugin. ([#63](https://github.com/angelleye/paypal-wp-button-manager/issues/63))
+* Tweak - Trims the values of API credentials entered into settings to avoid errors because of empty spaces in the values. ([#58](https://github.com/angelleye/paypal-wp-button-manager/issues/58))
+* Tweak - Adds additional currency codes. ([#60](https://github.com/angelleye/paypal-wp-button-manager/issues/60))
+* Tweak - Adds missing functionality in subscription buttons. ([#61](https://github.com/angelleye/paypal-wp-button-manager/issues/61))
 
 = 1.0.2 - 06.02.2015 =
 * Fix - Resolves a conflict with the WordPress media uploader.

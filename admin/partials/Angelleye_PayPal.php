@@ -1,6 +1,6 @@
 <?php
 
-//namespace \PayPal;
+//namespace \Angelleye_PayPal;
 /**
  * 	An open source PHP library written to easily work with PayPal's API's
  * 	
@@ -38,7 +38,7 @@
  * @package 		paypal-php-library
  * @author			Andrew Angell <service@angelleye.com>
  */
-class PayPal {
+class Angelleye_PayPal {
 
     var $APIUsername = '';
     var $APIPassword = '';
@@ -474,7 +474,8 @@ class PayPal {
             'CHF' => 'Swiss Franc',
             'TWD' => 'Taiwan New Dollar',
             'THB' => 'Thai Baht',
-            'USD' => 'U.S. Dollar'
+            'USD' => 'U.S. Dollar',
+            'TRY' => 'Turkish Lira',
         );
     }
 
@@ -2881,6 +2882,10 @@ class PayPal {
             }
         }
 
+        if ($DataArray['BMTextField']) {
+            $BMCreateButtonNVP .= $DataArray['BMTextField'];
+        }
+
         $n = 0;
         $BMButtonOptions = isset($DataArray['BMButtonOptions']) ? $DataArray['BMButtonOptions'] : array();
         foreach ($BMButtonOptions as $BMButtonOption) {
@@ -2888,18 +2893,25 @@ class PayPal {
 
             $ButtonOptionName = $BMButtonOption['name'];
             $ButtonOptionSelections = $BMButtonOption['selections'];
+            
+            $subscribe_billingperiod = array('D' => 'Day', 'W' => 'Week', 'M' => 'Month', 'Y' => 'Year');
 
             $BMCreateButtonNVP .= '&OPTION' . $n . 'NAME=' . $ButtonOptionName;
             foreach ($ButtonOptionSelections as $ButtonOptionSelection) {
                 $BMCreateButtonNVP .= $ButtonOptionSelection['value'] != '' ? '&L_OPTION' . $n . 'SELECT' . $n_selection . '=' . urlencode($ButtonOptionSelection['value']) : '';
                 $BMCreateButtonNVP .= $ButtonOptionSelection['price'] != '' ? '&L_OPTION' . $n . 'PRICE' . $n_selection . '=' . urlencode($ButtonOptionSelection['price']) : '';
                 $BMCreateButtonNVP .= $ButtonOptionSelection['type'] != '' ? '&L_OPTION' . $n . 'TYPE' . $n_selection . '=' . urlencode($ButtonOptionSelection['type']) : '';
+                if( isset($ButtonOptionSelection['billingperiod']) && !empty($ButtonOptionSelection['billingperiod']) ) {
+                    $BMCreateButtonNVP .= $ButtonOptionSelection['billingperiod'] != '' ? '&L_OPTION' . $n . 'BILLINGPERIOD' . $n_selection . '=' . urlencode($subscribe_billingperiod[$ButtonOptionSelection['billingperiod']]) : '';
+                }
 
                 $n_selection++;
             }
 
             $n++;
         }
+
+
 
         $NVPRequest = $this->NVPCredentials . $BMCreateButtonNVP;
         $NVPResponse = $this->CURLRequest($NVPRequest);

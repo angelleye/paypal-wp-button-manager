@@ -22,7 +22,7 @@ jQuery(function ($) {
         jQuery('#wpss_upload_image').val(imgurl);
         tb_remove();
 
-        jQuery('.previewCustomImageSection').html("<img height='65' src='" + imgurl + "'/>");
+        jQuery('.previewCustomImageSection').html("<img id='previewImage' src='" + imgurl + "'/>");
     }
 
 });

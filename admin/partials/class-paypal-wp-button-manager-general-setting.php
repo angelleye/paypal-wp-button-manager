@@ -55,12 +55,34 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
         $genral_setting_fields = self::paypal_wp_button_manager_general_setting_fields();
         $Html_output = new AngellEYE_PayPal_WP_Button_Manager_Html_output();
         ?>
-        <form id="button_manager_integration_form_general" enctype="multipart/form-data" action="" method="post">
-            <?php $Html_output->init($genral_setting_fields); ?>
-            <p class="submit">
-                <input type="submit" name="paypal_intigration" class="button-primary" value="<?php esc_attr_e('Save changes', 'Option'); ?>" />
-            </p>
-        </form>
+       
+        <div class="div_general_settings">
+        <div class="div_log_settings">
+	        <form id="button_manager_integration_form_general" enctype="multipart/form-data" action="" method="post">
+	            <?php $Html_output->init($genral_setting_fields); ?>
+	            <p class="submit">
+	                <input type="submit" name="paypal_intigration" class="button-primary" value="<?php esc_attr_e('Save Settings', 'Option'); ?>" />
+	            </p>
+	        </form>
+        </div>
+         <?php 
+        
+       
+      	 $is_cancel = get_option('paypal_wp_button_cancel');
+       if (isset($is_cancel) && empty($is_cancel)): ?>
+                
+        <div class="div_buymebeer">
+    	 <a href="https://www.angelleye.com/product/buy-beer/?utm_source=paypal_wp_button_manager&utm_medium=buy_me_a_beer&utm_campaign=beer_me" target="_blank"><img src="<?php echo BMW_PLUGIN_URL ?>/admin/images/buy-us-a-beer.png" id="img_beer"/></a>
+
+    	  <div class="div_cancel_donate">
+        		<span class="button-primary btn_can_notice">Dismiss</span>
+        </div>
+    	 
+    	 </div>
+        
+       
+        <?php  endif; ?>
+        </div>
         <?php
     }
 
