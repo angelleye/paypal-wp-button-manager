@@ -2882,7 +2882,7 @@ class Angelleye_PayPal {
             }
         }
 
-        if ($DataArray['BMTextField']) {
+        if ( isset($DataArray['BMTextField'])) {
             $BMCreateButtonNVP .= $DataArray['BMTextField'];
         }
 

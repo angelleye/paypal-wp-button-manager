@@ -233,15 +233,8 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'business' => isset($get_business_email) ? $get_business_email: '', // Your PayPal ID or an email address associated with your PayPal account.  Email addresses must be confirmed.
             'paymentaction' => '', // Indicates whether the payment is a finale sale or an authorization for a final sale, to be captured later.  Values are:  sale, authorization, order
             'shopping_url' => isset($_POST['gift_certificate_shop_url']) ? esc_url($_POST['gift_certificate_shop_url']) : '', // The URL of the page on the merchant website that buyers go to when they click the Continue Shopping button on the PayPal shopping cart page.
-            'a1' => isset($_POST['subscription_trial_rate']) ? $_POST['subscription_trial_rate'] : '', // Trial period 1 price.  For a free trial period, specify 0.
-            'p1' => isset($_POST['subscription_trial_duration']) ? $_POST['subscription_trial_duration'] : '', // Trial period 1 duration.  Required if you specify a1.
-            't1' => isset($_POST['subscription_trial_duration_type']) ? $_POST['subscription_trial_duration_type'] : '', // Trial period 1 units of duration.  Values are:  D, W, M, Y
-            'a2' => isset($_POST['subscription_trial_2_rate']) ? $_POST['subscription_trial_2_rate'] : '', // Trial period 2 price.  Can be specified only if you also specify a1.
-            'p2' => isset($_POST['subscription_trial_2_duration']) ? $_POST['subscription_trial_2_duration'] : '', // Trial period 2 duration.
-            't2' => isset($_POST['subscription_trial_2_duration_type']) ? $_POST['subscription_trial_2_duration_type'] : '', // Trial period 2 units of duration.
-            'a3' => isset($_POST['subscription_billing_amount']) ? $_POST['subscription_billing_amount'] : '', // Regular subscription price.
-            'p3' => isset($_POST['subscription_billing_cycle_number']) ? $_POST['subscription_billing_cycle_number'] : '', // Regular subscription duration.
-            't3' => isset($_POST['subscription_billing_cycle_period']) ? $_POST['subscription_billing_cycle_period'] : '', // Regular subscription units of duration.
+           
+            
             'src' => isset($_POST['subscription_billing_limit']) ? '1' : '', // Recurring payments.  Subscription payments recur unless subscribers cancel.  Values are:  1, 0
             'srt' => isset($_POST['subscription_billing_limit']) ? $_POST['subscription_billing_limit'] : '',
             'sra' => '', // Reattempt on failure.  If a recurring payment fails, PayPal attempts to collect the payment two more times before canceling.  Values are:  1, 0
@@ -282,7 +275,26 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'night_phone_c' => '', // 4 digit phone number for US numbers.
             'fixed_denom' => isset($_POST['gc_fixed_amount']) ? $_POST['gc_fixed_amount'] : ''
         );
+        
+        if( isset($_POST['subscription_trial_rate']) && !empty($_POST['subscription_trial_rate'])) {
+            $buttonvars['a1'] = $_POST['subscription_trial_rate'];
+            $buttonvars['p1'] = isset($_POST['subscription_trial_duration']) ? $_POST['subscription_trial_duration'] : '';
+            $buttonvars['t1'] = isset($_POST['subscription_trial_duration_type']) ? $_POST['subscription_trial_duration_type'] : '';
+        }
+        
+        if( isset($_POST['subscription_trial_2_rate']) && !empty($_POST['subscription_trial_2_rate'])) {
+            $buttonvars['a2'] = $_POST['subscription_trial_2_rate'];
+            $buttonvars['p2'] = isset($_POST['subscription_trial_2_duration']) ? $_POST['subscription_trial_2_duration'] : '';
+            $buttonvars['t2'] = isset($_POST['subscription_trial_2_duration_type']) ? $_POST['subscription_trial_2_duration_type'] : '';
 
+        }
+        
+        if( isset($_POST['subscription_billing_amount']) && !empty($_POST['subscription_billing_amount'])) {
+            $buttonvars['a3'] = $_POST['subscription_billing_amount'];
+            $buttonvars['p3'] = isset($_POST['subscription_billing_cycle_number']) ? $_POST['subscription_billing_cycle_number'] : '';
+            $buttonvars['t3'] = isset($_POST['subscription_billing_cycle_period']) ? $_POST['subscription_billing_cycle_period'] : '';
+        }
+         
         return $buttonvars;
     }
     
