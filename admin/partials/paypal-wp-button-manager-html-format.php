@@ -415,10 +415,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <div class="group"><label for="subscriptionBillingAmount">Billing amount each cycle</label><input type="text" id="subscriptionBillingAmount" size="22" class="text" name="subscription_billing_amount" value="" disabled=""><span class="currencyLabel">USD</span></div>
                                                                         <div class="group">
                                                                             <label for="subscriptionBillingCycleNumber">Billing cycle</label>
-                                                                            <?php $paypal_button_subscriptions_cycle_billing_limit = get_paypal_button_subscriptions_cycle_billing_limit(); ?>
+                                                                            <?php $paypal_button_subscription_billing_cycle_number = get_paypal_button_subscription_billing_cycle_number(); ?>
                                                                             <select name="subscription_billing_cycle_number" disabled="">
-                                                                                <?php foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
-                                                                                    <option value="<?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?>"><?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?></option>
+                                                                                <?php foreach ($paypal_button_subscription_billing_cycle_number as $paypal_button_subscription_billing_cycle_number_key => $paypal_button_subscription_billing_cycle_number_value) { ?>
+                                                                                    <option value="<?php echo $paypal_button_subscription_billing_cycle_number_value; ?>"><?php echo $paypal_button_subscription_billing_cycle_number_value; ?></option>
                                                                                 <?php } ?>
                                                                             </select>
                                                                             <?php $paypal_button_subscriptions_cycle = get_paypal_button_subscriptions_cycle(); ?>
@@ -432,7 +432,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="group">
                                                                         <label for="subscriptionBillingLimit">After how many cycles should billing stop?</label>
                                                                         <select name="subscription_billing_limit" disabled="">
-                                                                            <?php foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
+                                                                            <?php 
+                                                                            $paypal_button_subscriptions_cycle_billing_limit = get_paypal_button_subscription_billing_limit();
+                                                                            foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?>"><?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?></option>
                                                                             <?php } ?>
                                                                         </select>
