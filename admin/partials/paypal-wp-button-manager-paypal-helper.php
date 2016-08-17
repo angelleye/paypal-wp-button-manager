@@ -119,7 +119,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 'buttonimageurl' => $_POST['wpss_upload_image'],
                 'buttonlanguage' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : ''
             );
-            return $bmcreatebuttonfields;
+            
         } else {
 
             $bmcreatebuttonfields = array
@@ -130,8 +130,15 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 'buttonimage' => $buttonimage, //isset($_POST['cc_logos']) ? 'CC' : 'SML',
                 'buttonlanguage' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : ''
             );
-            return $bmcreatebuttonfields;
+            
         }
+        
+        if( !empty($_POST['custom_image_url']) ) {
+            $bmcreatebuttonfields['ButtonImageURL'] = $_POST['custom_image_url'];
+            $bmcreatebuttonfields['ButtonImage'] = 'REG';
+        }
+        
+        return $bmcreatebuttonfields;
     }
 
     /**
