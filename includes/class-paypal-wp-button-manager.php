@@ -167,6 +167,11 @@ class AngellEYE_PayPal_WP_Button_Manager {
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/Angelleye_PayPal.php';
 
         /**
+        * PayPal Debug Log
+        */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/class-paypal-wp-button-manager-log.php';
+
+        /**
          * Included for inherit wordpress table style.
          */
         require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
