@@ -469,10 +469,6 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
                                         $PayPal_Delete_Button_Result['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
                                         $PayPal_Delete_Button_Result['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
                                         
-                                        $RequestData = isset($PayPal_Delete_Button_Result['REQUESTDATA']) ? $PayPal_Delete_Button_Result['REQUESTDATA'] : '';
-                                        $PayPal_Delete_Button_Result['REQUESTDATA'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($RequestData));
-                                        
-                                        
 					$obj_for_log->paypal_wp_button_manager_write_error_log($PayPal_Delete_Button_Result);
 
 					global $wpdb;
@@ -577,9 +573,6 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
                         
                         $PayPal_Delete_Button_Result['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
                         $PayPal_Delete_Button_Result['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
-                        
-                        $RequestData = isset($PayPal_Delete_Button_Result['REQUESTDATA']) ? $PayPal_Delete_Button_Result['REQUESTDATA'] : '';
-                        $PayPal_Delete_Button_Result['REQUESTDATA'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($RequestData));
                         
 			$obj_for_log->paypal_wp_button_manager_write_error_log($PayPal_Delete_Button_Result);
 

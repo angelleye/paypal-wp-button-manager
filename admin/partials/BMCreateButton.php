@@ -48,9 +48,6 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             $PayPalResult['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
             $PayPalResult['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
             
-            $RequestData = isset($PayPalResult['REQUESTDATA']) ? $PayPalResult['REQUESTDATA'] : '';
-            $PayPalResult['REQUESTDATA'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($RequestData));
-            
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
             update_option('paypal_wp_button_manager_notice', $notice);
             update_option('paypal_wp_button_manager_error_code', $notice_code);
@@ -70,9 +67,6 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
 
             $PayPalResult['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
             $PayPalResult['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
-            
-            $RequestData = isset($PayPalResult['REQUESTDATA']) ? $PayPalResult['REQUESTDATA'] : '';
-            $PayPalResult['REQUESTDATA'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($RequestData));
                     
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
             update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
@@ -94,9 +88,6 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
 
             $PayPalResult['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
             $PayPalResult['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
-            
-            $RequestData = isset($PayPalResult['REQUESTDATA']) ? $PayPalResult['REQUESTDATA'] : '';
-            $PayPalResult['REQUESTDATA'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($RequestData));
             
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
             update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', 'Button Created Successfully.');
@@ -200,9 +191,6 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
 
                                 $PayPalResult_viewcart['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
                                 $PayPalResult_viewcart['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
-                                
-                                $RequestData = isset($PayPalResult_viewcart['REQUESTDATA']) ? $PayPalResult_viewcart['REQUESTDATA'] : '';
-                                $PayPalResult['REQUESTDATA'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($RequestData));
                                 
                                 self::paypal_wp_button_manager_write_error_log($PayPalResult_viewcart);
                             }
