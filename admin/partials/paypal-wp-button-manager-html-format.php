@@ -539,12 +539,6 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     </div>
 
                                                                 </div>
-                                                                <div class="group notifications">
-                                                                    <fieldset>
-                                                                        <legend>Enter your PayPal Email Address or Merchant Account ID <a target="_blank" class="infoLink" href="https://www.paypal.com/businessstaticpage/BDMerchantIdInformation" onclick="PAYPAL.core.openWindow(event,{height:500, width: 450});">Learn more</a></legend>
-                                                                        <label for="merchantIDNotificationMethod"><input type="text" class="custom_text" name="business" id="business" /></label>
-                                                                    </fieldset>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
