@@ -170,7 +170,25 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
                     }
                 }
             }
-
+            
+             if (isset($PayPalResult['HOSTEDBUTTONID']) && !empty($PayPalResult['HOSTEDBUTTONID'])) {
+                 if ((isset($_POST['enable_inventory']) && !empty($_POST['enable_inventory'])) || (isset($_POST['enable_profit_and_loss']) && !empty($_POST['enable_profit_and_loss']))) {
+                     $PayPalRequestData_Inventory = $payapal_helper->paypal_wp_button_manager_set_inventory();
+                     $PayPalSet_InventoryResult = $PayPal->BMSetInventory($PayPalRequestData_Inventory);
+                     self::paypal_wp_button_manager_write_error_log($PayPalSet_InventoryResult);
+                     if (isset($PayPalSet_InventoryResult['ERRORS']) && !empty($PayPalSet_InventoryResult['ERRORS'])) {
+                         global $post, $post_ID;
+                         $paypal_wp_button_manager_notice = get_option('paypal_wp_button_manager_notice');
+                         $notice[$post_ID] = $PayPalSet_InventoryResult['ERRORS'][0]['L_LONGMESSAGE'];
+                         $notice_code[$post_ID] = $PayPalSet_InventoryResult['ERRORS'][0]['L_ERRORCODE'];
+                         update_option('paypal_wp_button_manager_notice', $notice);
+                         update_option('paypal_wp_button_manager_error_code', $notice_code);
+                         update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
+                         delete_option('paypal_wp_button_manager_timeout_notice');
+                     }
+                 }
+             }
+ 
             unset($post);
             unset($_POST);
         }
