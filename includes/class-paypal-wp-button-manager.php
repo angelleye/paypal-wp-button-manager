@@ -224,7 +224,7 @@ class AngellEYE_PayPal_WP_Button_Manager {
         $this->loader->add_action('admin_head', $plugin_admin, 'paypal_wp_button_manager_remove_wcpage_link');
         $this->loader->add_action( 'admin_init', $plugin_admin, 'paypal_wp_button_manager_ignore_update_notice');
         $this->loader->add_action( 'upgrader_process_complete', 'paypal_wp_button_manager_upgrader_process_complete', 10, 2 );
-		
+        $this->loader->add_action('admin_head', $plugin_admin, 'paypal_wp_button_manager_data_sync');
     }
 
     /**

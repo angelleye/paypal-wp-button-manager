@@ -54,8 +54,11 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
      * @since 1.0.0
      * @access public
      */
-    public function paypal_wp_button_manager_get_paypalconfig() {
+    public function paypal_wp_button_manager_get_paypalconfig($company_id = null) {
 
+        if( !empty($company_id) ) {
+            $_POST['ddl_companyname'] = $company_id;
+        }
 
         if (isset($_POST['ddl_companyname']) && !empty($_POST['ddl_companyname'])) {
             global $wpdb;
