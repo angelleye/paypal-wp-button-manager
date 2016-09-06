@@ -853,5 +853,14 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
                 }
             }
         }
+        
+        public function paypal_wp_button_manager_on_create_blog( $blog_id, $user_id, $domain, $path, $site_id, $meta ) {
+            if ( is_plugin_active_for_network( 'paypal-wp-button-manager/paypal-wp-button-manager.php' ) ) {
+                require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-paypal-wp-button-manager-activator.php';
+                switch_to_blog( $blog_id );
+                AngellEYE_PayPal_WP_Button_Manager_Activator::activate();
+                restore_current_blog();
+            }
+        }
 
 } 
