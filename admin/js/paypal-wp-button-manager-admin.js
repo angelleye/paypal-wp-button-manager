@@ -174,44 +174,30 @@ jQuery(function ($) {
             }
         }
     });
-
-    if(typeof tinymce != 'undefined') {
+    
+    
+       if(typeof tinymce != 'undefined') {
         tinymce.PluginManager.add('pushortcodes', function( editor )
         {
             var shortcodeValues = [];
-            var pluginurl = paypal_wp_button_manager_plugin_url.plugin_url;
             jQuery.each(shortcodes_button_array.shortcodes_button, function( post_id, post_title )
             {
-        
                 shortcodeValues.push({
                     text: post_title, 
                     value: post_id
                 });
             
             });
-		
             editor.addButton('pushortcodes', {
-        	
                 text: 'Shortcodes',
                 type: 'listbox',
                 title: 'PayPal Buttons',
                 icon: ' icon-paypal',
-            
-                onselect: function(e) {
-                    var v = e.control._value;
-                    if (v != '0') {
-                        tinyMCE.activeEditor.selection.setContent( '[paypal_wp_button_manager id=' + v + ']' );
-                        jQuery('.icon-paypal').next().html('Shortcodes');
-                    } else {
-                        jQuery('.icon-paypal').next().html('Shortcodes');
-                    }
-                              
+                onselect: function() {
+                     tinyMCE.activeEditor.selection.setContent( '[paypal_wp_button_manager id=' + this.value() + ']' );
                 },
-           		
                 values: shortcodeValues
-            
             });
         });
     }
-	
 });

@@ -99,10 +99,20 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			)));
 		}
 
-
-
 		global $post;
-		$args = array('post_type' => 'paypal_buttons', 'posts_per_page' => '100', 'post_status' => array('publish'));
+                $args = array(
+                    'post_type' => 'paypal_buttons',
+                    'post_status' => 'publish',
+                    'posts_per_page' => '100',
+                    'meta_query' => array(
+                        array(
+                            'key' => 'paypal_button_response',
+                            'compare' => 'EXISTS'
+                        )
+                    )
+                );
+
+                $posts = get_posts($args);
 		$paypal_buttons_posts = get_posts($args);
 		$shortcodes = array();
 		$shortcodes_values = array();
@@ -257,7 +267,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 	}
 
 	public function paypal_wp_button_manager_add_tinymce_button($buttons) {
-		array_push($buttons, 'separator', 'pushortcodes');
+		array_push($buttons, 'pushortcodes');
 		return $buttons;
 	}
 
