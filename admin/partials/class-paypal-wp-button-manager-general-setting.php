@@ -28,6 +28,7 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
      * 
      */
     public static function paypal_wp_button_manager_general_setting_fields() {
+        $Logger = new AngellEYE_PayPal_WP_Button_Manager_Logger();
         $fields[] = array(
             'title' => __('General Settings', 'paypal-wp-button-manager'),
             'type' => 'title',
@@ -39,7 +40,7 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
             'type' => 'checkbox',
             'label' => __('Enable logging', 'paypal-wp-button-manager'),
             'default' => 'no',
-            'desc' => sprintf(__('Log PayPal WP Button Manager events in <code>%s</code>', 'paypal-wp-button-manager'), PAYPAL_WP_BUTTON_MANAGER_LOG_DIR)
+            'desc' => sprintf(__('Log PayPal WP Button Manager events in <code>%s</code>', 'paypal-wp-button-manager'), $Logger->paypal_button_manager_for_wordpress_wordpress_get_log_file_path('paypal-wp-button-manager'))
         );
         $fields[] = array('type' => 'sectionend', 'id' => 'general_options_setting');
         return $fields;
