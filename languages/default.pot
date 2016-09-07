@@ -285,7 +285,7 @@ msgstr ""
 #: admin/partials/paypal-button-manager-for-wordpress-html-format.php:533
 #: admin/partials/paypal-button-manager-for-wordpress-html-format.php:534
 #@ paypal-button-manager-for-wordpress
-msgid "Step 2: Save your buttons (optional)"
+msgid "Step 2: Track inventory, profit & loss (optional)"
 msgstr ""
 
 #: admin/partials/paypal-button-manager-for-wordpress-html-format.php:561

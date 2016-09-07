@@ -547,27 +547,82 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                 </div>
                                                 <div id="stepTwo" class="box">
                                                     <div class="header">
-                                                        <?php echo '<h3 id="giftBasedHeading" class="accessAid hide">' . __('Step 2: Save your buttons (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
-                                                        <?php echo '<h3 id="productBasedHeading" class="opened">' . __('Step 2: Save your buttons (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
+                                                        <?php echo '<h3 id="giftBasedHeading" class="accessAid hide">' . __('Step 2: Track inventory, profit & loss (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
+                                                        <?php echo '<h3 id="productBasedHeading" class="opened">' . __('Step 2: Track inventory, profit & loss (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
                                                     </div>
                                                     <div class="body">
                                                         <div class="content">
                                                             <div class="container clearfix">
                                                                 <div class="step2-left-active">
-                                                                    <input class="checkbox" type="checkbox" id="enableHostedButtons" checked="" name="enable_hosted_buttons" value="enabled"><label for="enableHostedButtons" class="">Save button at PayPal</label>
+                                                                    <input class="checkbox" type="checkbox" id="enableHostedButtons" checked="" name="enable_hosted_buttons" value="enabled"><label for="enableHostedButtons" class=""><?php echo __('Save button at PayPal', 'paypal-wp-button-manager'); ?></label>
                                                                     <div class="info-list-wrapper">
                                                                         <ul>
-                                                                            <li>Protect your buttons from fraudulent changes</li>
-                                                                            <li>Automatically add buttons to "My Saved Buttons" in your PayPal profile</li>
-                                                                            <li>Easily create similar buttons</li>
-                                                                            <li>Edit your buttons with PayPal's tools</li>
+                                                                            <li><?php echo __('Protect your buttons from fraudulent changes', 'paypal-wp-button-manager'); ?></li>
+                                                                            <li><?php echo __('Automatically add buttons to "My Saved Buttons" in your PayPal profile', 'paypal-wp-button-manager'); ?></li>
+                                                                            <li><?php echo __('Easily create similar buttons', 'paypal-wp-button-manager'); ?></li>
+                                                                            <li><?php echo __("Edit your buttons with PayPal's tools", 'paypal-wp-button-manager'); ?> </li>
                                                                         </ul>
                                                                     </div>
                                                                     <div class="step2-inventory" id="inventoryOptions">
-
+                                                                        <input class="checkbox" type="checkbox" id="enableInventory" name="enable_inventory" value="enabledInventory"><label for="enableInventory"><?php echo __('Track inventory', 'paypal-wp-button-manager'); ?></label>
+                                                                        <p class="hint"><?php echo __("Don't oversell items not in stock -- Get an email alert when inventory is low.", 'paypal-wp-button-manager'); ?></p>
+                                                                        <input class="checkbox" type="checkbox" id="enableProfitAndLoss" name="enable_profit_and_loss" value="enabledProfitAndLoss"><label for="enableProfitAndLoss"><?php echo __('Track profit and losses', 'paypal-wp-button-manager'); ?></label>
+                                                                        <p class="hint"><?php echo __("View profit and loss report by product/service.", 'paypal-wp-button-manager'); ?></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="step2-extra-fields opened" id="inventoryTable">
+                                                                    <div id="trackByItemTable" class="fadedOut">
+                                                                        <input class="radio" type="radio" id="trackByItem" checked="" name="track_button_by" value="trackdByItem" disabled=""><label id="byItemLabel" for="trackByItem"><strong><?php echo __('By item', 'paypal-wp-button-manager'); ?></strong></label>
+                                                                        <div id="byItemTableBody">
+                                                                            <div class="inventory-table-row">
+                                                                                <div class="left-edge">&nbsp;</div>
+                                                                                <div><?php echo __('Item ID', 'paypal-wp-button-manager'); ?></div>
+                                                                                <div class="invRelated"><?php echo __('Qty. in stock', 'paypal-wp-button-manager'); ?></div>
+                                                                                <div class="invRelated"><?php echo __('Alert qty. (optional)', 'paypal-wp-button-manager'); ?> <span class="autoTooltip helpText" title="" tabindex="0"><?php echo __("What's this?", 'paypal-wp-button-manager'); ?><span class="accessAid"><?php echo __('When your inventory falls to this number, PayPal will send you an e-mail alert.', 'paypal-wp-button-manager'); ?></span></span></div>
+                                                                                <div class="PNLRelated"><?php echo __('Price', 'paypal-wp-button-manager'); ?></div>
+                                                                                <div class="right-edge">&nbsp;</div>
+                                                                            </div>
+                                                                            <div class="inventory-table-row">
+                                                                                <div class="left-edge">&nbsp;</div>
+                                                                                <div><input class="type-text" type="text" name="item_id" value="" disabled=""></div>
+                                                                                <div class="invRelated"><input class="type-text" type="text" name="items_in_stock" value="" disabled=""></div>
+                                                                                <div class="invRelated"><input class="type-text" type="text" name="alert_quantity" value="" disabled=""></div>
+                                                                                <div class="PNLRelated"><input class="type-text" type="text" name="item_cost" value="" disabled=""></div>
+                                                                                <div class="right-edge"><?php echo __('USD', 'paypal-wp-button-manager'); ?></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="trackByOptionTable" class="fadedOut accessAid">
+                                                                        <input class="radio" type="radio" id="trackByOption" name="track_button_by" value="trackdByOption" disabled=""><label for="trackByOption"><strong><?php echo __('By option', 'paypal-wp-button-manager'); ?></strong><?php echo __('(in drop-down menu)', 'paypal-wp-button-manager'); ?> <a id="chooseAnotherDropDown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#chooseAnotherDropDown" class="accessAid"><?php echo __('Choose a different drop-down', 'paypal-wp-button-manager'); ?></a></label>
+                                                                        <div id="byOptionTableBody" class="accessAid">
+                                                                            <div class="inventory-table-row">
+                                                                                <div class="left-edge">&nbsp;</div>
+                                                                                <div><?php echo __('Item ID',  'paypal-wp-button-manager'); ?></div>
+                                                                                <div class="invRelated"><?php echo __('Qty in stock', 'paypal-wp-button-manager'); ?></div>
+                                                                                <div class="invRelated"><?php echo __('Alert qty. (optional)', 'paypal-wp-button-manager'); ?> <span class="autoTooltip helpText" title="" tabindex="0"><?php echo __("What's this?", 'paypal-wp-button-manager'); ?><span class="accessAid"><?php echo __('When your inventory falls to this number, PayPal will send you an e-mail alert.', 'paypal-wp-button-manager'); ?></span></span></div>
+                                                                                <div class="PNLRelated"><?php echo __('Cost', 'paypal-wp-button-manager');?> </div>
+                                                                                <div class="right-edge">&nbsp;</div>
+                                                                            </div>
+                                                                            <div class="inventory-table-row">
+                                                                                <div class="left-edge">&nbsp;</div>
+                                                                                <div><input class="type-text" type="text" name="item_id" value="" disabled=""></div>
+                                                                                <div class="invRelated"><input class="type-text" type="text" name="items_in_stock" value="" disabled=""></div>
+                                                                                <div class="invRelated"><input class="type-text" type="text" name="alert_quantity" value="" disabled=""></div>
+                                                                                <div class="PNLRelated"><input class="type-text" type="text" name="item_cost" value="" disabled=""></div>
+                                                                                <div class="right-edge">&nbsp;</div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
 
+                                                                <div class="step2-bottom-fields fadedOut opened" id="soldOutOption">
+                                                                    <h5 id="shoppingHead" class="opened"><?php echo __('Can customers buy an item when it is sold out?', 'paypal-wp-button-manager'); ?></h5>
+                                                                    <div class="pre-order opened" id="shoppingPreOrder"><input class="radio" type="radio" id="enablePreOrder" name="enable_pre_order" value="enabledPreOrder" disabled=""><label for="enablePreOrder"><?php echo __('Yes, customers can buy the item as usual.', 'paypal-wp-button-manager'); ?></label></div>
+                                                                    <div class="no-pre-order">
+                                                                        <input class="radio opened" type="radio" id="dontEnablePreOrder" checked="" name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened"><?php echo __("No, don't let customers buy the item.", 'paypal-wp-button-manager'); ?> <a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDSoldOutExample" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Preview</a></label>
+                                                                        <p class="hint opened fadedOut" id="shoppingURL"><span class="littleHint"><?php echo __('Take customers to specific page when they click', 'paypal-wp-button-manager'); ?> <strong><?php echo __('Continue Shopping', 'paypal-wp-button-manager'); ?></strong><?php echo __('button on "item sold out" page', 'paypal-wp-button-manager'); ?></span><input class="type-text" type="text" id="soldOutURL" name="sold_out_url" value="" disabled=""><span class="littleHint">Ex: http://www.mybuynowstore.com</span></p>
+                                                                    </div>
+                                                                </div>
 
                                                             </div>
                                                         </div>
