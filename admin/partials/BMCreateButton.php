@@ -41,6 +41,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             $paypal_wp_button_manager_notice = get_option('paypal_wp_button_manager_notice');
             $notice[$post_ID] = $PayPalResult['ERRORS'][0]['L_LONGMESSAGE'];
             $notice_code[$post_ID] = $PayPalResult['ERRORS'][0]['L_ERRORCODE'];
+            
+            $PayPalRequest = isset($PayPalResult['RAWREQUEST']) ? $PayPalResult['RAWREQUEST'] : '';
+            $PayPalResponse = isset($PayPalResult['RAWRESPONSE']) ? $PayPalResult['RAWRESPONSE'] : '';
+
+            $PayPalResult['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
+            $PayPalResult['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
+            
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
             update_option('paypal_wp_button_manager_notice', $notice);
             update_option('paypal_wp_button_manager_error_code', $notice_code);
@@ -54,6 +61,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             global $post, $post_ID;
             $timeout_notice[$post_ID] = 'Internal server error occured';
             update_option('paypal_wp_button_manager_timeout_notice', $timeout_notice);
+            
+            $PayPalRequest = isset($PayPalResult['RAWREQUEST']) ? $PayPalResult['RAWREQUEST'] : '';
+            $PayPalResponse = isset($PayPalResult['RAWRESPONSE']) ? $PayPalResult['RAWRESPONSE'] : '';
+
+            $PayPalResult['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
+            $PayPalResult['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
+                    
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
             update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
 
@@ -68,6 +82,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             global $post, $post_ID;
             global $wp;
             update_post_meta($post_ID, 'paypal_button_response', $PayPalResult['WEBSITECODE']);
+            
+            $PayPalRequest = isset($PayPalResult['RAWREQUEST']) ? $PayPalResult['RAWREQUEST'] : '';
+            $PayPalResponse = isset($PayPalResult['RAWRESPONSE']) ? $PayPalResult['RAWRESPONSE'] : '';
+
+            $PayPalResult['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
+            $PayPalResult['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
+            
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
             update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', 'Button Created Successfully.');
             delete_option('paypal_wp_button_manager_notice');
@@ -164,6 +185,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
 
                                 update_post_meta($post_id, 'paypal_button_response', $PayPalResult_viewcart['WEBSITECODE']);
                                 update_post_meta($post_id, 'paypal_wp_button_manager_viewcart_button_companyid', $_POST['ddl_companyname']);
+                                
+                                $PayPalRequest = isset($PayPalResult_viewcart['RAWREQUEST']) ? $PayPalResult_viewcart['RAWREQUEST'] : '';
+                                $PayPalResponse = isset($PayPalResult_viewcart['RAWRESPONSE']) ? $PayPalResult_viewcart['RAWRESPONSE'] : '';
+
+                                $PayPalResult_viewcart['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
+                                $PayPalResult_viewcart['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
+                                
                                 self::paypal_wp_button_manager_write_error_log($PayPalResult_viewcart);
                             }
                         }

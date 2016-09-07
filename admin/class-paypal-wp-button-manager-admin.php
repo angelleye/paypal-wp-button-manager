@@ -472,6 +472,13 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 					// Pass data into class for processing with PayPal and load the response array into $PayPalResult
 					$PayPal_Delete_Button_Result = $PayPal->BMManageButtonStatus($PayPalRequestData);
+                                        
+                                        $PayPalRequest = isset($PayPal_Delete_Button_Result['RAWREQUEST']) ? $PayPal_Delete_Button_Result['RAWREQUEST'] : '';
+                                        $PayPalResponse = isset($PayPal_Delete_Button_Result['RAWRESPONSE']) ? $PayPal_Delete_Button_Result['RAWRESPONSE'] : '';
+                                        
+                                        $PayPal_Delete_Button_Result['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
+                                        $PayPal_Delete_Button_Result['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
+                                        
 					$obj_for_log->paypal_wp_button_manager_write_error_log($PayPal_Delete_Button_Result);
 
 					global $wpdb;
@@ -570,6 +577,13 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 			// Pass data into class for processing with PayPal and load the response array into $PayPalResult
 			$PayPal_Delete_Button_Result = $PayPal->BMManageButtonStatus($PayPalRequestData);
+                        
+                        $PayPalRequest = isset($PayPal_Delete_Button_Result['RAWREQUEST']) ? $PayPal_Delete_Button_Result['RAWREQUEST'] : '';
+                        $PayPalResponse = isset($PayPal_Delete_Button_Result['RAWRESPONSE']) ? $PayPal_Delete_Button_Result['RAWRESPONSE'] : '';
+                        
+                        $PayPal_Delete_Button_Result['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
+                        $PayPal_Delete_Button_Result['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
+                        
 			$obj_for_log->paypal_wp_button_manager_write_error_log($PayPal_Delete_Button_Result);
 
 			global $wpdb;

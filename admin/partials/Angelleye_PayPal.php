@@ -2915,7 +2915,7 @@ class Angelleye_PayPal {
 
         $NVPRequest = $this->NVPCredentials . $BMCreateButtonNVP;
         $NVPResponse = $this->CURLRequest($NVPRequest);
-        $NVPRequestArray = $this->NVPToArray($NVPRequest);
+        $NVPRequestArray = $this->NVPToArray($this->MaskAPIResult($NVPRequest));
         $NVPResponseArray = $this->NVPToArray($NVPResponse);
 
         $Errors = $this->GetErrors($NVPResponseArray);
@@ -3085,7 +3085,7 @@ class Angelleye_PayPal {
 
         $NVPRequest = $this->NVPCredentials . $BMManageButtonStatusNVP;
         $NVPResponse = $this->CURLRequest($NVPRequest);
-        $NVPRequestArray = $this->NVPToArray($NVPRequest);
+        $NVPRequestArray = $this->NVPToArray($this->MaskAPIResult($NVPRequest));
         $NVPResponseArray = $this->NVPToArray($NVPResponse);
 
         $Errors = $this->GetErrors($NVPResponseArray);
