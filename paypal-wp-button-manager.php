@@ -47,10 +47,10 @@ if (!defined('PAYPAL_WP_BUTTON_MANAGER_PLUGIN_BASENAME')) {
  * The code that runs during plugin activation.
  * This action is documented in includes/class-paypal-wp-button-manager-activator.php
  */
-function activate_paypal_wp_button_manager() {
+function activate_paypal_wp_button_manager($networkwide) {
 	
     require_once plugin_dir_path(__FILE__) . 'includes/class-paypal-wp-button-manager-activator.php';
-    AngellEYE_PayPal_WP_Button_Manager_Activator::activate();
+    AngellEYE_PayPal_WP_Button_Manager_Activator::activate($networkwide);
 }
 
 /**
