@@ -112,6 +112,18 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 1.1.0 - xx.xx.2016 =
+* Feature - Adds the ability to set inventory for a button. ([#48](https://github.com/angelleye/paypal-wp-button-manager/issues/48))
+* Feature - Adds multi-site compatibility. ([#66](https://github.com/angelleye/paypal-wp-button-manager/issues/66))
+* Feature - Adds a log viewer for easier troubleshooting with logs. ([#73](https://github.com/angelleye/paypal-wp-button-manager/issues/73))
+* Feature - Syncs button details with PayPal when entering edit button page via admin panel. ([#76](https://github.com/angelleye/paypal-wp-button-manager/issues/76))
+* Fix - Resolves an issue with the visual editor shortcode tool placing the wrong button. ([#64](https://github.com/angelleye/paypal-wp-button-manager/issues/64))
+* Fix - Resolves a bug with the custom image option. ([#67](https://github.com/angelleye/paypal-wp-button-manager/issues/67))
+* Fix - Resolves PHP warnings displayed when activating themes. ([#72](https://github.com/angelleye/paypal-wp-button-manager/issues/72))
+* Fix - Resolves issues with subscription buttons. ([#71](https://github.com/angelleye/paypal-wp-button-manager/issues/71))
+* Tweak - Removes obsolete email/account ID option. ([#74](https://github.com/angelleye/paypal-wp-button-manager/issues/74))
+* Tweak - Masks API logs. ([#75](https://github.com/angelleye/paypal-wp-button-manager/issues/75))
+
 = 1.0.3 - 12.17.2015 =
 * Fix - Resolves an issue where the preview of a custom button would not display correctly. ([#56](https://github.com/angelleye/paypal-wp-button-manager/issues/56))
 * Fix - General code improvements and bug fixes.
