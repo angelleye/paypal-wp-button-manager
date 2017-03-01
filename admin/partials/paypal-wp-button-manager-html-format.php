@@ -26,9 +26,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE paypal_mode !=''", ARRAY_A);
         ?> <div class="div_companies_dropdown" >
 
-            <div class="div_companyname">
-                <label for="paypalcompanyname"><strong>Choose Company Name:</strong></label>
-                <select id="ddl_companyname" name="ddl_companyname">
+            <div class="div_companyname form-group">
+                <label for="paypalcompanyname" class="control-label"><strong>Choose Company Name:</strong></label>
+                <select id="ddl_companyname" name="ddl_companyname" class="form-control">
                     <option value="">--Select Company--</option>
                     <?php foreach ($result_records as $result_records_value) { ?>
                         <option value="<?php echo $result_records_value['ID']; ?>"><?php echo $result_records_value['title']; ?></option>
@@ -84,9 +84,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                 <div class="content">
                                                     <div class="container">
                                                         <div class="group buttonType">
-                                                            <label for="buttonType">Choose a button type</label>
+                                                            <label for="buttonType" class="control-label">Choose a button type</label>
                                                             <?php $paypal_button_options = get_paypal_button_options(); ?>
-                                                            <select id="buttonType" name="button_type">
+                                                            <select id="buttonType" name="button_type" class="form-control">
                                                                 <?php foreach ($paypal_button_options as $paypal_button_options_key => $paypal_button_options_value) { ?>
                                                                     <option value="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_options_value; ?></option>
                                                                 <?php } ?>
@@ -97,28 +97,28 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="products"><input class="hide radio subButtonType" type="radio" id="radioAddToCartButton" checked="" name="sub_button_type" value="add_to_cart"><input class="hide radio subButtonType" type="radio" id="radioBuyNowButton" name="sub_button_type" value="buy_now"></div>
                                                         <div class="group details">
                                                             <div class="products">
-                                                                <div class="floatLeft"><label for="itemName">Item name</label><input class="text xlarge" maxlength="127" type="text" id="itemName" name="product_name" value=""></div>
-                                                                <div class="floatLeft"><label for="itemID">Item ID<span class="fieldNote"> (optional) </span>
-                                                                        <input class="text" maxlength="127" type="text" id="itemID" size="9" name="product_id" value=""></div>
+                                                                <div class="floatLeft"><label for="itemName" class="control-label">Item name</label><input class="text xlarge form-control" maxlength="127" type="text" id="itemName" name="product_name" value=""></div>
+                                                                <div class="floatLeft"><label for="itemID">Item ID<span class="fieldNote"> (optional) </span></label>
+                                                                        <input class="text form-control" maxlength="127" type="text" id="itemID" size="9" name="product_id" value=""></div>
                                                                         </div>
                                                                         <div class="donations accessAid fadedOut">
-                                                                            <div class="floatLeft"><label for="donationName">Organization name/service</label><input class="text xlarge" maxlength="127" type="text" id="donationName" name="donation_name" value="" disabled=""></div>
-                                                                            <div class="floatLeft"><label for="donationID">Donation ID<span class="fieldNote"> (optional) </span>
+                                                                            <div class="floatLeft"><label for="donationName" class="control-label">Organization name/service</label><input class="text xlarge form-control" maxlength="127" type="text" id="donationName" name="donation_name" value="" disabled=""></div>
+                                                                            <div class="floatLeft"><label for="donationID" class="control-label">Donation ID<span class="fieldNote"> (optional) </span>
                                                                                 </label>
-                                                                                <input class="text" maxlength="127" type="text" id="donationID" size="27" name="donation_id" value="" disabled=""></div>
+                                                                                <input class="text form-control" maxlength="127" type="text" id="donationID" size="27" name="donation_id" value="" disabled=""></div>
                                                                         </div>
                                                                         <div class="subscriptions accessAid fadedOut">
-                                                                            <div class="floatLeft"><label for="subscriptionName">Item name</label><input class="text xlarge" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="" disabled=""></div>
-                                                                            <div class="floatLeft"><label for="subscriptionID">Subscription ID<span class="fieldNote"> (optional) </span></label><input class="text" maxlength="127" type="text" id="subscriptionID" size="27" name="subscription_id" value="" disabled=""></div>
+                                                                            <div class="floatLeft"><label for="subscriptionName" class="control-label">Item name</label><input class="text xlarge form-control" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="" disabled=""></div>
+                                                                            <div class="floatLeft"><label for="subscriptionID" class="control-label">Subscription ID<span class="fieldNote"> (optional) </span></label><input class="text form-control" maxlength="127" type="text" id="subscriptionID" size="27" name="subscription_id" value="" disabled=""></div>
                                                                         </div>
-                                                                        <div class="gift_certs accessAid fadedOut"><label for="giftCertificateShopURL">Enter the URL where recipients can shop and redeem this gift certificate.</label><input class="text" type="text" id="giftCertificateShopURL" size="34" name="gift_certificate_shop_url" value="http://" disabled=""></div>
+                                                            <div class="gift_certs accessAid fadedOut"><label for="giftCertificateShopURL" class="control-label">Enter the URL where recipients can shop and redeem this gift certificate.</label><input class="text form-control" type="text" id="giftCertificateShopURL" size="34" name="gift_certificate_shop_url" value="http://" disabled=""></div>
                                                                 </div>
                                                                 <div class="group products pricing opened">
-                                                                    <div class="floatLeft"><label for="itemPrice">Price</label><input class="text" type="text" id="itemPrice" size="9" name="item_price" value=""></div>
+                                                                    <div class="floatLeft"><label for="itemPrice" class="control-label">Price</label><input class="text form-control" type="text" id="itemPrice" size="9" name="item_price" value=""></div>
                                                                     <div class="floatLeft">
-                                                                        <label for="itemPriceCurrency">Currency</label>
+                                                                        <label for="itemPriceCurrency" class="control-label">Currency</label>
                                                                         <?php $paypal_button_currency_with_symbole = get_paypal_button_currency_with_symbole(); ?>
-                                                                        <select id="BillingAmountCurrency" name="item_price_currency" class="currencySelect">
+                                                                        <select id="BillingAmountCurrency" name="item_price_currency" class="currencySelect form-control">
 
                                                                             <?php foreach ($paypal_button_currency_with_symbole as $paypal_button_currency_with_symbole_key => $paypal_button_currency_with_symbole_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_currency_with_symbole_key; ?>" title="<?php echo $paypal_button_currency_with_symbole_value; ?>"><?php echo $paypal_button_currency_with_symbole_key; ?></option>
@@ -128,9 +128,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     </div>
                                                                 </div>
                                                                 <div class="group subscriptions accessAid fadedOut">
-                                                                    <label for="subscriptionBillingAmountCurrency">Currency</label>
+                                                                    <label for="subscriptionBillingAmountCurrency" class="control-label">Currency</label>
                                                                     <?php $paypal_button_currency = get_paypal_button_currency(); ?>
-                                                                    <select id="subscriptionBillingAmountCurrency" name="item_price_currency" class="currencySelect" disabled="">
+                                                                    <select id="subscriptionBillingAmountCurrency" name="item_price_currency" class="currencySelect form-control" disabled="">
                                                                         <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                             <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
                                                                         <?php } ?>
@@ -141,42 +141,42 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <div class="borderBox">
                                                                             <p class="heading"><strong>Customize button</strong></p>
                                                                             <div id="customizeSection">
-                                                                                <p id="addDropdownPrice" class="hideShow opened"><label for="dropdownPrice"><input class="checkbox" type="checkbox" id="dropdownPrice" name="dropdown_price" value="createdDropdownPrice"><span class="products">Add drop-down menu with price/option&nbsp;</span><span class="subscriptions accessAid fadedOut">Add a dropdown menu with prices and options</span>
+                                                                                <p id="addDropdownPrice" class="hideShow opened"><label for="dropdownPrice" class="control-label"><input class="checkbox form-control" type="checkbox" id="dropdownPrice" name="dropdown_price" value="createdDropdownPrice"><span class="products">Add drop-down menu with price/option&nbsp;</span><span class="subscriptions accessAid fadedOut">Add a dropdown menu with prices and options</span>
                                                                                     </label></p>
                                                                                 <div id="dropdownPriceSection" class="hideShow accessAid hide">
-                                                                                    <p class="title dropdownPriceTitle"><label for="dropdownPriceTitle"><span class="products">Name of drop-down menu (ex.: "Colors," "Sizes")</span><span class="subscriptions accessAid fadedOut">Description (For example, "Payment options".)</span></label><input class="text" maxlength="64" type="text" id="dropdownPriceTitle" disabled="" name="dropdown_price_title" value=""></p>
-                                                                                    <p><label class="optionNameLbl" for=""><span class="products">Menu option name</span><span class="subscriptions accessAid fadedOut">Menu Name</span></label><label class="optionPriceLbl" for="optionPrice"><span class="products">Price</span><span class="subscriptions accessAid fadedOut">Amount (<span class="currencyLabel">USD</span>)</span></label><label class="optionCurrencyLbl" for="optionCurrency"><span class="products">Currency</span><span class="subscriptions accessAid fadedOut">Frequency</span></label></p>
+                                                                                    <p class="title dropdownPriceTitle"><label for="dropdownPriceTitle" class="control-label"><span class="products">Name of drop-down menu (ex.: "Colors," "Sizes")</span><span class="subscriptions accessAid fadedOut">Description (For example, "Payment options".)</span></label><input class="text form-control" maxlength="64" type="text" id="dropdownPriceTitle" disabled="" name="dropdown_price_title" value=""></p>
+                                                                                    <p><label class="optionNameLbl control-label" for=""><span class="products">Menu option name</span><span class="subscriptions accessAid fadedOut">Menu Name</span></label><label class="optionPriceLbl control-label" for="optionPrice"><span class="products">Price</span><span class="subscriptions accessAid fadedOut">Amount (<span class="currencyLabel control-label">USD</span>)</span></label><label class="optionCurrencyLbl control-label" for="optionCurrency"><span class="products">Currency</span><span class="subscriptions accessAid fadedOut control-label">Frequency</span></label></p>
                                                                                     <div id="optionsPriceContainer">
                                                                                         <p class="optionRow">
-                                                                                            <input maxlength="64" type="text" class="ddpOptionName text" disabled="" name="ddp_option_name" value="Option 1">
-                                                                                            <input type="text" class="ddpOptionPrice text" disabled="" name="ddp_option_price" value="">
+                                                                                            <input maxlength="64" type="text" class="ddpOptionName text form-control" disabled="" name="ddp_option_name" value="Option 1">
+                                                                                            <input type="text" class="ddpOptionPrice text form-control" disabled="" name="ddp_option_price" value="">
                                                                                             <?php $paypal_button_currency = get_paypal_button_currency(); ?>
-                                                                                            <select class="ddpOptionCurrency show" name="ddp_option_currency">
+                                                                                            <select class="ddpOptionCurrency show form-control" name="ddp_option_currency">
                                                                                                 <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
                                                                                                 <?php } ?>
                                                                                             </select>
                                                                                             <?php $paypal_button_subscriptions = get_paypal_button_subscriptions(); ?>
-                                                                                            <select class="subscriptions ddpOptionFrequency" name="ddp_option_frequency" disabled="">
+                                                                                            <select class="subscriptions ddpOptionFrequency form-control" name="ddp_option_frequency" disabled="">
                                                                                                 <?php foreach ($paypal_button_subscriptions as $paypal_button_subscriptions_key => $paypal_button_subscriptions_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_subscriptions_key; ?>"><?php echo $paypal_button_subscriptions_value; ?></option>
                                                                                                 <?php } ?>
                                                                                             </select>
                                                                                         </p>
                                                                                         <p class="optionRow clearfix">
-                                                                                            <input maxlength="64" type="text" class="ddpOptionName text" disabled="" name="ddp_option_name" value="Option 2">
-                                                                                            <input type="text" class="ddpOptionPrice text" disabled="" name="ddp_option_price" value=""><label class="ddpOptionCurrency show" for="">USD</label>
+                                                                                            <input maxlength="64" type="text" class="ddpOptionName text form-control" disabled="" name="ddp_option_name" value="Option 2">
+                                                                                            <input type="text" class="ddpOptionPrice text form-control" disabled="" name="ddp_option_price" value=""><label class="ddpOptionCurrency show control-label" for="">USD</label>
 
-                                                                                            <select class="subscriptions ddpOptionFrequency accessAid fadedOut hide" name="ddp_option_frequency" disabled="">
+                                                                                            <select class="subscriptions ddpOptionFrequency accessAid fadedOut hide form-control" name="ddp_option_frequency" disabled="">
                                                                                                 <?php foreach ($paypal_button_subscriptions as $paypal_button_subscriptions_key => $paypal_button_subscriptions_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_subscriptions_key; ?>"><?php echo $paypal_button_subscriptions_value; ?></option>
                                                                                                 <?php } ?>
                                                                                             </select>
                                                                                         </p>
                                                                                         <p class="optionRow clearfix">
-                                                                                            <input maxlength="64" type="text" class="ddpOptionName text" disabled="" name="ddp_option_name" value="Option 3"><input type="text" class="ddpOptionPrice text" disabled="" name="ddp_option_price" value=""><label class="ddpOptionCurrency show" for="">USD</label>
+                                                                                            <input maxlength="64" type="text" class="ddpOptionName text form-control" disabled="" name="ddp_option_name" value="Option 3"><input type="text" class="ddpOptionPrice text form-control" disabled="" name="ddp_option_price" value=""><label class="ddpOptionCurrency show control-label" for="">USD</label>
 
-                                                                                            <select class="subscriptions ddpOptionFrequency accessAid fadedOut hide" name="ddp_option_frequency" disabled="">
+                                                                                            <select class="subscriptions ddpOptionFrequency accessAid fadedOut hide form-control" name="ddp_option_frequency" disabled="">
                                                                                                 <?php foreach ($paypal_button_subscriptions as $paypal_button_subscriptions_key => $paypal_button_subscriptions_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_subscriptions_key; ?>"><?php echo $paypal_button_subscriptions_value; ?></option>
                                                                                                 <?php } ?>
@@ -190,46 +190,46 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                     <p><label id="savedDropdownPrice" for=""></label></p>
                                                                                     <p class="editDelete"><a id="editDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products">Edit</span><span class="subscriptions accessAid fadedOut">Change</span></a>&nbsp;|&nbsp;<a id="deleteDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products">Delete</span><span class="subscriptions accessAid fadedOut">Cancel</span></a></p>
                                                                                 </div>
-                                                                                <p id="addDropdown" class="hideShow opened"><label for="dropdown"><input class="checkbox" type="checkbox" id="dropdown" name="dropdown" value="createdDropdown"><span class="hideShow accessAid hide" id="dropDownLabelForSubscription">Add a dropdown menu </span><span id="dropDownLabel" class="opened">Add drop-down menu&nbsp;</span>
+                                                                                    <p id="addDropdown" class="hideShow opened"><label for="dropdown" class="control-label"><input class="checkbox form-control" type="checkbox" id="dropdown" name="dropdown" value="createdDropdown"><span class="hideShow accessAid hide" id="dropDownLabelForSubscription">Add a dropdown menu </span><span id="dropDownLabel" class="opened">Add drop-down menu&nbsp;</span>
 
                                                                                     </label></p>
                                                                                 <div class="hideShow dropdownSection accessAid hide" id="dropdownSection1">
-                                                                                    <p class="title"><label for="">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text" disabled="" name="dropdown1_title" value=""></p>
-                                                                                    <p><label for="">Menu option name</label></p>
+                                                                                    <p class="title"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown1_title" value=""></p>
+                                                                                    <p><label for="" class="control-label">Menu option name</label></p>
                                                                                     <div id="optionsContainer1">
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text" disabled="" name="dd1_option_name" value="Option 1"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text" disabled="" name="dd1_option_name" value="Option 2"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text" disabled="" name="dd1_option_name" value="Option 3"></p>
+                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 1"></p>
+                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 2"></p>
+                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 3"></p>
                                                                                     </div>
                                                                                     <p class="moreOptionsLink"><a class="addOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
                                                                                     <p class="saveCancel"><input class="saveOption primary button" type="submit" name="save_option" value="Done" alt="Done"><a class="cancelOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid savedDropdownSection hide" id="savedDropdownSection1">
-                                                                                    <p><label id="savedDropdown1" for=""></label></p>
+                                                                                    <p><label id="savedDropdown1" for="" class="control-label"></label></p>
                                                                                     <p class="editDelete"><a class="editDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow dropdownSection accessAid hide" id="dropdownSection2">
-                                                                                    <p class="title"><label for="">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text" disabled="" name="dropdown2_title" value=""></p>
-                                                                                    <p><label for="">Menu option name</label></p>
+                                                                                    <p class="title"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown2_title" value=""></p>
+                                                                                    <p><label for="" class="control-label">Menu option name</label></p>
                                                                                     <div id="optionsContainer2">
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text" disabled="" name="dd2_option_name" value="Option 1"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text" disabled="" name="dd2_option_name" value="Option 2"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text" disabled="" name="dd2_option_name" value="Option 3"></p>
+                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 1"></p>
+                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 2"></p>
+                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 3"></p>
                                                                                     </div>
                                                                                     <p class="moreOptionsLink"><a class="addOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
                                                                                     <p class="saveCancel"><input class="saveOption primary button" type="submit" name="save_option_2" value="Done" alt="Done"><a class="cancelOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid savedDropdownSection hide" id="savedDropdownSection2">
-                                                                                    <p><label id="savedDropdown2" for=""></label></p>
+                                                                                    <p><label id="savedDropdown2" for="" class="control-label"></label></p>
                                                                                     <p class="editDelete"><a class="editDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow dropdownSection accessAid hide" id="dropdownSection3">
-                                                                                    <p class="title"><label for="">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text" disabled="" name="dropdown3_title" value=""></p>
-                                                                                    <p><label for="">Menu option name</label></p>
+                                                                                    <p class="title"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown3_title" value=""></p>
+                                                                                    <p><label for="" class="control-label">Menu option name</label></p>
                                                                                     <div id="optionsContainer3">
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text" disabled="" name="dd3_option_name" value="Option 1"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text" disabled="" name="dd3_option_name" value="Option 2"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text" disabled="" name="dd3_option_name" value="Option 3"></p>
+                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 1"></p>
+                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 2"></p>
+                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 3"></p>
                                                                                     </div>
                                                                                     <p class="moreOptionsLink"><a class="addOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
                                                                                     <p class="saveCancel"><input class="saveOption primary button" type="submit" name="save_option_3" value="Done" alt="Done"><a class="cancelOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
@@ -239,24 +239,24 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                     <p class="editDelete"><a class="editDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow dropdownSection accessAid hide" id="dropdownSection4">
-                                                                                    <p class="title"><label for="">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text" disabled="" name="dropdown4_title" value=""></p>
-                                                                                    <p><label for="">Menu option name</label></p>
+                                                                                    <p class="title"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown4_title" value=""></p>
+                                                                                    <p><label for="" class="control-label">Menu option name</label></p>
                                                                                     <div id="optionsContainer4">
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text" disabled="" name="dd4_option_name" value="Option 1"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text" disabled="" name="dd4_option_name" value="Option 2"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text" disabled="" name="dd4_option_name" value="Option 3"></p>
+                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 1"></p>
+                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 2"></p>
+                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 3"></p>
                                                                                     </div>
                                                                                     <p class="moreOptionsLink"><a class="addOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
                                                                                     <p class="saveCancel"><input class="saveOption primary button" type="submit" name="save_option_4" value="Done" alt="Done"><a class="cancelOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid savedDropdownSection hide" id="savedDropdownSection4">
-                                                                                    <p><label id="savedDropdown4" for=""></label></p>
+                                                                                    <p><label id="savedDropdown4" for="" class="form-control"></label></p>
                                                                                     <p class="editDelete"><a class="editDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                                 </div>
                                                                                 <p id="addNewDropdownSection" class="editDelete hideShow accessAid hide"><a id="addNewDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add another drop-down menu</a></p>
-                                                                                <p class="hideShow opened" id="addTextfield"><label for="textfield"><input type="checkbox" value="createdTextfield" name="textfield" id="textfield" class="checkbox">Add text field&nbsp;<a onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})" href="https://www.paypal.com/uk/cgi-bin/webscr?cmd=_display-textfield-example" class="infoLink exampleLink" target="_blank">Example</a></label></p>
+                                                                                <p class="hideShow opened" id="addTextfield"><label for="textfield" class="control-label"><input type="checkbox" value="createdTextfield" name="textfield" id="textfield" class="checkbox form-control">Add text field&nbsp;<a onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})" href="https://www.paypal.com/uk/cgi-bin/webscr?cmd=_display-textfield-example" class="infoLink exampleLink" target="_blank">Example</a></label></p>
                                                                                 <div class="hideShow accessAid textfieldSection hide" id="textfieldSection1">
-                                                                                    <p class="title"><label for="textfieldTitle1">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle1" class="text" disabled="" name="textfield1_title" value=""></p>
+                                                                                    <p class="title"><label for="textfieldTitle1" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle1" class="text form-control" disabled="" name="textfield1_title" value=""></p>
                                                                                     <p class="saveCancel"><input class="saveTextfield primary button" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid savedTextfieldSection hide" id="savedTextfieldSection1">
@@ -264,24 +264,24 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                     <p class="editDelete"><a class="editTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid textfieldSection hide" id="textfieldSection2">
-                                                                                    <p class="title"><label for="textfieldTitle2">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle2" class="text" disabled="" name="textfield2_title" value=""></p>
+                                                                                    <p class="title"><label for="textfieldTitle2" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle2" class="text form-control" disabled="" name="textfield2_title" value=""></p>
                                                                                     <p class="saveCancel"><input class="saveTextfield primary button" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid savedTextfieldSection hide" id="savedTextfieldSection2">
-                                                                                    <p><label class="savedTextfield" id="savedTextfield2" for=""></label></p>
+                                                                                    <p><label class="savedTextfield control-label" id="savedTextfield2" for=""></label></p>
                                                                                     <p class="editDelete"><a class="editTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                                 </div>
                                                                                 <p id="addNewTextfieldSection" class="editDelete hideShow accessAid hide"><a id="addNewTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add another text field</a></p>
                                                                                 <span id="buttonAppLink" class="collapsed"><a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Customize text or appearance</a><span class="fieldNote"> (optional)</span></span>
                                                                                 <div id="buttonAppSection" class="hideShow accessAid hide">
-                                                                                    <p id="addPaypalButton"><label for="paypalButton"><input class="radio" type="radio" id="paypalButton" checked="" name="paypal_button" value="true">PayPal button</label></p>
+                                                                                    <p id="addPaypalButton"><label for="paypalButton" class="control-label"><input class="radio form-control" type="radio" id="paypalButton" checked="" name="paypal_button" value="true">PayPal button</label></p>
                                                                                     <div id="paypalButtonSection" class="hideShow opened">
-                                                                                        <p id="displaySmallButton"><label for="smallButton"><input class="checkbox" type="checkbox" id="smallButton" name="small_button" value="createdSmallButton">Use smaller button</label></p>
-                                                                                        <p id="displayCcLogos" class="hideShow hide"><label for="ccLogos"><input class="checkbox" type="checkbox" id="ccLogos" checked="" name="cc_logos" value="createdButtonWithCCLogo">Display credit card logos</label></p>
+                                                                                        <p id="displaySmallButton"><label for="smallButton" class="control-label"><input class="checkbox form-control" type="checkbox" id="smallButton" name="small_button" value="createdSmallButton">Use smaller button</label></p>
+                                                                                        <p id="displayCcLogos" class="hideShow hide"><label for="ccLogos" class="control-label"><input class="checkbox form-control" type="checkbox" id="ccLogos" checked="" name="cc_logos" value="createdButtonWithCCLogo">Display credit card logos</label></p>
                                                                                         <p id="buttonCountryLanguage">
-                                                                                            <label for="">Country and language for button</label>
+                                                                                            <label for="" class="control-label">Country and language for button</label>
                                                                                             <?php $paypal_button_language = get_paypal_button_languages(); ?>
-                                                                                            <select id="selectCountryLanguage" name="select_country_language">
+                                                                                            <select id="selectCountryLanguage" name="select_country_language" class="form-control">
 
                                                                                                 <?php foreach ($paypal_button_language as $paypal_button_language_key => $paypal_button_language_value) { ?>
                                                                                                     <option value="<?php echo $paypal_button_language_key; ?>"><?php echo $paypal_button_language_value; ?></option>
@@ -290,27 +290,27 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                             <input type="hidden" id="countryCode" name="country_code" value="US"><input type="hidden" id="langCode" name="lang_code" value="en"><input type="hidden" id="buttonUrl" name="button_url" value="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif"><input type="hidden" id="popupButtonUrl" name="popup_button_url" value=""><input type="hidden" id="flagInternational" name="flag_international" value="true" disabled=""><input type="hidden" id="titleStr" name="title_str" value="Title"><input type="hidden" id="optionStr" name="option_str" value="Option"><input type="hidden" id="addOptionStr" name="add_option_str" value="Add another option">
                                                                                         </p>
                                                                                         <p id="textBuyNow" class="hideShow buttonText hide">
-                                                                                            <label for="">Select button text</label>
+                                                                                            <label for="" class="control-label">Select button text</label>
                                                                                             <span class="field">
-                                                                                                <select id="buttonTextBuyNow" name="button_text" disabled="">
+                                                                                                <select id="buttonTextBuyNow" name="button_text" disabled="" class="form-control">
                                                                                                     <option value="buy_now" selected="">Buy Now</option>
                                                                                                     <option value="pay_now">Pay Now</option>
                                                                                                 </select>
                                                                                             </span>
                                                                                         </p>
                                                                                         <p id="textSubscr" class="hideShow buttonText hide">
-                                                                                            <label for="">Select button text</label>
+                                                                                            <label for="" class="control-label">Select button text</label>
                                                                                             <span class="field">
-                                                                                                <select id="buttonTextSubscribe" name="button_text" disabled="">
+                                                                                                <select id="buttonTextSubscribe" name="button_text" disabled="" class="form-control">
                                                                                                     <option value="subscriptions" selected="">Subscribe</option>
                                                                                                     <option value="buy_now">Buy Now</option>
                                                                                                 </select>
                                                                                             </span>
                                                                                         </p>
                                                                                     </div>
-                                                                                    <p id="addCustomButton"><label for="customButton"><input class="radio" type="radio" id="customButton" name="paypal_button" value="false">Use your own button image</label>
+                                                                                    <p id="addCustomButton"><label for="customButton" class="control-label"><input class="radio form-control" type="radio" id="customButton" name="paypal_button" value="false">Use your own button image</label>
                                                                                     </p>
-                                                                                    <div id="customButtonSection" class="hideShow accessAid hide"><input type="text" id="customImageUrl" class="text" name="custom_image_url"></div>
+                                                                                    <div id="customButtonSection" class="hideShow accessAid hide"><input type="text" id="customImageUrl" class="text form-control" name="custom_image_url"></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -319,48 +319,48 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
                                                                             <div class="previewSection">
                                                                                 <p id="previewDropdownPriceSection" class="hideShow accessAid previewDropdown hide">
-                                                                                    <label id="previewDropdownPriceTitle" for="optionsPriceDropdown">Dropdown title</label>
-                                                                                    <select id="optionsPriceDropdown" name="options_price_dropdown">
+                                                                                    <label id="previewDropdownPriceTitle" for="optionsPriceDropdown" class="control-label">Dropdown title</label>
+                                                                                    <select id="optionsPriceDropdown" name="options_price_dropdown" class="form-control">
                                                                                         <option value="Option 1" selected="">Option 1 - $x.xx</option>
                                                                                         <option value="Option 2">Option 2 - $x.xx</option>
                                                                                         <option value="Option 3">Option 3 - $x.xx</option>
                                                                                     </select>
-                                                                                    <span class="hide" id="frequencyTxt">Frequency</span>
+                                                                                    <span class="hide control-label" id="frequencyTxt">Frequency</span>
                                                                                 </p>
                                                                                 <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection1">
-                                                                                    <label class="previewDropdownTitle" for="optionsDropdown1">Dropdown title</label>
-                                                                                    <select id="optionsDropdown1" name="options_dropdown1" class="optionsDropdown">
+                                                                                    <label class="previewDropdownTitle control-label" for="optionsDropdown1">Dropdown title</label>
+                                                                                    <select id="optionsDropdown1" name="options_dropdown1" class="optionsDropdown form-control">
                                                                                         <option value="" selected="">Option 1</option>
                                                                                         <option value="">Option 2</option>
                                                                                         <option value="">Option 3</option>
                                                                                     </select>
                                                                                 </p>
                                                                                 <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection2">
-                                                                                    <label class="previewDropdownTitle" for="">Dropdown title</label>
-                                                                                    <select id="optionsDropdown2" name="options_dropdown2" class="optionsDropdown">
+                                                                                    <label class="previewDropdownTitle control-label" for="">Dropdown title</label>
+                                                                                    <select id="optionsDropdown2" name="options_dropdown2" class="optionsDropdown form-control">
                                                                                         <option value="" selected="">Option 1</option>
                                                                                         <option value="">Option 2</option>
                                                                                         <option value="">Option 3</option>
                                                                                     </select>
                                                                                 </p>
                                                                                 <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection3">
-                                                                                    <label class="previewDropdownTitle" for="">Dropdown title</label>
-                                                                                    <select id="optionsDropdown3" name="options_dropdown3" class="optionsDropdown">
+                                                                                    <label class="previewDropdownTitle control-label" for="">Dropdown title</label>
+                                                                                    <select id="optionsDropdown3" name="options_dropdown3" class="optionsDropdown form-control">
                                                                                         <option value="" selected="">Option 1</option>
                                                                                         <option value="">Option 2</option>
                                                                                         <option value="">Option 3</option>
                                                                                     </select>
                                                                                 </p>
                                                                                 <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection4">
-                                                                                    <label class="previewDropdownTitle" for="">Dropdown title</label>
-                                                                                    <select id="optionsDropdown4" name="options_dropdown4" class="optionsDropdown">
+                                                                                    <label class="previewDropdownTitle control-label" for="">Dropdown title</label>
+                                                                                    <select id="optionsDropdown4" name="options_dropdown4" class="optionsDropdown form-control">
                                                                                         <option value="" selected="">Option 1</option>
                                                                                         <option value="">Option 2</option>
                                                                                         <option value="">Option 3</option>
                                                                                     </select>
                                                                                 </p>
-                                                                                <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection1"><label id="previewTextfieldTitle1" for="buttonTextfield1">Title</label><input type="text" id="buttonTextfield1" class="text readOnlyLabel" name="button_textfield1" value=""></p>
-                                                                                <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection2"><label id="previewTextfieldTitle2" for="buttonTextfield2">Title</label><input type="text" id="buttonTextfield2" class="text readOnlyLabel" name="button_textfield2" value=""></p>
+                                                                                <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection1"><label id="previewTextfieldTitle1" for="buttonTextfield1" class="control-label">Title</label><input type="text" id="buttonTextfield1" class="text readOnlyLabel form-control" name="button_textfield1" value=""></p>
+                                                                                <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection2"><label id="previewTextfieldTitle2" for="buttonTextfield2" class="control-label">Title</label><input type="text" id="buttonTextfield2" class="text readOnlyLabel form-control" name="button_textfield2" value=""></p>
                                                                                 <p class="hideShow opened previewImageSection"><img id="previewImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/btn_cart_LG.gif" border="0" alt="Preview Image"></p>
                                                                                 <p class="hideShow accessAid previewCustomImageSection hide"><img id="previewCustomImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/info_nobuttonpreview_121wx26h.gif" border="0" alt="Use your own button image"></p>
                                                                             </div>
@@ -371,7 +371,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="shipping">
                                                                         <fieldset>
                                                                             <legend><strong>Shipping</strong></legend>
-                                                                            <label for="itemFlatShippingAmount">Use specific amount: <input class="text" type="text" id="itemFlatShippingAmount" size="9" name="item_shipping_amount" value=""><span class="currencyLabel">USD</span>
+                                                                            <label for="itemFlatShippingAmount" class="control-label">Use specific amount: <input class="text form-control" type="text" id="itemFlatShippingAmount" size="9" name="item_shipping_amount" value=""><span class="currencyLabel">USD</span>
 
                                                                             </label>
                                                                         </fieldset>
@@ -379,14 +379,14 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="tax">
                                                                         <fieldset>
                                                                             <legend><strong>Tax</strong></legend>
-                                                                            <label for="itemTaxRate">Use tax rate <input class="text xsmall" type="text" id="itemTaxRate" name="item_tax_rate" value="">%</label>
+                                                                            <label for="itemTaxRate" class="control-label">Use tax rate <input class="text xsmall form-control" type="text" id="itemTaxRate" name="item_tax_rate" value="">%</label>
                                                                         </fieldset>
                                                                     </div>
                                                                 </div>
                                                                 <div class="group donations last accessAid fadedOut">
                                                                     <div class="group donationCurrency">
-                                                                        <label for="donationCurrency">Currency</label>
-                                                                        <select id="donationCurrency" name="item_price_currency" class="currencySelect" disabled="">
+                                                                        <label for="donationCurrency" class="control-label">Currency</label>
+                                                                        <select id="donationCurrency" name="item_price_currency" class="currencySelect form-control" disabled="">
                                                                             <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
                                                                             <?php } ?>
@@ -395,15 +395,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="group contributionAmount">
                                                                         <fieldset>
                                                                             <legend>Contribution amount</legend>
-                                                                            <label for="optDonationTypeFlexible"><input class="radio donationType" type="radio" id="optDonationTypeFlexible" checked="" name="donation_type" value="open" disabled="">Donors enter their own contribution amount.</label>&nbsp;&nbsp;<label for="optDonationTypeFixed"><input class="radio donationType" type="radio" id="optDonationTypeFixed" name="donation_type" value="fixed" disabled="">Donors contribute a fixed amount.</label>
-                                                                            <div class="labelOption fixedDonationAmountContainer accessAid"><label for="fixedDonationAmount">Amount&nbsp;&nbsp;</label><input type="text" id="fixedDonationAmount" size="7" maxlength="20" class="text" name="item_price" value="" disabled=""><span class="currencyLabel">USD</span></div>
+                                                                            <label for="optDonationTypeFlexible" class="control-label"><input class="radio donationType form-control" type="radio" id="optDonationTypeFlexible" checked="" name="donation_type" value="open" disabled="">Donors enter their own contribution amount.</label>&nbsp;&nbsp;<label for="optDonationTypeFixed" class="control-label"><input class="radio donationType form-control" type="radio" id="optDonationTypeFixed" name="donation_type" value="fixed" disabled="">Donors contribute a fixed amount.</label>
+                                                                            <div class="labelOption fixedDonationAmountContainer accessAid"><label for="fixedDonationAmount" class="control-label">Amount&nbsp;&nbsp;</label><input type="text" id="fixedDonationAmount" size="7" maxlength="20" class="text form-control" name="item_price" value="" disabled=""><span class="currencyLabel">USD</span></div>
                                                                         </fieldset>
                                                                     </div>
                                                                     <p><strong>Note:</strong> This button is intended for fundraising. If you are not raising money for a cause, please choose another option. Nonprofits must verify their status to withdraw donations they receive. Users that are not verified nonprofits must demonstrate how their donations will be used, once they raise more than $10,000 USD.</p>
                                                                 </div>
                                                                 <div class="group subscriptions last accessAid fadedOut">
                                                                     <div class="group">
-                                                                        <input type="checkbox" id="enableUsernamePasswordCreation" class="checkbox" name="enable_username_password_creation" value="1" disabled="">Have PayPal create user names and passwords for customers&nbsp;
+                                                                        <input type="checkbox" id="enableUsernamePasswordCreation" class="checkbox form-control" name="enable_username_password_creation" value="1" disabled="">Have PayPal create user names and passwords for customers&nbsp;
                                                                         <div class="balloonCallout accessAid" id="customerControlHelp">Give customers access to "members-only" content on your site.</div>
                                                                         <div class="fieldNote">
                                                                             <div class="label">Notes: </div>
@@ -412,17 +412,17 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         </div>
                                                                     </div>
                                                                     <div id="rbFixedAmount">
-                                                                        <div class="group"><label for="subscriptionBillingAmount">Billing amount each cycle</label><input type="text" id="subscriptionBillingAmount" size="22" class="text" name="subscription_billing_amount" value="" disabled=""><span class="currencyLabel">USD</span></div>
+                                                                        <div class="group"><label for="subscriptionBillingAmount" class="control-label">Billing amount each cycle</label><input type="text" id="subscriptionBillingAmount" size="22" class="text form-control" name="subscription_billing_amount" value="" disabled=""><span class="currencyLabel">USD</span></div>
                                                                         <div class="group">
-                                                                            <label for="subscriptionBillingCycleNumber">Billing cycle</label>
+                                                                            <label for="subscriptionBillingCycleNumber" class="control-label">Billing cycle</label>
                                                                             <?php $paypal_button_subscription_billing_cycle_number = get_paypal_button_subscription_billing_cycle_number(); ?>
-                                                                            <select name="subscription_billing_cycle_number" disabled="">
+                                                                            <select name="subscription_billing_cycle_number" disabled="" class="form-control">
                                                                                 <?php foreach ($paypal_button_subscription_billing_cycle_number as $paypal_button_subscription_billing_cycle_number_key => $paypal_button_subscription_billing_cycle_number_value) { ?>
                                                                                     <option value="<?php echo $paypal_button_subscription_billing_cycle_number_value; ?>"><?php echo $paypal_button_subscription_billing_cycle_number_value; ?></option>
                                                                                 <?php } ?>
                                                                             </select>
                                                                             <?php $paypal_button_subscriptions_cycle = get_paypal_button_subscriptions_cycle(); ?>
-                                                                            <select id="subscriptionBillingCyclePeriod" name="subscription_billing_cycle_period" disabled="">
+                                                                            <select id="subscriptionBillingCyclePeriod" name="subscription_billing_cycle_period" disabled="" class="form-control">
                                                                                 <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
                                                                                     <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
                                                                                 <?php } ?>
@@ -430,8 +430,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         </div>
                                                                     </div>
                                                                     <div class="group">
-                                                                        <label for="subscriptionBillingLimit">After how many cycles should billing stop?</label>
-                                                                        <select name="subscription_billing_limit" disabled="">
+                                                                        <label for="subscriptionBillingLimit" class="control-label">After how many cycles should billing stop?</label>
+                                                                        <select name="subscription_billing_limit" disabled="" class="form-control">
                                                                             <?php 
                                                                             $paypal_button_subscriptions_cycle_billing_limit = get_paypal_button_subscription_billing_limit();
                                                                             foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
@@ -440,25 +440,25 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         </select>
                                                                     </div>
                                                                     <div class="group">
-                                                                        <label for="offerTrial"><input type="checkbox" id="offerTrial" class="checkbox" name="subscriptions_offer_trial" value="1" disabled="">I want to offer a trial period</label>
+                                                                        <label for="offerTrial" class="control-label"><input type="checkbox" id="offerTrial" class="checkbox form-control" name="subscriptions_offer_trial" value="1" disabled="">I want to offer a trial period</label>
                                                                         <div class="trialOfferOptions accessAid">
                                                                             <fieldset>
                                                                                 <legend>Amount to bill for the trial period
                                                                                 </legend>
-                                                                                <label for="subscriptionLowerRate">
+                                                                                <label for="subscriptionLowerRate" class="control-label">
                                                                                     <input class="hidden" type="hidden" id="subscriptionLowerRate" name="subscription_trial_billing_amount" value="1" disabled="">
-                                                                                    <div><input type="text" id="subscriptionLowerRateAmount" size="11" class="text" name="subscription_trial_rate" value="" disabled=""><span class="currencyLabel">USD</span></div>
+                                                                                    <div><input type="text" id="subscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_rate" value="" disabled=""><span class="currencyLabel">USD</span></div>
                                                                                 </label>
                                                                             </fieldset>
                                                                             <fieldset>
                                                                                 <?php $paypal_button_subscription_trial_duration = get_paypal_button_subscription_trial_duration(); ?>
                                                                                 <legend>Define the trial period</legend>
-                                                                                <select name="subscription_trial_duration" disabled="">
+                                                                                <select name="subscription_trial_duration" disabled="" class="form-control">
                                                                                     <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
                                                                                         <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>"><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
                                                                                     <?php } ?>
                                                                                 </select>
-                                                                                <select id="trialDurationType" name="subscription_trial_duration_type" disabled="">
+                                                                                <select id="trialDurationType" name="subscription_trial_duration_type" disabled="" class="form-control">
                                                                                     <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
                                                                                         <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
                                                                                     <?php } ?>
@@ -466,36 +466,36 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             </fieldset>
                                                                             <fieldset>
                                                                                 <legend>Do you want to offer a second trial period? <span class="autoTooltip" title="" tabindex="0">What's this?<span class="accessAid">Customers will receive just one bill for each trial period.</span></span></legend>
-                                                                                <label for="secondSubscriptionTrialOffer"><input class="radio secondTrialOfferOption" type="radio" id="secondSubscriptionTrialOffer" name="subscriptions_offer_another_trial" value="1" disabled="">Yes</label>
+                                                                                <label for="secondSubscriptionTrialOffer" class="control-label"><input class="radio secondTrialOfferOption form-control" type="radio" id="secondSubscriptionTrialOffer" name="subscriptions_offer_another_trial" value="1" disabled="">Yes</label>
                                                                                 <div class="secondTrialOfferOptions accessAid">
                                                                                     <fieldset>
                                                                                         <legend>Amount to bill for this trial period
                                                                                         </legend>
-                                                                                        <div><input type="text" id="secondSubscriptionLowerRateAmount" size="11" class="text" name="subscription_trial_2_rate" value="" disabled=""><span class="currencyLabel">USD</span></div>
+                                                                                        <div><input type="text" id="secondSubscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_2_rate" value="" disabled=""><span class="currencyLabel">USD</span></div>
                                                                                     </fieldset>
                                                                                     <fieldset>
                                                                                         <legend>How long should the trial period last?</legend>
-                                                                                        <select name="subscription_trial_2_duration" disabled="">
+                                                                                        <select name="subscription_trial_2_duration" disabled="" class="form-control">
                                                                                             <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
                                                                                                 <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>"><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
                                                                                             <?php } ?>
                                                                                         </select>
-                                                                                        <select id="secondTrialDurationType" name="subscription_trial_2_duration_type" disabled="">
+                                                                                        <select id="secondTrialDurationType" name="subscription_trial_2_duration_type" disabled="" class="form-control">
                                                                                             <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
                                                                                                 <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
                                                                                             <?php } ?>
                                                                                         </select>
                                                                                     </fieldset>
                                                                                 </div>
-                                                                                <label for="lastSubscriptionTrialOffer"><input class="radio secondTrialOfferOption" type="radio" id="lastSubscriptionTrialOffer" checked="" name="subscriptions_offer_another_trial" value="0" disabled="">No</label>
+                                                                                <label for="lastSubscriptionTrialOffer" class="control-label"><input class="radio secondTrialOfferOption form-control" type="radio" id="lastSubscriptionTrialOffer" checked="" name="subscriptions_offer_another_trial" value="0" disabled="">No</label>
                                                                             </fieldset>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="group gift_certs last accessAid fadedOut">
                                                                     <div class="group gcCurrency">
-                                                                        <label for="gcAmountCurrency">Currency</label>
-                                                                        <select id="gcAmountCurrency" name="item_price_currency" class="currencySelect" disabled="">
+                                                                        <label for="gcAmountCurrency" class="control-label">Currency</label>
+                                                                        <select id="gcAmountCurrency" name="item_price_currency" class="currencySelect form-control" disabled="">
                                                                             <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                                 <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
                                                                             <?php } ?>
@@ -504,33 +504,33 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="group">
                                                                         <fieldset>
                                                                             <legend>Specify gift certificate amount</legend>
-                                                                            <label for="gcAmountTypeList"><input class="radio gcAmountType" type="radio" id="gcAmountTypeList" checked="" name="gc_amount_type" value="custom" disabled="">Choose an amount from a preset list</label><label for="gcAmountTypeFixed"><input class="radio gcAmountType" type="radio" id="gcAmountTypeFixed" name="gc_amount_type" value="fixed" disabled="">Specify an amount of your choosing</label>
-                                                                            <div class="labelOption gcFixedAmountContainer accessAid"><label for="gcFixedAmount">Amount</label><input type="text" id="gcFixedAmount" size="9" class="text" name="gc_fixed_amount" value="" disabled=""><span class="currencyLabel">USD</span></div>
+                                                                            <label for="gcAmountTypeList" class="control-label"><input class="radio gcAmountType form-control" type="radio" id="gcAmountTypeList" checked="" name="gc_amount_type" value="custom" disabled="">Choose an amount from a preset list</label><label for="gcAmountTypeFixed" class="control-label"><input class="radio gcAmountType form-control" type="radio" id="gcAmountTypeFixed" name="gc_amount_type" value="fixed" disabled="">Specify an amount of your choosing</label>
+                                                                            <div class="labelOption gcFixedAmountContainer accessAid"><label for="gcFixedAmount" class="control-label">Amount</label><input type="text" id="gcFixedAmount" size="9" class="text form-control" name="gc_fixed_amount" value="" disabled=""><span class="currencyLabel">USD</span></div>
                                                                         </fieldset>
                                                                     </div>
                                                                     <div class="group">
                                                                         <p class="gcStyleHeader_new"><strong>Gift certificate style</strong></p>
-                                                                        <label for="giftCertificateLogoURL">Add URL for logo image</label><input class="text" type="text" id="giftCertificateLogoURL" size="34" name="gc_logo_url" value="http://" disabled="">
+                                                                        <label for="giftCertificateLogoURL" class="control-label">Add URL for logo image</label><input class="text form-control" type="text" id="giftCertificateLogoURL" size="34" name="gc_logo_url" value="http://" disabled="">
                                                                     </div>
                                                                     <div class="group">
                                                                         <fieldset>
                                                                             <legend>Choose background</legend>
-                                                                            <label for="gcBackgroundColor">
-                                                                                <input class="radio gcBackgroundType" type="radio" checked="" name="gc_background_type" value="color" disabled="">Color
+                                                                            <label for="gcBackgroundColor" class="control-label">
+                                                                                <input class="radio gcBackgroundType form-control" type="radio" checked="" name="gc_background_type" value="color" disabled="">Color
                                                                                 <div class="labelOption">
                                                                                     <?php $paypal_button_gcBackgroundColor = get_paypal_button_gcBackgroundColor(); ?>
-                                                                                    <select id="gcBackgroundColor" name="gc_background_color" disabled="">
+                                                                                    <select id="gcBackgroundColor" name="gc_background_color" disabled="" class="form-control">
                                                                                         <?php foreach ($paypal_button_gcBackgroundColor as $paypal_button_gcBackgroundColor_key => $paypal_button_gcBackgroundColor_value) { ?>
                                                                                             <option value="<?php echo $paypal_button_gcBackgroundColor_key; ?>"><?php echo $paypal_button_gcBackgroundColor_value; ?></option>
                                                                                         <?php } ?>
                                                                                     </select>
                                                                                 </div>
                                                                             </label>
-                                                                            <label for="gcBackgroundTheme">
-                                                                                <input class="radio gcBackgroundType" type="radio" name="gc_background_type" value="theme" disabled="">Theme
+                                                                            <label for="gcBackgroundTheme" class="control-label">
+                                                                                <input class="radio gcBackgroundType form-control" type="radio" name="gc_background_type" value="theme" disabled="">Theme
                                                                                 <div class="labelOption">
                                                                                     <?php $paypal_button_gcBackgroundTheme = get_paypal_button_gcBackgroundTheme(); ?>
-                                                                                    <select id="gcBackgroundTheme" name="gc_background_theme" disabled="">
+                                                                                    <select id="gcBackgroundTheme" name="gc_background_theme" disabled="" class="form-control">
                                                                                         <?php foreach ($paypal_button_gcBackgroundTheme as $paypal_button_gcBackgroundTheme_key => $paypal_button_gcBackgroundTheme_value) { ?>
                                                                                             <option value="<?php echo $paypal_button_gcBackgroundTheme_key; ?>"><?php echo $paypal_button_gcBackgroundTheme_value; ?></option>
                                                                                         <?php } ?>
@@ -554,7 +554,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="content">
                                                             <div class="container clearfix">
                                                                 <div class="step2-left-active">
-                                                                    <input class="checkbox" type="checkbox" id="enableHostedButtons" checked="" name="enable_hosted_buttons" value="enabled"><label for="enableHostedButtons" class=""><?php echo __('Save button at PayPal', 'paypal-wp-button-manager'); ?></label>
+                                                                    <input class="checkbox form-control" type="checkbox" id="enableHostedButtons" checked="" name="enable_hosted_buttons" value="enabled"><label for="enableHostedButtons" class="control-label"><?php echo __('Save button at PayPal', 'paypal-wp-button-manager'); ?></label>
                                                                     <div class="info-list-wrapper">
                                                                         <ul>
                                                                             <li><?php echo __('Protect your buttons from fraudulent changes', 'paypal-wp-button-manager'); ?></li>
@@ -564,15 +564,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         </ul>
                                                                     </div>
                                                                     <div class="step2-inventory" id="inventoryOptions">
-                                                                        <input class="checkbox" type="checkbox" id="enableInventory" name="enable_inventory" value="enabledInventory"><label for="enableInventory"><?php echo __('Track inventory', 'paypal-wp-button-manager'); ?></label>
+                                                                        <input class="checkbox form-control" type="checkbox" id="enableInventory" name="enable_inventory" value="enabledInventory"><label for="enableInventory" class="control-label"><?php echo __('Track inventory', 'paypal-wp-button-manager'); ?></label>
                                                                         <p class="hint"><?php echo __("Don't oversell items not in stock -- Get an email alert when inventory is low.", 'paypal-wp-button-manager'); ?></p>
-                                                                        <input class="checkbox" type="checkbox" id="enableProfitAndLoss" name="enable_profit_and_loss" value="enabledProfitAndLoss"><label for="enableProfitAndLoss"><?php echo __('Track profit and losses', 'paypal-wp-button-manager'); ?></label>
+                                                                        <input class="checkbox form-control" type="checkbox" id="enableProfitAndLoss" name="enable_profit_and_loss" value="enabledProfitAndLoss"><label for="enableProfitAndLoss" class="control-label"><?php echo __('Track profit and losses', 'paypal-wp-button-manager'); ?></label>
                                                                         <p class="hint"><?php echo __("View profit and loss report by product/service.", 'paypal-wp-button-manager'); ?></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="step2-extra-fields opened" id="inventoryTable">
                                                                     <div id="trackByItemTable" class="fadedOut">
-                                                                        <input class="radio" type="radio" id="trackByItem" checked="" name="track_button_by" value="trackdByItem" disabled=""><label id="byItemLabel" for="trackByItem"><strong><?php echo __('By item', 'paypal-wp-button-manager'); ?></strong></label>
+                                                                        <input class="radio form-control" type="radio" id="trackByItem" checked="" name="track_button_by" value="trackdByItem" disabled=""><label id="byItemLabel" for="trackByItem" class="control-label"><strong><?php echo __('By item', 'paypal-wp-button-manager'); ?></strong></label>
                                                                         <div id="byItemTableBody">
                                                                             <div class="inventory-table-row">
                                                                                 <div class="left-edge">&nbsp;</div>
@@ -584,16 +584,16 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             </div>
                                                                             <div class="inventory-table-row">
                                                                                 <div class="left-edge">&nbsp;</div>
-                                                                                <div><input class="type-text" type="text" name="item_id" value="" disabled=""></div>
-                                                                                <div class="invRelated"><input class="type-text" type="text" name="items_in_stock" value="" disabled=""></div>
-                                                                                <div class="invRelated"><input class="type-text" type="text" name="alert_quantity" value="" disabled=""></div>
-                                                                                <div class="PNLRelated"><input class="type-text" type="text" name="item_cost" value="" disabled=""></div>
+                                                                                <div><input class="type-text form-control" type="text" name="item_id" value="" disabled=""></div>
+                                                                                <div class="invRelated"><input class="type-text form-control" type="text" name="items_in_stock" value="" disabled=""></div>
+                                                                                <div class="invRelated"><input class="type-text form-control" type="text" name="alert_quantity" value="" disabled=""></div>
+                                                                                <div class="PNLRelated"><input class="type-text form-control" type="text" name="item_cost" value="" disabled=""></div>
                                                                                 <div class="right-edge"><?php echo __('USD', 'paypal-wp-button-manager'); ?></div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div id="trackByOptionTable" class="fadedOut accessAid">
-                                                                        <input class="radio" type="radio" id="trackByOption" name="track_button_by" value="trackdByOption" disabled=""><label for="trackByOption"><strong><?php echo __('By option', 'paypal-wp-button-manager'); ?></strong><?php echo __('(in drop-down menu)', 'paypal-wp-button-manager'); ?> <a id="chooseAnotherDropDown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#chooseAnotherDropDown" class="accessAid"><?php echo __('Choose a different drop-down', 'paypal-wp-button-manager'); ?></a></label>
+                                                                        <input class="radio form-control" type="radio" id="trackByOption" name="track_button_by" value="trackdByOption" disabled=""><label for="trackByOption"><strong><?php echo __('By option', 'paypal-wp-button-manager'); ?></strong><?php echo __('(in drop-down menu)', 'paypal-wp-button-manager'); ?> <a id="chooseAnotherDropDown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#chooseAnotherDropDown" class="accessAid"><?php echo __('Choose a different drop-down', 'paypal-wp-button-manager'); ?></a></label>
                                                                         <div id="byOptionTableBody" class="accessAid">
                                                                             <div class="inventory-table-row">
                                                                                 <div class="left-edge">&nbsp;</div>
@@ -605,10 +605,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             </div>
                                                                             <div class="inventory-table-row">
                                                                                 <div class="left-edge">&nbsp;</div>
-                                                                                <div><input class="type-text" type="text" name="item_id" value="" disabled=""></div>
-                                                                                <div class="invRelated"><input class="type-text" type="text" name="items_in_stock" value="" disabled=""></div>
-                                                                                <div class="invRelated"><input class="type-text" type="text" name="alert_quantity" value="" disabled=""></div>
-                                                                                <div class="PNLRelated"><input class="type-text" type="text" name="item_cost" value="" disabled=""></div>
+                                                                                <div><input class="type-text form-control" type="text" name="item_id" value="" disabled=""></div>
+                                                                                <div class="invRelated"><input class="type-text form-control" type="text" name="items_in_stock" value="" disabled=""></div>
+                                                                                <div class="invRelated"><input class="type-text form-control" type="text" name="alert_quantity" value="" disabled=""></div>
+                                                                                <div class="PNLRelated"><input class="type-text form-control" type="text" name="item_cost" value="" disabled=""></div>
                                                                                 <div class="right-edge">&nbsp;</div>
                                                                             </div>
                                                                         </div>
@@ -617,10 +617,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
                                                                 <div class="step2-bottom-fields fadedOut opened" id="soldOutOption">
                                                                     <h5 id="shoppingHead" class="opened"><?php echo __('Can customers buy an item when it is sold out?', 'paypal-wp-button-manager'); ?></h5>
-                                                                    <div class="pre-order opened" id="shoppingPreOrder"><input class="radio" type="radio" id="enablePreOrder" name="enable_pre_order" value="enabledPreOrder" disabled=""><label for="enablePreOrder"><?php echo __('Yes, customers can buy the item as usual.', 'paypal-wp-button-manager'); ?></label></div>
+                                                                    <div class="pre-order opened" id="shoppingPreOrder"><input class="radio form-control" type="radio" id="enablePreOrder" name="enable_pre_order" value="enabledPreOrder" disabled=""><label for="enablePreOrder" class="control-label"><?php echo __('Yes, customers can buy the item as usual.', 'paypal-wp-button-manager'); ?></label></div>
                                                                     <div class="no-pre-order">
-                                                                        <input class="radio opened" type="radio" id="dontEnablePreOrder" checked="" name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened"><?php echo __("No, don't let customers buy the item.", 'paypal-wp-button-manager'); ?> <a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDSoldOutExample" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Preview</a></label>
-                                                                        <p class="hint opened fadedOut" id="shoppingURL"><span class="littleHint"><?php echo __('Take customers to specific page when they click', 'paypal-wp-button-manager'); ?> <strong><?php echo __('Continue Shopping', 'paypal-wp-button-manager'); ?></strong><?php echo __('button on "item sold out" page', 'paypal-wp-button-manager'); ?></span><input class="type-text" type="text" id="soldOutURL" name="sold_out_url" value="" disabled=""><span class="littleHint">Ex: http://www.mybuynowstore.com</span></p>
+                                                                        <input class="radio opened form-control" type="radio" id="dontEnablePreOrder" checked="" name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened control-label"><?php echo __("No, don't let customers buy the item.", 'paypal-wp-button-manager'); ?> <a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDSoldOutExample" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Preview</a></label>
+                                                                        <p class="hint opened fadedOut" id="shoppingURL"><span class="littleHint"><?php echo __('Take customers to specific page when they click', 'paypal-wp-button-manager'); ?> <strong><?php echo __('Continue Shopping', 'paypal-wp-button-manager'); ?></strong><?php echo __('button on "item sold out" page', 'paypal-wp-button-manager'); ?></span><input class="type-text form-control" type="text" id="soldOutURL" name="sold_out_url" value="" disabled=""><span class="littleHint">Ex: http://www.mybuynowstore.com</span></p>
                                                                     </div>
                                                                 </div>
 
@@ -639,27 +639,27 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 <p>If you are an advanced user, you can customize checkout pages for your customers, streamline checkout, and more in this section.</p>
                                                                 <div id="changeOrderQuantitiesContainer" class="hide">
                                                                     <div>Do you want to let your customer change order quantities?</div>
-                                                                    <label class="topSpacer" for="changeOrderQuantities"><input class="radio" type="radio" id="changeOrderQuantities" name="undefined_quantity" value="1">Yes</label><label class="bottomSpacer" for="keepOrderQuantities"><input class="radio" type="radio" id="keepOrderQuantities" checked="" name="undefined_quantity" value="0">No</label>
+                                                                    <label class="topSpacer" for="changeOrderQuantities"><input class="radio form-control" type="radio" id="changeOrderQuantities" name="undefined_quantity" value="1">Yes</label><label class="bottomSpacer" for="keepOrderQuantities"><input class="radio" type="radio" id="keepOrderQuantities" checked="" name="undefined_quantity" value="0">No</label>
                                                                 </div>
                                                                 <div id="specialInstructionsContainer" class="opened">
                                                                     <div>Can your customer add special instructions in a message to you?</div>
-                                                                    <label class="topSpacer" for="addSpecialInstructions"><input class="radio" type="radio" id="addSpecialInstructions" checked="" name="no_note" value="0">Yes</label><label id="messageBoxContainer" for="messageBox">Name of message box (40-character limit)<input type="text" id="messageBox" size="40" maxlength="40" class="text" name="custom_note" value="Add special instructions to the seller:"></label><label class="bottomSpacer" for="noSpecialInstructions"><input class="radio" type="radio" id="noSpecialInstructions" name="no_note" value="1">No</label>
+                                                                    <label class="topSpacer control-label" for="addSpecialInstructions"><input class="radio form-control" type="radio" id="addSpecialInstructions" checked="" name="no_note" value="0">Yes</label><label id="messageBoxContainer" for="messageBox" class="control-label">Name of message box (40-character limit)<input type="text" id="messageBox" size="40" maxlength="40" class="text form-control" name="custom_note" value="Add special instructions to the seller:"></label><label class="bottomSpacer control-label" for="noSpecialInstructions"><input class="radio form-control" type="radio" id="noSpecialInstructions" name="no_note" value="1">No</label>
                                                                 </div>
                                                                 <div id="shippingAddressContainer" class="opened">
                                                                     <div>Do you need your customer's shipping address?</div>
-                                                                    <label class="topSpacer" for="needShippingAddress"><input class="radio" type="radio" id="needShippingAddress" checked="" name="no_shipping" value="2">Yes</label><label class="bottomSpacer" for="noShippingAddress"><input class="radio" type="radio" id="noShippingAddress" name="no_shipping" value="1">No</label>
+                                                                    <label class="topSpacer control-label" for="needShippingAddress"><input class="radio form-control" type="radio" id="needShippingAddress" checked="" name="no_shipping" value="2">Yes</label><label class="bottomSpacer control-label" for="noShippingAddress"><input class="radio form-control" type="radio" id="noShippingAddress" name="no_shipping" value="1">No</label>
                                                                 </div>
                                                                 <div id="cancellationRedirectURLContainer" class="opened">
-                                                                    <label for="cancellationCheckbox"><input class="checkbox" type="checkbox" id="cancellationCheckbox" name="cancellation_return" value="1">Take customers to this URL when they cancel their checkout</label>
+                                                                    <label for="cancellationCheckbox" class="control-label"><input class="checkbox form-control" type="checkbox" id="cancellationCheckbox" name="cancellation_return" value="1">Take customers to this URL when they cancel their checkout</label>
                                                                     <div class="redirectContainer">
-                                                                        <input type="text" id="cancellationRedirectURL" size="30" class="text" disabled="" name="cancel_return" value="">
+                                                                        <input type="text" id="cancellationRedirectURL" size="30" class="text form-control" disabled="" name="cancel_return" value="">
                                                                         <div>Example: https://www.mystore.com/cancel</div>
                                                                     </div>
                                                                 </div>
                                                                 <div id="successfulRedirectURLContainer" class="opened">
-                                                                    <label for="successfulCheckbox"><input class="checkbox" type="checkbox" id="successfulCheckbox" name="successful_return" value="1">Take customers to this URL when they finish checkout</label>
+                                                                    <label for="successfulCheckbox" class="control-label"><input class="checkbox form-control" type="checkbox" id="successfulCheckbox" name="successful_return" value="1">Take customers to this URL when they finish checkout</label>
                                                                     <div class="redirectContainer">
-                                                                        <input type="text" id="successfulRedirectURL" size="30" class="text" disabled="" name="return" value="">
+                                                                        <input type="text" id="successfulRedirectURL" size="30" class="text form-control" disabled="" name="return" value="">
                                                                         <div>Example: https://www.mystore.com/success</div>
                                                                     </div>
                                                                 </div>
