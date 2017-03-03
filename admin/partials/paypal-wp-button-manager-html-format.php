@@ -24,7 +24,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         global $wpdb;
         $companies = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
         $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE paypal_mode !=''", ARRAY_A);
-        ?> <div class="div_companies_dropdown" >
+        ?> <div class="div_companies_dropdown col-lg-4" >
 
             <div class="div_companyname form-group">
                 <label for="paypalcompanyname" class="control-label"><strong>Choose Company Name:</strong></label>
@@ -70,20 +70,22 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
                         <!--            <form method="post" id="buttonDesignerForm" name="buttonDesignerForm" action="">-->
                         <input type="hidden" id="CONTEXT_CGI_VAR" name="CONTEXT" value="X3-7SZn2ExXucINxlliZ_05NdFsrIIpaV9TcRYNLL_GiOwm9XgEZzWKQeV0"><input type="hidden" id="cmd" name="cmd" value="_flow"><input type="hidden" id="onboarding_cmd" name="onboarding_cmd" value=""><input type="hidden" id="fakeSubmit" name="fakeSubmit" value=""><input type="hidden" id="secureServerName" name="secureServerName" value="www.paypal.com/us"><input type="hidden" id="selectedDropDown" name="selectedDropDown" value="">
-                        <div id="main">
+                        <div id="main" class="panel-group">
                             <div class="layout1">
                                 <div class="accordionContainer">
                                     <div class="accordion dynamic">
 
-                                        <div id="stepOne" class="box top defaultOpen open">
-                                            <div class="header">
-                                                <?php echo '<h3>' . __('Step 1: Choose a button type and enter your payment details') . '</h3>'; ?>
+                                        <div id="stepOne" class="box defaultOpen open panel panel-primary">
+                                            <div class="header panel-heading">
+                                                
+                                                <?php echo '<h4 class="panel-title">'. __('Step 1: Choose a button type and enter your payment details'). '</h4>'; ?>
                                             </div>
 
                                             <div class="body" style="height: auto; opacity: 1;">
                                                 <div class="content">
                                                     <div class="container">
                                                         <div class="group buttonType">
+                                                            <div class="col-lg-4">
                                                             <label for="buttonType" class="control-label">Choose a button type</label>
                                                             <?php $paypal_button_options = get_paypal_button_options(); ?>
                                                             <select id="buttonType" name="button_type" class="form-control">
@@ -92,30 +94,29 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 <?php } ?>
 
                                                             </select>
-
+                                                            </div>        
                                                         </div>
                                                         <div class="products"><input class="hide radio subButtonType" type="radio" id="radioAddToCartButton" checked="" name="sub_button_type" value="add_to_cart"><input class="hide radio subButtonType" type="radio" id="radioBuyNowButton" name="sub_button_type" value="buy_now"></div>
                                                         <div class="group details">
                                                             <div class="products">
-                                                                <div class="floatLeft"><label for="itemName" class="control-label">Item name</label><input class="text xlarge form-control" maxlength="127" type="text" id="itemName" name="product_name" value=""></div>
-                                                                <div class="floatLeft"><label for="itemID">Item ID<span class="fieldNote"> (optional) </span></label>
-                                                                        <input class="text form-control" maxlength="127" type="text" id="itemID" size="9" name="product_id" value=""></div>
-                                                                        </div>
+                                                                <div class="col-lg-4"><label for="itemName" class="control-label">Item name</label><input class="form-control" maxlength="127" type="text" id="itemName" name="product_name" value=""></div>
+                                                                <div class="col-lg-4"><label for="itemID">Item ID<span class="fieldNote"> (optional) </span></label><input class="form-control" maxlength="127" type="text" id="itemID" size="9" name="product_id" value=""></div>
+                                                            </div>
                                                                         <div class="donations accessAid fadedOut">
-                                                                            <div class="floatLeft"><label for="donationName" class="control-label">Organization name/service</label><input class="text xlarge form-control" maxlength="127" type="text" id="donationName" name="donation_name" value="" disabled=""></div>
-                                                                            <div class="floatLeft"><label for="donationID" class="control-label">Donation ID<span class="fieldNote"> (optional) </span>
+                                                                            <div class="col-lg-4"><label for="donationName" class="control-label">Organization name/service</label><input class="form-control" maxlength="127" type="text" id="donationName" name="donation_name" value="" disabled=""></div>
+                                                                            <div class="col-lg-4"><label for="donationID" class="control-label">Donation ID<span class="fieldNote"> (optional) </span>
                                                                                 </label>
-                                                                                <input class="text form-control" maxlength="127" type="text" id="donationID" size="27" name="donation_id" value="" disabled=""></div>
+                                                                                <input class="form-control" maxlength="127" type="text" id="donationID" size="27" name="donation_id" value="" disabled=""></div>
                                                                         </div>
                                                                         <div class="subscriptions accessAid fadedOut">
-                                                                            <div class="floatLeft"><label for="subscriptionName" class="control-label">Item name</label><input class="text xlarge form-control" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="" disabled=""></div>
-                                                                            <div class="floatLeft"><label for="subscriptionID" class="control-label">Subscription ID<span class="fieldNote"> (optional) </span></label><input class="text form-control" maxlength="127" type="text" id="subscriptionID" size="27" name="subscription_id" value="" disabled=""></div>
+                                                                            <div class="col-lg-4"><label for="subscriptionName" class="control-label">Item name</label><input class="form-control" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="" disabled=""></div>
+                                                                            <div class="col-lg-4"><label for="subscriptionID" class="control-label">Subscription ID<span class="fieldNote"> (optional) </span></label><input class="form-control" maxlength="127" type="text" id="subscriptionID" size="27" name="subscription_id" value="" disabled=""></div>
                                                                         </div>
-                                                            <div class="gift_certs accessAid fadedOut"><label for="giftCertificateShopURL" class="control-label">Enter the URL where recipients can shop and redeem this gift certificate.</label><input class="text form-control" type="text" id="giftCertificateShopURL" size="34" name="gift_certificate_shop_url" value="http://" disabled=""></div>
+                                                            <div class="gift_certs accessAid fadedOut col-lg-9"><label for="giftCertificateShopURL" class="control-label">Enter the URL where recipients can shop and redeem this gift certificate.</label><input class="form-control" type="text" id="giftCertificateShopURL" size="34" name="gift_certificate_shop_url" value="http://" disabled=""></div>
                                                                 </div>
                                                                 <div class="group products pricing opened">
-                                                                    <div class="floatLeft"><label for="itemPrice" class="control-label">Price</label><input class="text form-control" type="text" id="itemPrice" size="9" name="item_price" value=""></div>
-                                                                    <div class="floatLeft">
+                                                                    <div class="col-lg-4"><label for="itemPrice" class="control-label">Price</label><input class="form-control" type="text" id="itemPrice" size="9" name="item_price" value=""></div>
+                                                                    <div class="col-lg-4">
                                                                         <label for="itemPriceCurrency" class="control-label">Currency</label>
                                                                         <?php $paypal_button_currency_with_symbole = get_paypal_button_currency_with_symbole(); ?>
                                                                         <select id="BillingAmountCurrency" name="item_price_currency" class="currencySelect form-control">
@@ -127,7 +128,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
                                                                     </div>
                                                                 </div>
-                                                                <div class="group subscriptions accessAid fadedOut">
+                                                                <div class="group subscriptions accessAid fadedOut col-lg-4">
                                                                     <label for="subscriptionBillingAmountCurrency" class="control-label">Currency</label>
                                                                     <?php $paypal_button_currency = get_paypal_button_currency(); ?>
                                                                     <select id="subscriptionBillingAmountCurrency" name="item_price_currency" class="currencySelect form-control" disabled="">
@@ -144,10 +145,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 <p id="addDropdownPrice" class="hideShow opened"><label for="dropdownPrice" class="control-label"><input class="checkbox form-control" type="checkbox" id="dropdownPrice" name="dropdown_price" value="createdDropdownPrice"><span class="products">Add drop-down menu with price/option&nbsp;</span><span class="subscriptions accessAid fadedOut">Add a dropdown menu with prices and options</span>
                                                                                     </label></p>
                                                                                 <div id="dropdownPriceSection" class="hideShow accessAid hide">
-                                                                                    <p class="title dropdownPriceTitle"><label for="dropdownPriceTitle" class="control-label"><span class="products">Name of drop-down menu (ex.: "Colors," "Sizes")</span><span class="subscriptions accessAid fadedOut">Description (For example, "Payment options".)</span></label><input class="text form-control" maxlength="64" type="text" id="dropdownPriceTitle" disabled="" name="dropdown_price_title" value=""></p>
+                                                                                    <p class="title dropdownPriceTitle col-md-9"><label for="dropdownPriceTitle" class="control-label"><span class="products">Name of drop-down menu (ex.: "Colors," "Sizes")</span><span class="subscriptions accessAid fadedOut">Description (For example, "Payment options".)</span></label><input class="text form-control" maxlength="64" type="text" id="dropdownPriceTitle" disabled="" name="dropdown_price_title" value=""></p>
                                                                                     <p><label class="optionNameLbl control-label" for=""><span class="products">Menu option name</span><span class="subscriptions accessAid fadedOut">Menu Name</span></label><label class="optionPriceLbl control-label" for="optionPrice"><span class="products">Price</span><span class="subscriptions accessAid fadedOut">Amount (<span class="currencyLabel control-label">USD</span>)</span></label><label class="optionCurrencyLbl control-label" for="optionCurrency"><span class="products">Currency</span><span class="subscriptions accessAid fadedOut control-label">Frequency</span></label></p>
                                                                                     <div id="optionsPriceContainer">
-                                                                                        <p class="optionRow">
+                                                                                        <p class="optionRow col-sm-12 form-inline">
                                                                                             <input maxlength="64" type="text" class="ddpOptionName text form-control" disabled="" name="ddp_option_name" value="Option 1">
                                                                                             <input type="text" class="ddpOptionPrice text form-control" disabled="" name="ddp_option_price" value="">
                                                                                             <?php $paypal_button_currency = get_paypal_button_currency(); ?>
@@ -183,93 +184,95 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                             </select>
                                                                                         </p>
                                                                                     </div>
-                                                                                    <p class="moreOptionsLink"><a id="addOptionPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add another option</a><a id="removeOptionPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Remove option</a></p>
-                                                                                    <p class="saveCancel"><input class="primary button" type="submit" id="saveOptionPrice" name="save_option_price" value="Done" alt="Done"><a id="cancelOptionPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                                    <p class="moreOptionsLink">
+                                                                                        <a id="addOptionPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span></a>
+                                                                                        <a id="removeOptionPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span></a></p>
+                                                                                    <p class="saveCancel"><input class="btn btn-default" type="submit" id="saveOptionPrice" name="save_option_price" value="Done" alt="Done"><a id="cancelOptionPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-danger">Cancel</a></p>
                                                                                 </div>
                                                                                 <div id="savedDropdownPriceSection" class="hideShow accessAid hide">
                                                                                     <p><label id="savedDropdownPrice" for=""></label></p>
-                                                                                    <p class="editDelete"><a id="editDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products">Edit</span><span class="subscriptions accessAid fadedOut">Change</span></a>&nbsp;|&nbsp;<a id="deleteDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products">Delete</span><span class="subscriptions accessAid fadedOut">Cancel</span></a></p>
+                                                                                    <p class="editDelete"><a id="editDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-info"><span class="products">Edit</span><span class="subscriptions accessAid fadedOut">Change</span></a>&nbsp;|&nbsp;<a id="deleteDropdownPrice" class="btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products glyphicon glyphicon-remove-sign"></span><span class="subscriptions accessAid fadedOut glyphicon glyphicon-remove"></span></a></p>
                                                                                 </div>
                                                                                     <p id="addDropdown" class="hideShow opened"><label for="dropdown" class="control-label"><input class="checkbox form-control" type="checkbox" id="dropdown" name="dropdown" value="createdDropdown"><span class="hideShow accessAid hide" id="dropDownLabelForSubscription">Add a dropdown menu </span><span id="dropDownLabel" class="opened">Add drop-down menu&nbsp;</span>
 
                                                                                     </label></p>
                                                                                 <div class="hideShow dropdownSection accessAid hide" id="dropdownSection1">
-                                                                                    <p class="title"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown1_title" value=""></p>
-                                                                                    <p><label for="" class="control-label">Menu option name</label></p>
+                                                                                    <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown1_title" value=""></p>
+                                                                                    <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
                                                                                     <div id="optionsContainer1">
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 1"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 2"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 3"></p>
+                                                                                        <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 1"></p>
+                                                                                        <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 2"></p>
+                                                                                        <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 3"></p>
                                                                                     </div>
-                                                                                    <p class="moreOptionsLink"><a class="addOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
-                                                                                    <p class="saveCancel"><input class="saveOption primary button" type="submit" name="save_option" value="Done" alt="Done"><a class="cancelOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                                    <p class="moreOptionsLink"><a class="addOption btn btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
+                                                                                    <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid savedDropdownSection hide" id="savedDropdownSection1">
                                                                                     <p><label id="savedDropdown1" for="" class="control-label"></label></p>
-                                                                                    <p class="editDelete"><a class="editDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                                    <p class="editDelete"><a class="editDropdown btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="glyphicon glyphicon-remove-sign"></span></a></p>
                                                                                 </div>
                                                                                 <div class="hideShow dropdownSection accessAid hide" id="dropdownSection2">
-                                                                                    <p class="title"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown2_title" value=""></p>
-                                                                                    <p><label for="" class="control-label">Menu option name</label></p>
+                                                                                    <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown2_title" value=""></p>
+                                                                                    <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
                                                                                     <div id="optionsContainer2">
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 1"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 2"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 3"></p>
+                                                                                        <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 1"></p>
+                                                                                        <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 2"></p>
+                                                                                        <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 3"></p>
                                                                                     </div>
-                                                                                    <p class="moreOptionsLink"><a class="addOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
-                                                                                    <p class="saveCancel"><input class="saveOption primary button" type="submit" name="save_option_2" value="Done" alt="Done"><a class="cancelOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                                    <p class="moreOptionsLink"><a class="addOption btn btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
+                                                                                    <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option_2" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid savedDropdownSection hide" id="savedDropdownSection2">
                                                                                     <p><label id="savedDropdown2" for="" class="control-label"></label></p>
-                                                                                    <p class="editDelete"><a class="editDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                                    <p class="editDelete"><a class="editDropdown btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow dropdownSection accessAid hide" id="dropdownSection3">
-                                                                                    <p class="title"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown3_title" value=""></p>
-                                                                                    <p><label for="" class="control-label">Menu option name</label></p>
+                                                                                    <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown3_title" value=""></p>
+                                                                                    <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
                                                                                     <div id="optionsContainer3">
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 1"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 2"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 3"></p>
+                                                                                        <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 1"></p>
+                                                                                        <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 2"></p>
+                                                                                        <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 3"></p>
                                                                                     </div>
-                                                                                    <p class="moreOptionsLink"><a class="addOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
-                                                                                    <p class="saveCancel"><input class="saveOption primary button" type="submit" name="save_option_3" value="Done" alt="Done"><a class="cancelOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                                    <p class="moreOptionsLink"><a class="addOption btn btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
+                                                                                    <p class="saveCancel"><input class="saveOption  btn btn-default" type="submit" name="save_option_3" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid savedDropdownSection hide" id="savedDropdownSection3">
                                                                                     <p><label id="savedDropdown3" for=""></label></p>
-                                                                                    <p class="editDelete"><a class="editDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                                    <p class="editDelete"><a class="editDropdown btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow dropdownSection accessAid hide" id="dropdownSection4">
-                                                                                    <p class="title"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown4_title" value=""></p>
-                                                                                    <p><label for="" class="control-label">Menu option name</label></p>
+                                                                                    <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown4_title" value=""></p>
+                                                                                    <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
                                                                                     <div id="optionsContainer4">
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 1"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 2"></p>
-                                                                                        <p class="optionRow dropdown"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 3"></p>
+                                                                                        <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 1"></p>
+                                                                                        <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 2"></p>
+                                                                                        <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 3"></p>
                                                                                     </div>
-                                                                                    <p class="moreOptionsLink"><a class="addOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
-                                                                                    <p class="saveCancel"><input class="saveOption primary button" type="submit" name="save_option_4" value="Done" alt="Done"><a class="cancelOption" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                                    <p class="moreOptionsLink"><a class="addOption btn btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
+                                                                                    <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option_4" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid savedDropdownSection hide" id="savedDropdownSection4">
                                                                                     <p><label id="savedDropdown4" for="" class="form-control"></label></p>
-                                                                                    <p class="editDelete"><a class="editDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                                    <p class="editDelete"><a class="editDropdown btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                                 </div>
-                                                                                <p id="addNewDropdownSection" class="editDelete hideShow accessAid hide"><a id="addNewDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add another drop-down menu</a></p>
+                                                                                    <p id="addNewDropdownSection" class="editDelete hideShow accessAid hide"><a id="addNewDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-success">Add another drop-down menu</a></p>
                                                                                 <p class="hideShow opened" id="addTextfield"><label for="textfield" class="control-label"><input type="checkbox" value="createdTextfield" name="textfield" id="textfield" class="checkbox form-control">Add text field&nbsp;<a onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})" href="https://www.paypal.com/uk/cgi-bin/webscr?cmd=_display-textfield-example" class="infoLink exampleLink" target="_blank">Example</a></label></p>
                                                                                 <div class="hideShow accessAid textfieldSection hide" id="textfieldSection1">
-                                                                                    <p class="title"><label for="textfieldTitle1" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle1" class="text form-control" disabled="" name="textfield1_title" value=""></p>
-                                                                                    <p class="saveCancel"><input class="saveTextfield primary button" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                                    <p class="title col-md-9"><label for="textfieldTitle1" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle1" class="text form-control" disabled="" name="textfield1_title" value=""></p>
+                                                                                    <p class="saveCancel"><input class="saveTextfield btn btn-default" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid savedTextfieldSection hide" id="savedTextfieldSection1">
                                                                                     <p><label class="savedTextfield" id="savedTextfield1" for=""></label></p>
-                                                                                    <p class="editDelete"><a class="editTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                                    <p class="editDelete"><a class="editTextfield btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid textfieldSection hide" id="textfieldSection2">
-                                                                                    <p class="title"><label for="textfieldTitle2" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle2" class="text form-control" disabled="" name="textfield2_title" value=""></p>
-                                                                                    <p class="saveCancel"><input class="saveTextfield primary button" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                                    <p class="title col-md-9"><label for="textfieldTitle2" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle2" class="text form-control" disabled="" name="textfield2_title" value=""></p>
+                                                                                    <p class="saveCancel"><input class="saveTextfield btn btn-default" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                                 </div>
                                                                                 <div class="hideShow accessAid savedTextfieldSection hide" id="savedTextfieldSection2">
                                                                                     <p><label class="savedTextfield control-label" id="savedTextfield2" for=""></label></p>
-                                                                                    <p class="editDelete"><a class="editTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                                    <p class="editDelete"><a class="editTextfield btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                                 </div>
                                                                                 <p id="addNewTextfieldSection" class="editDelete hideShow accessAid hide"><a id="addNewTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add another text field</a></p>
                                                                                 <span id="buttonAppLink" class="collapsed"><a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Customize text or appearance</a><span class="fieldNote"> (optional)</span></span>

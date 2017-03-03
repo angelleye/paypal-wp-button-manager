@@ -53,7 +53,7 @@ input.secondaryDisabled, input.tertiaryDisabled {color:#ccc; background:#e5e5e5;
 div.group {clear:both; margin:0 0 20px 0 !important;}
 div.group:after {clear:both; content:"."; display:block; height:0; visibility:hidden;}
 div.group.last {margin:0 !important;}
-div.group.outerContainer {margin:30px 0 !important;}
+div.group.outerContainer {/*margin:30px 0 !important;*/}
 
 /********************************************************************** 
  * Accordion (overrides)
@@ -137,9 +137,9 @@ div#wideBox { width:690px;}
 
 /* Left Column */
 .customizeButtonSection p{margin:0; padding:0}
-.customizeButtonSection{width:308px; float:left; border:1px solid #f3f3f3; border-right:256px solid #f3f3f3; margin-right:-250px}
-#wideBox .customizeButtonSection{border-color:#F3F3F3;border-style:solid;border-width:1px 300px 1px 1px;float:left;margin-right:-250px;width:390px;}
-.borderBox{border-right:1px solid #ccc; width:307px; padding-bottom:15px}
+.customizeButtonSection{/*width:308px; float:left;*/ border:1px solid #f3f3f3; border-right:256px solid #f3f3f3; /*margin-right:-250px*/}
+#wideBox .customizeButtonSection{border-color:#F3F3F3;border-style:solid;border-width:1px 300px 1px 1px;float:left;/*margin-right:-250px;width:390px;*/}
+.borderBox{border-right:1px solid #ccc; /*width:307px;*/ padding-bottom:15px}
 #wideBox .borderBox {border-right:1px solid #CCCCCC;padding-bottom:15px;width:390px;}
 .customizeButtonSection .heading{padding:6px 0 10px 8px; margin:0}
 #customizeSection input.checkbox, 
@@ -209,7 +209,7 @@ div.customizeButtonSection div#customizeSection div#buttonAppSection div#customB
 .heightFix{height:115px}
 #rbFixedAmount{clear:both;}
 /* Buyer's Preview Section (right column) */
-.buyerViewSection{width:256px; position:absolute; right:0; left:309px; top:0; text-align:center}
+.buyerViewSection{width:256px; position:absolute; right:0; /*left:309px;*/ top:0; text-align:center}
 #wideBox .buyerViewSection {left:392px;position:absolute;right:0;text-align:center;top:0;width:300px;}
 .buyerViewSection p.heading{ margin:0; padding:5px 8px}
 #plan .buyerViewSection p.heading{padding-top:3px;}
