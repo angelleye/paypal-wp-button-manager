@@ -371,42 +371,98 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     </div>
                                                                 </div>
                                                                 <div class="group products">
-                                                                    <div class="shipping">
-                                                                        <fieldset>
-                                                                            <legend><strong>Shipping</strong></legend>
-                                                                            <label for="itemFlatShippingAmount" class="control-label">Use specific amount: <input class="text form-control" type="text" id="itemFlatShippingAmount" size="9" name="item_shipping_amount" value=""><span class="currencyLabel">USD</span>
-
-                                                                            </label>
-                                                                        </fieldset>
-                                                                    </div>
-                                                                    <div class="tax">
-                                                                        <fieldset>
-                                                                            <legend><strong>Tax</strong></legend>
-                                                                            <label for="itemTaxRate" class="control-label">Use tax rate <input class="text xsmall form-control" type="text" id="itemTaxRate" name="item_tax_rate" value="">%</label>
-                                                                        </fieldset>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="shipping">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12">
+                                                                                        <h4>Shipping</h4>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <div class="col-md-12">
+                                                                                            <label for="itemFlatShippingAmount" class="control-label">Use specific amount:  </label>
+                                                                                            <input class="form-control" type="text" id="itemFlatShippingAmount" size="9" name="item_shipping_amount" value=""><span class="currencyLabel">USD</span>
+                                                                                        </div>                                                                                
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="tax">                                                                                
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12">
+                                                                                        <h4>Tax</h4>
+                                                                                    </div>
+                                                                                    <div class="col-md-12">
+                                                                                    <div class="form-group">                                                                                        
+                                                                                            <label for="itemTaxRate" class="control-label">Use tax rate</label>
+                                                                                            <input class="form-control" type="text" id="itemTaxRate" name="item_tax_rate" value="">%
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>                                                                                    
+                                                                            </div>                                                                            
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="group donations last accessAid fadedOut">
                                                                     <div class="group donationCurrency">
-                                                                        <label for="donationCurrency" class="control-label">Currency</label>
-                                                                        <select id="donationCurrency" name="item_price_currency" class="currencySelect form-control" disabled="">
-                                                                            <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
-                                                                                <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
-                                                                            <?php } ?>
-                                                                        </select>
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <div class="form-group">
+                                                                                    <label for="donationCurrency" class="control-label">Currency</label>
+                                                                                    <select id="donationCurrency" name="item_price_currency" class="currencySelect form-control" disabled="" style="width: auto !important">
+                                                                                        <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
+                                                                                            <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
+                                                                                        <?php } ?>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>                                                                        
                                                                     </div>
                                                                     <div class="group contributionAmount">
-                                                                        <fieldset>
-                                                                            <legend>Contribution amount</legend>
-                                                                            <label for="optDonationTypeFlexible" class="control-label"><input class="radio donationType form-control" type="radio" id="optDonationTypeFlexible" checked="" name="donation_type" value="open" disabled="">Donors enter their own contribution amount.</label>&nbsp;&nbsp;<label for="optDonationTypeFixed" class="control-label"><input class="radio donationType form-control" type="radio" id="optDonationTypeFixed" name="donation_type" value="fixed" disabled="">Donors contribute a fixed amount.</label>
-                                                                            <div class="labelOption fixedDonationAmountContainer accessAid"><label for="fixedDonationAmount" class="control-label">Amount&nbsp;&nbsp;</label><input type="text" id="fixedDonationAmount" size="7" maxlength="20" class="text form-control" name="item_price" value="" disabled=""><span class="currencyLabel">USD</span></div>
-                                                                        </fieldset>
+                                                                        
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <h4>Contribution amount</h4>
+                                                                            </div>
+                                                                        </div>
+                                                                                
+                                                                        <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">                                                                                    
+                                                                                    <input class="radio donationType form-control" type="radio" id="optDonationTypeFlexible" checked="" name="donation_type" value="open" disabled="">
+                                                                                    <label for="optDonationTypeFlexible" class="control-label">Donors enter their own contribution amount.</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">                                                                                    
+                                                                                    <input class="radio donationType form-control" type="radio" id="optDonationTypeFixed" name="donation_type" value="fixed" disabled="">
+                                                                                    <label for="optDonationTypeFixed" class="control-label">Donors contribute a fixed amount.</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        <div class="labelOption fixedDonationAmountContainer accessAid">
+                                                                            <div class="row">
+                                                                                <div class="col-md-9">
+                                                                                    <label for="fixedDonationAmount" class="control-label">Amount</label>
+                                                                                    <input type="text" id="fixedDonationAmount" size="7" maxlength="20" class="text form-control" name="item_price" value="" disabled=""><span class="currencyLabel">USD</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <p><strong>Note:</strong> This button is intended for fundraising. If you are not raising money for a cause, please choose another option. Nonprofits must verify their status to withdraw donations they receive. Users that are not verified nonprofits must demonstrate how their donations will be used, once they raise more than $10,000 USD.</p>
+                                                                    <div class="row"><div class="col-md-9"><strong>Note:</strong> This button is intended for fundraising. If you are not raising money for a cause, please choose another option. Nonprofits must verify their status to withdraw donations they receive. Users that are not verified nonprofits must demonstrate how their donations will be used, once they raise more than $10,000 USD.</div></div>
                                                                 </div>
                                                                 <div class="group subscriptions last accessAid fadedOut">
                                                                     <div class="group">
-                                                                        <input type="checkbox" id="enableUsernamePasswordCreation" class="checkbox form-control" name="enable_username_password_creation" value="1" disabled="">Have PayPal create user names and passwords for customers&nbsp;
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <div class="form-group">
+                                                                                    <input type="checkbox" id="enableUsernamePasswordCreation" class="checkbox form-control" name="enable_username_password_creation" value="1" disabled="">Have PayPal create user names and passwords for customers
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
                                                                         <div class="balloonCallout accessAid" id="customerControlHelp">Give customers access to "members-only" content on your site.</div>
                                                                         <div class="fieldNote">
                                                                             <div class="label">Notes: </div>
@@ -415,109 +471,220 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         </div>
                                                                     </div>
                                                                     <div id="rbFixedAmount">
-                                                                        <div class="group"><label for="subscriptionBillingAmount" class="control-label">Billing amount each cycle</label><input type="text" id="subscriptionBillingAmount" size="22" class="text form-control" name="subscription_billing_amount" value="" disabled=""><span class="currencyLabel">USD</span></div>
                                                                         <div class="group">
-                                                                            <label for="subscriptionBillingCycleNumber" class="control-label">Billing cycle</label>
-                                                                            <?php $paypal_button_subscription_billing_cycle_number = get_paypal_button_subscription_billing_cycle_number(); ?>
-                                                                            <select name="subscription_billing_cycle_number" disabled="" class="form-control">
-                                                                                <?php foreach ($paypal_button_subscription_billing_cycle_number as $paypal_button_subscription_billing_cycle_number_key => $paypal_button_subscription_billing_cycle_number_value) { ?>
-                                                                                    <option value="<?php echo $paypal_button_subscription_billing_cycle_number_value; ?>"><?php echo $paypal_button_subscription_billing_cycle_number_value; ?></option>
-                                                                                <?php } ?>
-                                                                            </select>
-                                                                            <?php $paypal_button_subscriptions_cycle = get_paypal_button_subscriptions_cycle(); ?>
-                                                                            <select id="subscriptionBillingCyclePeriod" name="subscription_billing_cycle_period" disabled="" class="form-control">
-                                                                                <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
-                                                                                    <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
-                                                                                <?php } ?>
-                                                                            </select>
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group">
+                                                                                        <label for="subscriptionBillingAmount" class="control-label">Billing amount each cycle ( <span class="currencyLabel">USD</span> ) </label>
+                                                                                        <input type="text" id="subscriptionBillingAmount" size="22" class="text form-control" name="subscription_billing_amount" value="" disabled="">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        <div class="group">
+                                                                            <div class="row">                                                                                
+                                                                                    <div class="form-group">
+                                                                                       <div class="col-md-12"><label for="subscriptionBillingCycleNumber" class="control-label">Billing cycle</label></div>
+                                                                                       <div class="col-md-1">
+                                                                                           <?php $paypal_button_subscription_billing_cycle_number = get_paypal_button_subscription_billing_cycle_number(); ?>
+                                                                                            <select name="subscription_billing_cycle_number" disabled="" class="form-control" style="width: auto !important">
+                                                                                                <?php foreach ($paypal_button_subscription_billing_cycle_number as $paypal_button_subscription_billing_cycle_number_key => $paypal_button_subscription_billing_cycle_number_value) { ?>
+                                                                                                    <option value="<?php echo $paypal_button_subscription_billing_cycle_number_value; ?>"><?php echo $paypal_button_subscription_billing_cycle_number_value; ?></option>
+                                                                                                <?php } ?>
+                                                                                            </select>
+                                                                                       </div>
+                                                                                       <div class="col-md-1">
+                                                                                           <?php $paypal_button_subscriptions_cycle = get_paypal_button_subscriptions_cycle(); ?>
+                                                                                            <select id="subscriptionBillingCyclePeriod" name="subscription_billing_cycle_period" disabled="" class="form-control" style="width: auto !important">
+                                                                                                <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
+                                                                                                    <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
+                                                                                                <?php } ?>
+                                                                                            </select>
+                                                                                       </div>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="group">
-                                                                        <label for="subscriptionBillingLimit" class="control-label">After how many cycles should billing stop?</label>
-                                                                        <select name="subscription_billing_limit" disabled="" class="form-control">
-                                                                            <?php 
-                                                                            $paypal_button_subscriptions_cycle_billing_limit = get_paypal_button_subscription_billing_limit();
-                                                                            foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
-                                                                                <option value="<?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?>"><?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?></option>
-                                                                            <?php } ?>
-                                                                        </select>
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <div class="form-group">
+                                                                                    <label for="subscriptionBillingLimit" class="control-label">After how many cycles should billing stop?</label>
+                                                                                    <select name="subscription_billing_limit" disabled="" class="form-control" style="width: auto !important">
+                                                                                        <?php 
+                                                                                        $paypal_button_subscriptions_cycle_billing_limit = get_paypal_button_subscription_billing_limit();
+                                                                                        foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) { ?>
+                                                                                            <option value="<?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?>"><?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?></option>
+                                                                                        <?php } ?>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="group">
-                                                                        <label for="offerTrial" class="control-label"><input type="checkbox" id="offerTrial" class="checkbox form-control" name="subscriptions_offer_trial" value="1" disabled="">I want to offer a trial period</label>
-                                                                        <div class="trialOfferOptions accessAid">
-                                                                            <fieldset>
-                                                                                <legend>Amount to bill for the trial period
-                                                                                </legend>
-                                                                                <label for="subscriptionLowerRate" class="control-label">
-                                                                                    <input class="hidden" type="hidden" id="subscriptionLowerRate" name="subscription_trial_billing_amount" value="1" disabled="">
-                                                                                    <div><input type="text" id="subscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_rate" value="" disabled=""><span class="currencyLabel">USD</span></div>
-                                                                                </label>
-                                                                            </fieldset>
-                                                                            <fieldset>
-                                                                                <?php $paypal_button_subscription_trial_duration = get_paypal_button_subscription_trial_duration(); ?>
-                                                                                <legend>Define the trial period</legend>
-                                                                                <select name="subscription_trial_duration" disabled="" class="form-control">
-                                                                                    <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
-                                                                                        <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>"><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
-                                                                                    <?php } ?>
-                                                                                </select>
-                                                                                <select id="trialDurationType" name="subscription_trial_duration_type" disabled="" class="form-control">
-                                                                                    <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
-                                                                                        <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
-                                                                                    <?php } ?>
-                                                                                </select>
-                                                                            </fieldset>
-                                                                            <fieldset>
-                                                                                <legend>Do you want to offer a second trial period? <span class="autoTooltip" title="" tabindex="0">What's this?<span class="accessAid">Customers will receive just one bill for each trial period.</span></span></legend>
-                                                                                <label for="secondSubscriptionTrialOffer" class="control-label"><input class="radio secondTrialOfferOption form-control" type="radio" id="secondSubscriptionTrialOffer" name="subscriptions_offer_another_trial" value="1" disabled="">Yes</label>
-                                                                                <div class="secondTrialOfferOptions accessAid">
-                                                                                    <fieldset>
-                                                                                        <legend>Amount to bill for this trial period
-                                                                                        </legend>
-                                                                                        <div><input type="text" id="secondSubscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_2_rate" value="" disabled=""><span class="currencyLabel">USD</span></div>
-                                                                                    </fieldset>
-                                                                                    <fieldset>
-                                                                                        <legend>How long should the trial period last?</legend>
-                                                                                        <select name="subscription_trial_2_duration" disabled="" class="form-control">
-                                                                                            <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
-                                                                                                <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>"><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
-                                                                                            <?php } ?>
-                                                                                        </select>
-                                                                                        <select id="secondTrialDurationType" name="subscription_trial_2_duration_type" disabled="" class="form-control">
-                                                                                            <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
-                                                                                                <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
-                                                                                            <?php } ?>
-                                                                                        </select>
-                                                                                    </fieldset>
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <div class="form-group">
+                                                                                    <input type="checkbox" id="offerTrial" class="checkbox form-control" name="subscriptions_offer_trial" value="1" disabled=""><label for="offerTrial" class="control-label">I want to offer a trial period</label>
                                                                                 </div>
-                                                                                <label for="lastSubscriptionTrialOffer" class="control-label"><input class="radio secondTrialOfferOption form-control" type="radio" id="lastSubscriptionTrialOffer" checked="" name="subscriptions_offer_another_trial" value="0" disabled="">No</label>
-                                                                            </fieldset>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        <div class="trialOfferOptions accessAid">
+                                                                            
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="subscriptionLowerRate" class="control-label">Amount to bill for the trial period ( <span class="currencyLabel">USD</span> )</label>
+                                                                                        <input class="hidden" type="hidden" id="subscriptionLowerRate" name="subscription_trial_billing_amount" value="1" disabled="">
+                                                                                        <input type="text" id="subscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_rate" value="" disabled="">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="row">
+                                                                                <div class="form-group">
+                                                                                    <?php $paypal_button_subscription_trial_duration = get_paypal_button_subscription_trial_duration(); ?>                                                                                    
+                                                                                    
+                                                                                    <div class="col-md-12"><label class="control-label">Define the trial period</label></div>
+                                                                                    <div class="col-md-1">
+                                                                                         <select name="subscription_trial_duration" disabled="" class="form-control">
+                                                                                        <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
+                                                                                            <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>"><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
+                                                                                        <?php } ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-md-1">
+                                                                                        <select id="trialDurationType" name="subscription_trial_duration_type" disabled="" class="form-control">
+                                                                                        <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
+                                                                                            <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
+                                                                                        <?php } ?>
+                                                                                        </select>
+                                                                                    </div>                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="row">
+                                                                                <div class="col-md-9">
+                                                                                    <h5>Do you want to offer a second trial period? <span class="autoTooltip" title="" tabindex="0">What's this?<span class="accessAid">Customers will receive just one bill for each trial period.</span></span></h5>
+                                                                                </div>                                                                                
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-9">
+                                                                                    <div class="form-group">
+                                                                                        
+                                                                                        <input class="radio secondTrialOfferOption form-control" type="radio" id="secondSubscriptionTrialOffer" name="subscriptions_offer_another_trial" value="1" disabled="">
+                                                                                        <label for="secondSubscriptionTrialOffer" class="control-label">Yes</label>
+                                                                                        
+                                                                                        <input class="radio secondTrialOfferOption form-control" type="radio" id="lastSubscriptionTrialOffer" checked="" name="subscriptions_offer_another_trial" value="0" disabled="">
+                                                                                        <label for="lastSubscriptionTrialOffer" class="control-label">No</label>
+                                                                                        
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>                                                                                
+                                                                                <div class="secondTrialOfferOptions accessAid">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="form-group">
+                                                                                                <label class="control-label">Amount to bill for this trial period ( <span class="currencyLabel">USD</span> )</label>
+                                                                                                <input type="text" id="secondSubscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_2_rate" value="" disabled="">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">                                                                                        
+                                                                                        <div class="form-group">
+                                                                                            <div class="col-md-12">
+                                                                                                <label class="control-label">How long should the trial period last?</label>
+                                                                                            </div>
+                                                                                            <div class="col-md-1">
+                                                                                                <select name="subscription_trial_2_duration" disabled="" class="form-control">
+                                                                                                    <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
+                                                                                                        <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>"><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
+                                                                                                    <?php } ?>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            <div class="col-md-2">
+                                                                                                <select id="secondTrialDurationType" name="subscription_trial_2_duration_type" disabled="" class="form-control">
+                                                                                                    <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
+                                                                                                        <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
+                                                                                                    <?php } ?>
+                                                                                                </select>
+                                                                                            </div>        
+                                                                                        </div>
+                                                                                    </div>                                                                                    
+                                                                                </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="group gift_certs last accessAid fadedOut">
                                                                     <div class="group gcCurrency">
-                                                                        <label for="gcAmountCurrency" class="control-label">Currency</label>
-                                                                        <select id="gcAmountCurrency" name="item_price_currency" class="currencySelect form-control" disabled="">
-                                                                            <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
-                                                                                <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
-                                                                            <?php } ?>
-                                                                        </select>
+                                                                        <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label for="gcAmountCurrency" class="control-label">Currency</label>
+                                                                                    <select id="gcAmountCurrency" name="item_price_currency" class="currencySelect form-control" disabled="" style="width: auto !important">
+                                                                                        <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
+                                                                                            <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
+                                                                                        <?php } ?>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="group">
-                                                                        <fieldset>
-                                                                            <legend>Specify gift certificate amount</legend>
-                                                                            <label for="gcAmountTypeList" class="control-label"><input class="radio gcAmountType form-control" type="radio" id="gcAmountTypeList" checked="" name="gc_amount_type" value="custom" disabled="">Choose an amount from a preset list</label><label for="gcAmountTypeFixed" class="control-label"><input class="radio gcAmountType form-control" type="radio" id="gcAmountTypeFixed" name="gc_amount_type" value="fixed" disabled="">Specify an amount of your choosing</label>
-                                                                            <div class="labelOption gcFixedAmountContainer accessAid"><label for="gcFixedAmount" class="control-label">Amount</label><input type="text" id="gcFixedAmount" size="9" class="text form-control" name="gc_fixed_amount" value="" disabled=""><span class="currencyLabel">USD</span></div>
-                                                                        </fieldset>
+                                                                         <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <h4>Specify gift certificate amount</h4>
+                                                                            </div>                                                                                
+                                                                         </div> 
+                                                                        <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">                                                                                    
+                                                                                    <input class="radio gcAmountType form-control" type="radio" id="gcAmountTypeList" checked="" name="gc_amount_type" value="custom" disabled="">
+                                                                                    <label for="gcAmountTypeList" class="control-label">Choose an amount from a preset list</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="col-md-4">                                                                                    
+                                                                                    <input class="radio gcAmountType form-control" type="radio" id="gcAmountTypeFixed" name="gc_amount_type" value="fixed" disabled="">
+                                                                                    <label for="gcAmountTypeFixed" class="control-label">Specify an amount of your choosing</label>
+                                                                            </div>                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="labelOption gcFixedAmountContainer accessAid">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="gcFixedAmount" class="control-label">Amount ( <span class="currencyLabel">USD</span> ) </label>
+                                                                                        <input type="text" id="gcFixedAmount" size="9" class="text form-control" name="gc_fixed_amount" value="" disabled="">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>                                                                        
                                                                     </div>
                                                                     <div class="group">
-                                                                        <p class="gcStyleHeader_new"><strong>Gift certificate style</strong></p>
-                                                                        <label for="giftCertificateLogoURL" class="control-label">Add URL for logo image</label><input class="text form-control" type="text" id="giftCertificateLogoURL" size="34" name="gc_logo_url" value="http://" disabled="">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <h4 class="gcStyleHeader_new">Gift certificate style</h4>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <div class="form-group">
+                                                                                    <label for="giftCertificateLogoURL" class="control-label">Add URL for logo image</label>
+                                                                                    <input class="text form-control" type="text" id="giftCertificateLogoURL" size="34" name="gc_logo_url" value="http://" disabled="">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="group">
-                                                                        <fieldset>
-                                                                            <legend>Choose background</legend>
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <h4>Choose background</h4>  
+                                                                            </div>
+                                                                        </div>                                                                            
+                                                                        <fieldset>                                                                            
                                                                             <label for="gcBackgroundColor" class="control-label">
                                                                                 <input class="radio gcBackgroundType form-control" type="radio" checked="" name="gc_background_type" value="color" disabled="">Color
                                                                                 <div class="labelOption">
@@ -542,16 +709,25 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             </label>
                                                                         </fieldset>
                                                                     </div>
-
+                                                                </div>
+                                                                <div class="group notifications">
+                                                                    <div class="row">
+                                                                        <div class="col-md-5">
+                                                                            <div class="form-group">
+                                                                                <label for="merchantIDNotificationMethod" class="control-label">Enter your PayPal Email Address or Merchant Account ID <a target="_blank" class="infoLink" href="https://www.paypal.com/businessstaticpage/BDMerchantIdInformation" onclick="PAYPAL.core.openWindow(event,{height:500, width: 450});">Learn more</a></label>
+                                                                                 <input type="text" class="custom_text form-control" name="business" id="business" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="stepTwo" class="box">
-                                                    <div class="header">
-                                                        <?php echo '<h3 id="giftBasedHeading" class="accessAid hide">' . __('Step 2: Track inventory, profit & loss (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
-                                                        <?php echo '<h3 id="productBasedHeading" class="opened">' . __('Step 2: Track inventory, profit & loss (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
+                                                <div id="stepTwo" class="box  panel panel-primary">
+                                                    <div class="header panel-heading">
+                                                        <?php echo '<h4 class="panel-title" id="giftBasedHeading" class="accessAid hide">' . __('Step 2: Track inventory, profit & loss (optional)', 'paypal-wp-button-manager') . '</h4>'; ?>
+                                                        <?php echo '<h4 class="panel-title" id="productBasedHeading" class="opened">' . __('Step 2: Track inventory, profit & loss (optional)', 'paypal-wp-button-manager') . '</h4>'; ?>
                                                     </div>
                                                     <div class="body">
                                                         <div class="content">
@@ -631,9 +807,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="stepThree" class="box last">
-                                                    <div class="header">
-                                                        <?php echo '<h3>' . __('Step 3: Customize advanced features (optional)', 'paypal-wp-button-manager') . '</h3>'; ?>
+                                                <div id="stepThree" class="box last panel panel-primary">
+                                                     <div class="header panel-heading">
+                                                        <?php echo '<h4 class="panel-title">' . __('Step 3: Customize advanced features (optional)', 'paypal-wp-button-manager') . '</h4>'; ?>
                                                     </div>
                                                     <div class="body">
                                                         <div class="content">
@@ -645,8 +821,38 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <label class="topSpacer" for="changeOrderQuantities"><input class="radio form-control" type="radio" id="changeOrderQuantities" name="undefined_quantity" value="1">Yes</label><label class="bottomSpacer" for="keepOrderQuantities"><input class="radio" type="radio" id="keepOrderQuantities" checked="" name="undefined_quantity" value="0">No</label>
                                                                 </div>
                                                                 <div id="specialInstructionsContainer" class="opened">
-                                                                    <div>Can your customer add special instructions in a message to you?</div>
-                                                                    <label class="topSpacer control-label" for="addSpecialInstructions"><input class="radio form-control" type="radio" id="addSpecialInstructions" checked="" name="no_note" value="0">Yes</label><label id="messageBoxContainer" for="messageBox" class="control-label">Name of message box (40-character limit)<input type="text" id="messageBox" size="40" maxlength="40" class="text form-control" name="custom_note" value="Add special instructions to the seller:"></label><label class="bottomSpacer control-label" for="noSpecialInstructions"><input class="radio form-control" type="radio" id="noSpecialInstructions" name="no_note" value="1">No</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-9">
+                                                                            <strong>Can your customer add special instructions in a message to you?</strong>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="row">
+                                                                        <div class="col-md-9">
+                                                                            <div class="form-group">
+                                                                                <input class="radio form-control" type="radio" id="addSpecialInstructions" checked="" name="no_note" value="0">
+                                                                                <label class="topSpacer control-label" for="addSpecialInstructions">Yes</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="row" id="messageBoxContainer">
+                                                                        <div class="col-md-9">
+                                                                            <div class="form-group">
+                                                                                <label  for="messageBox" class="control-label">Name of message box (40-character limit)</label>
+                                                                                <input type="text" id="messageBox" size="40" maxlength="40" class="text form-control" name="custom_note" value="Add special instructions to the seller:">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="row">
+                                                                        <div class="col-md-9">
+                                                                            <div class="form-group">
+                                                                                <label class="bottomSpacer control-label" for="noSpecialInstructions"><input class="radio form-control" type="radio" id="noSpecialInstructions" name="no_note" value="1">No</label>
+                                                                            </div>
+                                                                        </div>                                                                    
+                                                                    </div>
+                                                                    
                                                                 </div>
                                                                 <div id="shippingAddressContainer" class="opened">
                                                                     <div>Do you need your customer's shipping address?</div>

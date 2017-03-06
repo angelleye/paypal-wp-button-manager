@@ -2,14 +2,14 @@
 .accordionContainer label {margin-right:10px;}
 div#specialInstructionsContainer label { margin-right: 0px !important;}
 input[type=checkbox], input[type=radio] {border: 1px solid #bbb !important;}
-div#specialInstructionsContainer div {padding-bottom: 6px; font-weight: bold;}
-div#shippingAddressContainer div { margin-top: 6px;  font-weight: bold;  margin-bottom: 6px;}
+div#specialInstructionsContainer div {padding-bottom: 6px; /*font-weight: bold;*/}
+div#shippingAddressContainer div { margin-top: 6px;  /*font-weight: bold;*/  margin-bottom: 6px;}
 #messageBoxContainer #messageBox { margin-top: 10px;  margin-bottom: 10px;}
-div#shippingAddressContainer div {  margin-top: 6px;  font-weight: bold;  margin-bottom: 6px;}
+div#shippingAddressContainer div {  margin-top: 6px;  /*font-weight: bold;*/  margin-bottom: 6px;}
 div#cancellationRedirectURLContainer {margin-top: 10px;}
 label.bottomSpacer {margin-bottom: 10px; margin-left: 5px !important;}
 input#noSpecialInstructions {margin-left: -5px !important;}
-div#changeOrderQuantitiesContainer div {font-weight: bold;margin-bottom: 6px;}
+div#changeOrderQuantitiesContainer div {/*font-weight: bold;*/margin-bottom: 6px;}
 div#specialInstructionsContainer {margin-top: 6px;}
 #stepOne input.xlarge {width: 170px; margin-right: 30px;}
 .h3padding {padding: 8px 12px;}
