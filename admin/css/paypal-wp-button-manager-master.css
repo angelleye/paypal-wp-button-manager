@@ -115,7 +115,7 @@ div.group.outerContainer {/*margin:30px 0 !important;*/}
 #stepOne .group h2.gcStyleHeader {margin:30px 0 10px;}
 #stepOne .group.products .shipping {margin-bottom:20px;}
 #stepOne .group.products .shipping input, 
-#stepOne .group.products .tax input {text-align:right;}
+#stepOne .group.products .tax input {/*text-align:right;*/}
 #stepOne .group.cartOption {padding-bottom:0;}
 #stepOne .group.cartOption.fadedOut legend {font-weight:600;}
 #stepOne .group.notifications {margin:0 !important;}

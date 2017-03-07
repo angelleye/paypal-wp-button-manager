@@ -313,7 +313,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                     </div>
                                                                                     <p id="addCustomButton"><label for="customButton" class="control-label"><input class="radio form-control" type="radio" id="customButton" name="paypal_button" value="false">Use your own button image</label>
                                                                                     </p>
-                                                                                    <div id="customButtonSection" class="hideShow accessAid hide"><input type="text" id="customImageUrl" class="text form-control" name="custom_image_url"></div>
+                                                                                    <div id="customButtonSection" class="hideShow accessAid hide"><input type="text" id="customImageUrl" class="text form-control" name="custom_image_url" style="width: auto"></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -380,8 +380,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <div class="col-md-12">
-                                                                                            <label for="itemFlatShippingAmount" class="control-label">Use specific amount:  </label>
-                                                                                            <input class="form-control" type="text" id="itemFlatShippingAmount" size="9" name="item_shipping_amount" value=""><span class="currencyLabel">USD</span>
+                                                                                            <label for="itemFlatShippingAmount" class="control-label">Use specific amount: ( <span class="currencyLabel">USD</span> )</label>
+                                                                                            <input class="form-control" type="text" id="itemFlatShippingAmount" size="9" name="item_shipping_amount" value="">
                                                                                         </div>                                                                                
                                                                                     </div>
                                                                                 </div>
@@ -395,8 +395,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                     </div>
                                                                                     <div class="col-md-12">
                                                                                     <div class="form-group">                                                                                        
-                                                                                            <label for="itemTaxRate" class="control-label">Use tax rate</label>
-                                                                                            <input class="form-control" type="text" id="itemTaxRate" name="item_tax_rate" value="">%
+                                                                                            <label for="itemTaxRate" class="control-label">Use tax rate ( % )</label>
+                                                                                            <input class="form-control" type="text" id="itemTaxRate" name="item_tax_rate" value="">
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>                                                                                    
@@ -445,8 +445,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <div class="labelOption fixedDonationAmountContainer accessAid">
                                                                             <div class="row">
                                                                                 <div class="col-md-9">
-                                                                                    <label for="fixedDonationAmount" class="control-label">Amount</label>
-                                                                                    <input type="text" id="fixedDonationAmount" size="7" maxlength="20" class="text form-control" name="item_price" value="" disabled=""><span class="currencyLabel">USD</span>
+                                                                                    <label for="fixedDonationAmount" class="control-label">Amount ( <span class="currencyLabel">USD</span> )</label>
+                                                                                    <input type="text" id="fixedDonationAmount" size="7" maxlength="20" class="text form-control" name="item_price" value="" disabled="">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -733,76 +733,162 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="content">
                                                             <div class="container clearfix">
                                                                 <div class="step2-left-active">
-                                                                    <input class="checkbox form-control" type="checkbox" id="enableHostedButtons" checked="" name="enable_hosted_buttons" value="enabled"><label for="enableHostedButtons" class="control-label"><?php echo __('Save button at PayPal', 'paypal-wp-button-manager'); ?></label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-9">
+                                                                            <div class="form-group">
+                                                                                <input class="checkbox form-control" type="checkbox" id="enableHostedButtons" checked="" name="enable_hosted_buttons" value="enabled">
+                                                                                <label for="enableHostedButtons" class="control-label"><?php echo __('Save button at PayPal', 'paypal-wp-button-manager'); ?></label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                            
                                                                     <div class="info-list-wrapper">
-                                                                        <ul>
-                                                                            <li><?php echo __('Protect your buttons from fraudulent changes', 'paypal-wp-button-manager'); ?></li>
-                                                                            <li><?php echo __('Automatically add buttons to "My Saved Buttons" in your PayPal profile', 'paypal-wp-button-manager'); ?></li>
-                                                                            <li><?php echo __('Easily create similar buttons', 'paypal-wp-button-manager'); ?></li>
-                                                                            <li><?php echo __("Edit your buttons with PayPal's tools", 'paypal-wp-button-manager'); ?> </li>
-                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <ul>
+                                                                                    <li><?php echo __('Protect your buttons from fraudulent changes', 'paypal-wp-button-manager'); ?></li>
+                                                                                    <li><?php echo __('Automatically add buttons to "My Saved Buttons" in your PayPal profile', 'paypal-wp-button-manager'); ?></li>
+                                                                                    <li><?php echo __('Easily create similar buttons', 'paypal-wp-button-manager'); ?></li>
+                                                                                    <li><?php echo __("Edit your buttons with PayPal's tools", 'paypal-wp-button-manager'); ?> </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>                                                                        
                                                                     </div>
                                                                     <div class="step2-inventory" id="inventoryOptions">
-                                                                        <input class="checkbox form-control" type="checkbox" id="enableInventory" name="enable_inventory" value="enabledInventory"><label for="enableInventory" class="control-label"><?php echo __('Track inventory', 'paypal-wp-button-manager'); ?></label>
-                                                                        <p class="hint"><?php echo __("Don't oversell items not in stock -- Get an email alert when inventory is low.", 'paypal-wp-button-manager'); ?></p>
-                                                                        <input class="checkbox form-control" type="checkbox" id="enableProfitAndLoss" name="enable_profit_and_loss" value="enabledProfitAndLoss"><label for="enableProfitAndLoss" class="control-label"><?php echo __('Track profit and losses', 'paypal-wp-button-manager'); ?></label>
-                                                                        <p class="hint"><?php echo __("View profit and loss report by product/service.", 'paypal-wp-button-manager'); ?></p>
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <div class="form-group">
+                                                                                    <input class="checkbox form-control" type="checkbox" id="enableInventory" name="enable_inventory" value="enabledInventory">
+                                                                                    <label for="enableInventory" class="control-label"><?php echo __('Track inventory', 'paypal-wp-button-manager'); ?></label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <p class="hint"><?php echo __("Don't oversell items not in stock -- Get an email alert when inventory is low.", 'paypal-wp-button-manager'); ?></p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <div class="form-group">
+                                                                                    <input class="checkbox form-control" type="checkbox" id="enableProfitAndLoss" name="enable_profit_and_loss" value="enabledProfitAndLoss">
+                                                                                    <label for="enableProfitAndLoss" class="control-label"><?php echo __('Track profit and losses', 'paypal-wp-button-manager'); ?></label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <p class="hint"><?php echo __("View profit and loss report by product/service.", 'paypal-wp-button-manager'); ?></p>
+                                                                            </div>
+                                                                        </div>                                                                        
                                                                     </div>
                                                                 </div>
-                                                                <div class="step2-extra-fields opened" id="inventoryTable">
+                                                                <div class="step2-extra-fields opened col-md-10" id="inventoryTable">
                                                                     <div id="trackByItemTable" class="fadedOut">
-                                                                        <input class="radio form-control" type="radio" id="trackByItem" checked="" name="track_button_by" value="trackdByItem" disabled=""><label id="byItemLabel" for="trackByItem" class="control-label"><strong><?php echo __('By item', 'paypal-wp-button-manager'); ?></strong></label>
-                                                                        <div id="byItemTableBody">
-                                                                            <div class="inventory-table-row">
-                                                                                <div class="left-edge">&nbsp;</div>
-                                                                                <div><?php echo __('Item ID', 'paypal-wp-button-manager'); ?></div>
-                                                                                <div class="invRelated"><?php echo __('Qty. in stock', 'paypal-wp-button-manager'); ?></div>
-                                                                                <div class="invRelated"><?php echo __('Alert qty. (optional)', 'paypal-wp-button-manager'); ?> <span class="autoTooltip helpText" title="" tabindex="0"><?php echo __("What's this?", 'paypal-wp-button-manager'); ?><span class="accessAid"><?php echo __('When your inventory falls to this number, PayPal will send you an e-mail alert.', 'paypal-wp-button-manager'); ?></span></span></div>
-                                                                                <div class="PNLRelated"><?php echo __('Price', 'paypal-wp-button-manager'); ?></div>
-                                                                                <div class="right-edge">&nbsp;</div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <div class="form-group">
+                                                                                    <input class="radio form-control" type="radio" id="trackByItem" checked="" name="track_button_by" value="trackdByItem" disabled="">
+                                                                                    <label id="byItemLabel" for="trackByItem" class="control-label"><strong><?php echo __('By item', 'paypal-wp-button-manager'); ?></strong></label>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="inventory-table-row">
-                                                                                <div class="left-edge">&nbsp;</div>
-                                                                                <div><input class="type-text form-control" type="text" name="item_id" value="" disabled=""></div>
-                                                                                <div class="invRelated"><input class="type-text form-control" type="text" name="items_in_stock" value="" disabled=""></div>
-                                                                                <div class="invRelated"><input class="type-text form-control" type="text" name="alert_quantity" value="" disabled=""></div>
-                                                                                <div class="PNLRelated"><input class="type-text form-control" type="text" name="item_cost" value="" disabled=""></div>
-                                                                                <div class="right-edge"><?php echo __('USD', 'paypal-wp-button-manager'); ?></div>
+                                                                        </div>
+                                                                                                                                                
+                                                                        <div id="byItemTableBody">
+                                                                            <div class="row">                                                                                
+                                                                                    <div class="form-group">
+                                                                                        <div class="col-md-3">
+                                                                                            <label class="control-label"><?php echo __('Item ID', 'paypal-wp-button-manager'); ?></label>
+                                                                                            <input class="form-control" type="text" name="item_id" value="" disabled="">
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="col-md-3">
+                                                                                            <label class="control-label">
+                                                                                                <div class="invRelated"><?php echo __('Qty. in stock', 'paypal-wp-button-manager'); ?></div>
+                                                                                            </label>
+                                                                                            <div class="invRelated"><input class="form-control" type="text" name="items_in_stock" value="" disabled=""></div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="col-md-3">                                                                                            
+                                                                                            <div class="invRelated"><label><?php echo __('Alert qty. (optional)', 'paypal-wp-button-manager'); ?> <span class="autoTooltip helpText" title="" tabindex="0"><?php echo __("What's this?", 'paypal-wp-button-manager'); ?><span class="accessAid"><?php echo __('When your inventory falls to this number, PayPal will send you an e-mail alert.', 'paypal-wp-button-manager'); ?></span></span></label></div>
+                                                                                             <div class="invRelated"><input class="form-control" type="text" name="alert_quantity" value="" disabled=""></div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="col-md-3">
+                                                                                            <div class="PNLRelated"><label><?php echo __('Price', 'paypal-wp-button-manager'); ?> ( <span class="currencyLabel">USD</span> )</label></div>
+                                                                                            <div class="PNLRelated"><input class="form-control" type="text" name="item_cost" value="" disabled=""></div>
+                                                                                        </div>
+                                                                                    </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div id="trackByOptionTable" class="fadedOut accessAid">
-                                                                        <input class="radio form-control" type="radio" id="trackByOption" name="track_button_by" value="trackdByOption" disabled=""><label for="trackByOption"><strong><?php echo __('By option', 'paypal-wp-button-manager'); ?></strong><?php echo __('(in drop-down menu)', 'paypal-wp-button-manager'); ?> <a id="chooseAnotherDropDown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#chooseAnotherDropDown" class="accessAid"><?php echo __('Choose a different drop-down', 'paypal-wp-button-manager'); ?></a></label>
+                                                                        <div class="row">
+                                                                            <div class="col-md-9">
+                                                                                <div class="form-group">
+                                                                                    <input class="radio form-control" type="radio" id="trackByOption" name="track_button_by" value="trackdByOption" disabled="">
+                                                                                    <label for="trackByOption" class="control-label"><strong><?php echo __('By option', 'paypal-wp-button-manager'); ?></strong><?php echo __('(in drop-down menu)', 'paypal-wp-button-manager'); ?> <a id="chooseAnotherDropDown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#chooseAnotherDropDown" class="accessAid"><?php echo __('Choose a different drop-down', 'paypal-wp-button-manager'); ?></a></label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
                                                                         <div id="byOptionTableBody" class="accessAid">
-                                                                            <div class="inventory-table-row">
-                                                                                <div class="left-edge">&nbsp;</div>
-                                                                                <div><?php echo __('Item ID',  'paypal-wp-button-manager'); ?></div>
-                                                                                <div class="invRelated"><?php echo __('Qty in stock', 'paypal-wp-button-manager'); ?></div>
-                                                                                <div class="invRelated"><?php echo __('Alert qty. (optional)', 'paypal-wp-button-manager'); ?> <span class="autoTooltip helpText" title="" tabindex="0"><?php echo __("What's this?", 'paypal-wp-button-manager'); ?><span class="accessAid"><?php echo __('When your inventory falls to this number, PayPal will send you an e-mail alert.', 'paypal-wp-button-manager'); ?></span></span></div>
-                                                                                <div class="PNLRelated"><?php echo __('Cost', 'paypal-wp-button-manager');?> </div>
-                                                                                <div class="right-edge">&nbsp;</div>
-                                                                            </div>
-                                                                            <div class="inventory-table-row">
-                                                                                <div class="left-edge">&nbsp;</div>
-                                                                                <div><input class="type-text form-control" type="text" name="item_id" value="" disabled=""></div>
-                                                                                <div class="invRelated"><input class="type-text form-control" type="text" name="items_in_stock" value="" disabled=""></div>
-                                                                                <div class="invRelated"><input class="type-text form-control" type="text" name="alert_quantity" value="" disabled=""></div>
-                                                                                <div class="PNLRelated"><input class="type-text form-control" type="text" name="item_cost" value="" disabled=""></div>
-                                                                                <div class="right-edge">&nbsp;</div>
-                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="form-group">
+                                                                                    <div class="col-md-3">
+                                                                                        <label><?php echo __('Item ID',  'paypal-wp-button-manager'); ?></label>
+                                                                                        <div><input class="type-text form-control" type="text" name="item_id" value="" disabled=""></div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="invRelated"><label class="control-label"><?php echo __('Qty in stock', 'paypal-wp-button-manager'); ?></label></div>
+                                                                                        <div class="invRelated"><input class="form-control" type="text" name="items_in_stock" value="" disabled=""></div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="invRelated"><label><?php echo __('Alert qty. (optional)', 'paypal-wp-button-manager'); ?> <span class="autoTooltip helpText" title="" tabindex="0"><?php echo __("What's this?", 'paypal-wp-button-manager'); ?><span class="accessAid"><?php echo __('When your inventory falls to this number, PayPal will send you an e-mail alert.', 'paypal-wp-button-manager'); ?></span></span></label></div>
+                                                                                        <div class="invRelated"><input class="form-control" type="text" name="alert_quantity" value="" disabled=""></div>
+                                                                                    </div>
+                                                                                
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="PNLRelated"><label><?php echo __('Cost', 'paypal-wp-button-manager');?></label></div>
+                                                                                        <div class="PNLRelated"><input class="type-text form-control" type="text" name="item_cost" value="" disabled=""></div>
+                                                                                    </div>
+                                                                                    
+                                                                                </div>
+                                                                            </div>                                                                            
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="step2-bottom-fields fadedOut opened" id="soldOutOption">
-                                                                    <h5 id="shoppingHead" class="opened"><?php echo __('Can customers buy an item when it is sold out?', 'paypal-wp-button-manager'); ?></h5>
-                                                                    <div class="pre-order opened" id="shoppingPreOrder"><input class="radio form-control" type="radio" id="enablePreOrder" name="enable_pre_order" value="enabledPreOrder" disabled=""><label for="enablePreOrder" class="control-label"><?php echo __('Yes, customers can buy the item as usual.', 'paypal-wp-button-manager'); ?></label></div>
-                                                                    <div class="no-pre-order">
-                                                                        <input class="radio opened form-control" type="radio" id="dontEnablePreOrder" checked="" name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened control-label"><?php echo __("No, don't let customers buy the item.", 'paypal-wp-button-manager'); ?> <a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDSoldOutExample" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Preview</a></label>
-                                                                        <p class="hint opened fadedOut" id="shoppingURL"><span class="littleHint"><?php echo __('Take customers to specific page when they click', 'paypal-wp-button-manager'); ?> <strong><?php echo __('Continue Shopping', 'paypal-wp-button-manager'); ?></strong><?php echo __('button on "item sold out" page', 'paypal-wp-button-manager'); ?></span><input class="type-text form-control" type="text" id="soldOutURL" name="sold_out_url" value="" disabled=""><span class="littleHint">Ex: http://www.mybuynowstore.com</span></p>
+                                                                    <div class="row">
+                                                                        <div class="col-md-9">
+                                                                            <h5 id="shoppingHead" class="opened"><?php echo __('Can customers buy an item when it is sold out?', 'paypal-wp-button-manager'); ?></h5>
+                                                                        </div>
                                                                     </div>
+                                                                    <div class="row">                                                                        
+                                                                        <div class="form-group">                                                                            
+                                                                            <div class="pre-order opened" id="shoppingPreOrder">
+                                                                                <input class="radio form-control" type="radio" id="enablePreOrder" name="enable_pre_order" value="enabledPreOrder" disabled="">
+                                                                                <label for="enablePreOrder" class="control-label"><?php echo __('Yes, customers can buy the item as usual.', 'paypal-wp-button-manager'); ?></label>
+                                                                            </div>
+                                                                            <div class="no-pre-order">
+                                                                                <input class="radio opened form-control" type="radio" id="dontEnablePreOrder" checked="" name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened control-label"><?php echo __("No, don't let customers buy the item.", 'paypal-wp-button-manager'); ?> <a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDSoldOutExample" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Preview</a></label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <p class="hint opened fadedOut" id="shoppingURL">
+                                                                        <span class="littleHint">
+                                                                            <?php echo __('Take customers to specific page when they click', 'paypal-wp-button-manager'); ?> 
+                                                                            <strong><?php echo __('Continue Shopping', 'paypal-wp-button-manager'); ?></strong>
+                                                                            <?php echo __(' button on "item sold out" page', 'paypal-wp-button-manager'); ?>
+                                                                        </span>
+                                                                        <input class="type-text form-control" type="text" id="soldOutURL" name="sold_out_url" value="" disabled="">
+                                                                        <span class="littleHint">Ex: http://www.mybuynowstore.com</span>
+                                                                    </p>
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -814,24 +900,43 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     <div class="body">
                                                         <div class="content">
                                                             <div class="container">
-                                                                <p class="header">Customize checkout pages</p>
-                                                                <p>If you are an advanced user, you can customize checkout pages for your customers, streamline checkout, and more in this section.</p>
-                                                                <div id="changeOrderQuantitiesContainer" class="hide">
-                                                                    <div>Do you want to let your customer change order quantities?</div>
-                                                                    <label class="topSpacer" for="changeOrderQuantities"><input class="radio form-control" type="radio" id="changeOrderQuantities" name="undefined_quantity" value="1">Yes</label><label class="bottomSpacer" for="keepOrderQuantities"><input class="radio" type="radio" id="keepOrderQuantities" checked="" name="undefined_quantity" value="0">No</label>
+                                                                <div class="row">
+                                                                    <diV class="col-md-9">
+                                                                        <p class="header">Customize checkout pages</p>
+                                                                    </diV>
                                                                 </div>
-                                                                <div id="specialInstructionsContainer" class="opened">
+                                                                <div class="row">
+                                                                    <div class="col-md-9">
+                                                                        <p>If you are an advanced user, you can customize checkout pages for your customers, streamline checkout, and more in this section.</p>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div id="changeOrderQuantitiesContainer" class="hide">
                                                                     <div class="row">
                                                                         <div class="col-md-9">
-                                                                            <strong>Can your customer add special instructions in a message to you?</strong>
+                                                                            <div><p class="header">Do you want to let your customer change order quantities?</p></div>
                                                                         </div>
                                                                     </div>
-                                                                    
                                                                     <div class="row">
                                                                         <div class="col-md-9">
+                                                                            <div class="form-group">                                                                                
+                                                                                <input class="radio form-control" type="radio" id="changeOrderQuantities" name="undefined_quantity" value="1">Yes</label><label class="bottomSpacer" for="keepOrderQuantities"><input class="radio" type="radio" id="keepOrderQuantities" checked="" name="undefined_quantity" value="0">
+                                                                                <label class="topSpacer control-label" for="changeOrderQuantities">No</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>                                                                    
+                                                                </div>
+                                                                <div id="specialInstructionsContainer" class="opened">                                                                    
+                                                                    <div class="row">
+                                                                        <div class="col-md-9">
+                                                                            <p class="header">Can your customer add special instructions in a message to you?</p>
                                                                             <div class="form-group">
+                                                                                
                                                                                 <input class="radio form-control" type="radio" id="addSpecialInstructions" checked="" name="no_note" value="0">
-                                                                                <label class="topSpacer control-label" for="addSpecialInstructions">Yes</label>
+                                                                                <label class="control-label" for="addSpecialInstructions">Yes</label>
+                                                                                &nbsp; &nbsp;
+                                                                                <input class="radio form-control" type="radio" id="noSpecialInstructions" name="no_note" value="1">
+                                                                                <label class="control-label" for="noSpecialInstructions">No</label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -840,39 +945,56 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <div class="col-md-9">
                                                                             <div class="form-group">
                                                                                 <label  for="messageBox" class="control-label">Name of message box (40-character limit)</label>
-                                                                                <input type="text" id="messageBox" size="40" maxlength="40" class="text form-control" name="custom_note" value="Add special instructions to the seller:">
+                                                                                <input type="text" id="messageBox" size="40" maxlength="40" class="form-control" name="custom_note" value="Add special instructions to the seller:">
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </div>                                                                    
+                                                                </div>
+                                                                <div id="shippingAddressContainer" class="opened">
                                                                     
                                                                     <div class="row">
                                                                         <div class="col-md-9">
+                                                                            <p class="header">Do you need your customer's shipping address?</p>
                                                                             <div class="form-group">
-                                                                                <label class="bottomSpacer control-label" for="noSpecialInstructions"><input class="radio form-control" type="radio" id="noSpecialInstructions" name="no_note" value="1">No</label>
+                                                                                    
+                                                                                        <input class="radio form-control" type="radio" id="needShippingAddress" checked="" name="no_shipping" value="2">
+                                                                                        <label class="control-label" for="needShippingAddress">Yes</label>
+                                                                                                                                                                                
+                                                                                        <input class="radio form-control" type="radio" id="noShippingAddress" name="no_shipping" value="1">
+                                                                                        <label class="control-label" for="noShippingAddress">No</label>
                                                                             </div>
-                                                                        </div>                                                                    
+                                                                        </div>
                                                                     </div>
-                                                                    
-                                                                </div>
-                                                                <div id="shippingAddressContainer" class="opened">
-                                                                    <div>Do you need your customer's shipping address?</div>
-                                                                    <label class="topSpacer control-label" for="needShippingAddress"><input class="radio form-control" type="radio" id="needShippingAddress" checked="" name="no_shipping" value="2">Yes</label><label class="bottomSpacer control-label" for="noShippingAddress"><input class="radio form-control" type="radio" id="noShippingAddress" name="no_shipping" value="1">No</label>
+                                                                                                                                        
                                                                 </div>
                                                                 <div id="cancellationRedirectURLContainer" class="opened">
-                                                                    <label for="cancellationCheckbox" class="control-label"><input class="checkbox form-control" type="checkbox" id="cancellationCheckbox" name="cancellation_return" value="1">Take customers to this URL when they cancel their checkout</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-9">
+                                                                            <div class="form-group">
+                                                                                <input class="checkbox form-control" type="checkbox" id="cancellationCheckbox" name="cancellation_return" value="1">
+                                                                                <label for="cancellationCheckbox" class="control-label">Take customers to this URL when they cancel their checkout</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                     <div class="redirectContainer">
-                                                                        <input type="text" id="cancellationRedirectURL" size="30" class="text form-control" disabled="" name="cancel_return" value="">
+                                                                        <input type="text" id="cancellationRedirectURL" size="30" class="form-control" disabled="" name="cancel_return" value="">
                                                                         <div>Example: https://www.mystore.com/cancel</div>
                                                                     </div>
                                                                 </div>
                                                                 <div id="successfulRedirectURLContainer" class="opened">
-                                                                    <label for="successfulCheckbox" class="control-label"><input class="checkbox form-control" type="checkbox" id="successfulCheckbox" name="successful_return" value="1">Take customers to this URL when they finish checkout</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-9">
+                                                                            <div class="form-group">
+                                                                                <input class="checkbox form-control" type="checkbox" id="successfulCheckbox" name="successful_return" value="1">
+                                                                                <label for="successfulCheckbox" class="control-label">Take customers to this URL when they finish checkout</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>                                                                    
                                                                     <div class="redirectContainer">
-                                                                        <input type="text" id="successfulRedirectURL" size="30" class="text form-control" disabled="" name="return" value="">
+                                                                        <input type="text" id="successfulRedirectURL" size="30" class="form-control" disabled="" name="return" value="">
                                                                         <div>Example: https://www.mystore.com/success</div>
                                                                     </div>
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                     </div>
