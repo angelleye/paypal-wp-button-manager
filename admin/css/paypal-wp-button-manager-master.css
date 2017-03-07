@@ -185,7 +185,7 @@ div#customizeSection div#savedDropdownPriceSection p label,
 div#customizeSection div.savedDropdownSection p label, 
 div#customizeSection div.savedTextfieldSection p label, 
 p#addNewDropdownSection a, 
-p#addNewTextfieldSection a{margin:0 0 0 40px; padding:0}
+p#addNewTextfieldSection a{margin:0 0 0 40px; /*padding:0*/}
 div#customizeSection div#savedDropdownPriceSection p label, 
 div#customizeSection div.savedDropdownSection p label, 
 div#customizeSection div.savedTextfieldSection p label{width:250px; overflow:hidden}
@@ -369,3 +369,11 @@ Payment plan button css
 #plan .donebtn{position:relative}
 #plan .donebtn a.delete{position:absolute;bottom:0;right:0}
 #plan .buyerview label.plnname.noradio{margin-left:20px;}
+
+@media (max-width:767px) {
+    .outerContainer {width: 100%;}
+    .customizeButtonSection {display: inline-block;width: 100%;padding: 15px 0 0;border-right: 0px;}
+    .borderBox {display: inline-block;width: 100%;}
+    .buyerViewSection {display: inline-block;position:inherit;background-color:#f3f3f3;padding: 10px 0;width: 100%;}
+    #stepOne input.dropdownTitle, #stepOne input.ddOptionName, input#dropdownPriceTitle,select.ddpOptionCurrency,input#textfieldTitle1,input#messageBox,input#cancellationRedirectURL,input#successfulRedirectURL{width:auto;}
+}
