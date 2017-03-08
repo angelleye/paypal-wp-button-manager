@@ -81,7 +81,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                             <?php echo '<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">'. __('Step 1: Choose a button type and enter your payment details'). '</a></h4>'; ?>
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">                                                                 
-                                        <div class="container">
+                            <div class="panel-body">           <div class="container">
                                             <div class="group buttonType">
                                                 <div class="col-lg-4">
                                                 <label for="buttonType" class="control-label">Choose a button type</label>
@@ -134,14 +134,28 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
                                                             <?php } ?>
                                                         </select>
-                                                    </div>
+                                                    </div>                                                    
                                                     <div class="group outerContainer" id="sBox">
                                                         <div class="customizeButtonSection">
                                                             <div class="borderBox">
-                                                                <p class="heading"><strong>Customize button</strong></p>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <p class="heading"><strong>Customize button</strong></p>
+                                                                    </div>
+                                                                </div>
+                                                                
                                                                 <div id="customizeSection">
-                                                                    <p id="addDropdownPrice" class="hideShow opened"><label for="dropdownPrice" class="control-label"><input class="checkbox form-control" type="checkbox" id="dropdownPrice" name="dropdown_price" value="createdDropdownPrice"><span class="products">Add drop-down menu with price/option&nbsp;</span><span class="subscriptions accessAid fadedOut">Add a dropdown menu with prices and options</span>
-                                                                        </label></p>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <p id="addDropdownPrice" class="hideShow opened">
+                                                                                <label for="dropdownPrice" class="control-label">
+                                                                                    <input class="checkbox form-control" type="checkbox" id="dropdownPrice" name="dropdown_price" value="createdDropdownPrice">
+                                                                                    <span class="products">Add drop-down menu with price/option&nbsp;</span>
+                                                                                    <span class="subscriptions accessAid fadedOut">Add a dropdown menu with prices and options</span>
+                                                                                </label>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
                                                                     <div id="dropdownPriceSection" class="hideShow accessAid hide">
                                                                         <p class="title dropdownPriceTitle col-md-9"><label for="dropdownPriceTitle" class="control-label"><span class="products">Name of drop-down menu (ex.: "Colors," "Sizes")</span><span class="subscriptions accessAid fadedOut">Description (For example, "Payment options".)</span></label><input class="text form-control" maxlength="64" type="text" id="dropdownPriceTitle" disabled="" name="dropdown_price_title" value=""></p>
                                                                         <p><label class="optionNameLbl control-label" for=""><span class="products">Menu option name</span><span class="subscriptions accessAid fadedOut">Menu Name</span></label><label class="optionPriceLbl control-label" for="optionPrice"><span class="products">Price</span><span class="subscriptions accessAid fadedOut">Amount (<span class="currencyLabel control-label">USD</span>)</span></label><label class="optionCurrencyLbl control-label" for="optionCurrency"><span class="products">Currency</span><span class="subscriptions accessAid fadedOut control-label">Frequency</span></label></p>
@@ -191,9 +205,18 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p><label id="savedDropdownPrice" for=""></label></p>
                                                                         <p class="editDelete"><a id="editDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-info"><span class="products">Edit</span><span class="subscriptions accessAid fadedOut">Change</span></a>&nbsp;|&nbsp;<a id="deleteDropdownPrice" class="btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products glyphicon glyphicon-remove-sign"></span><span class="subscriptions accessAid fadedOut glyphicon glyphicon-remove"></span></a></p>
                                                                     </div>
-                                                                        <p id="addDropdown" class="hideShow opened"><label for="dropdown" class="control-label"><input class="checkbox form-control" type="checkbox" id="dropdown" name="dropdown" value="createdDropdown"><span class="hideShow accessAid hide" id="dropDownLabelForSubscription">Add a dropdown menu </span><span id="dropDownLabel" class="opened">Add drop-down menu&nbsp;</span>
-
-                                                                        </label></p>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <p id="addDropdown" class="hideShow opened">
+                                                                                <label for="dropdown" class="control-label">
+                                                                                    <input class="checkbox form-control" type="checkbox" id="dropdown" name="dropdown" value="createdDropdown">
+                                                                                    <span class="hideShow accessAid hide" id="dropDownLabelForSubscription">Add a dropdown menu </span>
+                                                                                    <span id="dropDownLabel" class="opened">Add drop-down menu&nbsp;</span>
+                                                                                </label>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>    
+                                                                    
                                                                     <div class="hideShow dropdownSection accessAid hide" id="dropdownSection1">
                                                                         <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown1_title" value=""></p>
                                                                         <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
@@ -255,7 +278,16 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="editDelete"><a class="editDropdown btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
                                                                         <p id="addNewDropdownSection" class="editDelete hideShow accessAid hide"><a id="addNewDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-success">Add another drop-down menu</a></p>                                                                                    
-                                                                    <p class="hideShow opened" id="addTextfield"><label for="textfield" class="control-label"><input type="checkbox" value="createdTextfield" name="textfield" id="textfield" class="checkbox form-control">Add text field&nbsp;<a onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})" href="https://www.paypal.com/uk/cgi-bin/webscr?cmd=_display-textfield-example" class="infoLink exampleLink" target="_blank">Example</a></label></p>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <p class="hideShow opened" id="addTextfield">
+                                                                                    <label for="textfield" class="control-label">
+                                                                                        <input type="checkbox" value="createdTextfield" name="textfield" id="textfield" class="checkbox form-control">Add text field&nbsp;
+                                                                                        <a onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})" href="https://www.paypal.com/uk/cgi-bin/webscr?cmd=_display-textfield-example" class="infoLink exampleLink" target="_blank">Example</a>
+                                                                                    </label>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
                                                                     <div class="hideShow accessAid textfieldSection hide" id="textfieldSection1">
                                                                         <p class="title col-md-9"><label for="textfieldTitle1" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle1" class="text form-control" disabled="" name="textfield1_title" value=""></p>
                                                                         <p class="saveCancel"><input class="saveTextfield btn btn-default" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
@@ -273,97 +305,175 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="editDelete"><a class="editTextfield btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
                                                                     <p id="addNewTextfieldSection" class="editDelete hideShow accessAid hide"><a id="addNewTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add another text field</a></p>
-                                                                    <span id="buttonAppLink" class="collapsed"><a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Customize text or appearance</a><span class="fieldNote"> (optional)</span></span>
-                                                                    <div id="buttonAppSection" class="hideShow accessAid hide">
-                                                                        <p id="addPaypalButton"><label for="paypalButton" class="control-label"><input class="radio form-control" type="radio" id="paypalButton" checked="" name="paypal_button" value="true">PayPal button</label></p>
-                                                                        <div id="paypalButtonSection" class="hideShow opened">
-                                                                            <p id="displaySmallButton"><label for="smallButton" class="control-label"><input class="checkbox form-control" type="checkbox" id="smallButton" name="small_button" value="createdSmallButton">Use smaller button</label></p>
-                                                                            <p id="displayCcLogos" class="hideShow hide"><label for="ccLogos" class="control-label"><input class="checkbox form-control" type="checkbox" id="ccLogos" checked="" name="cc_logos" value="createdButtonWithCCLogo">Display credit card logos</label></p>
-                                                                            <p id="buttonCountryLanguage">
-                                                                                <label for="" class="control-label">Country and language for button</label>
-                                                                                <?php $paypal_button_language = get_paypal_button_languages(); ?>
-                                                                                <select id="selectCountryLanguage" name="select_country_language" class="form-control">
-
-                                                                                    <?php foreach ($paypal_button_language as $paypal_button_language_key => $paypal_button_language_value) { ?>
-                                                                                        <option value="<?php echo $paypal_button_language_key; ?>"><?php echo $paypal_button_language_value; ?></option>
-                                                                                    <?php } ?>
-                                                                                </select>
-                                                                                <input type="hidden" id="countryCode" name="country_code" value="US"><input type="hidden" id="langCode" name="lang_code" value="en"><input type="hidden" id="buttonUrl" name="button_url" value="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif"><input type="hidden" id="popupButtonUrl" name="popup_button_url" value=""><input type="hidden" id="flagInternational" name="flag_international" value="true" disabled=""><input type="hidden" id="titleStr" name="title_str" value="Title"><input type="hidden" id="optionStr" name="option_str" value="Option"><input type="hidden" id="addOptionStr" name="add_option_str" value="Add another option">
-                                                                            </p>
-                                                                            <p id="textBuyNow" class="hideShow buttonText hide">
-                                                                                <label for="" class="control-label">Select button text</label>
-                                                                                <span class="field">
-                                                                                    <select id="buttonTextBuyNow" name="button_text" disabled="" class="form-control">
-                                                                                        <option value="buy_now" selected="">Buy Now</option>
-                                                                                        <option value="pay_now">Pay Now</option>
-                                                                                    </select>
-                                                                                </span>
-                                                                            </p>
-                                                                            <p id="textSubscr" class="hideShow buttonText hide">
-                                                                                <label for="" class="control-label">Select button text</label>
-                                                                                <span class="field">
-                                                                                    <select id="buttonTextSubscribe" name="button_text" disabled="" class="form-control">
-                                                                                        <option value="subscriptions" selected="">Subscribe</option>
-                                                                                        <option value="buy_now">Buy Now</option>
-                                                                                    </select>
-                                                                                </span>
-                                                                            </p>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <span id="buttonAppLink" class="collapsed"><a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Customize text or appearance</a><span class="fieldNote"> (optional)</span></span>
                                                                         </div>
-                                                                        <p id="addCustomButton"><label for="customButton" class="control-label"><input class="radio form-control" type="radio" id="customButton" name="paypal_button" value="false">Use your own button image</label>
-                                                                        </p>
+                                                                    </div>
+                                                                    
+                                                                    
+                                                                    <div id="buttonAppSection" class="hideShow accessAid hide">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <p id="addPaypalButton"><label for="paypalButton" class="control-label"><input class="radio form-control" type="radio" id="paypalButton" checked="" name="paypal_button" value="true">PayPal button</label></p>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        <div id="paypalButtonSection" class="hideShow opened">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <p id="displaySmallButton"><label for="smallButton" class="control-label"><input class="checkbox form-control" type="checkbox" id="smallButton" name="small_button" value="createdSmallButton">Use smaller button</label></p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <p id="displayCcLogos" class="hideShow hide"><label for="ccLogos" class="control-label"><input class="checkbox form-control" type="checkbox" id="ccLogos" checked="" name="cc_logos" value="createdButtonWithCCLogo">Display credit card logos</label></p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <p id="buttonCountryLanguage">
+                                                                                        <label for="" class="control-label">Country and language for button</label>
+                                                                                        <?php $paypal_button_language = get_paypal_button_languages(); ?>
+                                                                                        <select id="selectCountryLanguage" name="select_country_language" class="form-control">
+
+                                                                                            <?php foreach ($paypal_button_language as $paypal_button_language_key => $paypal_button_language_value) { ?>
+                                                                                                <option value="<?php echo $paypal_button_language_key; ?>"><?php echo $paypal_button_language_value; ?></option>
+                                                                                            <?php } ?>
+                                                                                        </select>
+                                                                                        <input type="hidden" id="countryCode" name="country_code" value="US"><input type="hidden" id="langCode" name="lang_code" value="en"><input type="hidden" id="buttonUrl" name="button_url" value="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif"><input type="hidden" id="popupButtonUrl" name="popup_button_url" value=""><input type="hidden" id="flagInternational" name="flag_international" value="true" disabled=""><input type="hidden" id="titleStr" name="title_str" value="Title"><input type="hidden" id="optionStr" name="option_str" value="Option"><input type="hidden" id="addOptionStr" name="add_option_str" value="Add another option">
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <p id="textBuyNow" class="hideShow buttonText hide">
+                                                                                        <label for="" class="control-label">Select button text</label>
+                                                                                        <span class="field">
+                                                                                            <select id="buttonTextBuyNow" name="button_text" disabled="" class="form-control">
+                                                                                                <option value="buy_now" selected="">Buy Now</option>
+                                                                                                <option value="pay_now">Pay Now</option>
+                                                                                            </select>
+                                                                                        </span>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <p id="textSubscr" class="hideShow buttonText hide">
+                                                                                        <label for="" class="control-label">Select button text</label>
+                                                                                        <span class="field">
+                                                                                            <select id="buttonTextSubscribe" name="button_text" disabled="" class="form-control">
+                                                                                                <option value="subscriptions" selected="">Subscribe</option>
+                                                                                                <option value="buy_now">Buy Now</option>
+                                                                                            </select>
+                                                                                        </span>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>                                                                            
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <p id="addCustomButton"><label for="customButton" class="control-label"><input class="radio form-control" type="radio" id="customButton" name="paypal_button" value="false">Use your own button image</label></p>
+                                                                            </div>
+                                                                        </div>
+                                                                        
                                                                         <div id="customButtonSection" class="hideShow accessAid hide"><input type="text" id="customImageUrl" class="text form-control" name="custom_image_url" style="width: auto"></div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="buyerViewSection">
-                                                                <p class="heading"><strong>Your customer's view</strong></p>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <p class="heading"><strong>Your customer's view</strong></p>
+                                                                    </div>
+                                                                </div>
 
-                                                                <div class="previewSection">
-                                                                    <p id="previewDropdownPriceSection" class="hideShow accessAid previewDropdown hide">
-                                                                        <label id="previewDropdownPriceTitle" for="optionsPriceDropdown" class="control-label">Dropdown title</label>
-                                                                        <select id="optionsPriceDropdown" name="options_price_dropdown" class="form-control">
-                                                                            <option value="Option 1" selected="">Option 1 - $x.xx</option>
-                                                                            <option value="Option 2">Option 2 - $x.xx</option>
-                                                                            <option value="Option 3">Option 3 - $x.xx</option>
-                                                                        </select>
-                                                                        <span class="hide control-label" id="frequencyTxt">Frequency</span>
-                                                                    </p>
-                                                                    <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection1">
-                                                                        <label class="previewDropdownTitle control-label" for="optionsDropdown1">Dropdown title</label>
-                                                                        <select id="optionsDropdown1" name="options_dropdown1" class="optionsDropdown form-control">
-                                                                            <option value="" selected="">Option 1</option>
-                                                                            <option value="">Option 2</option>
-                                                                            <option value="">Option 3</option>
-                                                                        </select>
-                                                                    </p>
-                                                                    <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection2">
-                                                                        <label class="previewDropdownTitle control-label" for="">Dropdown title</label>
-                                                                        <select id="optionsDropdown2" name="options_dropdown2" class="optionsDropdown form-control">
-                                                                            <option value="" selected="">Option 1</option>
-                                                                            <option value="">Option 2</option>
-                                                                            <option value="">Option 3</option>
-                                                                        </select>
-                                                                    </p>
-                                                                    <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection3">
-                                                                        <label class="previewDropdownTitle control-label" for="">Dropdown title</label>
-                                                                        <select id="optionsDropdown3" name="options_dropdown3" class="optionsDropdown form-control">
-                                                                            <option value="" selected="">Option 1</option>
-                                                                            <option value="">Option 2</option>
-                                                                            <option value="">Option 3</option>
-                                                                        </select>
-                                                                    </p>
-                                                                    <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection4">
-                                                                        <label class="previewDropdownTitle control-label" for="">Dropdown title</label>
-                                                                        <select id="optionsDropdown4" name="options_dropdown4" class="optionsDropdown form-control">
-                                                                            <option value="" selected="">Option 1</option>
-                                                                            <option value="">Option 2</option>
-                                                                            <option value="">Option 3</option>
-                                                                        </select>
-                                                                    </p>
-                                                                    <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection1"><label id="previewTextfieldTitle1" for="buttonTextfield1" class="control-label">Title</label><input type="text" id="buttonTextfield1" class="text readOnlyLabel form-control" name="button_textfield1" value=""></p>
-                                                                    <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection2"><label id="previewTextfieldTitle2" for="buttonTextfield2" class="control-label">Title</label><input type="text" id="buttonTextfield2" class="text readOnlyLabel form-control" name="button_textfield2" value=""></p>
-                                                                    <p class="hideShow opened previewImageSection"><img id="previewImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/btn_cart_LG.gif" border="0" alt="Preview Image"></p>
-                                                                    <p class="hideShow accessAid previewCustomImageSection hide"><img id="previewCustomImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/info_nobuttonpreview_121wx26h.gif" border="0" alt="Use your own button image"></p>
+                                                                <div class="previewSection" style="padding-left: 10px">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <p id="previewDropdownPriceSection" class="hideShow accessAid previewDropdown hide">
+                                                                                <label id="previewDropdownPriceTitle" for="optionsPriceDropdown" class="control-label">Dropdown title</label>
+                                                                                <select id="optionsPriceDropdown" name="options_price_dropdown" class="form-control">
+                                                                                    <option value="Option 1" selected="">Option 1 - $x.xx</option>
+                                                                                    <option value="Option 2">Option 2 - $x.xx</option>
+                                                                                    <option value="Option 3">Option 3 - $x.xx</option>
+                                                                                </select>
+                                                                                <span class="hide control-label" id="frequencyTxt">Frequency</span>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                             <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection1">
+                                                                                <label class="previewDropdownTitle control-label" for="optionsDropdown1">Dropdown title</label>
+                                                                                <select id="optionsDropdown1" name="options_dropdown1" class="optionsDropdown form-control">
+                                                                                    <option value="" selected="">Option 1</option>
+                                                                                    <option value="">Option 2</option>
+                                                                                    <option value="">Option 3</option>
+                                                                                </select>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection2">
+                                                                                <label class="previewDropdownTitle control-label" for="">Dropdown title</label>
+                                                                                <select id="optionsDropdown2" name="options_dropdown2" class="optionsDropdown form-control">
+                                                                                    <option value="" selected="">Option 1</option>
+                                                                                    <option value="">Option 2</option>
+                                                                                    <option value="">Option 3</option>
+                                                                                </select>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection3">
+                                                                                <label class="previewDropdownTitle control-label" for="">Dropdown title</label>
+                                                                                <select id="optionsDropdown3" name="options_dropdown3" class="optionsDropdown form-control">
+                                                                                    <option value="" selected="">Option 1</option>
+                                                                                    <option value="">Option 2</option>
+                                                                                    <option value="">Option 3</option>
+                                                                                </select>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection4">
+                                                                                <label class="previewDropdownTitle control-label" for="">Dropdown title</label>
+                                                                                <select id="optionsDropdown4" name="options_dropdown4" class="optionsDropdown form-control">
+                                                                                    <option value="" selected="">Option 1</option>
+                                                                                    <option value="">Option 2</option>
+                                                                                    <option value="">Option 3</option>
+                                                                                </select>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection1"><label id="previewTextfieldTitle1" for="buttonTextfield1" class="control-label">Title</label><input type="text" id="buttonTextfield1" class="text readOnlyLabel form-control" name="button_textfield1" value=""></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection2"><label id="previewTextfieldTitle2" for="buttonTextfield2" class="control-label">Title</label><input type="text" id="buttonTextfield2" class="text readOnlyLabel form-control" name="button_textfield2" value=""></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <p class="hideShow opened previewImageSection"><img id="previewImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/btn_cart_LG.gif" border="0" alt="Preview Image"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <p class="hideShow accessAid previewCustomImageSection hide"><img id="previewCustomImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/info_nobuttonpreview_121wx26h.gif" border="0" alt="Use your own button image"></p>
+                                                                        </div>
+                                                                    </div>                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -719,6 +829,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         </div>
                                                     </div>
                                                 </div>                                                                    
+                                </div>
                         </div>    
                     </div>
                     
@@ -865,14 +976,16 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                             <h5 id="shoppingHead" class="opened"><?php echo __('Can customers buy an item when it is sold out?', 'paypal-wp-button-manager'); ?></h5>
                                         </div>
                                     </div>
-                                    <div class="row">                                                                        
-                                        <div class="form-group">                                                                            
-                                            <div class="pre-order opened" id="shoppingPreOrder">
-                                                <input class="radio form-control" type="radio" id="enablePreOrder" name="enable_pre_order" value="enabledPreOrder" disabled="">
-                                                <label for="enablePreOrder" class="control-label"><?php echo __('Yes, customers can buy the item as usual.', 'paypal-wp-button-manager'); ?></label>
-                                            </div>
-                                            <div class="no-pre-order">
-                                                <input class="radio opened form-control" type="radio" id="dontEnablePreOrder" checked="" name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened control-label"><?php echo __("No, don't let customers buy the item.", 'paypal-wp-button-manager'); ?> <a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDSoldOutExample" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Preview</a></label>
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="form-group">                                                                            
+                                                <div class="pre-order opened" id="shoppingPreOrder">
+                                                    <input class="radio form-control" type="radio" id="enablePreOrder" name="enable_pre_order" value="enabledPreOrder" disabled="">
+                                                    <label for="enablePreOrder" class="control-label"><?php echo __('Yes, customers can buy the item as usual.', 'paypal-wp-button-manager'); ?></label>
+                                                </div>
+                                                <div class="no-pre-order">
+                                                    <input class="radio opened form-control" type="radio" id="dontEnablePreOrder" checked="" name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened control-label"><?php echo __("No, don't let customers buy the item.", 'paypal-wp-button-manager'); ?> <a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDSoldOutExample" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Preview</a></label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
