@@ -30,6 +30,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
         add_action('init', array(__CLASS__, 'paypal_wp_button_manager_remove_paypal_buttons_editor'), 10);
         add_action('save_post', array(__CLASS__, 'paypal_wp_button_manager_button_interface_display'));
         add_filter('gettext', array(__CLASS__, 'paypal_wp_button_manager_change_publish_button'), 10, 2);
+        
+        /* custom **/
+        add_filter('post_row_actions',array(__CLASS__, 'my_action_row'), 10, 2);
     }
 
     /**
@@ -282,10 +285,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
             $button_id_text = $paypal_button_id;
         } else {
             $button_id_text = 'Not Available - Because this button is not saved at PayPal...';
-        }
-
+        }        
+        
         $paypal_email_link = get_post_meta($post_ID, 'paypal_wp_button_manager_email_link', true);
-        if (isset($paypal_button_html) && !empty($paypal_button_html)) {
+        $action_request= isset($_REQUEST['view']) ? $_REQUEST['view'] : '';
+        if (isset($paypal_button_html) && !empty($paypal_button_html) && $action_request=='true') {
             ?>
             <table class="tbl_shortcode">
                 <tr>
@@ -339,13 +343,19 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                 <div id="div_no_company">You have not set up any account, please add an account for create button <a href='<?php echo admin_url() . "admin.php?page=paypal-wp-button-manager-option&tab=company" ?>'>Add Company</a></a> </div>
 
                 <?php
-            } else {
-                do_action('paypal_wp_button_manager_before_interface');
-                do_action('paypal_wp_button_manager_interface');
-                echo '<div id="go_to_settings"></div>';
+            } else {   
+                    global $pagenow;
+                    if( in_array( $pagenow, array('post.php') )) {
+                        do_action('paypal_wp_button_manager_interface_update');
+                    }                    
+                    else{
+                        do_action('paypal_wp_button_manager_before_interface');
+                        do_action('paypal_wp_button_manager_interface');
+                        echo '<div id="go_to_settings"></div>';   
+                    }
+                }                
             }
-        }
-    }
+        }    
 
     /**
      * paypal_wp_button_manager_button_interface_display is use for display
@@ -371,6 +381,17 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                 }
             }
         }
+    }
+
+    public static function my_action_row($actions, $post){
+        //check for your post type
+        if ($post->post_type == "paypal_buttons") {
+            /* do you stuff here
+              you can unset to remove actions
+              and to add actions ex: */
+            $actions['view'] = '<a href="http://localhost/wordpress_divi/wp-admin/post.php?post=' . $post->ID . '&action=edit&view=true">View</a>';            
+        }
+        return $actions;
     }
 
 }

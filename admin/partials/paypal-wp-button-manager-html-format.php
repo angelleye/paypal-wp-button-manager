@@ -17,7 +17,23 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
      */
     public static function init() {
         add_action('paypal_wp_button_manager_interface', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_html'));
+        add_action('paypal_wp_button_manager_interface_update', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_update_html'));
         add_action('paypal_wp_button_manager_before_interface', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_html_before'));
+    }
+
+    public static function paypal_wp_button_manager_for_wordpress_button_interface_update_html(){
+       $meta = get_post_meta(get_the_ID());
+       $edit_hosted_button_id=$meta['paypal_wp_button_manager_button_id'][0];
+       
+       $payapal_helper = new AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper();
+       $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();
+       $PayPal = new Angelleye_PayPal($PayPalConfig);
+       
+       $button_details_array=$PayPal->BMGetButtonDetails($edit_hosted_button_id);
+       
+       echo "<pre>";
+       var_dump($button_details_array);
+       exit;
     }
 
     public static function paypal_wp_button_manager_for_wordpress_button_interface_html_before() {
