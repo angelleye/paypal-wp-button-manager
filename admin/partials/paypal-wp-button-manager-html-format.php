@@ -16,26 +16,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
      * @access   static
      */
     public static function init() {
-        add_action('paypal_wp_button_manager_interface', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_html'));
-        add_action('paypal_wp_button_manager_interface_update', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_update_html'));
+        add_action('paypal_wp_button_manager_interface', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_html'));        
         add_action('paypal_wp_button_manager_before_interface', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_html_before'));
     }
-
-    public static function paypal_wp_button_manager_for_wordpress_button_interface_update_html(){
-       $meta = get_post_meta(get_the_ID());
-       $edit_hosted_button_id=$meta['paypal_wp_button_manager_button_id'][0];
-       
-       $payapal_helper = new AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper();
-       $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();
-       $PayPal = new Angelleye_PayPal($PayPalConfig);
-       
-       $button_details_array=$PayPal->BMGetButtonDetails($edit_hosted_button_id);
-       
-       echo "<pre>";
-       var_dump($button_details_array);
-       exit;
-    }
-
+    
     public static function paypal_wp_button_manager_for_wordpress_button_interface_html_before() {
         global $wpdb;
         $companies = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
@@ -62,7 +46,47 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
      * @since 1.0.0
      * @access public
      */
-    public static function paypal_wp_button_manager_for_wordpress_button_interface_html() {
+    public static function paypal_wp_button_manager_for_wordpress_button_interface_html($string) {
+        $button_option_value='';
+        $edit_button=false;
+        if($string=='edit'){
+            $edit_button=true;
+            $meta = get_post_meta(get_the_ID());
+            $edit_hosted_button_id=$meta['paypal_wp_button_manager_button_id'][0];       
+            $payapal_helper = new AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper();
+            $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();
+            $PayPal = new Angelleye_PayPal($PayPalConfig);       
+            $button_details_array=$PayPal->BMGetButtonDetails($edit_hosted_button_id);           
+            foreach($button_details_array as $key => $value){
+                $btnvar_key = explode('BUTTONVAR', $key);
+                if($btnvar_key[0] == 'L_'){
+                    $btnvar_val=explode('=', $value);
+                    $BUTTONVAR[substr($btnvar_val[0],1)] = substr($btnvar_val[1], 0, -1);
+                }
+                
+                $option0select_key = explode('OPTION0SELECT', $key);
+                if($option0select_key[0] == 'L_'){
+                    $OPTION0SELECT[] = substr(substr($value,1),0, -1);
+                }
+                
+                $option0price_key = explode('OPTION0PRICE', $key);
+                if($option0price_key[0] == 'L_'){
+                    $OPTION0PRICE[] = substr(substr($value,1),0, -1);
+                }
+                
+            }
+            
+            $buttonType=$button_details_array['BUTTONTYPE'];            
+            if($buttonType=='DONATE'){
+                $button_option_value='donations';
+                $donation_name = isset($BUTTONVAR['item_name']) ? $BUTTONVAR['item_name'] : '';
+                $donation_id   = isset($BUTTONVAR['item_number']) ? $BUTTONVAR['item_number'] : '';
+            }
+            //echo "<pre>";
+            var_dump($button_details_array);
+            //exit;
+        }
+                
         ?>
          <div id="wrap">
             <div id="main" class="legacyErrors">
@@ -98,13 +122,22 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">                                                                 
                             <div class="panel-body">           <div class="container">
-                                            <div class="group buttonType">
+                                            <div class="group buttonType <?php  if($edit_button) { echo 'fadedOut'; } ?>">
                                                 <div class="col-lg-4">
                                                 <label for="buttonType" class="control-label">Choose a button type</label>
                                                 <?php $paypal_button_options = get_paypal_button_options(); ?>
                                                 <select id="buttonType" name="button_type" class="form-control">
                                                     <?php foreach ($paypal_button_options as $paypal_button_options_key => $paypal_button_options_value) { ?>
-                                                        <option value="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_options_value; ?></option>
+                                                        <?php 
+                                                            if($paypal_button_options_key==$button_option_value)
+                                                            {
+                                                                $button_type_selected='selected';
+                                                            }
+                                                            else{
+                                                                $button_type_selected='';
+                                                            }
+                                                        ?>
+                                                        <option value="<?php echo $paypal_button_options_key;?>" <?php echo $button_type_selected; ?>><?php echo $paypal_button_options_value; ?></option>
                                                     <?php } ?>
 
                                                 </select>
@@ -113,14 +146,17 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                             <div class="products"><input class="hide radio subButtonType" type="radio" id="radioAddToCartButton" checked="" name="sub_button_type" value="add_to_cart"><input class="hide radio subButtonType" type="radio" id="radioBuyNowButton" name="sub_button_type" value="buy_now"></div>
                                             <div class="group details">
                                                 <div class="products">
-                                                    <div class="col-lg-4"><label for="itemName" class="control-label">Item name</label><input class="form-control" maxlength="127" type="text" id="itemName" name="product_name" value=""></div>
+                                                    <div class="col-lg-4">
+                                                        <label for="itemName" class="control-label">Item name</label>
+                                                        <input class="form-control" maxlength="127" type="text" id="itemName" name="product_name" value="">
+                                                    </div>
                                                     <div class="col-lg-4"><label for="itemID">Item ID<span class="fieldNote"> (optional) </span></label><input class="form-control" maxlength="127" type="text" id="itemID" size="9" name="product_id" value=""></div>
                                                 </div>
                                                             <div class="donations accessAid fadedOut">
-                                                                <div class="col-lg-4"><label for="donationName" class="control-label">Organization name/service</label><input class="form-control" maxlength="127" type="text" id="donationName" name="donation_name" value="" disabled=""></div>
+                                                                <div class="col-lg-4"><label for="donationName" class="control-label">Organization name/service</label><input class="form-control" maxlength="127" type="text" id="donationName" name="donation_name" value="<?php echo $donation_name; ?>" disabled=""></div>
                                                                 <div class="col-lg-4"><label for="donationID" class="control-label">Donation ID<span class="fieldNote"> (optional) </span>
                                                                     </label>
-                                                                    <input class="form-control" maxlength="127" type="text" id="donationID" size="27" name="donation_id" value="" disabled=""></div>
+                                                                    <input class="form-control" maxlength="127" type="text" id="donationID" size="27" name="donation_id" value="<?php echo $donation_id; ?>" disabled=""></div>
                                                             </div>
                                                             <div class="subscriptions accessAid fadedOut">
                                                                 <div class="col-lg-4"><label for="subscriptionName" class="control-label">Item name</label><input class="form-control" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="" disabled=""></div>

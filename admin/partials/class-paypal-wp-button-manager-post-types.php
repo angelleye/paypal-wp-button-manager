@@ -346,11 +346,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
             } else {   
                     global $pagenow;
                     if( in_array( $pagenow, array('post.php') )) {
-                        do_action('paypal_wp_button_manager_interface_update');
+                        do_action('paypal_wp_button_manager_interface','edit');
                     }                    
                     else{
                         do_action('paypal_wp_button_manager_before_interface');
-                        do_action('paypal_wp_button_manager_interface');
+                        do_action('paypal_wp_button_manager_interface','add');
                         echo '<div id="go_to_settings"></div>';   
                     }
                 }                
@@ -377,6 +377,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                 if (isset($_POST['button_type']) && !empty($_POST['button_type'])) {
                     update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', 'Button Created Successfully.');
                 } else {
+                    do_action('paypal_wp_button_manager_button_updator');
                     update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
                 }
             }
