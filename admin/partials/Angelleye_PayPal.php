@@ -2939,14 +2939,15 @@ class Angelleye_PayPal {
      * @param $DataArray
      * @return \mixed[]
      */
-    function BMUpdateButton($DataArray) {
-        $BMUpdateButtonNVP = '&METHOD=BMUpdateButton';
-
-        // BMUpdateButton Fields
-        $BMUpdateButtonFields = isset($DataArray['BMUpdateButtonFields']) ? $DataArray['BMUpdateButtonFields'] : array();
-        foreach ($BMUpdateButtonFields as $BMUpdateButtonFieldsVar => $BMUpdateButtonFieldsVal) {
-            $BMUpdateButtonNVP .= $BMUpdateButtonFieldsVal != '' ? '&' . strtoupper($BMUpdateButtonFieldsVar) . '=' . urlencode($BMUpdateButtonFieldsVal) : '';
-        }
+    function BMUpdateButton($DataArray,$HostedButtonID,$ButtonType) {
+        //$BMUpdateButtonNVP = '&METHOD=BMUpdateButton';
+        //$BMUpdateButtonNVP = '&METHOD=BMUpdateButton&HOSTEDBUTTONID=' . $HostedButtonID. '&BUTTONTYPE='.$ButtonType.'&BUTTONSUBTYPE=PRODUCTS';
+        $BMUpdateButtonNVP = '&METHOD=BMUpdateButton&HOSTEDBUTTONID=' . $HostedButtonID. '&BUTTONTYPE='.$ButtonType;
+//        // BMUpdateButton Fields
+//        $BMUpdateButtonFields = isset($DataArray['BMUpdateButtonFields']) ? $DataArray['BMUpdateButtonFields'] : array();
+//        foreach ($BMUpdateButtonFields as $BMUpdateButtonFieldsVar => $BMUpdateButtonFieldsVal) {
+//            $BMUpdateButtonNVP .= $BMUpdateButtonFieldsVal != '' ? '&' . strtoupper($BMUpdateButtonFieldsVar) . '=' . urlencode($BMUpdateButtonFieldsVal) : '';
+//        }
 
         $n = 0;
         $BMButtonVars = isset($DataArray['BMButtonVars']) ? $DataArray['BMButtonVars'] : array();

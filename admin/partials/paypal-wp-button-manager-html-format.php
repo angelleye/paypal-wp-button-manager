@@ -49,6 +49,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
     public static function paypal_wp_button_manager_for_wordpress_button_interface_html($string) {
         $button_option_value='';
         $edit_button=false;
+        //$no_note=0;
         if($string=='edit'){
             $edit_button=true;
             $meta = get_post_meta(get_the_ID());
@@ -76,14 +77,19 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 
             }
             
-            $buttonType=$button_details_array['BUTTONTYPE'];            
+            $buttonType=$button_details_array['BUTTONTYPE'];       
+            $account_id= isset($BUTTONVAR['business']) ? $BUTTONVAR['business'] : '';
+            $no_note= isset($BUTTONVAR['no_note']) ? $BUTTONVAR['no_note'] : '';
+            $add_special_instruction= isset($BUTTONVAR['cn']) ? $BUTTONVAR['cn'] : '';            
             if($buttonType=='DONATE'){
                 $button_option_value='donations';
                 $donation_name = isset($BUTTONVAR['item_name']) ? $BUTTONVAR['item_name'] : '';
                 $donation_id   = isset($BUTTONVAR['item_number']) ? $BUTTONVAR['item_number'] : '';
+                $donation_amount = isset($BUTTONVAR['amount']) ? $BUTTONVAR['amount'] : '';
+                $donation_currency = isset($BUTTONVAR['currency_code']) ? $BUTTONVAR['currency_code'] : '';                
             }
             //echo "<pre>";
-            var_dump($button_details_array);
+            //var_dump($button_details_array);
             //exit;
         }
                 
@@ -109,7 +115,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 <div id="">
 
     <!--            <form method="post" id="buttonDesignerForm" name="buttonDesignerForm" action="">-->
-    <input type="hidden" id="CONTEXT_CGI_VAR" name="CONTEXT" value="X3-7SZn2ExXucINxlliZ_05NdFsrIIpaV9TcRYNLL_GiOwm9XgEZzWKQeV0"><input type="hidden" id="cmd" name="cmd" value="_flow"><input type="hidden" id="onboarding_cmd" name="onboarding_cmd" value=""><input type="hidden" id="fakeSubmit" name="fakeSubmit" value=""><input type="hidden" id="secureServerName" name="secureServerName" value="www.paypal.com/us"><input type="hidden" id="selectedDropDown" name="selectedDropDown" value="">
+    <input type="hidden" id="CONTEXT_CGI_VAR" name="CONTEXT" value="X3-7SZn2ExXucINxlliZ_05NdFsrIIpaV9TcRYNLL_GiOwm9XgEZzWKQeV0">
+    <input type="hidden" id="cmd" name="cmd" value="_flow">
+    <input type="hidden" id="onboarding_cmd" name="onboarding_cmd" value="">
+    <input type="hidden" id="fakeSubmit" name="fakeSubmit" value="">
+    <input type="hidden" id="secureServerName" name="secureServerName" value="www.paypal.com/us">
+    <input type="hidden" id="selectedDropDown" name="selectedDropDown" value="">
+     <input type="hidden" name="button_type" value="<?php echo $button_option_value;?>">
     <div id="accordion" class="panel-group"  role="tablist" aria-multiselectable="true">
         
             
@@ -140,7 +152,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <option value="<?php echo $paypal_button_options_key;?>" <?php echo $button_type_selected; ?>><?php echo $paypal_button_options_value; ?></option>
                                                     <?php } ?>
 
-                                                </select>
+                                                </select>                                                
                                                 </div>        
                                             </div>
                                             <div class="products"><input class="hide radio subButtonType" type="radio" id="radioAddToCartButton" checked="" name="sub_button_type" value="add_to_cart"><input class="hide radio subButtonType" type="radio" id="radioBuyNowButton" name="sub_button_type" value="buy_now"></div>
@@ -572,7 +584,16 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <label for="donationCurrency" class="control-label">Currency</label>
                                                                         <select id="donationCurrency" name="item_price_currency" class="currencySelect form-control" disabled="" style="width: auto !important">
                                                                             <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
-                                                                                <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
+                                                                            <?php 
+                                                                                if($paypal_button_currency_value==$donation_currency)
+                                                                                {
+                                                                                    $donation_currency_selected='selected';
+                                                                                }
+                                                                                else{
+                                                                                    $donation_currency_selected='';
+                                                                                }
+                                                                            ?>
+                                                                            <option value="<?php echo $paypal_button_currency_value; ?>" <?php echo $donation_currency_selected; ?> title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
                                                                             <?php } ?>
                                                                         </select>
                                                                     </div>
@@ -595,18 +616,28 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <div class="form-group">                                                                                    
-                                                                        <input class="radio donationType form-control" type="radio" id="optDonationTypeFixed" name="donation_type" value="fixed" disabled="">
+                                                                    <div class="form-group">
+                                                                        <?php
+                                                                            if(!empty($donation_amount)){
+                                                                                $donation_amount_check="checked";
+                                                                                $donation_container_amount_class='';
+                                                                            }
+                                                                            else{
+                                                                                $donation_amount_check="";
+                                                                                $donation_container_amount_class='accessAid';
+                                                                            }
+                                                                        ?>
+                                                                        <input class="radio donationType form-control" <?php echo $donation_amount_check; ?> type="radio" id="optDonationTypeFixed" name="donation_type" value="fixed" disabled="">
                                                                         <label for="optDonationTypeFixed" class="control-label">Donors contribute a fixed amount.</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
 
-                                                            <div class="labelOption fixedDonationAmountContainer accessAid">
+                                                            <div class="labelOption fixedDonationAmountContainer <?php echo $donation_container_amount_class; ?>">
                                                                 <div class="row">
                                                                     <div class="col-md-9">
                                                                         <label for="fixedDonationAmount" class="control-label">Amount ( <span class="currencyLabel">USD</span> )</label>
-                                                                        <input type="text" id="fixedDonationAmount" size="7" maxlength="20" class="text form-control" name="item_price" value="" disabled="">
+                                                                        <input type="text" id="fixedDonationAmount" size="7" maxlength="20" class="text form-control" name="item_price" value="<?php echo $donation_amount; ?>" disabled="">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -875,7 +906,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             <div class="col-md-5">
                                                                 <div class="form-group">
                                                                     <label for="merchantIDNotificationMethod" class="control-label">Enter your PayPal Email Address or Merchant Account ID <a target="_blank" class="infoLink" href="https://www.paypal.com/businessstaticpage/BDMerchantIdInformation" onclick="PAYPAL.core.openWindow(event,{height:500, width: 450});">Learn more</a></label>
-                                                                     <input type="text" class="custom_text form-control" name="business" id="business" />
+                                                                    <input type="text" class="custom_text form-control" name="business" id="business"  value="<?php echo $account_id; ?>"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1095,17 +1126,28 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                     <div class="col-md-9">
                                         <p><b>Can your customer add special instructions in a message to you?</b></p>
                                         <div class="form-group">
-
-                                            <input class="radio form-control" type="radio" id="addSpecialInstructions" checked="" name="no_note" value="0">
+                                            <?php
+                                                if($no_note==0){
+                                                    $cn_add_checked='checked';
+                                                    $cn_no_checked='';
+                                                    $cn_class='opened';
+                                                }
+                                                else{
+                                                    $cn_add_checked='';
+                                                    $cn_no_checked='checked';
+                                                    $cn_class='hide';
+                                                }
+                                            ?>    
+                                            <input class="radio form-control" type="radio" id="addSpecialInstructions" <?php echo $cn_add_checked; ?> name="no_note" value="0">
                                             <label class="control-label" for="addSpecialInstructions">Yes</label>
                                             &nbsp; &nbsp;
-                                            <input class="radio form-control" type="radio" id="noSpecialInstructions" name="no_note" value="1">
+                                            <input class="radio form-control" type="radio" id="noSpecialInstructions" <?php echo $cn_no_checked; ?> name="no_note" value="1">
                                             <label class="control-label" for="noSpecialInstructions">No</label>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row" id="messageBoxContainer">
+                                <div class="row <?php echo $cn_class; ?>" id="messageBoxContainer">
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <label  for="messageBox" class="control-label">Name of message box (40-character limit)</label>

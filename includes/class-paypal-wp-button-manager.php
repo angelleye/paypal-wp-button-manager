@@ -151,7 +151,12 @@ class AngellEYE_PayPal_WP_Button_Manager {
          * PayPal button generator file included.
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/BMCreateButton.php';
-
+        
+        /**
+         * PayPal button updater file included.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/BMUpdateButton.php';
+        
         /**
          * PayPal button generator custom functions define in this file.
          */

@@ -7,7 +7,7 @@
  * @category	Class
  * @author      Angell EYE <service@angelleye.com>
  */
-class AngellEYE_PayPal_WP_Button_Manager_button_generator {
+class AngellEYE_PayPal_WP_Button_Manager_button_updater {
     /**
      * Hook in methods
      * @since    0.1.0
@@ -15,9 +15,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
      */
     public static function init() {
         global $post, $post_ID;
-        add_action('paypal_wp_button_manager_button_generator', array(__CLASS__, 'paypal_wp_button_manager_button_interface_generator'));
+        add_action('paypal_wp_button_manager_button_updater', array(__CLASS__, 'paypal_wp_button_manager_button_interface_updater'));
     }
-    public static function paypal_wp_button_manager_button_interface_generator() {
+    public static function paypal_wp_button_manager_button_interface_updater() {
         // Create PayPal object.
         global $post, $post_ID, $wpdb;
         $payapal_helper = new AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper();
@@ -27,8 +27,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
         $BMButtonVars = array();
         $BMButtonVars = $payapal_helper->paypal_wp_button_manager_get_buttonvars();
         $PayPalRequestData = $payapal_helper->paypal_wp_button_manager_get_dropdown_values();              
-        $PayPalResult = $PayPal->BMUpdateButton($PayPalRequestData,'8QKEMZJMLJQT4');
+        $PayPalResult = $PayPal->BMUpdateButton($PayPalRequestData,'NV76NUGEBNWYA',$paypal_buttontype);
         
+        echo "<pre>";
+        var_dump($PayPalResult);
+        exit;
         // Write the contents of the response array to the screen for demo purposes.
         if (isset($PayPalResult['ERRORS']) && !empty($PayPalResult['ERRORS'])) {
             global $post, $post_ID;
@@ -200,4 +203,4 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
         }
     }
 }
-AngellEYE_PayPal_WP_Button_Manager_button_generator::init();
+AngellEYE_PayPal_WP_Button_Manager_button_updater::init();
