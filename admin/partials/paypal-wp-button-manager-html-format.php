@@ -31,7 +31,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 <select id="ddl_companyname" name="ddl_companyname" class="form-control">
                     <option value="">--Select Company--</option>
                     <?php foreach ($result_records as $result_records_value) { ?>
-                        <option value="<?php echo $result_records_value['ID']; ?>"><?php echo $result_records_value['title']; ?></option>
+                    <option value="<?php echo $result_records_value['ID']; ?>" selected=""><?php echo $result_records_value['title']; ?></option>
                     <?php }
                     ?>
                 </select>
@@ -49,7 +49,18 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
     public static function paypal_wp_button_manager_for_wordpress_button_interface_html($string) {
         $button_option_value='';
         $edit_button=false;
-        //$no_note=0;
+        $no_note=0;
+        $shippingYes='';
+        $shippingNo='';
+        $cancleFormcontrol='';
+        $cancellationCheckbox='';
+        $successfulCheckbox='';
+        $returnFormcontrol='';
+        $button_img_src='';
+        $paypalButtonSection_class='opened';
+        $customButtonSection_class='hide';
+        
+        
         if($string=='edit'){
             $edit_button=true;
             $meta = get_post_meta(get_the_ID());
@@ -77,10 +88,31 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 
             }
             
-            $buttonType=$button_details_array['BUTTONTYPE'];       
+            $dom = new DOMDocument();
+            $dom->loadHTML($button_details_array['WEBSITECODE']);
+            $imgs = $dom->getElementsByTagName('input');
+            foreach ($imgs as $img) {            
+                $temp_src = $img->getAttribute('src');
+                if(!empty($temp_src)){
+                    $button_img_src=$temp_src;
+                }
+            }            
+            
+            $buttonType=isset($button_details_array['BUTTONTYPE']) ? $button_details_array['BUTTONTYPE'] : '';
+            $buttonCountry=isset($button_details_array['BUTTONCOUNTRY']) ? $button_details_array['BUTTONCOUNTRY'] : '';
+            $buttonLanguage=isset($button_details_array['BUTTONLANGUAGE']) ? $button_details_array['BUTTONLANGUAGE'] : '';
+            $buttonImageSize=isset($button_details_array['BUTTONIMAGE']) ? $button_details_array['BUTTONIMAGE'] : '';
+            $buttonImageUrl=isset($button_details_array['BUTTONIMAGEURL']) ? $button_details_array['BUTTONIMAGEURL'] : '';                        
+            
             $account_id= isset($BUTTONVAR['business']) ? $BUTTONVAR['business'] : '';
             $no_note= isset($BUTTONVAR['no_note']) ? $BUTTONVAR['no_note'] : '';
-            $add_special_instruction= isset($BUTTONVAR['cn']) ? $BUTTONVAR['cn'] : '';            
+            $add_special_instruction= isset($BUTTONVAR['cn']) ? $BUTTONVAR['cn'] : '';
+            $customersShippingAddress=isset($BUTTONVAR['no_shipping']) ? $BUTTONVAR['no_shipping'] : '';
+            $cancel_return = isset($BUTTONVAR['cancel_return']) ? $BUTTONVAR['cancel_return'] : '';
+            $return = isset($BUTTONVAR['return']) ? $BUTTONVAR['return'] : '';
+            
+            
+            
             if($buttonType=='DONATE'){
                 $button_option_value='donations';
                 $donation_name = isset($BUTTONVAR['item_name']) ? $BUTTONVAR['item_name'] : '';
@@ -88,8 +120,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $donation_amount = isset($BUTTONVAR['amount']) ? $BUTTONVAR['amount'] : '';
                 $donation_currency = isset($BUTTONVAR['currency_code']) ? $BUTTONVAR['currency_code'] : '';                
             }
-            //echo "<pre>";
-            //var_dump($button_details_array);
+            //echo "<pre>";            
+            var_dump($button_details_array);
             //exit;
         }
                 
@@ -377,21 +409,63 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     
                                                                     
                                                                     <div id="buttonAppSection" class="hideShow accessAid hide">
+                                                                        <?php
+                                                                            if(!empty($buttonImageUrl)){
+                                                                                $paypalButtonSection_class='hide';
+                                                                                $customButtonSection_class='opened';
+                                                                                $paypalButton_checked='';
+                                                                                $customButton_checked='checked';
+                                                                            }
+                                                                            else{
+                                                                                $paypalButtonSection_class='opened';
+                                                                                $customButtonSection_class='hide';
+                                                                                $paypalButton_checked='checked';
+                                                                                $customButton_checked='';
+                                                                            }
+                                                                        ?>
                                                                         <div class="row">
                                                                             <div class="col-md-12">
-                                                                                <p id="addPaypalButton"><label for="paypalButton" class="control-label"><input class="radio form-control" type="radio" id="paypalButton" checked="" name="paypal_button" value="true">PayPal button</label></p>
+                                                                                <p id="addPaypalButton">
+                                                                                    <label for="paypalButton" class="control-label">
+                                                                                    <input class="radio form-control" type="radio" id="paypalButton" <?php echo $paypalButton_checked; ?> name="paypal_button" value="true">PayPal button
+                                                                                    </label>
+                                                                                </p>
                                                                             </div>
                                                                         </div>
                                                                         
-                                                                        <div id="paypalButtonSection" class="hideShow opened">
+                                                                        <div id="paypalButtonSection" class="hideShow <?php echo $paypalButtonSection_class; ?>">
                                                                             <div class="row">
                                                                                 <div class="col-md-12">
-                                                                                    <p id="displaySmallButton"><label for="smallButton" class="control-label"><input class="checkbox form-control" type="checkbox" id="smallButton" name="small_button" value="createdSmallButton">Use smaller button</label></p>
+                                                                                    <?php
+                                                                                        if($buttonImageSize=='SML'){
+                                                                                            $smallButton_checked='checked';
+                                                                                        }
+                                                                                        else{
+                                                                                            $smallButton_checked='';
+                                                                                            
+                                                                                        }
+                                                                                        if($buttonImageSize=='CC'){
+                                                                                            $displayCcLogos_checked='checked';
+                                                                                        }
+                                                                                        else {
+                                                                                            $displayCcLogos_checked='';        
+                                                                                        }
+                                                                                        if($buttonImageSize=='REG'){
+                                                                                            $smallButton_checked='';
+                                                                                            $displayCcLogos_checked='checked';
+                                                                                        }
+                                                                                    ?>
+                                                                                    <p id="displaySmallButton">
+                                                                                        <label for="smallButton" class="control-label">
+                                                                                        <input class="checkbox form-control" type="checkbox" id="smallButton" name="small_button" value="createdSmallButton" <?php echo $smallButton_checked; ?>>Use smaller button</label>
+                                                                                    </p>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
                                                                                 <div class="col-md-12">
-                                                                                    <p id="displayCcLogos" class="hideShow hide"><label for="ccLogos" class="control-label"><input class="checkbox form-control" type="checkbox" id="ccLogos" checked="" name="cc_logos" value="createdButtonWithCCLogo">Display credit card logos</label></p>
+                                                                                    <p id="displayCcLogos" class="hideShow hide">
+                                                                                        <label for="ccLogos" class="control-label">
+                                                                                            <input class="checkbox form-control" type="checkbox" <?php echo $displayCcLogos_checked; ?> id="ccLogos" name="cc_logos" value="createdButtonWithCCLogo">Display credit card logos</label></p>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
@@ -402,7 +476,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                         <select id="selectCountryLanguage" name="select_country_language" class="form-control">
 
                                                                                             <?php foreach ($paypal_button_language as $paypal_button_language_key => $paypal_button_language_value) { ?>
-                                                                                                <option value="<?php echo $paypal_button_language_key; ?>"><?php echo $paypal_button_language_value; ?></option>
+                                                                                                  <?php 
+                                                                                                        if($buttonLanguage.'_'.$buttonCountry === $paypal_button_language_key){
+                                                                                                            $selectCountryLanguage_seleced='selected';
+                                                                                                        }
+                                                                                                        else{
+                                                                                                            $selectCountryLanguage_seleced='';
+                                                                                                        }
+                                                                                                  ?>  
+                                                                                                <option value="<?php echo $paypal_button_language_key; ?>" <?php echo $selectCountryLanguage_seleced; ?>><?php echo $paypal_button_language_value; ?></option>
                                                                                             <?php } ?>
                                                                                         </select>
                                                                                         <input type="hidden" id="countryCode" name="country_code" value="US"><input type="hidden" id="langCode" name="lang_code" value="en"><input type="hidden" id="buttonUrl" name="button_url" value="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif"><input type="hidden" id="popupButtonUrl" name="popup_button_url" value=""><input type="hidden" id="flagInternational" name="flag_international" value="true" disabled=""><input type="hidden" id="titleStr" name="title_str" value="Title"><input type="hidden" id="optionStr" name="option_str" value="Option"><input type="hidden" id="addOptionStr" name="add_option_str" value="Add another option">
@@ -439,11 +521,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-md-12">
-                                                                                <p id="addCustomButton"><label for="customButton" class="control-label"><input class="radio form-control" type="radio" id="customButton" name="paypal_button" value="false">Use your own button image</label></p>
+                                                                                <p id="addCustomButton"><label for="customButton" class="control-label"><input class="radio form-control" type="radio" id="customButton" <?php echo $customButton_checked; ?> name="paypal_button" value="false">Use your own button image</label></p>
                                                                             </div>
                                                                         </div>
                                                                         
-                                                                        <div id="customButtonSection" class="hideShow accessAid hide"><input type="text" id="customImageUrl" class="text form-control" name="custom_image_url" style="width: auto"></div>
+                                                                        <div id="customButtonSection" class="hideShow accessAid <?php echo $customButtonSection_class; ?>">
+                                                                            <input type="text" id="customImageUrl" class="text form-control" name="custom_image_url" style="width: auto" value="<?php echo $buttonImageUrl; ?>">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1162,11 +1246,20 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                     <div class="col-md-9">
                                         <p><b>Do you need your customer's shipping address?</b></p>
                                         <div class="form-group">
-
-                                                    <input class="radio form-control" type="radio" id="needShippingAddress" checked="" name="no_shipping" value="2">
+                                                    <?php 
+                                                    if($customersShippingAddress=='2'){
+                                                        $shippingYes='checked';
+                                                        $shippingNo='';
+                                                    }
+                                                    if($customersShippingAddress=='1'){
+                                                        $shippingYes='';
+                                                        $shippingNo='checked';
+                                                    }                                                    
+                                                    ?>
+                                                    <input class="radio form-control" type="radio" id="needShippingAddress" <?php echo $shippingYes; ?> name="no_shipping" value="2">
                                                     <label class="control-label" for="needShippingAddress">Yes</label>
 
-                                                    <input class="radio form-control" type="radio" id="noShippingAddress" name="no_shipping" value="1">
+                                                    <input class="radio form-control" type="radio" id="noShippingAddress" <?php echo $shippingNo; ?> name="no_shipping" value="1">
                                                     <label class="control-label" for="noShippingAddress">No</label>
                                         </div>
                                     </div>
@@ -1177,13 +1270,23 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                 <div class="row">
                                     <div class="col-md-9">
                                         <div class="form-group">
-                                            <input class="checkbox form-control" type="checkbox" id="cancellationCheckbox" name="cancellation_return" value="1">
+                                            <?php
+                                              if(!empty($cancel_return)){
+                                                  $cancellationCheckbox='checked';
+                                                  $cancleFormcontrol='';
+                                              }
+                                              else{
+                                                  $cancellationCheckbox='';
+                                                  $cancleFormcontrol='disabled';
+                                              }
+                                            ?>
+                                            <input class="checkbox form-control" type="checkbox" id="cancellationCheckbox" name="cancellation_return" value="1" <?php echo $cancellationCheckbox; ?> >
                                             <label for="cancellationCheckbox" class="control-label">Take customers to this URL when they cancel their checkout</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="redirectContainer">
-                                    <input type="text" id="cancellationRedirectURL" size="30" class="form-control" disabled="" name="cancel_return" value="">
+                                    <input type="text" id="cancellationRedirectURL" size="30" class="form-control" <?php echo $cancleFormcontrol; ?> name="cancel_return" value="<?php echo $cancel_return; ?>">
                                     <div>Example: https://www.mystore.com/cancel</div>
                                 </div>
                             </div>
@@ -1191,13 +1294,23 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                 <div class="row">
                                     <div class="col-md-9">
                                         <div class="form-group">
-                                            <input class="checkbox form-control" type="checkbox" id="successfulCheckbox" name="successful_return" value="1">
+                                            <?php
+                                              if(!empty($return)){
+                                                  $successfulCheckbox='checked';
+                                                  $returnFormcontrol='';
+                                              }
+                                              else{
+                                                  $successfulCheckbox='';
+                                                  $returnFormcontrol='disabled';
+                                              }
+                                            ?>
+                                            <input class="checkbox form-control" type="checkbox" id="successfulCheckbox" name="successful_return" value="1" <?php echo $successfulCheckbox; ?> >
                                             <label for="successfulCheckbox" class="control-label">Take customers to this URL when they finish checkout</label>
                                         </div>
                                     </div>
                                 </div>                                                                    
                                 <div class="redirectContainer">
-                                    <input type="text" id="successfulRedirectURL" size="30" class="form-control" disabled="" name="return" value="">
+                                    <input type="text" id="successfulRedirectURL" size="30" class="form-control" <?php echo $returnFormcontrol; ?> name="return" value="<?php echo $return; ?>">
                                     <div>Example: https://www.mystore.com/success</div>
                                 </div>
                             </div>
