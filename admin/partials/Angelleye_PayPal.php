@@ -2942,12 +2942,13 @@ class Angelleye_PayPal {
     function BMUpdateButton($DataArray,$HostedButtonID,$ButtonType) {
         //$BMUpdateButtonNVP = '&METHOD=BMUpdateButton';
         //$BMUpdateButtonNVP = '&METHOD=BMUpdateButton&HOSTEDBUTTONID=' . $HostedButtonID. '&BUTTONTYPE='.$ButtonType.'&BUTTONSUBTYPE=PRODUCTS';
-        $BMUpdateButtonNVP = '&METHOD=BMUpdateButton&HOSTEDBUTTONID=' . $HostedButtonID. '&BUTTONTYPE='.$ButtonType;
-//        // BMUpdateButton Fields
-//        $BMUpdateButtonFields = isset($DataArray['BMUpdateButtonFields']) ? $DataArray['BMUpdateButtonFields'] : array();
-//        foreach ($BMUpdateButtonFields as $BMUpdateButtonFieldsVar => $BMUpdateButtonFieldsVal) {
-//            $BMUpdateButtonNVP .= $BMUpdateButtonFieldsVal != '' ? '&' . strtoupper($BMUpdateButtonFieldsVar) . '=' . urlencode($BMUpdateButtonFieldsVal) : '';
-//        }
+        $BMUpdateButtonNVP = '&METHOD=BMUpdateButton&HOSTEDBUTTONID=' . $HostedButtonID;
+        // BMUpdateButton Fields
+        $BMUpdateButtonFields = isset($DataArray['BMCreateButtonFields']) ? $DataArray['BMCreateButtonFields'] : array();
+        foreach ($BMUpdateButtonFields as $BMUpdateButtonFieldsVar => $BMUpdateButtonFieldsVal) {
+            $BMUpdateButtonNVP .= $BMUpdateButtonFieldsVal != '' ? '&' . strtoupper($BMUpdateButtonFieldsVar) . '=' . urlencode($BMUpdateButtonFieldsVal) : '';
+        }
+         
 
         $n = 0;
         $BMButtonVars = isset($DataArray['BMButtonVars']) ? $DataArray['BMButtonVars'] : array();
@@ -2959,7 +2960,7 @@ class Angelleye_PayPal {
                 $n++;
             }
         }
-
+        
         $n = 0;
         $BMButtonOptions = isset($DataArray['BMButtonOptions']) ? $DataArray['BMButtonOptions'] : array();
         foreach ($BMButtonOptions as $BMButtonOption) {
@@ -2979,7 +2980,7 @@ class Angelleye_PayPal {
 
             $n++;
         }
-
+        
         $NVPRequest = $this->NVPCredentials . $BMUpdateButtonNVP;
         $NVPResponse = $this->CURLRequest($NVPRequest);
         $NVPRequestArray = $this->NVPToArray($NVPRequest);

@@ -415,12 +415,16 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 $customButtonSection_class='opened';
                                                                                 $paypalButton_checked='';
                                                                                 $customButton_checked='checked';
+                                                                                $previewImageSection='hide';
+                                                                                $previewCustomImageSection='opened';
                                                                             }
                                                                             else{
                                                                                 $paypalButtonSection_class='opened';
                                                                                 $customButtonSection_class='hide';
                                                                                 $paypalButton_checked='checked';
                                                                                 $customButton_checked='';
+                                                                                $previewImageSection='opened';
+                                                                                $previewCustomImageSection='hide';
                                                                             }
                                                                         ?>
                                                                         <div class="row">
@@ -614,12 +618,12 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-12">
-                                                                            <p class="hideShow opened previewImageSection"><img id="previewImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/btn_cart_LG.gif" border="0" alt="Preview Image"></p>
+                                                                            <p class="hideShow previewImageSection <?php echo $previewImageSection; ?>"><img id="previewImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/btn_cart_LG.gif" border="0" alt="Preview Image"></p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-12">
-                                                                            <p class="hideShow accessAid previewCustomImageSection hide"><img id="previewCustomImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/info_nobuttonpreview_121wx26h.gif" border="0" alt="Use your own button image"></p>
+                                                                            <p class="hideShow accessAid previewCustomImageSection <?php echo $previewCustomImageSection; ?>"><img id="previewCustomImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/info_nobuttonpreview_121wx26h.gif" border="0" alt="Use your own button image"></p>
                                                                         </div>
                                                                     </div>                                                                    
                                                                 </div>

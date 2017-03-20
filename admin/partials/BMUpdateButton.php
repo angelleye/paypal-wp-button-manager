@@ -21,12 +21,12 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
         // Create PayPal object.
         global $post, $post_ID, $wpdb;
         $payapal_helper = new AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper();
-        $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();        
+        $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();
         $PayPal = new Angelleye_PayPal($PayPalConfig);
-        $paypal_buttontype = $payapal_helper->paypal_wp_button_manager_get_button_type();        
+        $paypal_buttontype = $payapal_helper->paypal_wp_button_manager_get_button_type();
         $BMButtonVars = array();
         $BMButtonVars = $payapal_helper->paypal_wp_button_manager_get_buttonvars();
-        $PayPalRequestData = $payapal_helper->paypal_wp_button_manager_get_dropdown_values();              
+        $PayPalRequestData = $payapal_helper->paypal_wp_button_manager_get_dropdown_values();
         $PayPalResult = $PayPal->BMUpdateButton($PayPalRequestData,'NV76NUGEBNWYA',$paypal_buttontype);
         
         echo "<pre>";
