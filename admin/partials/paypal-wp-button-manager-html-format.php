@@ -70,7 +70,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $cancel_return='';
         $return='';
         $add_special_instruction='Add special instructions to the seller:';
-        if($string=='edit'){
+        $enableHostedButtons_checkbox='';        
+        
+        if($string=='edit'){            
+            $enableHostedButtons_checkbox='disabled';            
             $edit_button=true;
             $meta = get_post_meta(get_the_ID());
             $edit_hosted_button_id=$meta['paypal_wp_button_manager_button_id'][0];  
@@ -1025,7 +1028,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="form-group">
-                                                <input class="checkbox form-control" type="checkbox" id="enableHostedButtons" checked="" name="enable_hosted_buttons" value="enabled">
+                                                <input class="checkbox form-control" type="checkbox" id="enableHostedButtons" checked="" name="enable_hosted_buttons" value="enabled" <?php echo $enableHostedButtons_checkbox; ?>>
                                                 <label for="enableHostedButtons" class="control-label"><?php echo __('Save button at PayPal', 'paypal-wp-button-manager'); ?></label>
                                             </div>
                                         </div>
