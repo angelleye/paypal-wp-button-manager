@@ -72,8 +72,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $add_special_instruction='Add special instructions to the seller:';
         $enableHostedButtons_checkbox='';        
         
-        if($string=='edit'){            
-            $enableHostedButtons_checkbox='disabled';            
+        if($string=='edit'){                        
             $edit_button=true;
             $meta = get_post_meta(get_the_ID());
             $edit_hosted_button_id=$meta['paypal_wp_button_manager_button_id'][0];  
@@ -132,9 +131,26 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $donation_amount = isset($BUTTONVAR['amount']) ? $BUTTONVAR['amount'] : '';
                 $donation_currency = isset($BUTTONVAR['currency_code']) ? $BUTTONVAR['currency_code'] : '';                
             }
-            //echo "<pre>";            
+            
+            if($buttonType=='BUYNOW'){
+                $button_option_value='services';
+                $product_name = isset($BUTTONVAR['item_name']) ? $BUTTONVAR['item_name'] : '';
+                $product_id = isset($BUTTONVAR['item_number']) ? $BUTTONVAR['item_number'] : '';
+                $item_price = isset($BUTTONVAR['amount']) ? $BUTTONVAR['amount'] : '';
+                $item_price_currency = isset($BUTTONVAR['currency_code']) ? $BUTTONVAR['currency_code'] : '';
+                $item_shipping_amount = isset($BUTTONVAR['shipping']) ? $BUTTONVAR['shipping'] : '';  
+                $itemTaxRate = isset($BUTTONVAR['tax_rate']) ? $BUTTONVAR['tax_rate'] : '';
+                
+                $DataArray=array();
+                $PayPal_get_inventory=$PayPal->BMGetInventory($DataArray,$edit_hosted_button_id);
+                echo "<pre>";            
+                var_dump($PayPal_get_inventory);
+                exit;
+             }
+            
+            echo "<pre>";            
             var_dump($button_details_array);
-            //exit;
+            exit;
         }
                 
         ?>
@@ -165,7 +181,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
     <input type="hidden" id="fakeSubmit" name="fakeSubmit" value="">
     <input type="hidden" id="secureServerName" name="secureServerName" value="www.paypal.com/us">
     <input type="hidden" id="selectedDropDown" name="selectedDropDown" value="">
-     <input type="hidden" name="button_type" value="<?php echo $button_option_value;?>">
+    <input type="hidden" name="button_type" value="<?php echo $button_option_value;?>">
+    <?php if($string=='edit'){ ?>
+        <input type="hidden" name="enable_hosted_buttons" value="enabled">
+    <?php } ?>    
     <div id="accordion" class="panel-group"  role="tablist" aria-multiselectable="true">
         
             
@@ -204,9 +223,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                 <div class="products">
                                                     <div class="col-lg-4">
                                                         <label for="itemName" class="control-label">Item name</label>
-                                                        <input class="form-control" maxlength="127" type="text" id="itemName" name="product_name" value="">
+                                                        <input class="form-control" maxlength="127" type="text" id="itemName" name="product_name" value="<?php echo $product_name; ?>">
                                                     </div>
-                                                    <div class="col-lg-4"><label for="itemID">Item ID<span class="fieldNote"> (optional) </span></label><input class="form-control" maxlength="127" type="text" id="itemID" size="9" name="product_id" value=""></div>
+                                                    <div class="col-lg-4"><label for="itemID">Item ID<span class="fieldNote"> (optional) </span></label><input class="form-control" maxlength="127" type="text" id="itemID" size="9" name="product_id" value="<?php echo $product_id; ?>"></div>
                                                 </div>
                                                             <div class="donations accessAid fadedOut">
                                                                 <div class="col-lg-4"><label for="donationName" class="control-label">Organization name/service</label><input class="form-control" maxlength="127" type="text" id="donationName" name="donation_name" value="<?php echo $donation_name; ?>" disabled=""></div>
@@ -221,14 +240,23 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                 <div class="gift_certs accessAid fadedOut col-lg-9"><label for="giftCertificateShopURL" class="control-label">Enter the URL where recipients can shop and redeem this gift certificate.</label><input class="form-control" type="text" id="giftCertificateShopURL" size="34" name="gift_certificate_shop_url" value="http://" disabled=""></div>
                                                     </div>
                                                     <div class="group products pricing opened">
-                                                        <div class="col-lg-4"><label for="itemPrice" class="control-label">Price</label><input class="form-control" type="text" id="itemPrice" size="9" name="item_price" value=""></div>
+                                                        <div class="col-lg-4"><label for="itemPrice" class="control-label">Price</label><input class="form-control" type="text" id="itemPrice" size="9" name="item_price" value="<?php echo $item_price; ?>"></div>
                                                         <div class="col-lg-4">
                                                             <label for="itemPriceCurrency" class="control-label">Currency</label>
                                                             <?php $paypal_button_currency_with_symbole = get_paypal_button_currency_with_symbole(); ?>
                                                             <select id="BillingAmountCurrency" name="item_price_currency" class="currencySelect form-control">
 
                                                                 <?php foreach ($paypal_button_currency_with_symbole as $paypal_button_currency_with_symbole_key => $paypal_button_currency_with_symbole_value) { ?>
-                                                                    <option value="<?php echo $paypal_button_currency_with_symbole_key; ?>" title="<?php echo $paypal_button_currency_with_symbole_value; ?>"><?php echo $paypal_button_currency_with_symbole_key; ?></option>
+                                                                     <?php 
+                                                                            if($paypal_button_currency_with_symbole_key==$item_price_currency)
+                                                                            {
+                                                                                $item_currency_selected='selected';
+                                                                            }
+                                                                            else{
+                                                                                $item_currency_selected='';
+                                                                            }
+                                                                      ?>
+                                                                    <option value="<?php echo $paypal_button_currency_with_symbole_key; ?>" <?php echo $item_currency_selected; ?> title="<?php echo $paypal_button_currency_with_symbole_value; ?>"><?php echo $paypal_button_currency_with_symbole_key; ?></option>
                                                                 <?php } ?>
                                                             </select>
 
@@ -653,7 +681,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <div class="form-group">
                                                                             <div class="col-md-12">
                                                                                 <label for="itemFlatShippingAmount" class="control-label">Use specific amount: ( <span class="currencyLabel">USD</span> )</label>
-                                                                                <input class="form-control" type="text" id="itemFlatShippingAmount" size="9" name="item_shipping_amount" value="">
+                                                                                <input class="form-control" type="text" id="itemFlatShippingAmount" size="9" name="item_shipping_amount" value="<?php echo $item_shipping_amount; ?>">
                                                                             </div>                                                                                
                                                                         </div>
                                                                     </div>
@@ -668,7 +696,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <div class="col-md-12">
                                                                         <div class="form-group">                                                                                        
                                                                                 <label for="itemTaxRate" class="control-label">Use tax rate ( % )</label>
-                                                                                <input class="form-control" type="text" id="itemTaxRate" name="item_tax_rate" value="">
+                                                                                <input class="form-control" type="text" id="itemTaxRate" name="item_tax_rate" value="<?php echo $itemTaxRate; ?>">
                                                                             </div>
                                                                         </div>
                                                                     </div>                                                                                    
@@ -1091,7 +1119,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     <div class="form-group">
                                                         <div class="col-md-3">
                                                             <label class="control-label"><?php echo __('Item ID', 'paypal-wp-button-manager'); ?></label>
-                                                            <input class="form-control" type="text" name="item_id" value="" disabled="">
+                                                            <input class="form-control" type="text" name="item_id" value="<?php echo $product_id; ?>" disabled="">
                                                         </div>
 
                                                         <div class="col-md-3">

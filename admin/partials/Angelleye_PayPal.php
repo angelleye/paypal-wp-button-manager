@@ -2942,7 +2942,7 @@ class Angelleye_PayPal {
     function BMUpdateButton($DataArray,$HostedButtonID) {
         //$BMUpdateButtonNVP = '&METHOD=BMUpdateButton';
         //$BMUpdateButtonNVP = '&METHOD=BMUpdateButton&HOSTEDBUTTONID=' . $HostedButtonID. '&BUTTONTYPE='.$ButtonType.'&BUTTONSUBTYPE=PRODUCTS';
-        $BMUpdateButtonNVP = '&METHOD=BMUpdateButton&HOSTEDBUTTONID=' . $HostedButtonID;
+        $BMUpdateButtonNVP = '&METHOD=BMUpdateButton&HOSTEDBUTTONID=' . $HostedButtonID.'&BUTTONSUBTYPE=PRODUCTS';
         // BMUpdateButton Fields
         $BMUpdateButtonFields = isset($DataArray['BMCreateButtonFields']) ? $DataArray['BMCreateButtonFields'] : array();
         foreach ($BMUpdateButtonFields as $BMUpdateButtonFieldsVar => $BMUpdateButtonFieldsVal) {
@@ -3035,8 +3035,8 @@ class Angelleye_PayPal {
      * @param $DataArray
      * @return \mixed[]
      */
-    function BMGetInventory($DataArray) {
-        $BMGetInventoryNVP = '&METHOD=BMGetInventory';
+    function BMGetInventory($DataArray,$HostedButtonId) {
+        $BMGetInventoryNVP = '&METHOD=BMGetInventory&HOSTEDBUTTONID='.$HostedButtonId;
 
         // BMGetInventory Fields
         $BMGetInventoryFields = isset($DataArray['BMGetInventoryFields']) ? $DataArray['BMGetInventoryFields'] : array();
