@@ -120,7 +120,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
                 'buttonimage' => $buttonimage, //isset($_POST['cc_logos']) ? 'CC' : 'SML',
                 'buttonimageurl' => $_POST['wpss_upload_image'],
-                'buttonlanguage' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : ''
+                'buttonlanguage' =>'en_AE' // (isset($_POST['select_country_language']) ? $_POST['select_country_language'] : '')
             );
             
         } else {
@@ -131,7 +131,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 'buttontype' => AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper::paypal_wp_button_manager_get_button_type(), // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
                 'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
                 'buttonimage' => $buttonimage, //isset($_POST['cc_logos']) ? 'CC' : 'SML',
-                'buttonlanguage' => isset($_POST['select_country_language']) ? $_POST['select_country_language'] : ''
+                'buttonlanguage' =>'en_AE' // (isset($_POST['select_country_language']) ? $_POST['select_country_language'] : '')
             );
             
         }
@@ -245,7 +245,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'shopping_url' => isset($_POST['gift_certificate_shop_url']) ? esc_url($_POST['gift_certificate_shop_url']) : '', // The URL of the page on the merchant website that buyers go to when they click the Continue Shopping button on the PayPal shopping cart page.
             'src' => isset($_POST['subscription_billing_limit']) ? '1' : '', // Recurring payments.  Subscription payments recur unless subscribers cancel.  Values are:  1, 0
             'sra' => '', // Reattempt on failure.  If a recurring payment fails, PayPal attempts to collect the payment two more times before canceling.  Values are:  1, 0
-            'no_note' => '', // Set to 1 to disable prompts for buyers to include a note with their payments.
+            'no_note' => isset($_POST['no_note']) ? $_POST['no_note'] : '', // Set to 1 to disable prompts for buyers to include a note with their payments.
             'modify' => '', // Modification behavior.  0 - allows subscribers only to sign up for new subscriptions.  1 - allows subscribers to sign up for new subscriptions and modify their current subscriptions.  2 - allows subscribers to modify only their current subscriptions.
             'usr_manage' => isset($_POST['enable_username_password_creation']) ? $_POST['enable_username_password_creation'] : '', // Set to 1 to have PayPal generate usernames and passwords for subscribers.  https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/subscribe_buttons/#id08ADFB00QWS
             'max_text' => '', // A description of the automatic billing plan.
@@ -261,8 +261,8 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'cpp_logo_image' => '', // A URL to your logo image.  Must be .gif, .jpg, or .png.  190x60
             'cpp_payflow_color' => '', // The background color for the checkout page below the header.
             'lc' => '', // The locale of the login or sign-up page.
-            'cn' => '', // Label that appears above the note field.
-            'no_shipping' => '', // Do not prompt buyers for a shipping address.  Values are:  0 - prompt for an address but do not require.  1 - do not prompt.  2 - prompt and require address.
+            'cn' => isset($_POST['custom_note']) ? $_POST['custom_note'] : '', // Label that appears above the note field.
+            'no_shipping' => isset($_POST['no_shipping']) ? $_POST['no_shipping'] : '', // Do not prompt buyers for a shipping address.  Values are:  0 - prompt for an address but do not require.  1 - do not prompt.  2 - prompt and require address.
             'return' => isset($_POST['return']) ? esc_url($_POST['return']) : '', // The URL to which PayPal redirects buyers' browsers after they complete their payment.
             'rm' => '', // Return method.  Values are:  0 - all shopping cart payments use GET method.  1 - buyer's browser is redirected using the GET method. 2 - buyer's browser is redirected using POST.
             'cbt' => '', // Sets the text for the Return to Merchant button on the PayPal completed payment page.

@@ -23,11 +23,12 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
         $payapal_helper = new AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper();
         $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();
         $PayPal = new Angelleye_PayPal($PayPalConfig);
-        $paypal_buttontype = $payapal_helper->paypal_wp_button_manager_get_button_type();
+        $meta = get_post_meta(get_the_ID());
+        $edit_hosted_button_id=$meta['paypal_wp_button_manager_button_id'][0];        
         $BMButtonVars = array();
         $BMButtonVars = $payapal_helper->paypal_wp_button_manager_get_buttonvars();
         $PayPalRequestData = $payapal_helper->paypal_wp_button_manager_get_dropdown_values();
-        $PayPalResult = $PayPal->BMUpdateButton($PayPalRequestData,'NV76NUGEBNWYA',$paypal_buttontype);
+        $PayPalResult = $PayPal->BMUpdateButton($PayPalRequestData,$edit_hosted_button_id);
         
         echo "<pre>";
         var_dump($PayPalResult);

@@ -47,10 +47,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
      * @access public
      */
     public static function paypal_wp_button_manager_for_wordpress_button_interface_html($string) {
+        // Define below variable that will not conflict/gives undefined index error while add/edit buttons.
         $button_option_value='';
         $edit_button=false;
         $no_note=0;
-        $shippingYes='';
+        $shippingYes='checked';
         $shippingNo='';
         $cancleFormcontrol='';
         $cancellationCheckbox='';
@@ -58,16 +59,24 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $returnFormcontrol='';
         $button_img_src='';
         $paypalButtonSection_class='opened';
-        $customButtonSection_class='hide';
-        
-        
+        $customButtonSection_class='hide';        
+        $donation_name='';
+        $donation_id='';
+        $buttonImageSize ='';
+        $buttonImageUrl='';
+        $donation_amount ='';
+        $account_id='';
+        $customersShippingAddress='';
+        $cancel_return='';
+        $return='';
+        $add_special_instruction='Add special instructions to the seller:';
         if($string=='edit'){
             $edit_button=true;
             $meta = get_post_meta(get_the_ID());
-            $edit_hosted_button_id=$meta['paypal_wp_button_manager_button_id'][0];       
+            $edit_hosted_button_id=$meta['paypal_wp_button_manager_button_id'][0];  
             $payapal_helper = new AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper();
-            $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();
-            $PayPal = new Angelleye_PayPal($PayPalConfig);       
+            $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();            
+            $PayPal = new Angelleye_PayPal($PayPalConfig);
             $button_details_array=$PayPal->BMGetButtonDetails($edit_hosted_button_id);           
             foreach($button_details_array as $key => $value){
                 $btnvar_key = explode('BUTTONVAR', $key);
@@ -106,7 +115,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
             
             $account_id= isset($BUTTONVAR['business']) ? $BUTTONVAR['business'] : '';
             $no_note= isset($BUTTONVAR['no_note']) ? $BUTTONVAR['no_note'] : '';
-            $add_special_instruction= isset($BUTTONVAR['cn']) ? $BUTTONVAR['cn'] : '';
+            $add_special_instruction= isset($BUTTONVAR['cn']) ? $BUTTONVAR['cn'] : 'Add special instructions to the seller:';
             $customersShippingAddress=isset($BUTTONVAR['no_shipping']) ? $BUTTONVAR['no_shipping'] : '';
             $cancel_return = isset($BUTTONVAR['cancel_return']) ? $BUTTONVAR['cancel_return'] : '';
             $return = isset($BUTTONVAR['return']) ? $BUTTONVAR['return'] : '';
@@ -1239,7 +1248,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <label  for="messageBox" class="control-label">Name of message box (40-character limit)</label>
-                                            <input type="text" id="messageBox" size="40" maxlength="40" class="form-control" name="custom_note" value="Add special instructions to the seller:">
+                                            <input type="text" id="messageBox" size="40" maxlength="40" class="form-control" name="custom_note" value="<?php echo $add_special_instruction; ?>">
                                         </div>
                                     </div>
                                 </div>                                                                    

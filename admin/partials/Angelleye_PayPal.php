@@ -2939,7 +2939,7 @@ class Angelleye_PayPal {
      * @param $DataArray
      * @return \mixed[]
      */
-    function BMUpdateButton($DataArray,$HostedButtonID,$ButtonType) {
+    function BMUpdateButton($DataArray,$HostedButtonID) {
         //$BMUpdateButtonNVP = '&METHOD=BMUpdateButton';
         //$BMUpdateButtonNVP = '&METHOD=BMUpdateButton&HOSTEDBUTTONID=' . $HostedButtonID. '&BUTTONTYPE='.$ButtonType.'&BUTTONSUBTYPE=PRODUCTS';
         $BMUpdateButtonNVP = '&METHOD=BMUpdateButton&HOSTEDBUTTONID=' . $HostedButtonID;
