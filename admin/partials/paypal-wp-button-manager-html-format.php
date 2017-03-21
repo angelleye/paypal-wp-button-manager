@@ -78,8 +78,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $item_alert_step2  = '';
         $item_cost_step2   = '';
         $item_soldout_url_step2='';
+        $radioAddToCartButton = 'checked';
+        $radioBuyNowButton='';
         
-        if($string=='edit'){            
+        if($string=='edit'){ 
+            
             $enableHostedButtons_checkbox='disabled';
             $edit_button=true;
             $meta = get_post_meta(get_the_ID());
@@ -105,6 +108,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                     $OPTION0PRICE[] = substr(substr($value,1),0, -1);
                 }
                 
+                $textbox0_key = explode('TEXTBOX', $key);
+                if($textbox0_key[0] == 'L_'){
+                    $TEXTBOX[] = $value;
+                }                                                
             }
             
             $dom = new DOMDocument();
@@ -121,7 +128,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
             $buttonCountry=isset($button_details_array['BUTTONCOUNTRY']) ? $button_details_array['BUTTONCOUNTRY'] : '';
             $buttonLanguage=isset($button_details_array['BUTTONLANGUAGE']) ? $button_details_array['BUTTONLANGUAGE'] : '';
             $buttonImageSize=isset($button_details_array['BUTTONIMAGE']) ? $button_details_array['BUTTONIMAGE'] : '';
-            $buttonImageUrl=isset($button_details_array['BUTTONIMAGEURL']) ? $button_details_array['BUTTONIMAGEURL'] : '';                        
+            $buttonImageUrl=isset($button_details_array['BUTTONIMAGEURL']) ? $button_details_array['BUTTONIMAGEURL'] : '';              
             
             $account_id= isset($BUTTONVAR['business']) ? $BUTTONVAR['business'] : '';
             $no_note= isset($BUTTONVAR['no_note']) ? $BUTTONVAR['no_note'] : '';
@@ -165,14 +172,28 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                     $item_cost_step2   =  isset($PayPal_get_inventory['ITEMCOST']) ? $PayPal_get_inventory['ITEMCOST'] : '';
                     $item_soldout_url_step2 = isset($PayPal_get_inventory['SOLDOUTURL']) ? $PayPal_get_inventory['SOLDOUTURL'] : '';
                     //echo "<pre>";            
-                    var_dump($PayPal_get_inventory);
+                    //var_dump($PayPal_get_inventory);
                     //exit;
                 }
                 
              }
+             
+            if($buttonType=='BUYNOW'){
+              $radioBuyNowButton = 'checked';
+            }
+            else{
+                $radioBuyNowButton='';
+            }
+
+            if($buttonType=='CART'){
+                $radioAddToCartButton = 'checked';
+            }
+            else{
+                $radioAddToCartButton = '';
+            }
             
             //echo "<pre>";            
-            //var_dump($button_details_array);
+            var_dump($button_details_array);
             //exit;
         }
                 
@@ -241,7 +262,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                 </select>                                                
                                                 </div>        
                                             </div>
-                                            <div class="products"><input class="hide radio subButtonType" type="radio" id="radioAddToCartButton" checked="" name="sub_button_type" value="add_to_cart"><input class="hide radio subButtonType" type="radio" id="radioBuyNowButton" name="sub_button_type" value="buy_now"></div>
+                                            <div class="products">                                                
+                                                <input class="hide radio subButtonType" type="radio" id="radioAddToCartButton"  <?php echo $radioAddToCartButton; ?> name="sub_button_type" value="add_to_cart">
+                                                <input class="hide radio subButtonType" type="radio" id="radioBuyNowButton" <?php echo $radioBuyNowButton; ?> name="sub_button_type" value="buy_now">
+                                            </div>
                                             <div class="group details">
                                                 <div class="products">
                                                     <div class="col-lg-4">
@@ -441,26 +465,64 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             <div class="col-md-12">
                                                                                 <p class="hideShow opened" id="addTextfield">
                                                                                     <label for="textfield" class="control-label">
-                                                                                        <input type="checkbox" value="createdTextfield" name="textfield" id="textfield" class="checkbox form-control">Add text field&nbsp;
+                                                                                        <?php
+                                                                                            if(!empty($TEXTBOX)){
+                                                                                                $createdTextfield_checkbox = 'checked';
+                                                                                                $savedTextfieldSection1 = 'opened';
+                                                                                                $textfieldTitle1 = $TEXTBOX[0];
+                                                                                                $textfieldTitle1_disabled = '';
+                                                                                                $previewTextfieldTitle1 = $TEXTBOX[0];
+                                                                                                $previewDropdown1 = 'opened';
+                                                                                                if(isset($TEXTBOX[1])){
+                                                                                                    $savedTextfieldSection2 = 'opened';
+                                                                                                    $textfieldTitle2 = $TEXTBOX[1];
+                                                                                                    $previewTextfieldTitle2 = $TEXTBOX[1];
+                                                                                                    $previewDropdown2 = 'opened';
+                                                                                                    $textfieldTitle2_disabled = '';
+                                                                                                }
+                                                                                                else{
+                                                                                                    $previewDropdown2 = 'hide';
+                                                                                                    $savedTextfieldSection2 = 'hide';
+                                                                                                    $textfieldTitle2 = '';
+                                                                                                    $previewTextfieldTitle2 = 'Title';
+                                                                                                    $textfieldTitle2_disabled = 'disabled';
+                                                                                                }
+                                                                                            }
+                                                                                            else{
+                                                                                                $textfieldTitle1='';
+                                                                                                $textfieldTitle2='';
+                                                                                                $createdTextfield_checkbox='';
+                                                                                                $savedTextfieldSection1='hide';
+                                                                                                $savedTextfieldSection2='hide';
+                                                                                                $previewTextfieldTitle1='Title';
+                                                                                                $previewTextfieldTitle2='Title';
+                                                                                                $previewDropdown1 = 'hide';
+                                                                                                $previewDropdown2 = 'hide';
+                                                                                                $textfieldTitle1_disabled = 'disabled';
+                                                                                                $textfieldTitle2_disabled = 'disabled';
+                                                                                            }
+                                                                                        ?>
+                                                                                        <input type="checkbox" value="createdTextfield" name="textfield" id="textfield" class="checkbox form-control" <?php echo $createdTextfield_checkbox; ?>>Add text field&nbsp;
                                                                                         <a onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})" href="https://www.paypal.com/uk/cgi-bin/webscr?cmd=_display-textfield-example" class="infoLink exampleLink" target="_blank">Example</a>
                                                                                     </label>
                                                                                 </p>
                                                                             </div>
                                                                         </div>
                                                                     <div class="hideShow accessAid textfieldSection hide" id="textfieldSection1">
-                                                                        <p class="title col-md-9"><label for="textfieldTitle1" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle1" class="text form-control" disabled="" name="textfield1_title" value=""></p>
+                                                                        <p class="title col-md-9"><label for="textfieldTitle1" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle1" class="text form-control" <?php echo $textfieldTitle1_disabled; ?> name="textfield1_title" value="<?php echo $textfieldTitle1; ?>"></p>
                                                                         <p class="saveCancel"><input class="saveTextfield btn btn-default" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                     </div>
-                                                                    <div class="hideShow accessAid savedTextfieldSection hide" id="savedTextfieldSection1">
-                                                                        <p><label class="savedTextfield" id="savedTextfield1" for=""></label></p>
+                                                                    
+                                                                    <div class="hideShow accessAid savedTextfieldSection <?php echo $savedTextfieldSection1; ?>" id="savedTextfieldSection1">
+                                                                        <p><label class="savedTextfield" id="savedTextfield1" for=""><?php if(!empty($TEXTBOX)  && isset($TEXTBOX[0]) ){ echo $TEXTBOX[0]; } else{ echo ''; } ?></label></p>
                                                                         <p class="editDelete"><a class="editTextfield btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
                                                                     <div class="hideShow accessAid textfieldSection hide" id="textfieldSection2">
-                                                                        <p class="title col-md-9"><label for="textfieldTitle2" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle2" class="text form-control" disabled="" name="textfield2_title" value=""></p>
+                                                                        <p class="title col-md-9"><label for="textfieldTitle2" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle2" class="text form-control" <?php echo $textfieldTitle2_disabled; ?>  name="textfield2_title" value="<?php echo $textfieldTitle2; ?>"></p>
                                                                         <p class="saveCancel"><input class="saveTextfield btn btn-default" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                     </div>
-                                                                    <div class="hideShow accessAid savedTextfieldSection hide" id="savedTextfieldSection2">
-                                                                        <p><label class="savedTextfield control-label" id="savedTextfield2" for=""></label></p>
+                                                                    <div class="hideShow accessAid savedTextfieldSection <?php echo $savedTextfieldSection2; ?>" id="savedTextfieldSection2">
+                                                                        <p><label class="savedTextfield control-label" id="savedTextfield2" for=""><?php if(!empty($TEXTBOX) && isset($TEXTBOX[1]) ){ echo $TEXTBOX[1]; } else{ echo ''; } ?></label></p>
                                                                         <p class="editDelete"><a class="editTextfield btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
                                                                     <p id="addNewTextfieldSection" class="editDelete hideShow accessAid hide"><a id="addNewTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add another text field</a></p>
@@ -671,17 +733,17 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-12">
-                                                                            <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection1"><label id="previewTextfieldTitle1" for="buttonTextfield1" class="control-label">Title</label><input type="text" id="buttonTextfield1" class="text readOnlyLabel form-control" name="button_textfield1" value=""></p>
+                                                                            <p class="hideShow accessAid previewDropdown <?php echo $previewDropdown1; ?>" id="previewTextfieldSection1"><label id="previewTextfieldTitle1" for="buttonTextfield1" class="control-label"><?php echo $previewTextfieldTitle1; ?></label><input type="text" id="buttonTextfield1" class="text readOnlyLabel form-control" name="button_textfield1" value=""></p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-12">
-                                                                            <p class="hideShow accessAid previewDropdown hide" id="previewTextfieldSection2"><label id="previewTextfieldTitle2" for="buttonTextfield2" class="control-label">Title</label><input type="text" id="buttonTextfield2" class="text readOnlyLabel form-control" name="button_textfield2" value=""></p>
+                                                                            <p class="hideShow accessAid previewDropdown <?php echo $previewDropdown2; ?>" id="previewTextfieldSection2"><label id="previewTextfieldTitle2" for="buttonTextfield2" class="control-label"><?php echo $previewTextfieldTitle2; ?></label><input type="text" id="buttonTextfield2" class="text readOnlyLabel form-control" name="button_textfield2" value=""></p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-12">
-                                                                            <p class="hideShow previewImageSection <?php echo $previewImageSection; ?>"><img id="previewImage" src="<?php echo BMW_PLUGIN_URL ?>/admin/images/btn_cart_LG.gif" border="0" alt="Preview Image"></p>
+                                                                            <p class="hideShow previewImageSection <?php echo $previewImageSection; ?>"><img id="previewImage" src="<?php echo BMW_PLUGIN_URL ?>admin/images/btn_cart_LG.gif" border="0" alt="Preview Image"></p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">

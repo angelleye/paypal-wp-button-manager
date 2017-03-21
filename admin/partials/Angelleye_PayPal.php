@@ -2961,6 +2961,10 @@ class Angelleye_PayPal {
             }
         }
         
+        if ( isset($DataArray['BMTextField'])) {
+            $BMUpdateButtonNVP .= $DataArray['BMTextField'];
+        }
+        
         $n = 0;
         $BMButtonOptions = isset($DataArray['BMButtonOptions']) ? $DataArray['BMButtonOptions'] : array();
         foreach ($BMButtonOptions as $BMButtonOption) {
