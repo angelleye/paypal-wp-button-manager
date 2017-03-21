@@ -30,12 +30,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
         $PayPalRequestData = $payapal_helper->paypal_wp_button_manager_get_dropdown_values();
         $PayPalResult = $PayPal->BMUpdateButton($PayPalRequestData,$edit_hosted_button_id);
         
-        echo "<pre>";
-        var_dump($PayPalResult);
-        exit;
+        //echo "<pre>";
+        //var_dump($PayPalResult);
+        //exit;
         // Write the contents of the response array to the screen for demo purposes.
         if (isset($PayPalResult['ERRORS']) && !empty($PayPalResult['ERRORS'])) {
-            global $post, $post_ID;
+            echo "in if condition";
+            /*global $post, $post_ID;
             $paypal_wp_button_manager_notice = get_option('paypal_wp_button_manager_notice');
             $notice[$post_ID] = $PayPalResult['ERRORS'][0]['L_LONGMESSAGE'];
             $notice_code[$post_ID] = $PayPalResult['ERRORS'][0]['L_ERRORCODE'];
@@ -52,9 +53,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
             delete_option('paypal_wp_button_manager_timeout_notice');
             // Update the post into the database
             unset($_POST);
-            unset($post);
+            unset($post);*/
         } else if ($PayPalResult['RAWRESPONSE'] == false) {
-            global $post, $post_ID;
+            echo "in first else if condition";
+            /*global $post, $post_ID;
             $timeout_notice[$post_ID] = 'Internal server error occured';
             update_option('paypal_wp_button_manager_timeout_notice', $timeout_notice);
             
@@ -68,11 +70,12 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
             delete_option('paypal_wp_button_manager_notice');
             delete_option('paypal_wp_button_manager_error_code');
             unset($_POST);
-            unset($post);
+            unset($post);*/
         } else if (isset($PayPalResult['WEBSITECODE']) && !empty($PayPalResult['WEBSITECODE'])) {
+            echo "in website code condition <br>";
             global $post, $post_ID;
             global $wp;
-            update_post_meta($post_ID, 'paypal_button_response', $PayPalResult['WEBSITECODE']);
+           /* update_post_meta($post_ID, 'paypal_button_response', $PayPalResult['WEBSITECODE']);
             
             $PayPalRequest = isset($PayPalResult['RAWREQUEST']) ? $PayPalResult['RAWREQUEST'] : '';
             $PayPalResponse = isset($PayPalResult['RAWRESPONSE']) ? $PayPalResult['RAWRESPONSE'] : '';
@@ -166,22 +169,25 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
                         }
                     }
                 }
-            }
+            } */
             
              if (isset($PayPalResult['HOSTEDBUTTONID']) && !empty($PayPalResult['HOSTEDBUTTONID'])) {
                  if ((isset($_POST['enable_inventory']) && !empty($_POST['enable_inventory'])) || (isset($_POST['enable_profit_and_loss']) && !empty($_POST['enable_profit_and_loss']))) {
                      $PayPalRequestData_Inventory = $payapal_helper->paypal_wp_button_manager_set_inventory();
                      $PayPalSet_InventoryResult = $PayPal->BMSetInventory($PayPalRequestData_Inventory);
-                     self::paypal_wp_button_manager_write_error_log($PayPalSet_InventoryResult);
+                     echo "<pre>";
+                     var_dump($PayPalSet_InventoryResult);
+                     exit;
+                     //self::paypal_wp_button_manager_write_error_log($PayPalSet_InventoryResult);
                      if (isset($PayPalSet_InventoryResult['ERRORS']) && !empty($PayPalSet_InventoryResult['ERRORS'])) {
                          global $post, $post_ID;
                          $paypal_wp_button_manager_notice = get_option('paypal_wp_button_manager_notice');
                          $notice[$post_ID] = $PayPalSet_InventoryResult['ERRORS'][0]['L_LONGMESSAGE'];
                          $notice_code[$post_ID] = $PayPalSet_InventoryResult['ERRORS'][0]['L_ERRORCODE'];
-                         update_option('paypal_wp_button_manager_notice', $notice);
-                         update_option('paypal_wp_button_manager_error_code', $notice_code);
-                         update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
-                         delete_option('paypal_wp_button_manager_timeout_notice');
+                         //update_option('paypal_wp_button_manager_notice', $notice);
+                         //update_option('paypal_wp_button_manager_error_code', $notice_code);
+                         //update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
+                         //delete_option('paypal_wp_button_manager_timeout_notice');
                      }
                  }
              }

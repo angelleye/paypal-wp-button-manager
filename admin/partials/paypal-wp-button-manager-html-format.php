@@ -70,9 +70,17 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $cancel_return='';
         $return='';
         $add_special_instruction='Add special instructions to the seller:';
-        $enableHostedButtons_checkbox='';        
+        $enableHostedButtons_checkbox='';   
+        $track_inv         = '';
+        $track_pnl         = '';
+        $item_number_step2 = '';
+        $item_qty_step2    = '';
+        $item_alert_step2  = '';
+        $item_cost_step2   = '';
+        $item_soldout_url_step2='';
         
-        if($string=='edit'){                        
+        if($string=='edit'){            
+            $enableHostedButtons_checkbox='disabled';
             $edit_button=true;
             $meta = get_post_meta(get_the_ID());
             $edit_hosted_button_id=$meta['paypal_wp_button_manager_button_id'][0];  
@@ -140,17 +148,32 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $item_price_currency = isset($BUTTONVAR['currency_code']) ? $BUTTONVAR['currency_code'] : '';
                 $item_shipping_amount = isset($BUTTONVAR['shipping']) ? $BUTTONVAR['shipping'] : '';  
                 $itemTaxRate = isset($BUTTONVAR['tax_rate']) ? $BUTTONVAR['tax_rate'] : '';
-                
+                $inventory_set=true;
                 $DataArray=array();
                 $PayPal_get_inventory=$PayPal->BMGetInventory($DataArray,$edit_hosted_button_id);
-                echo "<pre>";            
-                var_dump($PayPal_get_inventory);
-                exit;
+                if (isset($PayPal_get_inventory['ERRORS']) && !empty($PayPal_get_inventory['ERRORS'])) {
+                    if($PayPal_get_inventory['L_ERRORCODE0']=='11991'){
+                        $inventory_set=false;
+                    }                    
+                }
+                else{
+                    $track_inv         =  isset($PayPal_get_inventory['TRACKINV']) ? $PayPal_get_inventory['TRACKINV'] : '';
+                    $track_pnl         =  isset($PayPal_get_inventory['TRACKPNL']) ? $PayPal_get_inventory['TRACKPNL'] : '';
+                    $item_number_step2 =  isset($PayPal_get_inventory['ITEMNUMBER']) ? $PayPal_get_inventory['ITEMNUMBER'] : '';
+                    $item_qty_step2    =  isset($PayPal_get_inventory['ITEMQTY']) ? $PayPal_get_inventory['ITEMQTY'] : '';
+                    $item_alert_step2  =  isset($PayPal_get_inventory['ITEMALERT']) ? $PayPal_get_inventory['ITEMALERT'] : '';
+                    $item_cost_step2   =  isset($PayPal_get_inventory['ITEMCOST']) ? $PayPal_get_inventory['ITEMCOST'] : '';
+                    $item_soldout_url_step2 = isset($PayPal_get_inventory['SOLDOUTURL']) ? $PayPal_get_inventory['SOLDOUTURL'] : '';
+                    //echo "<pre>";            
+                    var_dump($PayPal_get_inventory);
+                    //exit;
+                }
+                
              }
             
-            echo "<pre>";            
-            var_dump($button_details_array);
-            exit;
+            //echo "<pre>";            
+            //var_dump($button_details_array);
+            //exit;
         }
                 
         ?>
@@ -1078,7 +1101,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <div class="form-group">
-                                                    <input class="checkbox form-control" type="checkbox" id="enableInventory" name="enable_inventory" value="enabledInventory">
+                                                    <?php
+                                                        if($track_inv=='1'){
+                                                            $enable_inventory = 'checked';
+                                                        }
+                                                        else{
+                                                            $enable_inventory = '';
+                                                        }
+                                                    ?>
+                                                    <input class="checkbox form-control" type="checkbox" id="enableInventory" name="enable_inventory" value="enabledInventory" <?php echo $enable_inventory; ?>>
                                                     <label for="enableInventory" class="control-label"><?php echo __('Track inventory', 'paypal-wp-button-manager'); ?></label>
                                                 </div>
                                             </div>
@@ -1091,7 +1122,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <div class="form-group">
-                                                    <input class="checkbox form-control" type="checkbox" id="enableProfitAndLoss" name="enable_profit_and_loss" value="enabledProfitAndLoss">
+                                                    <?php
+                                                        if($track_pnl=='1'){
+                                                            $enable_profit_and_loss = 'checked';
+                                                        }
+                                                        else{
+                                                            $enable_profit_and_loss = '';
+                                                        }
+                                                    ?>
+                                                    <input class="checkbox form-control" type="checkbox" id="enableProfitAndLoss" name="enable_profit_and_loss" value="enabledProfitAndLoss" <?php echo $enable_profit_and_loss; ?>>
                                                     <label for="enableProfitAndLoss" class="control-label"><?php echo __('Track profit and losses', 'paypal-wp-button-manager'); ?></label>
                                                 </div>
                                             </div>
@@ -1126,17 +1165,17 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             <label class="control-label">
                                                                 <div class="invRelated"><?php echo __('Qty. in stock', 'paypal-wp-button-manager'); ?></div>
                                                             </label>
-                                                            <div class="invRelated"><input class="form-control" type="text" name="items_in_stock" value="" disabled=""></div>
+                                                            <div class="invRelated"><input class="form-control" type="text" name="items_in_stock" value="<?php echo $item_qty_step2; ?>" disabled=""></div>
                                                         </div>
 
                                                         <div class="col-md-3">                                                                                            
                                                             <div class="invRelated"><label><?php echo __('Alert qty. (optional)', 'paypal-wp-button-manager'); ?> <span class="autoTooltip helpText" title="" tabindex="0"><?php echo __("What's this?", 'paypal-wp-button-manager'); ?><span class="accessAid"><?php echo __('When your inventory falls to this number, PayPal will send you an e-mail alert.', 'paypal-wp-button-manager'); ?></span></span></label></div>
-                                                             <div class="invRelated"><input class="form-control" type="text" name="alert_quantity" value="" disabled=""></div>
+                                                             <div class="invRelated"><input class="form-control" type="text" name="alert_quantity" value="<?php echo $item_alert_step2; ?>" disabled=""></div>
                                                         </div>
 
                                                         <div class="col-md-3">
                                                             <div class="PNLRelated"><label><?php echo __('Price', 'paypal-wp-button-manager'); ?> ( <span class="currencyLabel">USD</span> )</label></div>
-                                                            <div class="PNLRelated"><input class="form-control" type="text" name="item_cost" value="" disabled=""></div>
+                                                            <div class="PNLRelated"><input class="form-control" type="text" name="item_cost" value="<?php echo $item_cost_step2; ?>" disabled=""></div>
                                                         </div>
                                                     </div>
                                             </div>
@@ -1191,11 +1230,21 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                         <div class="col-md-9">
                                             <div class="form-group">                                                                            
                                                 <div class="pre-order opened" id="shoppingPreOrder">
-                                                    <input class="radio form-control" type="radio" id="enablePreOrder" name="enable_pre_order" value="enabledPreOrder" disabled="">
+                                                    <?php
+                                                        if(!empty($item_soldout_url_step2)){
+                                                            $dontEnablePreOrder='checked';
+                                                            $enablePreOrder='';
+                                                        }
+                                                        else{
+                                                            $dontEnablePreOrder='';
+                                                            $enablePreOrder='checked';
+                                                        }
+                                                    ?>
+                                                    <input class="radio form-control" type="radio" id="enablePreOrder" name="enable_pre_order" value="enabledPreOrder" disabled="" <?php echo $enablePreOrder; ?>>
                                                     <label for="enablePreOrder" class="control-label"><?php echo __('Yes, customers can buy the item as usual.', 'paypal-wp-button-manager'); ?></label>
                                                 </div>
                                                 <div class="no-pre-order">
-                                                    <input class="radio opened form-control" type="radio" id="dontEnablePreOrder" checked="" name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened control-label"><?php echo __("No, don't let customers buy the item.", 'paypal-wp-button-manager'); ?> <a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDSoldOutExample" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Preview</a></label>
+                                                    <input class="radio opened form-control" type="radio" id="dontEnablePreOrder" <?php echo $dontEnablePreOrder; ?> name="enable_pre_order" value="dontEnablePreOrder" disabled=""><label id="shoppingNoPreOrderLabel" for="dontEnablePreOrder" class="opened control-label"><?php echo __("No, don't let customers buy the item.", 'paypal-wp-button-manager'); ?> <a target="_blank" class="infoLink" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=xpt/Merchant/popup/BDSoldOutExample" onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})">Preview</a></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -1207,7 +1256,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                             <strong><?php echo __('Continue Shopping', 'paypal-wp-button-manager'); ?></strong>
                                             <?php echo __(' button on "item sold out" page', 'paypal-wp-button-manager'); ?>
                                         </span>
-                                        <input class="type-text form-control" type="text" id="soldOutURL" name="sold_out_url" value="" disabled="">
+                                        <input class="type-text form-control" type="text" id="soldOutURL" name="sold_out_url" value="<?php echo $item_soldout_url_step2; ?>" disabled="">
                                         <span class="littleHint">Ex: http://www.mybuynowstore.com</span>
                                         </p>
                                     </div>
