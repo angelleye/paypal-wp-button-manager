@@ -96,12 +96,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 if($btnvar_key[0] == 'L_'){
                     $btnvar_val=explode('=', $value);
                     $BUTTONVAR[substr($btnvar_val[0],1)] = substr($btnvar_val[1], 0, -1);
-                }
-                
-                $option0select_key = explode('OPTION0SELECT', $key);
-                if($option0select_key[0] == 'L_'){
-                    $OPTION0SELECT[] = substr(substr($value,1),0, -1);
-                }
+                }                
                 
                 $option0price_key = explode('OPTION0PRICE', $key);
                 if($option0price_key[0] == 'L_'){
@@ -113,6 +108,44 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                     $TEXTBOX[] = $value;
                 }                                                
             }
+            
+            /* START section to get values from dropdown of the customizzation section*/
+            if(array_key_exists('OPTION0NAME', $button_details_array)){
+                $option0name = substr(substr($button_details_array['OPTION0NAME'],1),0, -1);
+                for($i=0;$i<10;$i++){
+                    if(array_key_exists('L_OPTION0SELECT'.$i, $button_details_array)){                                
+                       $option0select[] = substr(substr($button_details_array['L_OPTION0SELECT'.$i],1),0, -1);
+                    }
+                }
+            }
+            
+            if(array_key_exists('OPTION1NAME', $button_details_array)){
+                $option1name = substr(substr($button_details_array['OPTION1NAME'],1),0, -1);
+                for($i=0;$i<10;$i++){
+                    if(array_key_exists('L_OPTION1SELECT'.$i, $button_details_array)){                                
+                       $option1select[] = substr(substr($button_details_array['L_OPTION1SELECT'.$i],1),0, -1);
+                    }
+                }
+            }
+            
+            if(array_key_exists('OPTION2NAME', $button_details_array)){
+                $option2name = substr(substr($button_details_array['OPTION2NAME'],1),0, -1);
+                for($i=0;$i<10;$i++){
+                    if(array_key_exists('L_OPTION2SELECT'.$i, $button_details_array)){                                
+                       $option2select[] = substr(substr($button_details_array['L_OPTION2SELECT'.$i],1),0, -1);
+                    }
+                }
+            }
+            
+            if(array_key_exists('OPTION3NAME', $button_details_array)){
+                $option3name = substr(substr($button_details_array['OPTION3NAME'],1),0, -1);
+                for($i=0;$i<10;$i++){
+                    if(array_key_exists('L_OPTION3SELECT'.$i, $button_details_array)){                                
+                       $option3select[] = substr(substr($button_details_array['L_OPTION3SELECT'.$i],1),0, -1);
+                    }
+                }
+            }
+            /* END of section to get values from dropdown of the customizzation section*/                        
             
             $dom = new DOMDocument();
             $dom->loadHTML($button_details_array['WEBSITECODE']);
@@ -391,75 +424,198 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <p id="addDropdown" class="hideShow opened">
+                                                                                <?php
+                                                                                        if(isset($option0name)){
+                                                                                            $savedDropdownSection1_class='opened';
+                                                                                            $dropdown1_title=$option0name;
+                                                                                            $dropdown1_title_disabled='';
+                                                                                            $dropdown_checkbox='checked';
+                                                                                            $previewDropdownSection1_label=$option0name;
+                                                                                            $previewDropdownSection1_class='opened';
+                                                                                        }
+                                                                                        else{
+                                                                                            $savedDropdownSection1_class='hide';
+                                                                                            $dropdown1_title='';
+                                                                                            $dropdown1_title_disabled='disabled';
+                                                                                            $dropdown_checkbox='';
+                                                                                            $previewDropdownSection1_label='Dropdown Title';
+                                                                                            $previewDropdownSection1_class='hide';
+                                                                                        }
+                                                                                        
+                                                                                        if(isset($option1name)){
+                                                                                            $savedDropdownSection2_class='opened';
+                                                                                            $dropdown2_title=$option1name;
+                                                                                            $dropdown2_title_disabled='';                                                                                            
+                                                                                            $previewDropdownSection2_label=$option1name;
+                                                                                            $previewDropdownSection2_class='opened';
+                                                                                        }
+                                                                                        else{
+                                                                                            $savedDropdownSection2_class='hide';
+                                                                                            $dropdown2_title='';
+                                                                                            $dropdown2_title_disabled='disabled';                                                                                            
+                                                                                            $previewDropdownSection2_label='Dropdown Title';
+                                                                                            $previewDropdownSection2_class='hide';
+                                                                                        }
+                                                                                        
+                                                                                        if(isset($option2name)){
+                                                                                            $savedDropdownSection3_class='opened';
+                                                                                            $dropdown3_title=$option2name;
+                                                                                            $dropdown3_title_disabled='';                                                                                            
+                                                                                            $previewDropdownSection3_label=$option2name;
+                                                                                            $previewDropdownSection3_class='opened';
+                                                                                        }
+                                                                                        else{
+                                                                                            $savedDropdownSection3_class='hide';
+                                                                                            $dropdown3_title='';
+                                                                                            $dropdown3_title_disabled='disabled';                                                                                            
+                                                                                            $previewDropdownSection3_label='Dropdown Title';
+                                                                                            $previewDropdownSection3_class='hide';
+                                                                                        }
+                                                                                        
+                                                                                        if(isset($option3name)){
+                                                                                            $savedDropdownSection4_class='opened';
+                                                                                            $dropdown4_title=$option3name;
+                                                                                            $dropdown4_title_disabled='';                                                                                            
+                                                                                            $previewDropdownSection4_label=$option3name;
+                                                                                            $previewDropdownSection4_class='opened';
+                                                                                        }
+                                                                                        else{
+                                                                                            $savedDropdownSection4_class='hide';
+                                                                                            $dropdown4_title='';
+                                                                                            $dropdown4_title_disabled='disabled';                                                                                            
+                                                                                            $previewDropdownSection4_label='Dropdown Title';
+                                                                                            $previewDropdownSection4_class='hide';
+                                                                                        }                                                                                        
+                                                                                ?>
                                                                                 <label for="dropdown" class="control-label">
-                                                                                    <input class="checkbox form-control" type="checkbox" id="dropdown" name="dropdown" value="createdDropdown">
+                                                                                    <input class="checkbox form-control" type="checkbox" id="dropdown" name="dropdown" value="createdDropdown" <?php echo $dropdown_checkbox; ?>>
                                                                                     <span class="hideShow accessAid hide" id="dropDownLabelForSubscription">Add a dropdown menu </span>
                                                                                     <span id="dropDownLabel" class="opened">Add drop-down menu&nbsp;</span>
                                                                                 </label>
                                                                             </p>
                                                                         </div>
-                                                                    </div>    
+                                                                    </div>   
                                                                     
                                                                     <div class="hideShow dropdownSection accessAid hide" id="dropdownSection1">
-                                                                        <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown1_title" value=""></p>
+                                                                        <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" <?php echo $dropdown1_title_disabled; ?> name="dropdown1_title" value="<?php echo $dropdown1_title; ?>"></p>
                                                                         <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
+                                                                        <?php
+                                                                            if($string=='edit' && !empty($option0select)){ ?>
+                                                                                <div id="optionsContainer1">
+                                                                                    <?php 
+                                                                                     for($i=0;$i<count($option0select);$i++){
+                                                                                         echo '<p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" name="dd1_option_name" value="'.$option0select[$i].'"></p>';
+                                                                                     }
+                                                                                    ?>                                                                                    
+                                                                                </div>
+                                                                        <?php   }
+                                                                            else{
+                                                                        ?>
                                                                         <div id="optionsContainer1">
                                                                             <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 1"></p>
                                                                             <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 2"></p>
                                                                             <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 3"></p>
                                                                         </div>
-                                                                        <p class="moreOptionsLink"><a class="addOption btn btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
+                                                                        <?php } ?>
+                                                                        <p class="moreOptionsLink"><a class="addOption btn btn-sm btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
                                                                         <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                     </div>
-                                                                    <div class="hideShow accessAid savedDropdownSection hide" id="savedDropdownSection1">
-                                                                        <p><label id="savedDropdown1" for="" class="control-label"></label></p>
-                                                                        <p class="editDelete"><a class="editDropdown btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="glyphicon glyphicon-remove-sign"></span></a></p>
+                                                                    <div class="hideShow accessAid savedDropdownSection <?php echo $savedDropdownSection1_class; ?>" id="savedDropdownSection1">
+                                                                        <p><label id="savedDropdown1" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php echo $option0name.": "; echo implode (", ", $option0select); ?></label></p>
+                                                                        <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
+                                                                    
+                                                                    
                                                                     <div class="hideShow dropdownSection accessAid hide" id="dropdownSection2">
-                                                                        <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown2_title" value=""></p>
+                                                                        <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" <?php echo $dropdown2_title_disabled; ?> name="dropdown2_title" value="<?php echo $dropdown2_title; ?>"></p>
                                                                         <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
+                                                                        <?php
+                                                                            if($string=='edit' && !empty($option1select)){ ?>
+                                                                        <div id="optionsContainer2">
+                                                                            <?php 
+                                                                             for($i=0;$i<count($option1select);$i++){
+                                                                                 echo '<p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" name="dd2_option_name" value="'.$option1select[$i].'"></p>';
+                                                                             }
+                                                                            ?>
+                                                                        </div>
+                                                                        <?php   }
+                                                                            else{
+                                                                        ?>                                                                        
                                                                         <div id="optionsContainer2">
                                                                             <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 1"></p>
                                                                             <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 2"></p>
                                                                             <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 3"></p>
                                                                         </div>
-                                                                        <p class="moreOptionsLink"><a class="addOption btn btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
+                                                                        <?php } ?>
+                                                                        <p class="moreOptionsLink"><a class="addOption btn btn-sm btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
                                                                         <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option_2" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                     </div>
-                                                                    <div class="hideShow accessAid savedDropdownSection hide" id="savedDropdownSection2">
-                                                                        <p><label id="savedDropdown2" for="" class="control-label"></label></p>
-                                                                        <p class="editDelete"><a class="editDropdown btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                    <div class="hideShow accessAid savedDropdownSection <?php echo $savedDropdownSection2_class; ?>" id="savedDropdownSection2">
+                                                                        <p><label id="savedDropdown2" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php echo $option1name.": "; echo implode (", ", $option1select); ?></label></p>
+                                                                        <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
+                                                                    
+                                                                    
                                                                     <div class="hideShow dropdownSection accessAid hide" id="dropdownSection3">
-                                                                        <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown3_title" value=""></p>
+                                                                        <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" <?php echo $dropdown3_title_disabled; ?> name="dropdown3_title" value="<?php echo $dropdown3_title; ?>"></p>
                                                                         <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
+                                                                        <?php
+                                                                            if($string=='edit' && !empty($option2select)){ ?>
+                                                                        <div id="optionsContainer3">
+                                                                            <?php 
+                                                                             for($i=0;$i<count($option2select);$i++){
+                                                                                 echo '<p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" name="dd3_option_name" value="'.$option2select[$i].'"></p>';
+                                                                             }
+                                                                            ?>
+                                                                        </div>
+                                                                        <?php   }
+                                                                            else{
+                                                                        ?>        
                                                                         <div id="optionsContainer3">
                                                                             <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 1"></p>
                                                                             <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 2"></p>
                                                                             <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 3"></p>
                                                                         </div>
-                                                                        <p class="moreOptionsLink"><a class="addOption btn btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
+                                                                        <?php } ?>
+                                                                        <p class="moreOptionsLink"><a class="addOption btn btn-sm btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
                                                                         <p class="saveCancel"><input class="saveOption  btn btn-default" type="submit" name="save_option_3" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                     </div>
-                                                                    <div class="hideShow accessAid savedDropdownSection hide" id="savedDropdownSection3">
-                                                                        <p><label id="savedDropdown3" for=""></label></p>
-                                                                        <p class="editDelete"><a class="editDropdown btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                    <div class="hideShow accessAid savedDropdownSection <?php echo $savedDropdownSection3_class; ?>" id="savedDropdownSection3">
+                                                                        <p><label id="savedDropdown3" for="" style="font-size: 12px;font-weight: 500;"><?php echo $option2name.": "; echo implode (", ", $option2select); ?></label></p>
+                                                                        <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
+                                                                    
+                                                                    
                                                                     <div class="hideShow dropdownSection accessAid hide" id="dropdownSection4">
-                                                                        <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" disabled="" name="dropdown4_title" value=""></p>
+                                                                        <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control"  <?php echo $dropdown4_title_disabled; ?> name="dropdown4_title" value="<?php echo $dropdown4_title; ?>"></p>
                                                                         <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
+                                                                         <?php
+                                                                            if($string=='edit' && !empty($option3select)){ ?>
+                                                                        <div id="optionsContainer4">
+                                                                            <?php 
+                                                                             for($i=0;$i<count($option3select);$i++){
+                                                                                 echo '<p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" name="dd4_option_name" value="'.$option3select[$i].'"></p>';
+                                                                             }
+                                                                            ?>
+                                                                        </div>
+                                                                        <?php   }
+                                                                            else{
+                                                                        ?>    
                                                                         <div id="optionsContainer4">
                                                                             <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 1"></p>
                                                                             <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 2"></p>
                                                                             <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 3"></p>
                                                                         </div>
-                                                                        <p class="moreOptionsLink"><a class="addOption btn btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
+                                                                            <?php } ?>
+                                                                        <p class="moreOptionsLink"><a class="addOption btn btn-sm btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
                                                                         <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option_4" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                     </div>
-                                                                    <div class="hideShow accessAid savedDropdownSection hide" id="savedDropdownSection4">
-                                                                        <p><label id="savedDropdown4" for="" class="form-control"></label></p>
-                                                                        <p class="editDelete"><a class="editDropdown btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                    <div class="hideShow accessAid savedDropdownSection  <?php echo $savedDropdownSection4_class; ?>" id="savedDropdownSection4">
+                                                                        <p><label id="savedDropdown4" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php echo $option3name.": "; echo implode (", ", $option3select); ?></label></p>
+                                                                        <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
+                                                                    
+                                                                    
                                                                         <p id="addNewDropdownSection" class="editDelete hideShow accessAid hide"><a id="addNewDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-success">Add another drop-down menu</a></p>                                                                                    
                                                                         <div class="row">
                                                                             <div class="col-md-12">
@@ -683,12 +839,25 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-12">
-                                                                             <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection1">
-                                                                                <label class="previewDropdownTitle control-label" for="optionsDropdown1">Dropdown title</label>
+                                                                             <p class="hideShow accessAid previewDropdown <?php echo $previewDropdownSection1_class; ?>" id="previewDropdownSection1">
+                                                                                <label class="previewDropdownTitle control-label" for="optionsDropdown1"><?php echo $previewDropdownSection1_label; ?></label>
                                                                                 <select id="optionsDropdown1" name="options_dropdown1" class="optionsDropdown form-control">
-                                                                                    <option value="" selected="">Option 1</option>
-                                                                                    <option value="">Option 2</option>
-                                                                                    <option value="">Option 3</option>
+                                                                                    <?php
+                                                                                        if($string=='edit' && !empty($option0select)){
+                                                                                            for($i=0;$i<count($option0select);$i++){
+                                                                                                if($i==0){
+                                                                                                    $optionsDropdown1_selected='selected';
+                                                                                                }
+                                                                                                else{
+                                                                                                    $optionsDropdown1_selected='';
+                                                                                                }
+                                                                                                echo '<option value="'.$option0select[$i].'" '.$optionsDropdown1_selected.'>'.$option0select[$i].'</option>';
+                                                                                            }
+                                                                                        }
+                                                                                        else{
+                                                                                            echo '<option value="" selected="">Option 1</option><option value="">Option 2</option><option value="">Option 3</option>';
+                                                                                        }
+                                                                                    ?>
                                                                                 </select>
                                                                             </p>
                                                                         </div>
@@ -696,24 +865,50 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     
                                                                     <div class="row">
                                                                         <div class="col-md-12">
-                                                                            <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection2">
-                                                                                <label class="previewDropdownTitle control-label" for="">Dropdown title</label>
+                                                                            <p class="hideShow accessAid previewDropdown <?php echo $previewDropdownSection2_class; ?>" id="previewDropdownSection2">
+                                                                                <label class="previewDropdownTitle control-label" for=""><?php echo $previewDropdownSection2_label; ?></label>
                                                                                 <select id="optionsDropdown2" name="options_dropdown2" class="optionsDropdown form-control">
-                                                                                    <option value="" selected="">Option 1</option>
-                                                                                    <option value="">Option 2</option>
-                                                                                    <option value="">Option 3</option>
+                                                                                     <?php
+                                                                                        if($string=='edit' && !empty($option1select)){
+                                                                                            for($i=0;$i<count($option1select);$i++){
+                                                                                                if($i==0){
+                                                                                                    $optionsDropdown2_selected='selected';
+                                                                                                }
+                                                                                                else{
+                                                                                                    $optionsDropdown2_selected='';
+                                                                                                }
+                                                                                                echo '<option value="'.$option1select[$i].'" '.$optionsDropdown2_selected.'>'.$option1select[$i].'</option>';
+                                                                                            }
+                                                                                        }
+                                                                                        else{
+                                                                                            echo '<option value="" selected="">Option 1</option><option value="">Option 2</option><option value="">Option 3</option>';
+                                                                                        }
+                                                                                    ?>
                                                                                 </select>
                                                                             </p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-12">
-                                                                            <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection3">
-                                                                                <label class="previewDropdownTitle control-label" for="">Dropdown title</label>
+                                                                            <p class="hideShow accessAid previewDropdown <?php echo $previewDropdownSection3_class; ?>" id="previewDropdownSection3">
+                                                                                <label class="previewDropdownTitle control-label" for=""><?php echo $previewDropdownSection3_label; ?></label>
                                                                                 <select id="optionsDropdown3" name="options_dropdown3" class="optionsDropdown form-control">
-                                                                                    <option value="" selected="">Option 1</option>
-                                                                                    <option value="">Option 2</option>
-                                                                                    <option value="">Option 3</option>
+                                                                                    <?php
+                                                                                        if($string=='edit' && !empty($option2select)){
+                                                                                            for($i=0;$i<count($option2select);$i++){
+                                                                                                if($i==0){
+                                                                                                    $optionsDropdown3_selected='selected';
+                                                                                                }
+                                                                                                else{
+                                                                                                    $optionsDropdown3_selected='';
+                                                                                                }
+                                                                                                echo '<option value="'.$option2select[$i].'" '.$optionsDropdown3_selected.'>'.$option2select[$i].'</option>';
+                                                                                            }
+                                                                                        }
+                                                                                        else{
+                                                                                            echo '<option value="" selected="">Option 1</option><option value="">Option 2</option><option value="">Option 3</option>';
+                                                                                        }
+                                                                                    ?>
                                                                                 </select>
                                                                             </p>
                                                                         </div>
@@ -721,12 +916,25 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     
                                                                     <div class="row">
                                                                         <div class="col-md-12">
-                                                                            <p class="hideShow accessAid previewDropdown hide" id="previewDropdownSection4">
-                                                                                <label class="previewDropdownTitle control-label" for="">Dropdown title</label>
+                                                                            <p class="hideShow accessAid previewDropdown <?php echo $previewDropdownSection4_class; ?>" id="previewDropdownSection4">
+                                                                                <label class="previewDropdownTitle control-label" for=""><?php echo $previewDropdownSection4_label; ?></label>
                                                                                 <select id="optionsDropdown4" name="options_dropdown4" class="optionsDropdown form-control">
-                                                                                    <option value="" selected="">Option 1</option>
-                                                                                    <option value="">Option 2</option>
-                                                                                    <option value="">Option 3</option>
+                                                                                     <?php
+                                                                                        if($string=='edit' && !empty($option3select)){
+                                                                                            for($i=0;$i<count($option3select);$i++){
+                                                                                                if($i==0){
+                                                                                                    $optionsDropdown4_selected='selected';
+                                                                                                }
+                                                                                                else{
+                                                                                                    $optionsDropdown4_selected='';
+                                                                                                }
+                                                                                                echo '<option value="'.$option3select[$i].'" '.$optionsDropdown4_selected.'>'.$option3select[$i].'</option>';
+                                                                                            }
+                                                                                        }
+                                                                                        else{
+                                                                                            echo '<option value="" selected="">Option 1</option><option value="">Option 2</option><option value="">Option 3</option>';
+                                                                                        }
+                                                                                    ?>
                                                                                 </select>
                                                                             </p>
                                                                         </div>
