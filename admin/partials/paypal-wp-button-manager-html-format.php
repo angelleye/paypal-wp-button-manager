@@ -62,6 +62,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $customButtonSection_class='hide';        
         $donation_name='';
         $donation_id='';
+        $donation_currency='';
         $buttonImageSize ='';
         $buttonImageUrl='';
         $donation_amount ='';
@@ -80,6 +81,18 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $item_soldout_url_step2='';
         $radioAddToCartButton = 'checked';
         $radioBuyNowButton='';
+        $product_name='';
+        $product_id='';
+        $item_price='';
+        $item_price_currency='';
+        $item_shipping_amount='';
+        $itemTaxRate='';
+        $optionname='';
+        $optionselect='';
+        $buttonLanguage='';
+        $buttonCountry='';
+        
+        
         
         if($string=='edit'){ 
             
