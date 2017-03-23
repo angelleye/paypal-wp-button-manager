@@ -110,41 +110,28 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
             }
             
             /* START section to get values from dropdown of the customizzation section*/
-            if(array_key_exists('OPTION0NAME', $button_details_array)){
-                $option0name = substr(substr($button_details_array['OPTION0NAME'],1),0, -1);
-                for($i=0;$i<10;$i++){
-                    if(array_key_exists('L_OPTION0SELECT'.$i, $button_details_array)){                                
-                       $option0select[] = substr(substr($button_details_array['L_OPTION0SELECT'.$i],1),0, -1);
-                    }
-                }
-            }
             
-            if(array_key_exists('OPTION1NAME', $button_details_array)){
-                $option1name = substr(substr($button_details_array['OPTION1NAME'],1),0, -1);
-                for($i=0;$i<10;$i++){
-                    if(array_key_exists('L_OPTION1SELECT'.$i, $button_details_array)){                                
-                       $option1select[] = substr(substr($button_details_array['L_OPTION1SELECT'.$i],1),0, -1);
+            for($k=0;$k<5;$k++){
+                if(array_key_exists('OPTION'.$k.'NAME', $button_details_array)){
+                    $optionname[] = substr(substr($button_details_array['OPTION'.$k.'NAME'],1),0, -1);
+                    if(array_key_exists('L_OPTION'.$k.'PRICE0', $button_details_array)){
+                        for($j=0;$j<10;$j++){
+                            if(array_key_exists('L_OPTION'.$k.'PRICE'.$j, $button_details_array)){                                
+                               $optionprice[$k][] = substr(substr($button_details_array['L_OPTION'.$k.'PRICE'.$j],1),0, -1);
+                            }
+                        }
+                    }
+                    for($i=0;$i<10;$i++){
+                        if(array_key_exists('L_OPTION'.$k.'SELECT'.$i, $button_details_array)){                                
+                           $optionselect[$k][] = substr(substr($button_details_array['L_OPTION'.$k.'SELECT'.$i],1),0, -1);
+                        }
                     }
                 }
             }
+            //echo "<pre>";
+            //var_dump('Options Name',$optionname,'Option Price',$optionprice,'Option Select',$optionselect);
+            //exit;
             
-            if(array_key_exists('OPTION2NAME', $button_details_array)){
-                $option2name = substr(substr($button_details_array['OPTION2NAME'],1),0, -1);
-                for($i=0;$i<10;$i++){
-                    if(array_key_exists('L_OPTION2SELECT'.$i, $button_details_array)){                                
-                       $option2select[] = substr(substr($button_details_array['L_OPTION2SELECT'.$i],1),0, -1);
-                    }
-                }
-            }
-            
-            if(array_key_exists('OPTION3NAME', $button_details_array)){
-                $option3name = substr(substr($button_details_array['OPTION3NAME'],1),0, -1);
-                for($i=0;$i<10;$i++){
-                    if(array_key_exists('L_OPTION3SELECT'.$i, $button_details_array)){                                
-                       $option3select[] = substr(substr($button_details_array['L_OPTION3SELECT'.$i],1),0, -1);
-                    }
-                }
-            }
             /* END of section to get values from dropdown of the customizzation section*/                        
             
             $dom = new DOMDocument();
@@ -203,10 +190,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                     $item_qty_step2    =  isset($PayPal_get_inventory['ITEMQTY']) ? $PayPal_get_inventory['ITEMQTY'] : '';
                     $item_alert_step2  =  isset($PayPal_get_inventory['ITEMALERT']) ? $PayPal_get_inventory['ITEMALERT'] : '';
                     $item_cost_step2   =  isset($PayPal_get_inventory['ITEMCOST']) ? $PayPal_get_inventory['ITEMCOST'] : '';
-                    $item_soldout_url_step2 = isset($PayPal_get_inventory['SOLDOUTURL']) ? $PayPal_get_inventory['SOLDOUTURL'] : '';
-                    //echo "<pre>";            
-                    //var_dump($PayPal_get_inventory);
-                    //exit;
+                    $item_soldout_url_step2 = isset($PayPal_get_inventory['SOLDOUTURL']) ? $PayPal_get_inventory['SOLDOUTURL'] : '';                    
                 }
                 
              }
@@ -361,11 +345,25 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 </div>
                                                                 
                                                                 <div id="customizeSection">
+                                                                    <?php
+                                                                        if(!empty($optionprice) && $string=='edit'){
+                                                                            $dropdownPrice_checkbox='checked';
+                                                                            $savedDropdownPriceSection_class='opened';
+                                                                            $dropdown_price_title_input=$optionname[0];
+                                                                            $dropdown_price_title_disabled='';
+                                                                        }
+                                                                        else{
+                                                                            $dropdownPrice_checkbox='';
+                                                                            $savedDropdownPriceSection_class='hide';
+                                                                            $dropdown_price_title_input='';
+                                                                            $dropdown_price_title_disabled='disabled';
+                                                                        }
+                                                                    ?>
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <p id="addDropdownPrice" class="hideShow opened">
                                                                                 <label for="dropdownPrice" class="control-label">
-                                                                                    <input class="checkbox form-control" type="checkbox" id="dropdownPrice" name="dropdown_price" value="createdDropdownPrice">
+                                                                                    <input class="checkbox form-control" type="checkbox" id="dropdownPrice" name="dropdown_price" value="createdDropdownPrice" <?php echo $dropdownPrice_checkbox; ?>>
                                                                                     <span class="products">Add drop-down menu with price/option&nbsp;</span>
                                                                                     <span class="subscriptions accessAid fadedOut">Add a dropdown menu with prices and options</span>
                                                                                 </label>
@@ -373,7 +371,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         </div>
                                                                     </div>
                                                                     <div id="dropdownPriceSection" class="hideShow accessAid hide">
-                                                                        <p class="title dropdownPriceTitle col-md-9"><label for="dropdownPriceTitle" class="control-label"><span class="products">Name of drop-down menu (ex.: "Colors," "Sizes")</span><span class="subscriptions accessAid fadedOut">Description (For example, "Payment options".)</span></label><input class="text form-control" maxlength="64" type="text" id="dropdownPriceTitle" disabled="" name="dropdown_price_title" value=""></p>
+                                                                        <p class="title dropdownPriceTitle col-md-9">
+                                                                            <label for="dropdownPriceTitle" class="control-label">
+                                                                                <span class="products">Name of drop-down menu (ex.: "Colors," "Sizes")</span>
+                                                                                <span class="subscriptions accessAid fadedOut">Description (For example, "Payment options".)</span>
+                                                                            </label>
+                                                                            <input class="text form-control" maxlength="64" type="text" id="dropdownPriceTitle" <?php echo $dropdown_price_title_disabled; ?> name="dropdown_price_title" value="<?php echo $dropdown_price_title_input; ?>">
+                                                                        </p>
                                                                         <p><label class="optionNameLbl control-label" for=""><span class="products">Menu option name</span><span class="subscriptions accessAid fadedOut">Menu Name</span></label><label class="optionPriceLbl control-label" for="optionPrice"><span class="products">Price</span><span class="subscriptions accessAid fadedOut">Amount (<span class="currencyLabel control-label">USD</span>)</span></label><label class="optionCurrencyLbl control-label" for="optionCurrency"><span class="products">Currency</span><span class="subscriptions accessAid fadedOut control-label">Frequency</span></label></p>
                                                                         <div id="optionsPriceContainer">
                                                                             <p class="optionRow col-sm-12 form-inline">
@@ -382,7 +386,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 <?php $paypal_button_currency = get_paypal_button_currency(); ?>
                                                                                 <select class="ddpOptionCurrency show form-control" name="ddp_option_currency">
                                                                                     <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
-                                                                                        <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
+                                                                                        <?php 
+                                                                                            if($item_price_currency==$paypal_button_currency_value){
+                                                                                                $ddpOptionCurrency_selected='selected';
+                                                                                            }
+                                                                                            else{
+                                                                                                $ddpOptionCurrency_selected='';
+                                                                                            }
+                                                                                        ?>
+                                                                                        <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>" <?php echo $ddpOptionCurrency_selected; ?>><?php echo $paypal_button_currency_value; ?></option>
                                                                                     <?php } ?>
                                                                                 </select>
                                                                                 <?php $paypal_button_subscriptions = get_paypal_button_subscriptions(); ?>
@@ -417,20 +429,29 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             <a id="removeOptionPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span></a></p>
                                                                         <p class="saveCancel"><input class="btn btn-default" type="submit" id="saveOptionPrice" name="save_option_price" value="Done" alt="Done"><a id="cancelOptionPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-danger">Cancel</a></p>
                                                                     </div>
-                                                                    <div id="savedDropdownPriceSection" class="hideShow accessAid hide">
-                                                                        <p><label id="savedDropdownPrice" for=""></label></p>
-                                                                        <p class="editDelete"><a id="editDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-info"><span class="products">Edit</span><span class="subscriptions accessAid fadedOut">Change</span></a>&nbsp;|&nbsp;<a id="deleteDropdownPrice" class="btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products glyphicon glyphicon-remove-sign"></span><span class="subscriptions accessAid fadedOut glyphicon glyphicon-remove"></span></a></p>
+                                                                    <div id="savedDropdownPriceSection" class="hideShow accessAid <?php echo $savedDropdownPriceSection_class; ?>">
+                                                                        <p><label id="savedDropdownPrice" for="" style="font-size: 12px;font-weight: 500;"><?php echo $optionname[0].': '; echo implode(', ', $optionselect[0]) ?></label></p>
+                                                                        <p class="editDelete"><a id="editDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-sm btn-info"><span class="products">Edit</span><span class="subscriptions accessAid fadedOut">Change</span></a>&nbsp;|&nbsp;<a id="deleteDropdownPrice" class="btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products">Delete</span><span class="subscriptions accessAid fadedOut glyphicon glyphicon-remove"></span></a></p>
                                                                     </div>
+                                                                    
+                                                                    
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <p id="addDropdown" class="hideShow opened">
                                                                                 <?php
-                                                                                        if(isset($option0name)){
+                                                                                        if(!empty($optionprice[0])){
+                                                                                            $t=1;
+                                                                                        }
+                                                                                        else{
+                                                                                            $t=0;
+                                                                                        }
+                                                                                
+                                                                                        if(isset($optionname[0+$t])){
                                                                                             $savedDropdownSection1_class='opened';
-                                                                                            $dropdown1_title=$option0name;
+                                                                                            $dropdown1_title=$optionname[0+$t];
                                                                                             $dropdown1_title_disabled='';
                                                                                             $dropdown_checkbox='checked';
-                                                                                            $previewDropdownSection1_label=$option0name;
+                                                                                            $previewDropdownSection1_label=$optionname[0+$t];
                                                                                             $previewDropdownSection1_class='opened';
                                                                                         }
                                                                                         else{
@@ -442,11 +463,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                             $previewDropdownSection1_class='hide';
                                                                                         }
                                                                                         
-                                                                                        if(isset($option1name)){
+                                                                                        if(isset($optionname[1+$t])){
                                                                                             $savedDropdownSection2_class='opened';
-                                                                                            $dropdown2_title=$option1name;
+                                                                                            $dropdown2_title=$optionname[1+$t];
                                                                                             $dropdown2_title_disabled='';                                                                                            
-                                                                                            $previewDropdownSection2_label=$option1name;
+                                                                                            $previewDropdownSection2_label=$optionname[1+$t];
                                                                                             $previewDropdownSection2_class='opened';
                                                                                         }
                                                                                         else{
@@ -457,11 +478,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                             $previewDropdownSection2_class='hide';
                                                                                         }
                                                                                         
-                                                                                        if(isset($option2name)){
+                                                                                        if(isset($optionname[2+$t])){
                                                                                             $savedDropdownSection3_class='opened';
-                                                                                            $dropdown3_title=$option2name;
+                                                                                            $dropdown3_title=$optionname[2+$t];
                                                                                             $dropdown3_title_disabled='';                                                                                            
-                                                                                            $previewDropdownSection3_label=$option2name;
+                                                                                            $previewDropdownSection3_label=$optionname[2+$t];
                                                                                             $previewDropdownSection3_class='opened';
                                                                                         }
                                                                                         else{
@@ -472,11 +493,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                             $previewDropdownSection3_class='hide';
                                                                                         }
                                                                                         
-                                                                                        if(isset($option3name)){
+                                                                                        if(isset($optionname[3+$t])){
                                                                                             $savedDropdownSection4_class='opened';
-                                                                                            $dropdown4_title=$option3name;
+                                                                                            $dropdown4_title=$optionname[3+$t];
                                                                                             $dropdown4_title_disabled='';                                                                                            
-                                                                                            $previewDropdownSection4_label=$option3name;
+                                                                                            $previewDropdownSection4_label=$optionname[3+$t];
                                                                                             $previewDropdownSection4_class='opened';
                                                                                         }
                                                                                         else{
@@ -500,11 +521,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" <?php echo $dropdown1_title_disabled; ?> name="dropdown1_title" value="<?php echo $dropdown1_title; ?>"></p>
                                                                         <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
                                                                         <?php
-                                                                            if($string=='edit' && !empty($option0select)){ ?>
+                                                                            if($string=='edit' && !empty($optionselect[0+$t])){ ?>
                                                                                 <div id="optionsContainer1">
                                                                                     <?php 
-                                                                                     for($i=0;$i<count($option0select);$i++){
-                                                                                         echo '<p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" name="dd1_option_name" value="'.$option0select[$i].'"></p>';
+                                                                                     for($i=0;$i<count($optionselect[0+$t]);$i++){
+                                                                                         echo '<p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" name="dd1_option_name" value="'.$optionselect[0+$t][$i].'"></p>';
                                                                                      }
                                                                                     ?>                                                                                    
                                                                                 </div>
@@ -521,7 +542,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                     </div>
                                                                     <div class="hideShow accessAid savedDropdownSection <?php echo $savedDropdownSection1_class; ?>" id="savedDropdownSection1">
-                                                                        <p><label id="savedDropdown1" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php echo $option0name.": "; echo implode (", ", $option0select); ?></label></p>
+                                                                        <p><label id="savedDropdown1" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php echo $optionname[0+$t].": "; echo implode (", ", $optionselect[0+$t]); ?></label></p>
                                                                         <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
                                                                     
@@ -530,11 +551,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" <?php echo $dropdown2_title_disabled; ?> name="dropdown2_title" value="<?php echo $dropdown2_title; ?>"></p>
                                                                         <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
                                                                         <?php
-                                                                            if($string=='edit' && !empty($option1select)){ ?>
+                                                                            if($string=='edit' && !empty($optionselect[1+$t])){ ?>
                                                                         <div id="optionsContainer2">
                                                                             <?php 
-                                                                             for($i=0;$i<count($option1select);$i++){
-                                                                                 echo '<p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" name="dd2_option_name" value="'.$option1select[$i].'"></p>';
+                                                                             for($i=0;$i<count($optionselect[1+$t]);$i++){
+                                                                                 echo '<p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" name="dd2_option_name" value="'.$optionselect[1+$t][$i].'"></p>';
                                                                              }
                                                                             ?>
                                                                         </div>
@@ -551,7 +572,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option_2" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                     </div>
                                                                     <div class="hideShow accessAid savedDropdownSection <?php echo $savedDropdownSection2_class; ?>" id="savedDropdownSection2">
-                                                                        <p><label id="savedDropdown2" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php echo $option1name.": "; echo implode (", ", $option1select); ?></label></p>
+                                                                        <p><label id="savedDropdown2" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php echo $optionname[$t+1].": "; echo implode (", ", $optionselect[$t+1]); ?></label></p>
                                                                         <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
                                                                     
@@ -560,11 +581,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" <?php echo $dropdown3_title_disabled; ?> name="dropdown3_title" value="<?php echo $dropdown3_title; ?>"></p>
                                                                         <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
                                                                         <?php
-                                                                            if($string=='edit' && !empty($option2select)){ ?>
+                                                                            if($string=='edit' && !empty($optionselect[$t+2])){ ?>
                                                                         <div id="optionsContainer3">
                                                                             <?php 
-                                                                             for($i=0;$i<count($option2select);$i++){
-                                                                                 echo '<p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" name="dd3_option_name" value="'.$option2select[$i].'"></p>';
+                                                                             for($i=0;$i<count($optionselect[$t+2]);$i++){
+                                                                                 echo '<p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" name="dd3_option_name" value="'.$optionselect[$t+2][$i].'"></p>';
                                                                              }
                                                                             ?>
                                                                         </div>
@@ -581,7 +602,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="saveCancel"><input class="saveOption  btn btn-default" type="submit" name="save_option_3" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                     </div>
                                                                     <div class="hideShow accessAid savedDropdownSection <?php echo $savedDropdownSection3_class; ?>" id="savedDropdownSection3">
-                                                                        <p><label id="savedDropdown3" for="" style="font-size: 12px;font-weight: 500;"><?php echo $option2name.": "; echo implode (", ", $option2select); ?></label></p>
+                                                                        <p><label id="savedDropdown3" for="" style="font-size: 12px;font-weight: 500;"><?php echo $optionname[$t+2].": "; echo implode (", ", $optionselect[$t+2]); ?></label></p>
                                                                         <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
                                                                     
@@ -590,11 +611,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control"  <?php echo $dropdown4_title_disabled; ?> name="dropdown4_title" value="<?php echo $dropdown4_title; ?>"></p>
                                                                         <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
                                                                          <?php
-                                                                            if($string=='edit' && !empty($option3select)){ ?>
+                                                                            if($string=='edit' && !empty($optionselect[$t+3])){ ?>
                                                                         <div id="optionsContainer4">
                                                                             <?php 
-                                                                             for($i=0;$i<count($option3select);$i++){
-                                                                                 echo '<p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" name="dd4_option_name" value="'.$option3select[$i].'"></p>';
+                                                                             for($i=0;$i<count($optionselect[$t+3]);$i++){
+                                                                                 echo '<p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" name="dd4_option_name" value="'.$optionselect[$t+3][$i].'"></p>';
                                                                              }
                                                                             ?>
                                                                         </div>
@@ -611,12 +632,26 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option_4" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
                                                                     </div>
                                                                     <div class="hideShow accessAid savedDropdownSection  <?php echo $savedDropdownSection4_class; ?>" id="savedDropdownSection4">
-                                                                        <p><label id="savedDropdown4" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php echo $option3name.": "; echo implode (", ", $option3select); ?></label></p>
+                                                                        <p><label id="savedDropdown4" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php echo $optionname[$t+3].": "; echo implode (", ", $optionselect[$t+3]); ?></label></p>
                                                                         <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
                                                                     
-                                                                    
-                                                                        <p id="addNewDropdownSection" class="editDelete hideShow accessAid hide"><a id="addNewDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-success">Add another drop-down menu</a></p>                                                                                    
+                                                                        <?php 
+                                                                        if(isset($optionname[$t+3])){
+                                                                            $addNewDropdownSection_class='hide';
+                                                                        }
+                                                                        else{
+                                                                            if(empty($dropdown_checkbox)){
+                                                                                $addNewDropdownSection_class='hide';
+                                                                            }
+                                                                            else{
+                                                                                $addNewDropdownSection_class='opened';
+                                                                            }
+                                                                            
+                                                                        }
+                                                                        ?>
+                                                                        <p id="addNewDropdownSection" class="editDelete hideShow accessAid <?php echo $addNewDropdownSection_class; ?>"><a id="addNewDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-sm btn-success">Add another drop-down menu</a></p>                                                                                    
+                                                                        
                                                                         <div class="row">
                                                                             <div class="col-md-12">
                                                                                 <p class="hideShow opened" id="addTextfield">
@@ -671,7 +706,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     
                                                                     <div class="hideShow accessAid savedTextfieldSection <?php echo $savedTextfieldSection1; ?>" id="savedTextfieldSection1">
                                                                         <p><label class="savedTextfield" id="savedTextfield1" for=""><?php if(!empty($TEXTBOX)  && isset($TEXTBOX[0]) ){ echo $TEXTBOX[0]; } else{ echo ''; } ?></label></p>
-                                                                        <p class="editDelete"><a class="editTextfield btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                        <p class="editDelete"><a class="editTextfield btn btn-sm btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
                                                                     <div class="hideShow accessAid textfieldSection hide" id="textfieldSection2">
                                                                         <p class="title col-md-9"><label for="textfieldTitle2" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle2" class="text form-control" <?php echo $textfieldTitle2_disabled; ?>  name="textfield2_title" value="<?php echo $textfieldTitle2; ?>"></p>
@@ -679,9 +714,27 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     </div>
                                                                     <div class="hideShow accessAid savedTextfieldSection <?php echo $savedTextfieldSection2; ?>" id="savedTextfieldSection2">
                                                                         <p><label class="savedTextfield control-label" id="savedTextfield2" for=""><?php if(!empty($TEXTBOX) && isset($TEXTBOX[1]) ){ echo $TEXTBOX[1]; } else{ echo ''; } ?></label></p>
-                                                                        <p class="editDelete"><a class="editTextfield btn btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                        <p class="editDelete"><a class="editTextfield btn btn-sm btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                                     </div>
-                                                                    <p id="addNewTextfieldSection" class="editDelete hideShow accessAid hide"><a id="addNewTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add another text field</a></p>
+                                                                        <?php
+                                                                            if($string=='edit'){
+                                                                                if(!empty($TEXTBOX)  && isset($TEXTBOX[0]) && isset($TEXTBOX[1]) ){
+                                                                                    $addNewTextfieldSection_class='hide';
+                                                                                }
+                                                                                else{
+                                                                                    if(empty($createdTextfield_checkbox)){
+                                                                                        $addNewTextfieldSection_class='hide';
+                                                                                    }
+                                                                                    else{
+                                                                                        $addNewTextfieldSection_class='opened';
+                                                                                    }
+                                                                                }    
+                                                                            }
+                                                                            else{
+                                                                                $addNewTextfieldSection_class='hide';
+                                                                            }
+                                                                        ?>
+                                                                        <p id="addNewTextfieldSection" class="editDelete hideShow accessAid <?php echo $addNewTextfieldSection_class; ?>"><a id="addNewTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-sm btn-success">Add another text field</a></p>
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <span id="buttonAppLink" class="collapsed"><a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Customize text or appearance</a><span class="fieldNote"> (optional)</span></span>
@@ -843,15 +896,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 <label class="previewDropdownTitle control-label" for="optionsDropdown1"><?php echo $previewDropdownSection1_label; ?></label>
                                                                                 <select id="optionsDropdown1" name="options_dropdown1" class="optionsDropdown form-control">
                                                                                     <?php
-                                                                                        if($string=='edit' && !empty($option0select)){
-                                                                                            for($i=0;$i<count($option0select);$i++){
+                                                                                        if($string=='edit' && !empty($optionselect[$t+0])){
+                                                                                            for($i=0;$i<count($optionselect[$t+0]);$i++){
                                                                                                 if($i==0){
                                                                                                     $optionsDropdown1_selected='selected';
                                                                                                 }
                                                                                                 else{
                                                                                                     $optionsDropdown1_selected='';
                                                                                                 }
-                                                                                                echo '<option value="'.$option0select[$i].'" '.$optionsDropdown1_selected.'>'.$option0select[$i].'</option>';
+                                                                                                echo '<option value="'.$optionselect[$t+0][$i].'" '.$optionsDropdown1_selected.'>'.$optionselect[$t+0][$i].'</option>';
                                                                                             }
                                                                                         }
                                                                                         else{
@@ -869,15 +922,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 <label class="previewDropdownTitle control-label" for=""><?php echo $previewDropdownSection2_label; ?></label>
                                                                                 <select id="optionsDropdown2" name="options_dropdown2" class="optionsDropdown form-control">
                                                                                      <?php
-                                                                                        if($string=='edit' && !empty($option1select)){
-                                                                                            for($i=0;$i<count($option1select);$i++){
+                                                                                        if($string=='edit' && !empty($optionselect[$t+1])){
+                                                                                            for($i=0;$i<count($optionselect[$t+1]);$i++){
                                                                                                 if($i==0){
                                                                                                     $optionsDropdown2_selected='selected';
                                                                                                 }
                                                                                                 else{
                                                                                                     $optionsDropdown2_selected='';
                                                                                                 }
-                                                                                                echo '<option value="'.$option1select[$i].'" '.$optionsDropdown2_selected.'>'.$option1select[$i].'</option>';
+                                                                                                echo '<option value="'.$optionselect[$t+1][$i].'" '.$optionsDropdown2_selected.'>'.$optionselect[$t+1][$i].'</option>';
                                                                                             }
                                                                                         }
                                                                                         else{
@@ -894,15 +947,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 <label class="previewDropdownTitle control-label" for=""><?php echo $previewDropdownSection3_label; ?></label>
                                                                                 <select id="optionsDropdown3" name="options_dropdown3" class="optionsDropdown form-control">
                                                                                     <?php
-                                                                                        if($string=='edit' && !empty($option2select)){
-                                                                                            for($i=0;$i<count($option2select);$i++){
+                                                                                        if($string=='edit' && !empty($optionselect[$t+2])){
+                                                                                            for($i=0;$i<count($optionselect[$t+2]);$i++){
                                                                                                 if($i==0){
                                                                                                     $optionsDropdown3_selected='selected';
                                                                                                 }
                                                                                                 else{
                                                                                                     $optionsDropdown3_selected='';
                                                                                                 }
-                                                                                                echo '<option value="'.$option2select[$i].'" '.$optionsDropdown3_selected.'>'.$option2select[$i].'</option>';
+                                                                                                echo '<option value="'.$optionselect[$t+2][$i].'" '.$optionsDropdown3_selected.'>'.$optionselect[$t+2][$i].'</option>';
                                                                                             }
                                                                                         }
                                                                                         else{
@@ -920,15 +973,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 <label class="previewDropdownTitle control-label" for=""><?php echo $previewDropdownSection4_label; ?></label>
                                                                                 <select id="optionsDropdown4" name="options_dropdown4" class="optionsDropdown form-control">
                                                                                      <?php
-                                                                                        if($string=='edit' && !empty($option3select)){
-                                                                                            for($i=0;$i<count($option3select);$i++){
+                                                                                        if($string=='edit' && !empty($optionselect[$t+3])){
+                                                                                            for($i=0;$i<count($optionselect[$t+3]);$i++){
                                                                                                 if($i==0){
                                                                                                     $optionsDropdown4_selected='selected';
                                                                                                 }
                                                                                                 else{
                                                                                                     $optionsDropdown4_selected='';
                                                                                                 }
-                                                                                                echo '<option value="'.$option3select[$i].'" '.$optionsDropdown4_selected.'>'.$option3select[$i].'</option>';
+                                                                                                echo '<option value="'.$optionselect[$t+3][$i].'" '.$optionsDropdown4_selected.'>'.$optionselect[$t+3][$i].'</option>';
                                                                                             }
                                                                                         }
                                                                                         else{
