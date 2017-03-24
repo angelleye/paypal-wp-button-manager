@@ -270,8 +270,8 @@ div.buyerViewSection p.heading{text-align:left}
 #stepTwo div.step2-extra-fields div.inventory-table-row{clear:both; height:1%}
 #stepTwo div.step2-extra-fields div.inventory-table-row div{padding:0px 10px 5px 0px; float:left; width:104px; word-wrap:break-word;}
 #stepTwo div.step2-extra-fields div.inventory-table-row:after{clear:both}
-#stepTwo div.step2-extra-fields div.inventory-table-row div.left-edge{float:left; width:100px; padding:0; margin:0; overflow:hidden}
-#stepTwo div.step2-extra-fields div.inventory-table-row div.right-edge{float:left; width:45px; padding:0}
+#stepTwo div.step2-extra-fields div.inventory-table-row div.left-edge{float:left; width:100px; padding:0; margin:0; overflow:hidden;font-weight: 600;}
+#stepTwo div.step2-extra-fields div.inventory-table-row div.right-edge{float:left; width:45px; padding:0;font-weight: 600;}
 
 #stepTwo div.step2-bottom-fields{clear:both; margin:30px 0 0 20px; height:0; _height:1%}
 #stepTwo div.step2-bottom-fields:after{clear:both; content:"."; display:block; height:0; _height:1%; visibility:hidden}

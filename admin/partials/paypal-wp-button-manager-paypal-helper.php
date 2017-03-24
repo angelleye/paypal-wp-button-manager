@@ -504,7 +504,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                  $inventroy_count = count($post_track['item_id']);
                  $OptionTrackingDetails = array();
  
-                 for ($inventory_start = 0; $inventory_start < $inventroy_count; $inventory_start) {
+                 for ($inventory_start = 0; $inventory_start < $inventroy_count; $inventory_start++) {
  
  
                      // Here we can have up to 10 $OptionTrackingDetail arrays loaded into $OptionTrackingDetails

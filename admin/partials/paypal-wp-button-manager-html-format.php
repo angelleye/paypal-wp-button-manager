@@ -1598,38 +1598,26 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                             <div id="trackByOptionTable" class="fadedOut accessAid">
                                                 <div class="row">
                                                     <div class="col-md-9">
-                                                        <div class="form-group">
-                                                            <input class="radio form-control" type="radio" id="trackByOption" name="track_button_by" value="trackdByOption" disabled="">
-                                                            <label for="trackByOption" class="control-label"><strong><?php echo __('By option', 'paypal-wp-button-manager'); ?></strong><?php echo __('(in drop-down menu)', 'paypal-wp-button-manager'); ?> <a id="chooseAnotherDropDown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#chooseAnotherDropDown" class="accessAid"><?php echo __('Choose a different drop-down', 'paypal-wp-button-manager'); ?></a></label>
-                                                        </div>
-                                                    </div>
+                                                        <input class="radio form-control" type="radio" id="trackByOption" name="track_button_by" value="trackdByOption" disabled=""><label for="trackByOption"><strong><?php echo __('By option', 'paypal-wp-button-manager'); ?></strong><?php echo __('(in drop-down menu)', 'paypal-wp-button-manager'); ?> <a id="chooseAnotherDropDown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#chooseAnotherDropDown" class="accessAid"><?php echo __('Choose a different drop-down', 'paypal-wp-button-manager'); ?></a></label>
+                                                    </div>                                                    
                                                 </div>
-
                                                 <div id="byOptionTableBody" class="accessAid">
-                                                    <div class="row">
-                                                        <div class="form-group">
-                                                            <div class="col-md-3">
-                                                                <label><?php echo __('Item ID', 'paypal-wp-button-manager'); ?></label>
-                                                                <div><input class="type-text form-control" type="text" name="item_id" value="" disabled=""></div>
-                                                            </div>
-
-                                                            <div class="col-md-3">
-                                                                <div class="invRelated"><label class="control-label"><?php echo __('Qty in stock', 'paypal-wp-button-manager'); ?></label></div>
-                                                                <div class="invRelated"><input class="form-control" type="text" name="items_in_stock" value="" disabled=""></div>
-                                                            </div>
-
-                                                            <div class="col-md-3">
-                                                                <div class="invRelated"><label><?php echo __('Alert qty. (optional)', 'paypal-wp-button-manager'); ?> <span class="autoTooltip helpText" title="" tabindex="0"><?php echo __("What's this?", 'paypal-wp-button-manager'); ?><span class="accessAid"><?php echo __('When your inventory falls to this number, PayPal will send you an e-mail alert.', 'paypal-wp-button-manager'); ?></span></span></label></div>
-                                                                <div class="invRelated"><input class="form-control" type="text" name="alert_quantity" value="" disabled=""></div>
-                                                            </div>
-
-                                                            <div class="col-md-3">
-                                                                <div class="PNLRelated"><label><?php echo __('Cost', 'paypal-wp-button-manager'); ?></label></div>
-                                                                <div class="PNLRelated"><input class="type-text form-control" type="text" name="item_cost" value="" disabled=""></div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>                                                                            
+                                                    <div class="inventory-table-row">
+                                                        <div class="left-edge">&nbsp;</div>
+                                                        <div><strong><?php echo __('Item ID',  'paypal-wp-button-manager'); ?></strong></div>
+                                                        <div class="invRelated"><strong><?php echo __('Qty in stock', 'paypal-wp-button-manager'); ?></strong></div>
+                                                        <div class="invRelated"><strong><?php echo __('Alert qty. (optional)', 'paypal-wp-button-manager'); ?> <span class="autoTooltip helpText" title="" tabindex="0"><?php echo __("What's this?", 'paypal-wp-button-manager'); ?><span class="accessAid"><?php echo __('When your inventory falls to this number, PayPal will send you an e-mail alert.', 'paypal-wp-button-manager'); ?></span></span></strong></div>
+                                                        <div class="PNLRelated"><strong><?php echo __('Cost', 'paypal-wp-button-manager');?> </strong></div>
+                                                        <div class="right-edge">&nbsp;</div>
+                                                    </div>
+                                                    <div class="inventory-table-row">
+                                                        <div class="left-edge">&nbsp;</div>
+                                                        <div><input class="type-text form-control" type="text" name="item_id" value="" disabled=""></div>
+                                                        <div class="invRelated"><input class="type-text form-control" type="text" name="items_in_stock" value="" disabled=""></div>
+                                                        <div class="invRelated"><input class="type-text form-control" type="text" name="alert_quantity" value="" disabled=""></div>
+                                                        <div class="PNLRelated"><input class="type-text form-control" type="text" name="item_cost" value="" disabled=""></div>
+                                                        <div class="right-edge">&nbsp;</div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
