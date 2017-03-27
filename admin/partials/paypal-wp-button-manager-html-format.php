@@ -657,8 +657,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             </div>
                                                             <div class="hideShow accessAid savedDropdownSection <?php echo $savedDropdownSection1_class; ?>" id="savedDropdownSection1">
                                                                 <p><label id="savedDropdown1" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php
-                                                                        echo $optionname[0 + $t] . ": ";
-                                                                        echo implode(", ", $optionselect[0 + $t]);
+                                                                        if(isset($optionname[0 + $t])){
+                                                                            echo $optionname[0 + $t] . ": ";
+                                                                            echo implode(", ", $optionselect[0 + $t]);
+                                                                        }
                                                                         ?></label></p>
                                                                 <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                             </div>
@@ -689,8 +691,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             </div>
                                                             <div class="hideShow accessAid savedDropdownSection <?php echo $savedDropdownSection2_class; ?>" id="savedDropdownSection2">
                                                                 <p><label id="savedDropdown2" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php
-                                                                        echo $optionname[$t + 1] . ": ";
-                                                                        echo implode(", ", $optionselect[$t + 1]);
+                                                                        if(isset($optionname[$t + 1])){
+                                                                         echo $optionname[$t + 1] . ": ";
+                                                                         echo implode(", ", $optionselect[$t + 1]);   
+                                                                        }
                                                                         ?></label></p>
                                                                 <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                             </div>
@@ -721,8 +725,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             </div>
                                                             <div class="hideShow accessAid savedDropdownSection <?php echo $savedDropdownSection3_class; ?>" id="savedDropdownSection3">
                                                                 <p><label id="savedDropdown3" for="" style="font-size: 12px;font-weight: 500;"><?php
-                                                                        echo $optionname[$t + 2] . ": ";
-                                                                        echo implode(", ", $optionselect[$t + 2]);
+                                                                        if(isset($optionname[$t + 2]))
+                                                                        {
+                                                                            echo $optionname[$t + 2] . ": ";
+                                                                            echo implode(", ", $optionselect[$t + 2]);                                                                             
+                                                                        }
                                                                         ?></label></p>
                                                                 <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                             </div>
@@ -753,8 +760,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             </div>
                                                             <div class="hideShow accessAid savedDropdownSection  <?php echo $savedDropdownSection4_class; ?>" id="savedDropdownSection4">
                                                                 <p><label id="savedDropdown4" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php
-                                                                        echo $optionname[$t + 3] . ": ";
-                                                                        echo implode(", ", $optionselect[$t + 3]);
+                                                                        if(isset($optionname[$t + 3])){
+                                                                            echo $optionname[$t + 3] . ": ";
+                                                                            echo implode(", ", $optionselect[$t + 3]);
+                                                                        }
                                                                         ?></label></p>
                                                                 <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
                                                             </div>
