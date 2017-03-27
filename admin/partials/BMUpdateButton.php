@@ -32,7 +32,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
         
         //echo "<pre>";
         //var_dump($PayPalResult);
-       // exit;
+        //exit;
         // Write the contents of the response array to the screen for demo purposes.
         if (isset($PayPalResult['ERRORS']) && !empty($PayPalResult['ERRORS'])) {
             echo "in if condition";

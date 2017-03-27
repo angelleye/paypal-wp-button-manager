@@ -91,7 +91,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $optionselect = '';
         $buttonLanguage = '';
         $buttonCountry = '';
-
+        $byOptionTableBody_class='accessAid';
+        $trackByItem_checkbox='';
+        $trackByOption_checkbox='';
+        $byItemTableBody_class='';
+        $byOptionTableBody_class='';
 
 
         if ($string == 'edit') {
@@ -187,6 +191,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $inventory_set = true;
                 $DataArray = array();
                 $PayPal_get_inventory = $PayPal->BMGetInventory($DataArray, $edit_hosted_button_id);
+                
                 if (isset($PayPal_get_inventory['ERRORS']) && !empty($PayPal_get_inventory['ERRORS'])) {
                     if ($PayPal_get_inventory['L_ERRORCODE0'] == '11991') {
                         $inventory_set = false;
@@ -199,6 +204,45 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                     $item_alert_step2 = isset($PayPal_get_inventory['ITEMALERT']) ? $PayPal_get_inventory['ITEMALERT'] : '';
                     $item_cost_step2 = isset($PayPal_get_inventory['ITEMCOST']) ? $PayPal_get_inventory['ITEMCOST'] : '';
                     $item_soldout_url_step2 = isset($PayPal_get_inventory['SOLDOUTURL']) ? $PayPal_get_inventory['SOLDOUTURL'] : '';
+                    
+                    if(array_key_exists('OPTIONNAME', $PayPal_get_inventory)){
+                        for($i=0;$i<10;$i++){
+                             if(array_key_exists('L_OPTIONSELECT'.$i, $PayPal_get_inventory)){
+                                $inv_optionselect[] = $PayPal_get_inventory['L_OPTIONSELECT'.$i];
+                            }
+                        }
+                    }
+                    if(array_key_exists('OPTIONNAME', $PayPal_get_inventory)){
+                        for($i=0;$i<10;$i++){
+                             if(array_key_exists('L_OPTIONQTY'.$i, $PayPal_get_inventory)){
+                                $inv_optionqty[] = $PayPal_get_inventory['L_OPTIONQTY'.$i];
+                            }
+                        }
+                    }
+                    if(array_key_exists('OPTIONNAME', $PayPal_get_inventory)){
+                        for($i=0;$i<10;$i++){
+                             if(array_key_exists('L_OPTIONALERT'.$i, $PayPal_get_inventory)){
+                                $inv_optionalert[] = $PayPal_get_inventory['L_OPTIONALERT'.$i];
+                            }
+                        }
+                    }
+                    
+                    if(array_key_exists('OPTIONNAME', $PayPal_get_inventory)){
+                        for($i=0;$i<10;$i++){
+                             if(array_key_exists('L_OPTIONCOST'.$i, $PayPal_get_inventory)){
+                                $inv_optioncost[] = $PayPal_get_inventory['L_OPTIONCOST'.$i];
+                            }
+                        }
+                    }
+                    
+                    if(array_key_exists('OPTIONNAME', $PayPal_get_inventory)){
+                        for($i=0;$i<10;$i++){
+                             if(array_key_exists('L_OPTIONNUMBER'.$i, $PayPal_get_inventory)){
+                                $inv_optionnumber[] = $PayPal_get_inventory['L_OPTIONNUMBER'.$i];
+                            }
+                        }
+                    }
+                    
                 }
             }
 
@@ -214,9 +258,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $radioAddToCartButton = '';
             }
 
-            echo "<pre>";            
-            var_dump($button_details_array);
-            echo "</pre>";
+            //echo "<pre>";            
+            //var_dump($button_details_array);
+            //echo "</pre>";
             //exit;
         }
         ?>
@@ -231,12 +275,12 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                         </div>
                         <div class="">
                             <p>You can assign inventory options in only one dropdown.<br><br><span id="lightboxChoiceBody">Choose:</span></p>
-                            <div class="buttons"><button class="default primary" type="submit" id="ddLightboxSubmit" name="done">Done</button>
-                                <button class="closer" type="button" id="ddLightboxCancel" name="cancel">Cancel</button>
-                            </div>
+                            <div class="buttons"><button class="default primary btn btn-primary" type="submit" id="ddLightboxSubmit" name="done">Done</button>
+                                <button class="closer btn btn-danger" type="button" id="ddLightboxCancel" name="cancel">Cancel</button>
+                            </div><br>
                         </div>
-                    </div>
-
+                    </div>                    
+                
                     <noscript>&lt;h1&gt;Create PayPal payment button&lt;/h1&gt;&lt;p class="noScriptBlurb"&gt;This tool requires that you enable JavaScript in your browser. If you do not want to enable JavaScript, you can still use the older version of the tool.&lt;/p&gt;&lt;div id="noScriptButtons"&gt;&lt;div class="splitLeft"&gt;&lt;form method="post" id="newbfform" name="newbfform" action="https://www.paypal.com/us/cgi-bin/webscr?SESSION=r%2dJATqaKB0V%5fGgX3SFEuwzdHUx817cuxpfnzP7EgGCBmfAugmNortPmiPdi&amp;dispatch=5885d80a13c0db1f8e263663d3faee8de62a88b92df045c56447d40d60b23a7c"&gt;&lt;input type="hidden" id="CONTEXT_CGI_VAR" name="CONTEXT" value="X3&amp;#x2d;7SZn2ExXucINxlliZ&amp;#x5f;05NdFsrIIpaV9TcRYNLL&amp;#x5f;GiOwm9XgEZzWKQeV0"&gt;&lt;input type="hidden" id="cmd" name="cmd" value="_button-designer"&gt;&lt;h2&gt;New tool&lt;/h2&gt;&lt;ol&gt;&lt;li&gt;Enable JavaScript in your browser.&lt;/li&gt;&lt;li&gt;Click &lt;strong&gt;Go&lt;/strong&gt; below.&lt;/li&gt;&lt;/ol&gt;&lt;input class="button primary" type="submit" id="newBFButton" name="goto_new_BF" value="Go"&gt;&lt;input name="auth" type="hidden" value="A&amp;#x2d;rjNZhZLRt86QdaItbFAxbuyoRwDPaz&amp;#x2e;dCe2iQoCD7uF8ECex&amp;#x2d;ZSw9OPM48gvdgrXEkoaVqwAJFtLx1spKPOsUQFkgigL0Oz&amp;#x2e;FnzFLIbiDs"&gt;&lt;input name="form_charset" type="hidden" value="UTF&amp;#x2d;8"&gt;&lt;/form&gt;&lt;/div&gt;&lt;div class="splitDivider"&gt;&lt;span class="centeredText"&gt;or&lt;/span&gt;&lt;/div&gt;&lt;div class="splitRight"&gt;&lt;form method="post" id="oldbfform" name="oldbfform" action="https://www.paypal.com/us/cgi-bin/webscr?SESSION=r%2dJATqaKB0V%5fGgX3SFEuwzdHUx817cuxpfnzP7EgGCBmfAugmNortPmiPdi&amp;dispatch=5885d80a13c0db1f8e263663d3faee8de62a88b92df045c56447d40d60b23a7c"&gt;&lt;input type="hidden" id="CONTEXT_CGI_VAR" name="CONTEXT" value="X3&amp;#x2d;7SZn2ExXucINxlliZ&amp;#x5f;05NdFsrIIpaV9TcRYNLL&amp;#x5f;GiOwm9XgEZzWKQeV0"&gt;&lt;h2&gt;Older tool&lt;/h2&gt;&lt;ol&gt;&lt;li&gt;Select button type: &lt;br&gt;&lt;select name="cmd"&gt;&lt;option value="_web-tools"&gt;Buy Now&lt;/option&gt;&lt;option value="_cart-factory"&gt;Add to Cart&lt;/option&gt;&lt;option value="_xclick-donations-factory"&gt;Donate&lt;/option&gt;&lt;option value="_xclick-sub-factory"&gt;Subscribe&lt;/option&gt;&lt;option value="_xclick-gc-factory"&gt;Gift Certificate&lt;/option&gt;&lt;/select&gt;&lt;/li&gt;&lt;li&gt;Click &lt;strong&gt;Continue&lt;/strong&gt; below.&lt;/li&gt;&lt;/ol&gt;&lt;input class="tertiary" type="submit" id="oldBFButton" name="goto_old_BF" value="Continue"&gt;&lt;input name="auth" type="hidden" value="A&amp;#x2d;rjNZhZLRt86QdaItbFAxbuyoRwDPaz&amp;#x2e;dCe2iQoCD7uF8ECex&amp;#x2d;ZSw9OPM48gvdgrXEkoaVqwAJFtLx1spKPOsUQFkgigL0Oz&amp;#x2e;FnzFLIbiDs"&gt;&lt;input name="form_charset" type="hidden" value="UTF&amp;#x2d;8"&gt;&lt;/form&gt;&lt;/div&gt;&lt;/div&gt;</noscript>
                     <div id="">
 
@@ -1557,17 +1601,31 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                             </div>
                                         </div>
                                         <div class="step2-extra-fields opened col-md-10" id="inventoryTable">
+                                            <?php 
+                                                if(!empty($inv_optionselect)){
+                                                    $trackByItem_checkbox='';
+                                                    $trackByOption_checkbox='checked';    
+                                                    $byItemTableBody_class='hide fadedOut';
+                                                    $byOptionTableBody_class='opened';
+                                                }
+                                                else{
+                                                    $trackByItem_checkbox='checked';
+                                                    $trackByOption_checkbox='';
+                                                    $byItemTableBody_class='';
+                                                    $byOptionTableBody_class='accessAid hide';
+                                                }
+                                            ?>
                                             <div id="trackByItemTable" class="fadedOut">
                                                 <div class="row">
                                                     <div class="col-md-9">
                                                         <div class="form-group">
-                                                            <input class="radio form-control" type="radio" id="trackByItem" checked="" name="track_button_by" value="trackdByItem" disabled="">
+                                                            <input class="radio form-control" type="radio" id="trackByItem" <?php echo $trackByItem_checkbox; ?> name="track_button_by" value="trackdByItem" disabled="">
                                                             <label id="byItemLabel" for="trackByItem" class="control-label"><strong><?php echo __('By item', 'paypal-wp-button-manager'); ?></strong></label>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div id="byItemTableBody">
+                                                <div id="byItemTableBody" class="<?php echo $byItemTableBody_class; ?>">
                                                     <div class="row">                                                                                
                                                         <div class="form-group">
                                                             <div class="col-md-3">
@@ -1598,10 +1656,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                             <div id="trackByOptionTable" class="fadedOut accessAid">
                                                 <div class="row">
                                                     <div class="col-md-9">
-                                                        <input class="radio form-control" type="radio" id="trackByOption" name="track_button_by" value="trackdByOption" disabled=""><label for="trackByOption"><strong><?php echo __('By option', 'paypal-wp-button-manager'); ?></strong><?php echo __('(in drop-down menu)', 'paypal-wp-button-manager'); ?> <a id="chooseAnotherDropDown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#chooseAnotherDropDown" class="accessAid"><?php echo __('Choose a different drop-down', 'paypal-wp-button-manager'); ?></a></label>
+                                                        <input class="radio form-control" type="radio" id="trackByOption" name="track_button_by" value="trackdByOption" <?php echo $trackByOption_checkbox; ?> disabled=""><label for="trackByOption"><strong><?php echo __('By option', 'paypal-wp-button-manager'); ?></strong><?php echo __('(in drop-down menu)', 'paypal-wp-button-manager'); ?> <a id="chooseAnotherDropDown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=#chooseAnotherDropDown" class="accessAid"><?php echo __('Choose a different drop-down', 'paypal-wp-button-manager'); ?></a></label>
                                                     </div>                                                    
                                                 </div>
-                                                <div id="byOptionTableBody" class="accessAid">
+                                                <div id="byOptionTableBody" class="<?php echo $byOptionTableBody_class; ?>">
                                                     <div class="inventory-table-row">
                                                         <div class="left-edge">&nbsp;</div>
                                                         <div><strong><?php echo __('Item ID',  'paypal-wp-button-manager'); ?></strong></div>
@@ -1610,6 +1668,23 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="PNLRelated"><strong><?php echo __('Cost', 'paypal-wp-button-manager');?> </strong></div>
                                                         <div class="right-edge">&nbsp;</div>
                                                     </div>
+                                                    <?php 
+                                                        if($string=='edit' && !empty($inv_optionselect)){
+                                                            for($i=0;$i<count($inv_optionselect);$i++){
+                                                            ?>   
+                                                                <div class="inventory-table-row">
+                                                                <div class="left-edge"><?php echo $inv_optionselect[$i]; ?></div>
+                                                                <div><input class="type-text form-control" type="text" name="item_id" value="<?php echo $inv_optionnumber[$i]; ?>"></div>
+                                                                <div class="invRelated"><input class="type-text form-control" type="text" name="items_in_stock" value="<?php echo isset($inv_optionqty[$i]) ? $inv_optionqty[$i] : ''; ?>"></div>
+                                                                <div class="invRelated"><input class="type-text form-control" type="text" name="alert_quantity" value="<?php echo isset($inv_optionalert[$i]) ? $inv_optionalert[$i] : ''; ?>"></div>
+                                                                <div class="PNLRelated"><input class="type-text form-control" type="text" name="item_cost" value="<?php echo isset($inv_optioncost[$i]) ? $inv_optioncost[$i] : ''; ?>"></div>
+                                                                <div class="right-edge"><?php echo $item_price_currency; ?></div>
+                                                                </div>
+                                                            <?php
+                                                            }
+                                                        }
+                                                        else{
+                                                    ?>
                                                     <div class="inventory-table-row">
                                                         <div class="left-edge">&nbsp;</div>
                                                         <div><input class="type-text form-control" type="text" name="item_id" value="" disabled=""></div>
@@ -1618,6 +1693,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="PNLRelated"><input class="type-text form-control" type="text" name="item_cost" value="" disabled=""></div>
                                                         <div class="right-edge">&nbsp;</div>
                                                     </div>
+                                                        <?php } ?>
                                                 </div>
                                             </div>
                                         </div>
