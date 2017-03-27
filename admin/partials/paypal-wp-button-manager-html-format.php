@@ -179,6 +179,17 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $donation_amount = isset($BUTTONVAR['amount']) ? $BUTTONVAR['amount'] : '';
                 $donation_currency = isset($BUTTONVAR['currency_code']) ? $BUTTONVAR['currency_code'] : '';
             }
+            
+            if($buttonType=='SUBSCRIBE'){
+                $button_option_value = 'subscriptions';
+                $subscription_name = isset($BUTTONVAR['item_name']) ? $BUTTONVAR['item_name'] : '';
+                $subscription_id = isset($BUTTONVAR['item_number']) ? $BUTTONVAR['item_number'] : '';
+                $item_price_currency = isset($BUTTONVAR['currency_code']) ? $BUTTONVAR['currency_code'] : '';
+                $subscriptionBillingAmount = isset($BUTTONVAR['a3']) ? $BUTTONVAR['a3'] : '';
+                $subscription_billing_cycle_number = isset($BUTTONVAR['p3']) ? $BUTTONVAR['p3'] : '';
+                $subscription_billing_cycle_period = isset($BUTTONVAR['t3']) ? $BUTTONVAR['t3'] : '';
+                $subscription_billing_limit = isset($BUTTONVAR['srt']) ? $BUTTONVAR['srt'] : '';
+            }
 
             if($buttonType=='ADDCART'){
                 $button_option_value = 'products';
@@ -415,8 +426,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <input class="form-control" maxlength="127" type="text" id="donationID" size="27" name="donation_id" value="<?php echo $donation_id; ?>" disabled=""></div>
                                                 </div>
                                                 <div class="subscriptions accessAid fadedOut">
-                                                    <div class="col-lg-4"><label for="subscriptionName" class="control-label">Item name</label><input class="form-control" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="" disabled=""></div>
-                                                    <div class="col-lg-4"><label for="subscriptionID" class="control-label">Subscription ID<span class="fieldNote"> (optional) </span></label><input class="form-control" maxlength="127" type="text" id="subscriptionID" size="27" name="subscription_id" value="" disabled=""></div>
+                                                    <div class="col-lg-4"><label for="subscriptionName" class="control-label">Item name</label><input class="form-control" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="<?php echo $subscription_name; ?>" disabled=""></div>
+                                                    <div class="col-lg-4"><label for="subscriptionID" class="control-label">Subscription ID<span class="fieldNote"> (optional) </span></label><input class="form-control" maxlength="127" type="text" id="subscriptionID" size="27" name="subscription_id" value="<?php echo $subscription_id; ?>" disabled=""></div>
                                                 </div>
                                                 <div class="gift_certs accessAid fadedOut col-lg-9"><label for="giftCertificateShopURL" class="control-label">Enter the URL where recipients can shop and redeem this gift certificate.</label><input class="form-control" type="text" id="giftCertificateShopURL" size="34" name="gift_certificate_shop_url" value="http://" disabled=""></div>
                                             </div>
@@ -1352,7 +1363,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="subscriptionBillingAmount" class="control-label">Billing amount each cycle ( <span class="currencyLabel">USD</span> ) </label>
-                                                                    <input type="text" id="subscriptionBillingAmount" size="22" class="text form-control" name="subscription_billing_amount" value="" disabled="">
+                                                                    <input type="text" id="subscriptionBillingAmount" size="22" class="text form-control" name="subscription_billing_amount" value="<?php echo $subscriptionBillingAmount; ?>" disabled="">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1366,7 +1377,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <?php $paypal_button_subscription_billing_cycle_number = get_paypal_button_subscription_billing_cycle_number(); ?>
                                                                     <select name="subscription_billing_cycle_number" disabled="" class="form-control" style="width: auto !important">
                                                                         <?php foreach ($paypal_button_subscription_billing_cycle_number as $paypal_button_subscription_billing_cycle_number_key => $paypal_button_subscription_billing_cycle_number_value) { ?>
-                                                                            <option value="<?php echo $paypal_button_subscription_billing_cycle_number_value; ?>"><?php echo $paypal_button_subscription_billing_cycle_number_value; ?></option>
+                                                                            <?php 
+                                                                                if($subscription_billing_cycle_number == $paypal_button_subscription_billing_cycle_number_value){
+                                                                                    $subscription_billing_cycle_number_selected='selected';
+                                                                                } 
+                                                                                else{
+                                                                                    $subscription_billing_cycle_number_selected='';
+                                                                                }
+                                                                            ?>
+                                                                            <option value="<?php echo $paypal_button_subscription_billing_cycle_number_value; ?>" <?php echo $subscription_billing_cycle_number_selected; ?>><?php echo $paypal_button_subscription_billing_cycle_number_value; ?></option>
                                                                         <?php } ?>
                                                                     </select>
                                                                 </div>
@@ -1374,7 +1393,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <?php $paypal_button_subscriptions_cycle = get_paypal_button_subscriptions_cycle(); ?>
                                                                     <select id="subscriptionBillingCyclePeriod" name="subscription_billing_cycle_period" disabled="" class="form-control" style="width: auto !important">
                                                                         <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
-                                                                            <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
+                                                                            <?php 
+                                                                                if($subscription_billing_cycle_period==$paypal_button_subscriptions_cycle_key){
+                                                                                    $subscription_billing_cycle_period_selected='selected';
+                                                                                }
+                                                                                else{
+                                                                                    $subscription_billing_cycle_period_selected='';
+                                                                                }
+                                                                            ?>
+                                                                            <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>" <?php echo $subscription_billing_cycle_period_selected; ?>><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
                                                                         <?php } ?>
                                                                     </select>
                                                                 </div>
