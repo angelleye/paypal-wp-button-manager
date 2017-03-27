@@ -92,7 +92,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $buttonLanguage = '';
         $buttonCountry = '';
         $byOptionTableBody_class='accessAid';
-        $trackByItem_checkbox='';
+        $trackByItem_checkbox='checked';
         $trackByOption_checkbox='';
         $byItemTableBody_class='';
         $byOptionTableBody_class='';
@@ -180,6 +180,72 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $donation_currency = isset($BUTTONVAR['currency_code']) ? $BUTTONVAR['currency_code'] : '';
             }
 
+            if($buttonType=='ADDCART'){
+                $button_option_value = 'products';
+                $product_name = isset($BUTTONVAR['item_name']) ? $BUTTONVAR['item_name'] : '';
+                $product_id = isset($BUTTONVAR['item_number']) ? $BUTTONVAR['item_number'] : '';
+                $item_price = isset($BUTTONVAR['amount']) ? $BUTTONVAR['amount'] : '';
+                $item_price_currency = isset($BUTTONVAR['currency_code']) ? $BUTTONVAR['currency_code'] : '';
+                $item_shipping_amount = isset($BUTTONVAR['shipping']) ? $BUTTONVAR['shipping'] : '';
+                $itemTaxRate = isset($BUTTONVAR['tax_rate']) ? $BUTTONVAR['tax_rate'] : '';
+                $inventory_set = true;
+                $DataArray = array();
+                $PayPal_get_inventory = $PayPal->BMGetInventory($DataArray, $edit_hosted_button_id);
+                
+                if (isset($PayPal_get_inventory['ERRORS']) && !empty($PayPal_get_inventory['ERRORS'])) {
+                    if ($PayPal_get_inventory['L_ERRORCODE0'] == '11991') {
+                        $inventory_set = false;
+                    }
+                } else {
+                    $track_inv = isset($PayPal_get_inventory['TRACKINV']) ? $PayPal_get_inventory['TRACKINV'] : '';
+                    $track_pnl = isset($PayPal_get_inventory['TRACKPNL']) ? $PayPal_get_inventory['TRACKPNL'] : '';
+                    $item_number_step2 = isset($PayPal_get_inventory['ITEMNUMBER']) ? $PayPal_get_inventory['ITEMNUMBER'] : '';
+                    $item_qty_step2 = isset($PayPal_get_inventory['ITEMQTY']) ? $PayPal_get_inventory['ITEMQTY'] : '';
+                    $item_alert_step2 = isset($PayPal_get_inventory['ITEMALERT']) ? $PayPal_get_inventory['ITEMALERT'] : '';
+                    $item_cost_step2 = isset($PayPal_get_inventory['ITEMCOST']) ? $PayPal_get_inventory['ITEMCOST'] : '';
+                    $item_soldout_url_step2 = isset($PayPal_get_inventory['SOLDOUTURL']) ? $PayPal_get_inventory['SOLDOUTURL'] : '';
+                    
+                    if(array_key_exists('OPTIONNAME', $PayPal_get_inventory)){
+                        for($i=0;$i<10;$i++){
+                             if(array_key_exists('L_OPTIONSELECT'.$i, $PayPal_get_inventory)){
+                                $inv_optionselect[] = $PayPal_get_inventory['L_OPTIONSELECT'.$i];
+                            }
+                        }
+                    }
+                    if(array_key_exists('OPTIONNAME', $PayPal_get_inventory)){
+                        for($i=0;$i<10;$i++){
+                             if(array_key_exists('L_OPTIONQTY'.$i, $PayPal_get_inventory)){
+                                $inv_optionqty[] = $PayPal_get_inventory['L_OPTIONQTY'.$i];
+                            }
+                        }
+                    }
+                    if(array_key_exists('OPTIONNAME', $PayPal_get_inventory)){
+                        for($i=0;$i<10;$i++){
+                             if(array_key_exists('L_OPTIONALERT'.$i, $PayPal_get_inventory)){
+                                $inv_optionalert[] = $PayPal_get_inventory['L_OPTIONALERT'.$i];
+                            }
+                        }
+                    }
+                    
+                    if(array_key_exists('OPTIONNAME', $PayPal_get_inventory)){
+                        for($i=0;$i<10;$i++){
+                             if(array_key_exists('L_OPTIONCOST'.$i, $PayPal_get_inventory)){
+                                $inv_optioncost[] = $PayPal_get_inventory['L_OPTIONCOST'.$i];
+                            }
+                        }
+                    }
+                    
+                    if(array_key_exists('OPTIONNAME', $PayPal_get_inventory)){
+                        for($i=0;$i<10;$i++){
+                             if(array_key_exists('L_OPTIONNUMBER'.$i, $PayPal_get_inventory)){
+                                $inv_optionnumber[] = $PayPal_get_inventory['L_OPTIONNUMBER'.$i];
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            
             if ($buttonType == 'BUYNOW') {
                 $button_option_value = 'services';
                 $product_name = isset($BUTTONVAR['item_name']) ? $BUTTONVAR['item_name'] : '';
@@ -252,15 +318,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $radioBuyNowButton = '';
             }
 
-            if ($buttonType == 'CART') {
+            if ($buttonType == 'ADDCART') {
                 $radioAddToCartButton = 'checked';
             } else {
                 $radioAddToCartButton = '';
             }
 
-            //echo "<pre>";            
-            //var_dump($button_details_array);
-            //echo "</pre>";
+            echo "<pre>";            
+            var_dump($button_details_array);
+            echo "</pre>";
             //exit;
         }
         ?>
