@@ -84,7 +84,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $product_name = '';
         $product_id = '';
         $item_price = '';
-        $item_price_currency = '';
+        $item_price_currency = 'USD';
         $item_shipping_amount = '';
         $itemTaxRate = '';
         $optionname = '';
@@ -448,7 +448,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     <div class="col-lg-4"><label for="subscriptionName" class="control-label">Item name</label><input class="form-control" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="<?php echo $subscription_name; ?>" disabled=""></div>
                                                     <div class="col-lg-4"><label for="subscriptionID" class="control-label">Subscription ID<span class="fieldNote"> (optional) </span></label><input class="form-control" maxlength="127" type="text" id="subscriptionID" size="27" name="subscription_id" value="<?php echo $subscription_id; ?>" disabled=""></div>
                                                 </div>
-                                                <div class="gift_certs accessAid fadedOut col-lg-9"><label for="giftCertificateShopURL" class="control-label">Enter the URL where recipients can shop and redeem this gift certificate.</label><input class="form-control" type="text" id="giftCertificateShopURL" size="34" name="gift_certificate_shop_url" value="http://" disabled=""></div>
+                                                
                                             </div>
                                             <div class="group products pricing opened">
                                                 <div class="col-lg-4"><label for="itemPrice" class="control-label">Price</label><input class="form-control" type="text" id="itemPrice" size="9" name="item_price" value="<?php echo $item_price; ?>"></div>
@@ -522,7 +522,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     </label>
                                                                     <input class="text form-control" maxlength="64" type="text" id="dropdownPriceTitle" <?php echo $dropdown_price_title_disabled; ?> name="dropdown_price_title" value="<?php echo $dropdown_price_title_input; ?>">
                                                                 </p>
-                                                                <p><label class="optionNameLbl control-label" for=""><span class="products">Menu option name</span><span class="subscriptions accessAid fadedOut">Menu Name</span></label><label class="optionPriceLbl control-label" for="optionPrice"><span class="products">Price</span><span class="subscriptions accessAid fadedOut">Amount (<span class="currencyLabel control-label">USD</span>)</span></label><label class="optionCurrencyLbl control-label" for="optionCurrency"><span class="products">Currency</span><span class="subscriptions accessAid fadedOut control-label">Frequency</span></label></p>
+                                                                <p><label class="optionNameLbl control-label" for=""><span class="products">Menu option name</span><span class="subscriptions accessAid fadedOut">Menu Name</span></label><label class="optionPriceLbl control-label" for="optionPrice"><span class="products">Price</span><span class="subscriptions accessAid fadedOut">Amount (<span class="currencyLabel control-label"><?php echo $item_price_currency; ?></span>)</span></label><label class="optionCurrencyLbl control-label" for="optionCurrency"><span class="products">Currency</span><span class="subscriptions accessAid fadedOut control-label">Frequency</span></label></p>
                                                                 <div id="optionsPriceContainer">
                                                                     <?php                                                                    
                                                                     $optionselectcount = isset($optionprice[0]) && count($optionprice[0]) > 0 ? count($optionprice[0]) : 0;
@@ -1270,7 +1270,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <div class="col-md-12">
-                                                                        <label for="itemFlatShippingAmount" class="control-label">Use specific amount: ( <span class="currencyLabel">USD</span> )</label>
+                                                                        <label for="itemFlatShippingAmount" class="control-label">Use specific amount: ( <span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label>
                                                                         <input class="form-control" type="text" id="itemFlatShippingAmount" size="9" name="item_shipping_amount" value="<?php echo $item_shipping_amount; ?>">
                                                                     </div>                                                                                
                                                                 </div>
@@ -1351,7 +1351,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     <div class="labelOption fixedDonationAmountContainer <?php echo $donation_container_amount_class; ?>">
                                                         <div class="row">
                                                             <div class="col-md-9">
-                                                                <label for="fixedDonationAmount" class="control-label">Amount ( <span class="currencyLabel">USD</span> )</label>
+                                                                <label for="fixedDonationAmount" class="control-label">Amount ( <span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label>
                                                                 <input type="text" id="fixedDonationAmount" size="7" maxlength="20" class="text form-control" name="item_price" value="<?php echo $donation_amount; ?>" disabled="">
                                                             </div>
                                                         </div>
@@ -1381,7 +1381,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="row">
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <label for="subscriptionBillingAmount" class="control-label">Billing amount each cycle ( <span class="currencyLabel">USD</span> ) </label>
+                                                                    <label for="subscriptionBillingAmount" class="control-label">Billing amount each cycle ( <span class="currencyLabel"><?php echo $item_price_currency; ?></span> ) </label>
                                                                     <input type="text" id="subscriptionBillingAmount" size="22" class="text form-control" name="subscription_billing_amount" value="<?php echo $subscriptionBillingAmount; ?>" disabled="">
                                                                 </div>
                                                             </div>
@@ -1477,7 +1477,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
-                                                                    <label for="subscriptionLowerRate" class="control-label">Amount to bill for the trial period ( <span class="currencyLabel">USD</span> )</label>
+                                                                    <label for="subscriptionLowerRate" class="control-label">Amount to bill for the trial period ( <span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label>
                                                                     <input class="hidden" type="hidden" id="subscriptionLowerRate" name="subscription_trial_billing_amount" value="1" disabled="">
                                                                     <input type="text" id="subscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_rate" value="<?php echo $subscription_trial_rate; ?>" disabled="">
                                                                 </div>
@@ -1601,99 +1601,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="group gift_certs last accessAid fadedOut">
-                                                <div class="group gcCurrency">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label for="gcAmountCurrency" class="control-label">Currency</label>
-                                                                <select id="gcAmountCurrency" name="item_price_currency" class="currencySelect form-control" disabled="" style="width: auto !important">
-                                                                    <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
-                                                                        <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="group">
-                                                    <div class="row">
-                                                        <div class="col-md-9">
-                                                            <h4>Specify gift certificate amount</h4>
-                                                        </div>                                                                                
-                                                    </div> 
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">                                                                                    
-                                                                <input class="radio gcAmountType form-control" type="radio" id="gcAmountTypeList" checked="" name="gc_amount_type" value="custom" disabled="">
-                                                                <label for="gcAmountTypeList" class="control-label">Choose an amount from a preset list</label>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-4">                                                                                    
-                                                            <input class="radio gcAmountType form-control" type="radio" id="gcAmountTypeFixed" name="gc_amount_type" value="fixed" disabled="">
-                                                            <label for="gcAmountTypeFixed" class="control-label">Specify an amount of your choosing</label>
-                                                        </div>                                                                            
-                                                    </div>
-
-                                                    <div class="labelOption gcFixedAmountContainer accessAid">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label for="gcFixedAmount" class="control-label">Amount ( <span class="currencyLabel">USD</span> ) </label>
-                                                                    <input type="text" id="gcFixedAmount" size="9" class="text form-control" name="gc_fixed_amount" value="" disabled="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>                                                                        
-                                                </div>
-                                                <div class="group">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <h4 class="gcStyleHeader_new">Gift certificate style</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-9">
-                                                            <div class="form-group">
-                                                                <label for="giftCertificateLogoURL" class="control-label">Add URL for logo image</label>
-                                                                <input class="text form-control" type="text" id="giftCertificateLogoURL" size="34" name="gc_logo_url" value="http://" disabled="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="group">
-                                                    <div class="row">
-                                                        <div class="col-md-9">
-                                                            <h4>Choose background</h4>  
-                                                        </div>
-                                                    </div>                                                                            
-                                                    <fieldset>                                                                            
-                                                        <label for="gcBackgroundColor" class="control-label">
-                                                            <input class="radio gcBackgroundType form-control" type="radio" checked="" name="gc_background_type" value="color" disabled="">Color
-                                                            <div class="labelOption">
-                                                                <?php $paypal_button_gcBackgroundColor = get_paypal_button_gcBackgroundColor(); ?>
-                                                                <select id="gcBackgroundColor" name="gc_background_color" disabled="" class="form-control">
-                                                                    <?php foreach ($paypal_button_gcBackgroundColor as $paypal_button_gcBackgroundColor_key => $paypal_button_gcBackgroundColor_value) { ?>
-                                                                        <option value="<?php echo $paypal_button_gcBackgroundColor_key; ?>"><?php echo $paypal_button_gcBackgroundColor_value; ?></option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                            </div>
-                                                        </label>
-                                                        <label for="gcBackgroundTheme" class="control-label">
-                                                            <input class="radio gcBackgroundType form-control" type="radio" name="gc_background_type" value="theme" disabled="">Theme
-                                                            <div class="labelOption">
-                                                                <?php $paypal_button_gcBackgroundTheme = get_paypal_button_gcBackgroundTheme(); ?>
-                                                                <select id="gcBackgroundTheme" name="gc_background_theme" disabled="" class="form-control">
-                                                                    <?php foreach ($paypal_button_gcBackgroundTheme as $paypal_button_gcBackgroundTheme_key => $paypal_button_gcBackgroundTheme_value) { ?>
-                                                                        <option value="<?php echo $paypal_button_gcBackgroundTheme_key; ?>"><?php echo $paypal_button_gcBackgroundTheme_value; ?></option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                            </div>
-                                                        </label>
-                                                    </fieldset>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="group notifications">
                                                 <div class="row">
                                                     <div class="col-md-5">
@@ -1828,7 +1736,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             </div>
 
                                                             <div class="col-md-3">
-                                                                <div class="PNLRelated"><label><?php echo __('Price', 'paypal-wp-button-manager'); ?> ( <span class="currencyLabel">USD</span> )</label></div>
+                                                                <div class="PNLRelated"><label><?php echo __('Price', 'paypal-wp-button-manager'); ?> ( <span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label></div>
                                                                 <div class="PNLRelated"><input class="form-control" type="text" name="item_cost" value="<?php echo $item_cost_step2; ?>" disabled=""></div>
                                                             </div>
                                                         </div>

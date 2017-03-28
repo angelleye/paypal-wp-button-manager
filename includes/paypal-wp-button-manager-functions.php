@@ -128,8 +128,7 @@ function get_paypal_button_options() {
     $paypal_button_options = ( array(
         "products" => "Shopping Cart",
         "services" => "Buy Now",
-        "donations" => "Donation",
-        "gift_certs" => "Gift Certificate",
+        "donations" => "Donation",        
         "subscriptions" => "Subscription"
             ));
 
