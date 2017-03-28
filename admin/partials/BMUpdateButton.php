@@ -32,7 +32,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
         
         // Write the contents of the response array to the screen for demo purposes.
         if (isset($PayPalResult['ERRORS']) && !empty($PayPalResult['ERRORS'])) {            
-            /*global $post, $post_ID;
+            global $post, $post_ID;
             $paypal_wp_button_manager_notice = get_option('paypal_wp_button_manager_notice');
             $notice[$post_ID] = $PayPalResult['ERRORS'][0]['L_LONGMESSAGE'];
             $notice_code[$post_ID] = $PayPalResult['ERRORS'][0]['L_ERRORCODE'];
@@ -49,10 +49,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
             delete_option('paypal_wp_button_manager_timeout_notice');
             // Update the post into the database
             unset($_POST);
-            unset($post);*/
-        } else if ($PayPalResult['RAWRESPONSE'] == false) {
-            echo "in first else if condition";
-            /*global $post, $post_ID;
+            unset($post);
+        } else if ($PayPalResult['RAWRESPONSE'] == false) {           
+            global $post, $post_ID;
             $timeout_notice[$post_ID] = 'Internal server error occured';
             update_option('paypal_wp_button_manager_timeout_notice', $timeout_notice);
             
@@ -66,12 +65,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
             delete_option('paypal_wp_button_manager_notice');
             delete_option('paypal_wp_button_manager_error_code');
             unset($_POST);
-            unset($post);*/
-        } else if (isset($PayPalResult['WEBSITECODE']) && !empty($PayPalResult['WEBSITECODE'])) {
-            echo "in website code condition <br>";
+            unset($post);
+        } else if (isset($PayPalResult['WEBSITECODE']) && !empty($PayPalResult['WEBSITECODE'])) {            
             global $post, $post_ID;
             global $wp;
-           /* update_post_meta($post_ID, 'paypal_button_response', $PayPalResult['WEBSITECODE']);
+            update_post_meta($post_ID, 'paypal_button_response', $PayPalResult['WEBSITECODE']);
             
             $PayPalRequest = isset($PayPalResult['RAWREQUEST']) ? $PayPalResult['RAWREQUEST'] : '';
             $PayPalResponse = isset($PayPalResult['RAWRESPONSE']) ? $PayPalResult['RAWRESPONSE'] : '';
@@ -79,7 +77,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
             $PayPalResult['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
             
             self::paypal_wp_button_manager_write_error_log($PayPalResult);
-            update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', 'Button Created Successfully.');
+            update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', 'Button Updated Successfully.');
             delete_option('paypal_wp_button_manager_notice');
             delete_option('paypal_wp_button_manager_error_code');
             delete_option('paypal_wp_button_manager_timeout_notice');
@@ -91,103 +89,24 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
             }
             if (isset($PayPalResult['EMAILLINK']) && !empty($PayPalResult['EMAILLINK'])) {
                 update_post_meta($post_ID, 'paypal_wp_button_manager_email_link', $PayPalResult['EMAILLINK']);
-            }
-            $btn_shopping = $_POST['button_type'];
-            if (isset($btn_shopping) && $btn_shopping == 'products') {
-                $button_post_status = 'shopping_cart';
-            } else if (isset($btn_shopping) && $btn_shopping == 'services') {
-                $button_post_status = 'buy_now';
-            } else if (isset($btn_shopping) && $btn_shopping == 'donations') {
-                $button_post_status = 'donations';
-            } else if (isset($btn_shopping) && $btn_shopping == 'gift_certs') {
-                $button_post_status = 'gift_certificates';
-            } else if (isset($btn_shopping) && $btn_shopping == 'subscriptions') {
-                $button_post_status = 'subscriptions';
-            } else {
-                $button_post_status = "Other";
-            }
-            $button_post_status_ucfirst = ucfirst(str_replace('_', ' ', $button_post_status));
-            $term = term_exists($button_post_status_ucfirst, 'paypal_button_types');
-            if ($term !== 0 && $term !== null) {
-                
-            } else {
-                $term = wp_insert_term($button_post_status_ucfirst, 'paypal_button_types', array('slug' => $button_post_status));
-            }
-            $tag[] = $term['term_id'];
-            $update_term = wp_set_post_terms($post_ID, $tag, 'paypal_button_types');
-            if (isset($btn_shopping) && $btn_shopping == 'products') {
-                if (isset($_POST['ddl_companyname']) && !empty($_POST['ddl_companyname'])) {
-                    $postmeta_table = $wpdb->prefix . "postmeta";
-                    $is_viewcart_created_for_cid = $wpdb->get_row("SELECT COUNT(*)as cnt_cid from  $postmeta_table where meta_key='paypal_wp_button_manager_viewcart_button_companyid' and meta_value='$_POST[ddl_companyname]'");
-                    $total_viewcart_for_cid = $is_viewcart_created_for_cid->cnt_cid;
-                    $companies_name = $wpdb->prefix . 'paypal_wp_button_manager_companies';
-                    $company_name = $wpdb->get_row("SELECT *from  $companies_name where ID='$_POST[ddl_companyname]'");
-                    if (isset($company_name->title) && !empty($company_name->title)) {
-                        $cname = $company_name->title;
-                    }
-                    if (isset($total_viewcart_for_cid) && empty($total_viewcart_for_cid)) {
-                        if ($total_viewcart_for_cid <= 0) {
-                            $BMCreateButtonFields_viewcart = array
-                                (
-                                'buttoncode' => 'CLEARTEXT', // The kind of button code to create.  It is one of the following values:  HOSTED, ENCRYPTED, CLEARTEXT, TOKEN
-                                'buttontype' => 'VIEWCART', // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
-                                'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
-                            );
-                            $PayPalRequestData_viewcart = array(
-                                'BMCreateButtonFields' => $BMCreateButtonFields_viewcart,
-                                'BMButtonVars' => ''
-                            );
-                            $PayPalResult_viewcart = $PayPal->BMCreateButton($PayPalRequestData_viewcart);
-                            if (isset($PayPalResult_viewcart['WEBSITECODE']) && !empty($PayPalResult_viewcart['WEBSITECODE'])) {
-                                // Create post object
-                                $view_cart_post = array(
-                                    'post_title' => 'View Cart - ' . $cname,
-                                    'post_content' => $PayPalResult_viewcart['WEBSITECODE'],
-                                    'post_status' => 'publish',
-                                    'post_author' => 1,
-                                    'post_type' => 'paypal_buttons'
-                                );
-                                // Insert the post into the database
-                                $post_id = wp_insert_post($view_cart_post);
-                                $term = term_exists('Shopping cart', 'paypal_button_types');
-                                $tag[] = $term['term_id'];
-                                $update_term = wp_set_post_terms($post_id, $tag, 'paypal_button_types');
-                                update_post_meta($post_id, 'paypal_button_response', $PayPalResult_viewcart['WEBSITECODE']);
-                                update_post_meta($post_id, 'paypal_wp_button_manager_viewcart_button_companyid', $_POST['ddl_companyname']);
-                                
-                                $PayPalRequest = isset($PayPalResult_viewcart['RAWREQUEST']) ? $PayPalResult_viewcart['RAWREQUEST'] : '';
-                                $PayPalResponse = isset($PayPalResult_viewcart['RAWRESPONSE']) ? $PayPalResult_viewcart['RAWRESPONSE'] : '';
-                                $PayPalResult_viewcart['RAWREQUEST'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalRequest));
-                                $PayPalResult_viewcart['RAWRESPONSE'] = $PayPal->NVPToArray($PayPal->MaskAPIResult($PayPalResponse));
-                                
-                                self::paypal_wp_button_manager_write_error_log($PayPalResult_viewcart);
-                            }
-                        }
+            }            
+            if (isset($PayPalResult['HOSTEDBUTTONID']) && !empty($PayPalResult['HOSTEDBUTTONID'])) {
+                if ((isset($_POST['enable_inventory']) && !empty($_POST['enable_inventory'])) || (isset($_POST['enable_profit_and_loss']) && !empty($_POST['enable_profit_and_loss']))) {
+                    $PayPalRequestData_Inventory = $payapal_helper->paypal_wp_button_manager_set_inventory();                     
+                    $PayPalSet_InventoryResult = $PayPal->BMSetInventory($PayPalRequestData_Inventory);
+                    self::paypal_wp_button_manager_write_error_log($PayPalSet_InventoryResult);
+                    if (isset($PayPalSet_InventoryResult['ERRORS']) && !empty($PayPalSet_InventoryResult['ERRORS'])) {
+                        global $post, $post_ID;
+                        $paypal_wp_button_manager_notice = get_option('paypal_wp_button_manager_notice');
+                        $notice[$post_ID] = $PayPalSet_InventoryResult['ERRORS'][0]['L_LONGMESSAGE'];
+                        $notice_code[$post_ID] = $PayPalSet_InventoryResult['ERRORS'][0]['L_ERRORCODE'];
+                        update_option('paypal_wp_button_manager_notice', $notice);
+                        update_option('paypal_wp_button_manager_error_code', $notice_code);
+                        update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
+                        delete_option('paypal_wp_button_manager_timeout_notice');
                     }
                 }
-            } */
-            
-             if (isset($PayPalResult['HOSTEDBUTTONID']) && !empty($PayPalResult['HOSTEDBUTTONID'])) {
-                 if ((isset($_POST['enable_inventory']) && !empty($_POST['enable_inventory'])) || (isset($_POST['enable_profit_and_loss']) && !empty($_POST['enable_profit_and_loss']))) {
-                     $PayPalRequestData_Inventory = $payapal_helper->paypal_wp_button_manager_set_inventory();                     
-                     $PayPalSet_InventoryResult = $PayPal->BMSetInventory($PayPalRequestData_Inventory);
-                     echo "<pre>";
-                     var_dump($PayPalSet_InventoryResult);
-                     exit;
-                     //self::paypal_wp_button_manager_write_error_log($PayPalSet_InventoryResult);
-                     if (isset($PayPalSet_InventoryResult['ERRORS']) && !empty($PayPalSet_InventoryResult['ERRORS'])) {
-                         global $post, $post_ID;
-                         $paypal_wp_button_manager_notice = get_option('paypal_wp_button_manager_notice');
-                         $notice[$post_ID] = $PayPalSet_InventoryResult['ERRORS'][0]['L_LONGMESSAGE'];
-                         $notice_code[$post_ID] = $PayPalSet_InventoryResult['ERRORS'][0]['L_ERRORCODE'];
-                         //update_option('paypal_wp_button_manager_notice', $notice);
-                         //update_option('paypal_wp_button_manager_error_code', $notice_code);
-                         //update_post_meta($post_ID, 'paypal_wp_button_manager_success_notice', '');
-                         //delete_option('paypal_wp_button_manager_timeout_notice');
-                     }
-                 }
-             }
- 
+            }
             unset($post);
             unset($_POST);
         }

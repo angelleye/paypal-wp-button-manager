@@ -349,9 +349,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $radioAddToCartButton = '';
             }
 
-            echo "<pre>";            
-            var_dump($button_details_array);
-            echo "</pre>";
+            //echo "<pre>";            
+            //var_dump($button_details_array);
+            //echo "</pre>";
             //exit;
         }
         ?>
