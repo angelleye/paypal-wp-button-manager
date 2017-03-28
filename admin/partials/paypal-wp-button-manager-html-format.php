@@ -96,8 +96,19 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $trackByOption_checkbox='';
         $byItemTableBody_class='';
         $byOptionTableBody_class='';
-
-
+        $subscription_name = '';
+        $subscription_id = '';
+        $subscriptionBillingAmount ='';
+        $subscription_billing_cycle_number ='';
+        $subscription_billing_cycle_period = '';
+        $subscription_billing_limit = '';
+        $subscription_trial_rate ='';
+        $subscription_trial_duration = '';
+        $subscription_trial_duration_type = '';
+        $subscription_trial_2_rate = '';
+        $subscription_trial_2_duration = '';
+        $subscription_trial_2_duration_type = '';
+        
         if ($string == 'edit') {
 
             $enableHostedButtons_checkbox = 'disabled';
@@ -189,6 +200,14 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $subscription_billing_cycle_number = isset($BUTTONVAR['p3']) ? $BUTTONVAR['p3'] : '';
                 $subscription_billing_cycle_period = isset($BUTTONVAR['t3']) ? $BUTTONVAR['t3'] : '';
                 $subscription_billing_limit = isset($BUTTONVAR['srt']) ? $BUTTONVAR['srt'] : '';
+                
+                $subscription_trial_rate = isset($BUTTONVAR['a1']) ? $BUTTONVAR['a1'] : '';
+                $subscription_trial_duration = isset($BUTTONVAR['p1']) ? $BUTTONVAR['p1'] : '';
+                $subscription_trial_duration_type = isset($BUTTONVAR['t1']) ? $BUTTONVAR['t1'] : '';
+                
+                $subscription_trial_2_rate = isset($BUTTONVAR['a2']) ? $BUTTONVAR['a2'] : '';
+                $subscription_trial_2_duration = isset($BUTTONVAR['p2']) ? $BUTTONVAR['p2'] : '';
+                $subscription_trial_2_duration_type = isset($BUTTONVAR['t2']) ? $BUTTONVAR['t2'] : '';
             }
 
             if($buttonType=='ADDCART'){
@@ -1419,7 +1438,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     $paypal_button_subscriptions_cycle_billing_limit = get_paypal_button_subscription_billing_limit();
                                                                     foreach ($paypal_button_subscriptions_cycle_billing_limit as $paypal_button_subscriptions_cycle_billing_limit_key => $paypal_button_subscriptions_cycle_billing_limit_value) {
                                                                         ?>
-                                                                        <option value="<?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?>"><?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?></option>
+                                                                    <?php
+                                                                        if($subscription_billing_limit==$paypal_button_subscriptions_cycle_billing_limit_value){
+                                                                            $subscription_billing_limit_selected='selected';
+                                                                        }
+                                                                        else{
+                                                                            $subscription_billing_limit_selected='';
+                                                                        }
+                                                                    ?>
+                                                                        <option value="<?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?>" <?php echo $subscription_billing_limit_selected; ?>><?php echo $paypal_button_subscriptions_cycle_billing_limit_value; ?></option>
                                                                     <?php } ?>
                                                                 </select>
                                                             </div>
@@ -1430,19 +1457,29 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     <div class="row">
                                                         <div class="col-md-9">
                                                             <div class="form-group">
-                                                                <input type="checkbox" id="offerTrial" class="checkbox form-control" name="subscriptions_offer_trial" value="1" disabled=""><label for="offerTrial" class="control-label">I want to offer a trial period</label>
+                                                                <?php 
+                                                                    if(!empty($subscription_trial_rate) && !empty($subscription_trial_duration)){
+                                                                        $subscriptions_offer_trial_checkbox='checked';
+                                                                        $trialOfferOptions_class='';
+                                                                    }
+                                                                    else{
+                                                                        $subscriptions_offer_trial_checkbox='';
+                                                                        $trialOfferOptions_class='accessAid';
+                                                                    }
+                                                                ?>
+                                                                <input type="checkbox" id="offerTrial" class="checkbox form-control" name="subscriptions_offer_trial" value="1" disabled="" <?php echo $subscriptions_offer_trial_checkbox; ?>><label for="offerTrial" class="control-label">I want to offer a trial period</label>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="trialOfferOptions accessAid">
+                                                    <div class="trialOfferOptions <?php echo $trialOfferOptions_class; ?>">
 
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="subscriptionLowerRate" class="control-label">Amount to bill for the trial period ( <span class="currencyLabel">USD</span> )</label>
                                                                     <input class="hidden" type="hidden" id="subscriptionLowerRate" name="subscription_trial_billing_amount" value="1" disabled="">
-                                                                    <input type="text" id="subscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_rate" value="" disabled="">
+                                                                    <input type="text" id="subscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_rate" value="<?php echo $subscription_trial_rate; ?>" disabled="">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1455,14 +1492,30 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 <div class="col-md-1">
                                                                     <select name="subscription_trial_duration" disabled="" class="form-control">
                                                                         <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
-                                                                            <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>"><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
+                                                                            <?php 
+                                                                                if($subscription_trial_duration == $paypal_button_subscription_trial_duration_key){
+                                                                                    $subscription_trial_duration_selected='selected';
+                                                                                }
+                                                                                else{
+                                                                                    $subscription_trial_duration_selected='';
+                                                                                }
+                                                                            ?>
+                                                                            <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>" <?php echo $subscription_trial_duration_selected; ?> ><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
                                                                         <?php } ?>
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-1">
                                                                     <select id="trialDurationType" name="subscription_trial_duration_type" disabled="" class="form-control">
                                                                         <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
-                                                                            <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
+                                                                            <?php 
+                                                                                if($subscription_trial_duration_type == $paypal_button_subscriptions_cycle_key){
+                                                                                    $subscription_trial_duration_type_selected='selected';
+                                                                                }
+                                                                                else{
+                                                                                    $subscription_trial_duration_type_selected='';
+                                                                                }
+                                                                            ?>
+                                                                            <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>" <?php echo $subscription_trial_duration_type_selected; ?> ><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
                                                                         <?php } ?>
                                                                     </select>
                                                                 </div>                                                                                    
@@ -1477,22 +1530,33 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="row">
                                                             <div class="col-md-9">
                                                                 <div class="form-group">
-
-                                                                    <input class="radio secondTrialOfferOption form-control" type="radio" id="secondSubscriptionTrialOffer" name="subscriptions_offer_another_trial" value="1" disabled="">
+                                                                    <?php 
+                                                                    if(!empty($subscription_trial_2_rate) && !empty($subscription_trial_2_duration)){
+                                                                         $secondSubscriptionTrialOffer_radio='checked';
+                                                                         $lastSubscriptionTrialOffer_radio='';
+                                                                         $secondTrialOfferOptions_class='';
+                                                                    }
+                                                                    else{
+                                                                        $secondSubscriptionTrialOffer_radio='';
+                                                                        $lastSubscriptionTrialOffer_radio='checked';
+                                                                        $secondTrialOfferOptions_class='accessAid';
+                                                                    }
+                                                                ?>
+                                                                    <input class="radio secondTrialOfferOption form-control" type="radio" id="secondSubscriptionTrialOffer" <?php echo $secondSubscriptionTrialOffer_radio; ?> name="subscriptions_offer_another_trial" value="1" disabled="">
                                                                     <label for="secondSubscriptionTrialOffer" class="control-label">Yes</label>
 
-                                                                    <input class="radio secondTrialOfferOption form-control" type="radio" id="lastSubscriptionTrialOffer" checked="" name="subscriptions_offer_another_trial" value="0" disabled="">
+                                                                    <input class="radio secondTrialOfferOption form-control" type="radio" id="lastSubscriptionTrialOffer" <?php echo $lastSubscriptionTrialOffer_radio; ?> name="subscriptions_offer_another_trial" value="0" disabled="">
                                                                     <label for="lastSubscriptionTrialOffer" class="control-label">No</label>
 
                                                                 </div>
                                                             </div>
                                                         </div>                                                                                
-                                                        <div class="secondTrialOfferOptions accessAid">
+                                                        <div class="secondTrialOfferOptions <?php echo $secondTrialOfferOptions_class; ?>">
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label class="control-label">Amount to bill for this trial period ( <span class="currencyLabel">USD</span> )</label>
-                                                                        <input type="text" id="secondSubscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_2_rate" value="" disabled="">
+                                                                        <label class="control-label">Amount to bill for this trial period ( <span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label>
+                                                                        <input type="text" id="secondSubscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_2_rate" value="<?php echo $subscription_trial_2_rate; ?>" disabled="">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1504,14 +1568,30 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="col-md-1">
                                                                         <select name="subscription_trial_2_duration" disabled="" class="form-control">
                                                                             <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
-                                                                                <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>"><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
+                                                                                <?php 
+                                                                                    if($subscription_trial_2_duration == $paypal_button_subscription_trial_duration_key){
+                                                                                        $subscription_trial_2_duration_selected='selected';
+                                                                                    }
+                                                                                    else{
+                                                                                        $subscription_trial_2_duration_selected='';
+                                                                                    }
+                                                                                ?>
+                                                                                <option value="<?php echo $paypal_button_subscription_trial_duration_key; ?>" <?php echo $subscription_trial_2_duration_selected; ?> ><?php echo $paypal_button_subscription_trial_duration_value; ?></option>
                                                                             <?php } ?>
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-md-2">
                                                                         <select id="secondTrialDurationType" name="subscription_trial_2_duration_type" disabled="" class="form-control">
                                                                             <?php foreach ($paypal_button_subscriptions_cycle as $paypal_button_subscriptions_cycle_key => $paypal_button_subscriptions_cycle_value) { ?>
-                                                                                <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>"><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
+                                                                            <?php 
+                                                                                if($subscription_trial_2_duration_type == $paypal_button_subscriptions_cycle_key){
+                                                                                    $subscription_trial_2_duration_type_selected = 'selected';
+                                                                                }
+                                                                                else{
+                                                                                    $subscription_trial_2_duration_type_selected = '';
+                                                                                }
+                                                                            ?>
+                                                                                <option value="<?php echo $paypal_button_subscriptions_cycle_key; ?>" <?php echo $subscription_trial_2_duration_type_selected; ?> ><?php echo $paypal_button_subscriptions_cycle_value; ?></option>
                                                                             <?php } ?>
                                                                         </select>
                                                                     </div>        
