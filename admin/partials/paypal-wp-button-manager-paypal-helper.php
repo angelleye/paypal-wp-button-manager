@@ -120,7 +120,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
                 'buttonimage' => $buttonimage, //isset($_POST['cc_logos']) ? 'CC' : 'SML',
                 'buttonimageurl' => $_POST['wpss_upload_image'],
-                'buttonlanguage' =>'en_AE' // (isset($_POST['select_country_language']) ? $_POST['select_country_language'] : '')
+                'buttonlanguage' => (isset($_POST['select_country_language']) ? $_POST['select_country_language'] : '')
             );
             
         } else {
@@ -131,7 +131,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 'buttontype' => AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper::paypal_wp_button_manager_get_button_type(), // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
                 'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
                 'buttonimage' => $buttonimage, //isset($_POST['cc_logos']) ? 'CC' : 'SML',
-                'buttonlanguage' =>'en_AE' // (isset($_POST['select_country_language']) ? $_POST['select_country_language'] : '')
+                'buttonlanguage' => (isset($_POST['select_country_language']) ? $_POST['select_country_language'] : '')
             );
             
         }
@@ -139,6 +139,31 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
         if( !empty($_POST['custom_image_url']) ) {
             $bmcreatebuttonfields['ButtonImageURL'] = $_POST['custom_image_url'];
             $bmcreatebuttonfields['ButtonImage'] = 'REG';
+        }
+        
+        if(!empty($_POST['button_text'])){
+            $btnTypeFortext=AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper::paypal_wp_button_manager_get_button_type();
+            
+            /* check for the button text */
+            /* Buynow button */
+            if($btnTypeFortext =='BUYNOW'){
+                if($_POST['button_text']=='buy_now'){
+                    $bmcreatebuttonfields['BUYNOWTEXT'] = 'BUYNOW';
+                }
+                if($_POST['button_text']=='pay_now'){
+                    $bmcreatebuttonfields['BUYNOWTEXT'] = 'PAYNOW';
+                }
+            }
+            
+            /* Subscribe button */
+            if($btnTypeFortext =='SUBSCRIBE'){                
+                if($_POST['button_text']=='buy_now'){
+                    $bmcreatebuttonfields['SUBSCRIBETEXT'] = 'BUYNOW';
+                }
+                if($_POST['button_text']=='subscriptions'){
+                    $bmcreatebuttonfields['SUBSCRIBETEXT'] = 'SUBSCRIBE';
+                }                
+            }
         }
         
         return $bmcreatebuttonfields;

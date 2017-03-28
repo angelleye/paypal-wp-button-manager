@@ -109,6 +109,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $subscription_trial_2_duration = '';
         $subscription_trial_2_duration_type = '';
         $subscribe_text='';
+        $buynowtext='BUYNOW';
         
         if ($string == 'edit') {
 
@@ -158,17 +159,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 }
             }
             /* END of section to get values from dropdown of the customizzation section */
-
-            $dom = new DOMDocument();
-            $dom->loadHTML($button_details_array['WEBSITECODE']);
-            $imgs = $dom->getElementsByTagName('input');
-            foreach ($imgs as $img) {
-                $temp_src = $img->getAttribute('src');
-                if (!empty($temp_src)) {
-                    $button_img_src = $temp_src;
-                }
-            }
-
+           
             $buttonType = isset($button_details_array['BUTTONTYPE']) ? $button_details_array['BUTTONTYPE'] : '';
             $buttonCountry = isset($button_details_array['BUTTONCOUNTRY']) ? $button_details_array['BUTTONCOUNTRY'] : '';
             $buttonLanguage = isset($button_details_array['BUTTONLANGUAGE']) ? $button_details_array['BUTTONLANGUAGE'] : '';
@@ -287,6 +278,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $item_price_currency = isset($BUTTONVAR['currency_code']) ? $BUTTONVAR['currency_code'] : '';
                 $item_shipping_amount = isset($BUTTONVAR['shipping']) ? $BUTTONVAR['shipping'] : '';
                 $itemTaxRate = isset($BUTTONVAR['tax_rate']) ? $BUTTONVAR['tax_rate'] : '';
+                $buynowtext = isset($button_details_array['BUYNOWTEXT']) ? $button_details_array['BUYNOWTEXT'] : '';
                 $inventory_set = true;
                 $DataArray = array();
                 $PayPal_get_inventory = $PayPal->BMGetInventory($DataArray, $edit_hosted_button_id);
@@ -356,6 +348,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
             } else {
                 $radioAddToCartButton = '';
             }
+
+            echo "<pre>";            
+            var_dump($button_details_array);
+            echo "</pre>";
+            //exit;
         }
         ?>
         <div id="wrap">
@@ -1060,8 +1057,18 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 <label for="" class="control-label">Select button text</label>
                                                                                 <span class="field">
                                                                                     <select id="buttonTextBuyNow" name="button_text" disabled="" class="form-control">
-                                                                                        <option value="buy_now" selected="">Buy Now</option>
-                                                                                        <option value="pay_now">Pay Now</option>
+                                                                                        <?php
+                                                                                            if($buynowtext=='BUYNOW'){
+                                                                                                $buy_now_selected='selected';
+                                                                                                $pay_now_selected='';
+                                                                                            }
+                                                                                            else{
+                                                                                                $buy_now_selected='';
+                                                                                                $pay_now_selected='selected';
+                                                                                            }
+                                                                                        ?>
+                                                                                        <option value="buy_now" <?php echo $buy_now_selected; ?> >Buy Now</option>
+                                                                                        <option value="pay_now" <?php echo $pay_now_selected; ?> >Pay Now</option>
                                                                                     </select>
                                                                                 </span>
                                                                             </p>
