@@ -28,14 +28,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
         $BMButtonVars = array();
         $BMButtonVars = $payapal_helper->paypal_wp_button_manager_get_buttonvars();
         $PayPalRequestData = $payapal_helper->paypal_wp_button_manager_get_dropdown_values();        
-        $PayPalResult = $PayPal->BMUpdateButton($PayPalRequestData,$edit_hosted_button_id);
+        $PayPalResult = $PayPal->BMUpdateButton($PayPalRequestData,$edit_hosted_button_id);        
         
-        //echo "<pre>";
-        //var_dump($PayPalResult);
-        //exit;
         // Write the contents of the response array to the screen for demo purposes.
-        if (isset($PayPalResult['ERRORS']) && !empty($PayPalResult['ERRORS'])) {
-            echo "in if condition";
+        if (isset($PayPalResult['ERRORS']) && !empty($PayPalResult['ERRORS'])) {            
             /*global $post, $post_ID;
             $paypal_wp_button_manager_notice = get_option('paypal_wp_button_manager_notice');
             $notice[$post_ID] = $PayPalResult['ERRORS'][0]['L_LONGMESSAGE'];

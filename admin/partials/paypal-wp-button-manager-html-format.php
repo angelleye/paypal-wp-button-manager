@@ -108,6 +108,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $subscription_trial_2_rate = '';
         $subscription_trial_2_duration = '';
         $subscription_trial_2_duration_type = '';
+        $subscribe_text='';
         
         if ($string == 'edit') {
 
@@ -208,6 +209,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $subscription_trial_2_rate = isset($BUTTONVAR['a2']) ? $BUTTONVAR['a2'] : '';
                 $subscription_trial_2_duration = isset($BUTTONVAR['p2']) ? $BUTTONVAR['p2'] : '';
                 $subscription_trial_2_duration_type = isset($BUTTONVAR['t2']) ? $BUTTONVAR['t2'] : '';
+                
+                $subscribe_text= isset($button_details_array['SUBSCRIBETEXT']) ? $button_details_array['SUBSCRIBETEXT'] : '' ;
             }
 
             if($buttonType=='ADDCART'){
@@ -353,11 +356,6 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
             } else {
                 $radioAddToCartButton = '';
             }
-
-            echo "<pre>";            
-            var_dump($button_details_array);
-            echo "</pre>";
-            //exit;
         }
         ?>
         <div id="wrap">
@@ -1076,8 +1074,18 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 <label for="" class="control-label">Select button text</label>
                                                                                 <span class="field">
                                                                                     <select id="buttonTextSubscribe" name="button_text" disabled="" class="form-control">
-                                                                                        <option value="subscriptions" selected="">Subscribe</option>
-                                                                                        <option value="buy_now">Buy Now</option>
+                                                                                        <?php 
+                                                                                            if($subscribe_text=='BUYNOW'){
+                                                                                                $buttonTextSubscribe_buynow='selected';
+                                                                                                $buttonTextSubscribe_subscribe='';
+                                                                                            }
+                                                                                            else{
+                                                                                                $buttonTextSubscribe_buynow='';
+                                                                                                $buttonTextSubscribe_subscribe='selected';
+                                                                                            }
+                                                                                        ?>
+                                                                                        <option value="subscriptions" <?php echo $buttonTextSubscribe_subscribe; ?> >Subscribe</option>
+                                                                                        <option value="buy_now" <?php echo $buttonTextSubscribe_buynow; ?> >Buy Now</option>
                                                                                     </select>
                                                                                 </span>
                                                                             </p>
