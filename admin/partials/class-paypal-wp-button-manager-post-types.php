@@ -385,10 +385,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
     public static function my_action_row($actions, $post){
         //check for your post type
         if ($post->post_type == "paypal_buttons") {
-            /* do you stuff here
-              you can unset to remove actions
-              and to add actions ex: */
-            $actions['view'] = '<a href="http://localhost/wordpress_divi/wp-admin/post.php?post=' . $post->ID . '&action=edit&view=true">View</a>';            
+            /*this will add View link in the post listing action */
+            $actions['view'] = '<a href="'.admin_url().'/post.php?post=' . $post->ID . '&action=edit&view=true">View</a>';  
         }
         return $actions;
     }
