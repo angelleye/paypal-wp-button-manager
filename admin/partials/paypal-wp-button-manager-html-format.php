@@ -20,18 +20,35 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         add_action('paypal_wp_button_manager_before_interface', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_html_before'));
     }
 
-    public static function paypal_wp_button_manager_for_wordpress_button_interface_html_before() {
+    public static function paypal_wp_button_manager_for_wordpress_button_interface_html_before($string_param) {
         global $wpdb;
         $companies = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
         $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE paypal_mode !=''", ARRAY_A);
+        $ddl_companyname_selected='';
         ?> <div class="div_companies_dropdown col-lg-4" >
 
             <div class="div_companyname form-group">
                 <label for="paypalcompanyname" class="control-label"><strong>Choose Company Name:</strong></label>
+                <?php 
+                    if($string_param=='edit'){
+                        $meta = get_post_meta(get_the_ID());
+                        $edit_button_param_company_id=$meta['paypal_wp_button_manager_company_rel'][0];
+                    }
+                ?>
                 <select id="ddl_companyname" name="ddl_companyname" class="form-control">
                     <option value="">--Select Company--</option>
                     <?php foreach ($result_records as $result_records_value) { ?>
-                        <option value="<?php echo $result_records_value['ID']; ?>" selected=""><?php echo $result_records_value['title']; ?></option>
+                        <?php 
+                            if($string_param=='edit'){
+                                if($edit_button_param_company_id == $result_records_value['ID']){
+                                    $ddl_companyname_selected='selected';
+                                }
+                                else{
+                                    $ddl_companyname_selected='';
+                                }
+                            }
+                        ?>
+                        <option value="<?php echo $result_records_value['ID']; ?>" <?php echo $ddl_companyname_selected; ?> ><?php echo $result_records_value['title']; ?></option>
                     <?php }
                     ?>
                 </select>
@@ -117,8 +134,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
             $edit_button = true;
             $meta = get_post_meta(get_the_ID());
             $edit_hosted_button_id = $meta['paypal_wp_button_manager_button_id'][0];
+            $edit_button_company_id=$meta['paypal_wp_button_manager_company_rel'][0];
             $payapal_helper = new AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper();
-            $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig();
+            $PayPalConfig = $payapal_helper->paypal_wp_button_manager_get_paypalconfig($edit_button_company_id);
             $PayPal = new Angelleye_PayPal($PayPalConfig);
             $button_details_array = $PayPal->BMGetButtonDetails($edit_hosted_button_id);
             foreach ($button_details_array as $key => $value) {
@@ -348,11 +366,6 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
             } else {
                 $radioAddToCartButton = '';
             }
-
-            //echo "<pre>";            
-            //var_dump($button_details_array);
-            //echo "</pre>";
-            //exit;
         }
         ?>
         <div id="wrap">

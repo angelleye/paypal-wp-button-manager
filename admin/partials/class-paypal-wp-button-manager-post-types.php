@@ -346,11 +346,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
             } else {   
                     global $pagenow;
                     if( in_array( $pagenow, array('post.php') )) {                        
-                        do_action('paypal_wp_button_manager_before_interface');
+                        do_action('paypal_wp_button_manager_before_interface','edit');
                         do_action('paypal_wp_button_manager_interface','edit');
                     }                    
                     else{
-                        do_action('paypal_wp_button_manager_before_interface');
+                        do_action('paypal_wp_button_manager_before_interface','add');
                         do_action('paypal_wp_button_manager_interface','add');
                         echo '<div id="go_to_settings"></div>';   
                     }
