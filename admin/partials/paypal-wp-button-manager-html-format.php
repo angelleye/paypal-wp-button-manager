@@ -25,16 +25,24 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $companies = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
         $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE paypal_mode !=''", ARRAY_A);
         $ddl_companyname_selected='';
-        ?> <div class="div_companies_dropdown col-lg-4" >
-
-            <div class="div_companyname form-group">
-                <label for="paypalcompanyname" class="control-label"><strong>Choose Company Name:</strong></label>
-                <?php 
-                    if($string_param=='edit'){
-                        $meta = get_post_meta(get_the_ID());
-                        $edit_button_param_company_id=$meta['paypal_wp_button_manager_company_rel'][0];
-                    }
-                ?>
+        ?> 
+         <?php 
+            if($string_param=='edit'){
+                $meta = get_post_meta(get_the_ID());
+                $edit_button_param_company_id=$meta['paypal_wp_button_manager_company_rel'][0];
+                if(!isset($meta['paypal_wp_button_manager_button_id'])){
+                    echo '
+                    <div class="update-nag notice">
+                        <p>Button is Not saved On PayPal</p>
+                        <p>Only that Buttons can be edited which are saved on PayPal</p>
+                    </div>';                    
+                    exit;    
+                }                        
+            }
+        ?>
+        <div class="div_companies_dropdown col-lg-4" >
+            <div class="div_companyname form-group">               
+                <label for="paypalcompanyname" class="control-label"><strong>Choose Company Name:</strong></label>                
                 <select id="ddl_companyname" name="ddl_companyname" class="form-control">
                     <option value="">--Select Company--</option>
                     <?php foreach ($result_records as $result_records_value) { ?>
