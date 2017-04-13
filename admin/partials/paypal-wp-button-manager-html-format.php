@@ -1637,7 +1637,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+                                            <?php
+                                             if($string == 'edit') :
+                                            ?>
                                             <div class="group notifications">
                                                 <div class="row">
                                                     <div class="col-md-5">
@@ -1648,6 +1650,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <?php endif; ?>
                                         </div>                                                                    
                                     </div>
                                 </div>    
