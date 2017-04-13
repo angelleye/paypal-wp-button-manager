@@ -40,8 +40,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             global $post, $post_ID;
             $paypal_wp_button_manager_notice = get_option('paypal_wp_button_manager_notice');
             $notice[$post_ID] = $PayPalResult['ERRORS'][0]['L_LONGMESSAGE'];
-            $notice_code[$post_ID] = $PayPalResult['ERRORS'][0]['L_ERRORCODE'];
-            
+            $notice_code[$post_ID] = $PayPalResult['ERRORS'][0]['L_ERRORCODE'];            
+            if($PayPalResult['ERRORS'][0]['L_ERRORCODE'] == '10002'){
+                $notice[$post_ID] = 'API Credentials are Incorrect';
+            }
             $PayPalRequest = isset($PayPalResult['RAWREQUEST']) ? $PayPalResult['RAWREQUEST'] : '';
             $PayPalResponse = isset($PayPalResult['RAWRESPONSE']) ? $PayPalResult['RAWRESPONSE'] : '';
 
