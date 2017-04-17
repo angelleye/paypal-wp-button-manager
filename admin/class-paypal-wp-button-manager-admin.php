@@ -379,7 +379,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 		if (isset($get_hosted_button_count->cnt_hosted) && !empty($get_hosted_button_count->cnt_hosted)) {
 			$count_hostedbuttons = $get_hosted_button_count->cnt_hosted;
 		}
-
+            if($screen != NULL || !empty($screen)){
 		$screen = get_current_screen();
 		if ($screen->post_type == 'paypal_buttons') {
 			if (((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' ))) && (isset($count_companies) && $count_companies > 0) && (isset($count_hostedbuttons) && !empty($count_hostedbuttons)) && ((isset($count_trashpost) && $count_trashpost > 0)) && (isset($_GET['post_status']) && ($_GET['post_status'] == 'trash'))) {
@@ -412,6 +412,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
                 <?php
 			}
 		}
+            }
 	}
 
 	public static function paypal_wp_button_manager_del_all_hostedbutton() {
