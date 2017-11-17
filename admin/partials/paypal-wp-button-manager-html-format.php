@@ -29,15 +29,20 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
          <?php 
             if($string_param=='edit'){
                 $meta = get_post_meta(get_the_ID());
-                $edit_button_param_company_id=$meta['paypal_wp_button_manager_company_rel'][0];
-                if(!isset($meta['paypal_wp_button_manager_button_id'])){
-                    echo '
-                    <div class="update-nag notice">
-                        <p>Button is Not saved On PayPal</p>
-                        <p>Only that Buttons can be edited which are saved on PayPal</p>
-                    </div>';                    
-                    exit;    
-                }                        
+                if(isset($meta['paypal_wp_button_manager_company_rel'][0])){
+                    $edit_button_param_company_id=$meta['paypal_wp_button_manager_company_rel'][0];
+                    if(!isset($meta['paypal_wp_button_manager_button_id'])){
+                        echo '
+                        <div class="update-nag notice">
+                            <p>Button is Not saved On PayPal</p>
+                            <p>Only that Buttons can be edited which are saved on PayPal</p>
+                        </div>';                    
+                        exit;    
+                    }   
+                }
+                else{
+                    exit;
+                }
             }
         ?>
         <div class="div_companies_dropdown col-lg-4" >
