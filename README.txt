@@ -120,6 +120,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * Feature - Syncs button details with PayPal when entering edit button page via admin panel. ([#76](https://github.com/angelleye/paypal-wp-button-manager/issues/76))
 * Tweak - Removes obsolete email/account ID option. ([#74](https://github.com/angelleye/paypal-wp-button-manager/issues/74))
 * Tweak - Masks API logs. ([#75](https://github.com/angelleye/paypal-wp-button-manager/issues/75))
+* Tweak - Adds better error message to explain when the PayPal API credentials are incorrect. ([#82](https://github.com/angelleye/paypal-wp-button-manager/issues/82))
 * Tweak - Design updates using Bootstrap. ([#79](https://github.com/angelleye/paypal-wp-button-manager/issues/79))
 * Fix - Resolves an issue with the visual editor shortcode tool placing the wrong button. ([#64](https://github.com/angelleye/paypal-wp-button-manager/issues/64))
 * Fix - Resolves a bug with the custom image option. ([#67](https://github.com/angelleye/paypal-wp-button-manager/issues/67))
