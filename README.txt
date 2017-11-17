@@ -113,6 +113,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 == Changelog ==
 
 = 1.1.0 - xx.xx.2016 =
+* Feature - Adds the ability to update existing buttons. ([#55](https://github.com/angelleye/paypal-wp-button-manager/issues/55))
 * Feature - Adds the ability to set inventory for a button. ([#48](https://github.com/angelleye/paypal-wp-button-manager/issues/48))
 * Feature - Adds multi-site compatibility. ([#66](https://github.com/angelleye/paypal-wp-button-manager/issues/66))
 * Feature - Adds a log viewer for easier troubleshooting with logs. ([#73](https://github.com/angelleye/paypal-wp-button-manager/issues/73))
