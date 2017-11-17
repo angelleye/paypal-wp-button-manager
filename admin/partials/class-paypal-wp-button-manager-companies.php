@@ -89,10 +89,10 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
     function get_columns() {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'title' => 'Company Name',
-            'paypal_person_name' => 'Contact Name',
-            'paypal_person_email' => 'PayPal Account Email',
-            'paypal_mode' => 'PayPal Mode'
+            'title' => __('Company Name','paypal-wp-button-manager'),
+            'paypal_person_name' => __('Contact Name','paypal-wp-button-manager'),
+            'paypal_person_email' => __('PayPal Account Email','paypal-wp-button-manager'),
+            'paypal_mode' => __('PayPal Mode','paypal-wp-button-manager')
         );
 
 
@@ -188,7 +188,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                 ?>
                 <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
                 <h2 class="floatleft"><?php _e('Companies List', 'custom_table_example') ?> </h2>
-                <a href="/wp-admin/admin.php?page=paypal-wp-button-manager-option&tab=company" class="cls_addcompany button-primary">Add Company</a>
+                <a href="/wp-admin/admin.php?page=paypal-wp-button-manager-option&tab=company" class="cls_addcompany button-primary"><?php echo esc_html__('Add Company','paypal-wp-button-manager'); ?></a>
             <?php } else { ?>
                 <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
                 <h2><?php _e('Companies List', 'custom_table_example') ?> 
@@ -344,11 +344,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                             <fieldset>
                                 <ul class="ul_paypal_mode">
                                     <li><label><input class="" <?php echo isset($sandbox_checked) ? $sandbox_checked : ''; ?> name="paypal_mode" type="radio" value="Sandbox" >
-                                            Sandbox</label></li>
+                                            <?php echo esc_html__('Sandbox','paypal-wp-button-manager'); ?></label></li>
 
                                     <li><label><input class="" <?php echo isset($live_checked) ? $live_checked : ''; ?> name="paypal_mode"
                                                       type="radio" value="Live">
-                                            Live</label></li>
+                                            <?php echo esc_html__('Live','paypal-wp-button-manager'); ?></label></li>
                                 </ul>
                             </fieldset>
                         </td>
@@ -363,11 +363,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                             <fieldset>
                                 <ul class="ul_account_mode">
                                     <li><label><input class="" <?php echo isset($paypal_account_id) ? $paypal_account_id : ''; ?> name="paypal_account_mode" type="radio" value="paypal_account_id" >
-                                            PayPal Account ID</label></li>
+                                            <?php echo esc_html__('PayPal Account ID','paypal-wp-button-manager'); ?></label></li>
 
                                     <li><label><input class="" <?php echo isset($email_id) ? $email_id : ''; ?> name="paypal_account_mode"
                                                       type="radio" value="email_id">
-                                            Email Address</label></li>
+                                            <?php echo esc_html__('Email Address','paypal-wp-button-manager'); ?></label></li>
                                 </ul>
                             </fieldset>
                         </td>

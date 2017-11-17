@@ -54,7 +54,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
             unset($post);
         } else if ($PayPalResult['RAWRESPONSE'] == false) {           
             global $post, $post_ID;
-            $timeout_notice[$post_ID] = 'Internal server error occured';
+            $timeout_notice[$post_ID] = __('Internal server error occured','paypal-wp-button-manager');
             update_option('paypal_wp_button_manager_timeout_notice', $timeout_notice);
             
             $PayPalRequest = isset($PayPalResult['RAWREQUEST']) ? $PayPalResult['RAWREQUEST'] : '';

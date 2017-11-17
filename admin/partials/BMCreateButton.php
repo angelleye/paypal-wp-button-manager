@@ -42,7 +42,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             $notice[$post_ID] = $PayPalResult['ERRORS'][0]['L_LONGMESSAGE'];
             $notice_code[$post_ID] = $PayPalResult['ERRORS'][0]['L_ERRORCODE'];            
             if($PayPalResult['ERRORS'][0]['L_ERRORCODE'] == '10002'){
-                $notice[$post_ID] = 'PayPal API Credentials are Incorrect.';
+                $notice[$post_ID] = __('PayPal API Credentials are Incorrect.','paypal-wp-button-manager');
             }
             $PayPalRequest = isset($PayPalResult['RAWREQUEST']) ? $PayPalResult['RAWREQUEST'] : '';
             $PayPalResponse = isset($PayPalResult['RAWRESPONSE']) ? $PayPalResult['RAWRESPONSE'] : '';
@@ -61,7 +61,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
             unset($post);
         } else if ($PayPalResult['RAWRESPONSE'] == false) {
             global $post, $post_ID;
-            $timeout_notice[$post_ID] = 'Internal server error occured';
+            $timeout_notice[$post_ID] = __('Internal server error occured','paypal-wp-button-manager');
             update_option('paypal_wp_button_manager_timeout_notice', $timeout_notice);
             
             $PayPalRequest = isset($PayPalResult['RAWREQUEST']) ? $PayPalResult['RAWREQUEST'] : '';

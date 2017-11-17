@@ -284,7 +284,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
         if (isset($paypal_button_id) && !empty($paypal_button_id)) {
             $button_id_text = $paypal_button_id;
         } else {
-            $button_id_text = 'Not Available - Because this button is not saved at PayPal...';
+            $button_id_text = __('Not Available - Because this button is not saved at PayPal...','paypal-wp-button-manager');
         }        
         
         $paypal_email_link = get_post_meta($post_ID, 'paypal_wp_button_manager_email_link', true);
@@ -340,7 +340,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
             if (isset($results_companis) && $results_companis->cnt_totalcompany <= 0) {
                 ?>
 
-                <div id="div_no_company">You have not set up any account, please add an account for create button <a href='<?php echo admin_url() . "admin.php?page=paypal-wp-button-manager-option&tab=company" ?>'>Add Company</a></a> </div>
+                <div id="div_no_company"><?php echo __('You have not set up any account, please add an account for create button ','paypal-wp-button-manager'); ?> <a href='<?php echo admin_url() . "admin.php?page=paypal-wp-button-manager-option&tab=company" ?>'><?php echo __('Add Company','paypal-wp-button-manager'); ?></a></div>
 
                 <?php
             } else {   
