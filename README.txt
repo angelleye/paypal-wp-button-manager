@@ -122,7 +122,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * Fix - Resolves a bug with the custom image option. ([#67](https://github.com/angelleye/paypal-wp-button-manager/issues/67))
 * Fix - Resolves PHP warnings displayed when activating themes. ([#72](https://github.com/angelleye/paypal-wp-button-manager/issues/72))
 * Fix - Resolves issues with subscription buttons. ([#71](https://github.com/angelleye/paypal-wp-button-manager/issues/71))
-* Fix - Resolves an issue with subscription button text options not working properly. ([#70](https://github.com/angelleye/paypal-wp-button-manager/issues/70))
+* Fix - Resolves an issue with button text options not working properly on some buttons. ([#70](https://github.com/angelleye/paypal-wp-button-manager/issues/70)) ([#78](https://github.com/angelleye/paypal-wp-button-manager/issues/78))
 * Tweak - Removes obsolete email/account ID option. ([#74](https://github.com/angelleye/paypal-wp-button-manager/issues/74))
 * Tweak - Masks API logs. ([#75](https://github.com/angelleye/paypal-wp-button-manager/issues/75))
 
