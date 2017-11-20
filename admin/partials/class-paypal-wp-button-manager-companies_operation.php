@@ -56,6 +56,12 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Operations {
                     $merchant_account_id = $PayPalResult['PAL'];
                 }
             }
+            else{
+                if(isset($PayPalResult['ERRORS'])){
+                    return array("paypal_error"=>true,"error" => $PayPalResult['ERRORS']);
+                    die();
+                }               
+            }
         }
 
 

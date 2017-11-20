@@ -422,13 +422,15 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                 }
             } else {
 
-                $add_result = $obj_company_operation->paypal_wp_button_manager_add_company();
-
-                if ($add_result == false) {
+                $add_result = $obj_company_operation->paypal_wp_button_manager_add_company();              
+                if (isset($add_result['paypal_error']) && $add_result['paypal_error'] == true) {
                     ?>
                     <div id="setting-error-settings_updated" class="error settings-error"> 
-                        <p><?php echo '<strong>' . __('Something went wrong.', 'paypal-wp-button-manager') . '</strong>'; ?>
-                        </p>
+                        <?php
+                            foreach ($add_result['error'] as $ErrorVal) {                                    
+                                echo "<p><strong>".$ErrorVal['L_LONGMESSAGE']."</strong></p>";
+                            }
+                        ?>
                     </div>
 
                 <?php } else { ?>
