@@ -123,6 +123,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * Tweak - Adds better error message to explain when the PayPal API credentials are incorrect. ([#82](https://github.com/angelleye/paypal-wp-button-manager/issues/82))
 * Tweak - Design updates using Bootstrap. ([#79](https://github.com/angelleye/paypal-wp-button-manager/issues/79))
 * Tweak - Hides unnecessary fields when creating buttons. ([#83](https://github.com/angelleye/paypal-wp-button-manager/issues/83))
+* Tweak - Improves error messages when API failures occur. ([#86](https://github.com/angelleye/paypal-wp-button-manager/issues/86))
 * Fix - Resolves an issue with the visual editor shortcode tool placing the wrong button. ([#64](https://github.com/angelleye/paypal-wp-button-manager/issues/64))
 * Fix - Resolves a bug with the custom image option. ([#67](https://github.com/angelleye/paypal-wp-button-manager/issues/67))
 * Fix - Resolves PHP warnings displayed when activating themes. ([#72](https://github.com/angelleye/paypal-wp-button-manager/issues/72))
