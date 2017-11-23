@@ -18,6 +18,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
     public static function init() {
         add_action('paypal_wp_button_manager_interface', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_html'));
         add_action('paypal_wp_button_manager_before_interface', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_html_before'));
+        add_action('admin_head', array(__CLASS__, 'paypal_wp_button_manager_hide_update_metabox'));
     }
 
     public static function paypal_wp_button_manager_for_wordpress_button_interface_html_before($string_param) {
@@ -68,6 +69,18 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
             </div>
         </div>
         <?php
+    }
+    
+    public static function paypal_wp_button_manager_hide_update_metabox(){        
+        if( isset($_REQUEST['post']) && get_post_type($_REQUEST['post']) === 'paypal_buttons'){
+            if(isset($_REQUEST['action']) && isset($_REQUEST['view']) && $_REQUEST['action']=== 'edit' && $_REQUEST['view'] =='true'){
+                ?>
+                <style>
+                    #side-sortables { display: none; }
+                </style>
+                <?php
+            }
+        }
     }
 
     /**
