@@ -340,7 +340,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
             if (isset($results_companis) && $results_companis->cnt_totalcompany <= 0) {
                 ?>
 
-                <div id="div_no_company">You have not set up any account, please add an account for create button <a href='<?php echo admin_url() . "admin.php?page=paypal-wp-button-manager-option&tab=company" ?>'>Add Company</a></a> </div>
+                <div id="div_no_company">You do not have any company accounts setup.  Please <a href='<?php echo admin_url() . "admin.php?page=paypal-wp-button-manager-option&tab=company" ?>'>add a company / PayPal account</a> for use in the settings. </div>
 
                 <?php
             } else {   
