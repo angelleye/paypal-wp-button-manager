@@ -31,8 +31,16 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
         add_action('save_post', array(__CLASS__, 'paypal_wp_button_manager_button_interface_display'));
         add_filter('gettext', array(__CLASS__, 'paypal_wp_button_manager_change_publish_button'), 10, 2);
         
+        add_filter('get_edit_post_link', array(__CLASS__, 'bm_change_title_link'), 99, 3);
         /* custom **/
         add_filter('post_row_actions',array(__CLASS__, 'my_action_row'), 10, 2);
+    }
+
+    public static function bm_change_title_link($link, $post_id, $context) {
+        if('paypal_buttons' === get_post_type($post_id)){
+            return admin_url("post.php?post={$post_id}&action=edit&view=true");
+        }
+        return $link;
     }
 
     /**
