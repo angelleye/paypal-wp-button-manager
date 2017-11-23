@@ -66,8 +66,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
         //Build row actions
         $nonce = wp_create_nonce('delete_company' . $item['ID']);
         $actions = array(
-            'edit' => sprintf('<a href="?page=%s&tab=company&action=%s&cmp_id=%s">Edit</a>', $_REQUEST['page'], 'edit', $item['ID']),
-            'delete' => sprintf('<a href="?page=%s&tab=company&action=%s&cmp_id=%s&_wpnonce=' . $nonce . '">Delete</a>', $_REQUEST['page'], 'delete', $item['ID']),
+            'edit' => sprintf('<a href="?page=%s&tab=company&action=%s&cmp_id=%s">'.__('Edit','paypal-wp-button-manager').'</a>', $_REQUEST['page'], 'edit', $item['ID']),
+            'delete' => sprintf('<a href="?page=%s&tab=company&action=%s&cmp_id=%s&_wpnonce=' . $nonce . '">'.__('Delete','paypal-wp-button-manager').'</a>', $_REQUEST['page'], 'delete', $item['ID']),
         );
 
         //Return the title contents
@@ -191,7 +191,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                 <a href="/wp-admin/admin.php?page=paypal-wp-button-manager-option&tab=company" class="cls_addcompany button-primary"><?php echo esc_html__('Add Company','paypal-wp-button-manager'); ?></a>
             <?php } else { ?>
                 <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-                <h2><?php _e('Companies List', 'custom_table_example') ?> 
+                <h2><?php _e('Companies List', 'paypal-wp-button-manager') ?> 
 
                 </h2>
                 <?php
@@ -267,9 +267,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                         $email_id = '';
                     }
                 }
-                $button_text = 'Edit Company';
+                $button_text = __('Edit Company','paypal-wp-button-manager');
             } else {
-                $button_text = 'Add Company';
+                $button_text = __('Add Company','paypal-wp-button-manager');
             }
             ?>
             <table class="form-table">
@@ -280,7 +280,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
                         <td class="forminp forminp-text"><input class="" id=
                                                                 "paypal_merchant_id" name="paypal_merchant_id" style=
-                                                                "min-width:300px;" disabled type="text" value="<?php echo isset($pal_id) ? $pal_id : 'Please set up Credentials'; ?>"></td>
+                                                                "min-width:300px;" disabled type="text" value="<?php echo isset($pal_id) ? $pal_id : __('Please set up Credentials','paypal-wp-button-manager'); ?>"></td>
                     </tr>
 
                     <tr valign="top">

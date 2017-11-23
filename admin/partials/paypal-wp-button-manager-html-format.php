@@ -34,8 +34,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                     if(!isset($meta['paypal_wp_button_manager_button_id'])){
                         echo '
                         <div class="update-nag notice">
-                            <p>'.esc_html__('Not a Hosted Button','paypal-wp-button-manager').'</p>
-                            <p>'.esc_html__('Only buttons that have been saved in your PayPal account are abale to be updated.','paypal-wp-button-manager').'</p>
+                            <p>'.esc_html__('This is not a PayPal hosted button.','paypal-wp-button-manager').'</p>
+                            <p>'.esc_html__('Only buttons that have been saved in your PayPal account are able to be updated.','paypal-wp-button-manager').'</p>
                         </div>';                    
                         exit;    
                     }   
@@ -1865,7 +1865,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <?php echo __(' button on "item sold out" page', 'paypal-wp-button-manager'); ?>
                                                     </span>
                                                     <input class="type-text form-control" type="text" id="soldOutURL" name="sold_out_url" value="<?php echo $item_soldout_url_step2; ?>" disabled="">
-                                                    <span class="littleHint">Ex: http://www.mybuynowstore.com</span>
+                                                    <span class="littleHint"><?php _e('Ex: http://www.mybuynowstore.com', 'paypal-wp-button-manager'); ?></span>
                                                 </p>
                                             </div>
                                         </div>

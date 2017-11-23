@@ -171,7 +171,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
                             if (isset($PayPalResult_viewcart['WEBSITECODE']) && !empty($PayPalResult_viewcart['WEBSITECODE'])) {
                                 // Create post object
                                 $view_cart_post = array(
-                                    'post_title' => 'View Cart - ' . $cname,
+                                    'post_title' => __('View Cart - ','paypal-wp-button-manager') . $cname,
                                     'post_content' => $PayPalResult_viewcart['WEBSITECODE'],
                                     'post_status' => 'publish',
                                     'post_author' => 1,

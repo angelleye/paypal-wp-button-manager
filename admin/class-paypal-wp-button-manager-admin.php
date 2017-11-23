@@ -130,7 +130,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 		if (empty($shortcodes)) {
 
-			$shortcodes_values = array('0' => 'No shortcode Available');
+			$shortcodes_values = array('0' => __('No shortcode Available','paypal-wp-button-manager'));
 		} else {
 			$shortcodes_values = $shortcodes;
 		}
@@ -343,7 +343,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 		if (isset($PayPalResult_viewcart['WEBSITECODE']) && !empty($PayPalResult_viewcart['WEBSITECODE'])) {
 			// Create post object
 			$view_cart_post = array(
-			'post_title' => 'View Cart',
+			'post_title' => __('View Cart','paypal-wp-button-manager'),
 			'post_content' => $PayPalResult_viewcart['WEBSITECODE'],
 			'post_status' => 'publish',
 			'post_author' => 1,
@@ -650,7 +650,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
     	 <a href="https://www.angelleye.com/product/buy-beer/?utm_source=paypal_wp_button_manager&utm_medium=buy_me_a_beer&utm_campaign=beer_me" target="_blank"><img src="<?php echo BMW_PLUGIN_URL ?>/admin/images/buy-us-a-beer.png" id="img_beer"/></a>
 
     	  <div class="div_cancel_donate">
-        		<span class="button-primary btn_can_notice">Dismiss</span>
+        		<span class="button-primary btn_can_notice"><?php _e('Dismiss','paypal-wp-button-manager'); ?></span>
           </div>
     	 
     	 </div>
