@@ -420,10 +420,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                             <div id="stepOne" class="panel panel-primary">
                                 <div class="header panel-heading" role="tab" id="headingOne">
 
-                                    <?php echo '<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">' . __('Step 1: Choose a button type and enter your payment details') . '</a></h4>'; ?>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">                                                                 
-                                    <div class="panel-body">           <div class="container">
+                                    <?php echo '<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="width: 100%;display: block;text-decoration: none;">' . __('Step 1: Choose a button type and enter your payment details') . '</a></h4>'; ?>
+                                </div>                                                                                                
+                                    <div id="collapseOne" class="panel-body panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                             <div class="group buttonType <?php
                                             if ($edit_button) {
                                                 echo 'fadedOut';
@@ -1366,7 +1365,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     </div>
 
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-5">
                                                             <div class="form-group">                                                                                    
                                                                 <input class="radio donationType form-control" type="radio" id="optDonationTypeFlexible" checked="" name="donation_type" value="open" disabled="">
                                                                 <label for="optDonationTypeFlexible" class="control-label"><?php echo esc_html__('Donors enter their own contribution amount.','paypal-wp-button-manager'); ?></label>
@@ -1652,17 +1651,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>                                                                    
-                                    </div>
+                                            </div>                                        
                                 </div>    
                             </div>
 
 
                             <div id="stepTwo" class="panel panel-primary">
                                 <div class="panel-heading" role="tab" id="headingTwo">
-                                    <?php echo '<h4 id="giftBasedHeading" class="accessAid hide panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">' . __('Step 2: Track inventory, profit & loss (optional)', 'paypal-wp-button-manager') . '</a></h4>'; ?>
-                                    <?php echo '<h4 id="productBasedHeading" class="opened panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">' . __('Step 2: Track inventory, profit & loss (optional)', 'paypal-wp-button-manager') . '</a></h4>'; ?>
+                                    <?php echo '<h4 id="giftBasedHeading" class="accessAid hide panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="width: 100%;display: block;text-decoration: none;">' . __('Step 2: Track inventory, profit & loss (optional)', 'paypal-wp-button-manager') . '</a></h4>'; ?>
+                                    <?php echo '<h4 id="productBasedHeading" class="opened panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="width: 100%;display: block;text-decoration: none;">' . __('Step 2: Track inventory, profit & loss (optional)', 'paypal-wp-button-manager') . '</a></h4>'; ?>
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">                       
                                     <div class="container">
@@ -1874,7 +1871,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                             </div>
                             <div id="stepThree" class="panel panel-primary">
                                 <div class="panel-heading" role="tab" id="headingThree">
-                                    <?php echo '<h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">' . __('Step 3: Customize advanced features (optional)', 'paypal-wp-button-manager') . '</a></h4>'; ?>
+                                    <?php echo '<h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="width: 100%;display: block;text-decoration: none;">' . __('Step 3: Customize advanced features (optional)', 'paypal-wp-button-manager') . '</a></h4>'; ?>
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">                                  
                                     <div class="container">
