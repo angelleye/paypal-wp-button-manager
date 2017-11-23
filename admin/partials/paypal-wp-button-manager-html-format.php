@@ -34,8 +34,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                     if(!isset($meta['paypal_wp_button_manager_button_id'])){
                         echo '
                         <div class="update-nag notice">
-                            <p>Not a Hosted Button</p>
-                            <p>Only buttons that have been saved in your PayPal account are abale to be updated.</p>
+                            <p>This is not a PayPal hosted button.</p>
+                            <p>Only buttons that have been saved in your PayPal account are able to be updated.</p>
                         </div>';                    
                         exit;    
                     }   
