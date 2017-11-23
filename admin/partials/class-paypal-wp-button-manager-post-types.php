@@ -284,7 +284,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
         if (isset($paypal_button_id) && !empty($paypal_button_id)) {
             $button_id_text = $paypal_button_id;
         } else {
-            $button_id_text = 'Not Available - Because this button is not saved at PayPal...';
+            $button_id_text = 'Not available with non-hosted PayPal buttons.';
         }        
         
         $paypal_email_link = get_post_meta($post_ID, 'paypal_wp_button_manager_email_link', true);
