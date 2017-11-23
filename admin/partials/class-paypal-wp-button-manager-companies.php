@@ -66,8 +66,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
         //Build row actions
         $nonce = wp_create_nonce('delete_company' . $item['ID']);
         $actions = array(
-            'edit' => sprintf('<a href="?page=%s&tab=company&action=%s&cmp_id=%s">Edit</a>', $_REQUEST['page'], 'edit', $item['ID']),
-            'delete' => sprintf('<a href="?page=%s&tab=company&action=%s&cmp_id=%s&_wpnonce=' . $nonce . '">Delete</a>', $_REQUEST['page'], 'delete', $item['ID']),
+            'edit' => sprintf('<a href="?page=%s&tab=company&action=%s&cmp_id=%s">'.__('Edit','paypal-wp-button-manager').'</a>', $_REQUEST['page'], 'edit', $item['ID']),
+            'delete' => sprintf('<a href="?page=%s&tab=company&action=%s&cmp_id=%s&_wpnonce=' . $nonce . '">'.__('Delete','paypal-wp-button-manager').'</a>', $_REQUEST['page'], 'delete', $item['ID']),
         );
 
         //Return the title contents
@@ -89,10 +89,10 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
     function get_columns() {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'title' => 'Company Name',
-            'paypal_person_name' => 'Contact Name',
-            'paypal_person_email' => 'PayPal Account Email',
-            'paypal_mode' => 'PayPal Mode'
+            'title' => __('Company Name','paypal-wp-button-manager'),
+            'paypal_person_name' => __('Contact Name','paypal-wp-button-manager'),
+            'paypal_person_email' => __('PayPal Account Email','paypal-wp-button-manager'),
+            'paypal_mode' => __('PayPal Mode','paypal-wp-button-manager')
         );
 
 
@@ -188,10 +188,10 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                 ?>
                 <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
                 <h2 class="floatleft"><?php _e('Companies List', 'custom_table_example') ?> </h2>
-                <a href="/wp-admin/admin.php?page=paypal-wp-button-manager-option&tab=company" class="cls_addcompany button-primary">Add Company</a>
+                <a href="/wp-admin/admin.php?page=paypal-wp-button-manager-option&tab=company" class="cls_addcompany button-primary"><?php echo esc_html__('Add Company','paypal-wp-button-manager'); ?></a>
             <?php } else { ?>
                 <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-                <h2><?php _e('Companies List', 'custom_table_example') ?> 
+                <h2><?php _e('Companies List', 'paypal-wp-button-manager') ?> 
 
                 </h2>
                 <?php
@@ -267,9 +267,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                         $email_id = '';
                     }
                 }
-                $button_text = 'Edit Company';
+                $button_text = __('Edit Company','paypal-wp-button-manager');
             } else {
-                $button_text = 'Add Company';
+                $button_text = __('Add Company','paypal-wp-button-manager');
             }
             ?>
             <table class="form-table">
@@ -280,7 +280,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
                         <td class="forminp forminp-text"><input class="" id=
                                                                 "paypal_merchant_id" name="paypal_merchant_id" style=
-                                                                "min-width:300px;" disabled type="text" value="<?php echo isset($pal_id) ? $pal_id : 'Please set up Credentials'; ?>"></td>
+                                                                "min-width:300px;" disabled type="text" value="<?php echo isset($pal_id) ? $pal_id : __('Please set up Credentials','paypal-wp-button-manager'); ?>"></td>
                     </tr>
 
                     <tr valign="top">
@@ -344,11 +344,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                             <fieldset>
                                 <ul class="ul_paypal_mode">
                                     <li><label><input class="" <?php echo isset($sandbox_checked) ? $sandbox_checked : ''; ?> name="paypal_mode" type="radio" value="Sandbox" >
-                                            Sandbox</label></li>
+                                            <?php echo esc_html__('Sandbox','paypal-wp-button-manager'); ?></label></li>
 
                                     <li><label><input class="" <?php echo isset($live_checked) ? $live_checked : ''; ?> name="paypal_mode"
                                                       type="radio" value="Live">
-                                            Live</label></li>
+                                            <?php echo esc_html__('Live','paypal-wp-button-manager'); ?></label></li>
                                 </ul>
                             </fieldset>
                         </td>
@@ -363,11 +363,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
                             <fieldset>
                                 <ul class="ul_account_mode">
                                     <li><label><input class="" <?php echo isset($paypal_account_id) ? $paypal_account_id : ''; ?> name="paypal_account_mode" type="radio" value="paypal_account_id" >
-                                            PayPal Account ID</label></li>
+                                            <?php echo esc_html__('PayPal Account ID','paypal-wp-button-manager'); ?></label></li>
 
                                     <li><label><input class="" <?php echo isset($email_id) ? $email_id : ''; ?> name="paypal_account_mode"
                                                       type="radio" value="email_id">
-                                            Email Address</label></li>
+                                            <?php echo esc_html__('Email Address','paypal-wp-button-manager'); ?></label></li>
                                 </ul>
                             </fieldset>
                         </td>

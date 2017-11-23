@@ -33,7 +33,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin_Display {
      * @access   public
      */
     public static function paypal_wp_button_manager_options() {
-        $setting_tabs = apply_filters('paypal_wp_button_manager_setting_tab', array('general' => 'General', 'company' => 'Companies', 'logs' => 'Logs'));
+        $setting_tabs = apply_filters('paypal_wp_button_manager_setting_tab', array('general' => __('General','paypal-wp-button-manager'), 'company' => __('Companies','paypal-wp-button-manager'), 'logs' => __('Logs','paypal-wp-button-manager')));
         $current_tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'general';
         ?>
         <h2 class="nav-tab-wrapper">

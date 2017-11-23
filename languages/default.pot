@@ -11,8 +11,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: CSL v1.x\n"
-"X-Poedit-Language: English\n"
+"X-Poedit-Language: English\n"		
 "X-Poedit-Country: UNITED STATES\n"
+
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
 "X-Poedit-Basepath: ../\n"
@@ -20,307 +21,972 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
+# @ default
 #: admin/class-paypal-button-manager-for-wordpress-admin.php:151
-#@ default
 msgid "Custom field updated."
 msgstr ""
 
+# @ default
 #: admin/class-paypal-button-manager-for-wordpress-admin.php:152
-#@ default
 msgid "Custom field deleted."
 msgstr ""
 
+# @ default
 #: admin/class-paypal-button-manager-for-wordpress-admin.php:153
-#@ default
 msgid "Button Updated Successfully"
 msgstr ""
 
+# @ default
 #. translators: %s: date and time of the revision
 #: admin/class-paypal-button-manager-for-wordpress-admin.php:155
 #, php-format
-#@ default
 msgid "Button restored to revision from %s"
 msgstr ""
 
+# @ default
 #: admin/class-paypal-button-manager-for-wordpress-admin.php:156
-#@ default
 msgid "Button Created Successfully"
 msgstr ""
 
+# @ default
 #: admin/class-paypal-button-manager-for-wordpress-admin.php:157
-#@ default
 msgid "Button saved."
 msgstr ""
 
+# @ default
 #: admin/class-paypal-button-manager-for-wordpress-admin.php:158
 #, php-format
-#@ default
 msgid "Button submitted. <a target=\"_blank\" href=\"%s\">Preview Button</a>"
 msgstr ""
 
+# @ default
 #: admin/class-paypal-button-manager-for-wordpress-admin.php:159
 #, php-format
-#@ default
 msgid "Button scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview Button</a>"
 msgstr ""
 
+# @ default
 #: admin/class-paypal-button-manager-for-wordpress-admin.php:161
-#@ default
 msgid "M j, Y @ G:i"
 msgstr ""
 
+# @ default
 #: admin/class-paypal-button-manager-for-wordpress-admin.php:162
 #, php-format
-#@ default
 msgid "Button draft updated. <a target=\"_blank\" href=\"%s\">Preview Button</a>"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:32
-#@ paypal-button-manager-for-wordpress
 msgid "Paypal API Sandbox Integration"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:36
-#@ paypal-button-manager-for-wordpress
 msgid "API Sandbox Username"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:37
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:63
-#@ paypal-button-manager-for-wordpress
 msgid "Enter Your Username"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:43
-#@ paypal-button-manager-for-wordpress
 msgid "API Sandbox Password"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:44
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:70
-#@ paypal-button-manager-for-wordpress
 msgid "Enter Your API Password"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:50
-#@ paypal-button-manager-for-wordpress
 msgid "API Sandbox Signature"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:51
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:77
-#@ paypal-button-manager-for-wordpress
 msgid "Enter Your API Signature"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:59
-#@ paypal-button-manager-for-wordpress
 msgid "Paypal API Live Integration"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:62
-#@ paypal-button-manager-for-wordpress
 msgid "API Live Username"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:69
-#@ paypal-button-manager-for-wordpress
 msgid "API Live Password"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:76
-#@ paypal-button-manager-for-wordpress
 msgid "API Live Signature"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:85
-#@ paypal-button-manager-for-wordpress
 msgid "Enable Sandbox"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:86
-#@ paypal-button-manager-for-wordpress
 msgid "Enables Sandbox mode."
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:92
-#@ paypal-button-manager-for-wordpress
 msgid "Debug Log"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:95
-#@ paypal-button-manager-for-wordpress
 msgid "Enable logging"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:97
 #, php-format
-#@ paypal-button-manager-for-wordpress
 msgid "Log Paypal button Manager for Wordpress events, inside <code>%s</code>"
 msgstr ""
 
+# @ Option
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:118
-#@ Option
 msgid "Save changes"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-general-setting.php:136
-#@ paypal-button-manager-for-wordpress
 msgid "Settings were saved successfully."
 msgstr ""
 
+# @ Option
 #: admin/partials/class-paypal-button-manager-for-wordpress-html-output.php:319
-#@ Option
 msgid "Select a page&hellip;"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:61
-#@ paypal_button_manager_for_wordpress
 msgid "PayPal Button Manager"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:62
-#@ paypal_button_manager_for_wordpress
 msgid "PayPal Button"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:63
-#@ paypal_button_manager_for_wordpress
 msgctxt "Admin menu name"
 msgid "PayPal Button Manager"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:64
-#@ paypal_button_manager_for_wordpress
 msgid "Add PayPal Button"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:65
-#@ paypal_button_manager_for_wordpress
 msgid "Add New PayPal Button"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:66
-#@ paypal_button_manager_for_wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:671
+#: admin/partials/paypal-wp-button-manager-html-format.php:782
+#: admin/partials/paypal-wp-button-manager-html-format.php:816
+#: admin/partials/paypal-wp-button-manager-html-format.php:851
+#: admin/partials/paypal-wp-button-manager-html-format.php:885
+#: admin/partials/paypal-wp-button-manager-html-format.php:959
+#: admin/partials/paypal-wp-button-manager-html-format.php:973
 msgid "Edit"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:67
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:69
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:70
-#@ paypal_button_manager_for_wordpress
 msgid "View PayPal Button"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:68
-#@ paypal_button_manager_for_wordpress
 msgid "New PayPal Button"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:71
-#@ paypal_button_manager_for_wordpress
 msgid "Search PayPal Buttons"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:72
-#@ paypal_button_manager_for_wordpress
 msgid "No PayPal buttons found"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:73
-#@ paypal_button_manager_for_wordpress
 msgid "No PayPal buttons found in trash"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:74
-#@ paypal_button_manager_for_wordpress
 msgid "Parent PayPal Button"
 msgstr ""
 
+# @ paypal_button_manager_for_wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:76
-#@ paypal_button_manager_for_wordpress
 msgid "This is where you can create new PayPal buttons."
 msgstr ""
 
+# @ default
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:135
-#@ default
 msgid "Button Name"
 msgstr ""
 
+# @ default
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:136
-#@ default
 msgid "Shortcodes"
 msgstr ""
 
+# @ default
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:137
-#@ default
 msgid "Date"
 msgstr ""
 
+# @ default
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:171
-#@ default
 msgid "Not Available"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:204
-#@ paypal-button-manager-for-wordpress
 msgid "Paste the button code in your post or page editor:"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:208
-#@ paypal-button-manager-for-wordpress
 msgid "Paste the below wordpress shortcode in your post or page editor:"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/class-paypal-button-manager-for-wordpress-post-types.php:228
-#@ paypal-button-manager-for-wordpress
 msgid "Please fill your API credentials properly"
 msgstr ""
 
+# @ default
 #: admin/partials/paypal-button-manager-for-wordpress-html-format.php:59
-#@ default
 msgid "Step 1: Choose a button type and enter your payment details"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/paypal-button-manager-for-wordpress-html-format.php:533
 #: admin/partials/paypal-button-manager-for-wordpress-html-format.php:534
-#@ paypal-button-manager-for-wordpress
 msgid "Step 2: Track inventory, profit & loss (optional)"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #: admin/partials/paypal-button-manager-for-wordpress-html-format.php:561
-#@ paypal-button-manager-for-wordpress
 msgid "Step 3: Customize advanced features (optional)"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/BMCreateButton.php:45
+msgid "PayPal API Credentials are Incorrect."
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/BMCreateButton.php:45 admin/partials/BMUpdateButton.php:57
+msgid "Internal server error occured"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-companies.php:92
+msgid "Company Name"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-companies.php:93
+msgid "Contact Name"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-companies.php:94
+msgid "PayPal Account Email"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-companies.php:95
+msgid "PayPal Mode"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-companies.php:347
+msgid "Sandbox"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-companies.php:351
+msgid "Live"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-companies.php:366
+msgid "PayPal Account ID"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-companies.php:370
+msgid "Email Address"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-post-types.php:287
+msgid "Not Available - Because this button is not saved at PayPal..."
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-post-types.php:343
+msgid "You have not set up any account, please add an account for create button"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-post-types.php:343
+msgid "Add Company"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-admin-display.php:36
+msgid "General"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-companies.php:36
+msgid "Companies"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/class-paypal-wp-button-manager-companies.php:36
+msgid "Logs"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:37
+msgid "Not a Hosted Button"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:38
+msgid "Only buttons that have been saved in your PayPal account are abale to be updated."
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:50
+msgid "Choose Company Name:"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:52
+msgid "--Select Company--"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:103
+msgid "Add special instructions to the seller:"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:388
+msgid "Loading..."
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:391
+msgid "Change dropdown"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:394
+msgid "You can assign inventory options in only one dropdown."
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:394
+msgid "Choose:"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:395
+msgid "Done"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:396
+#: admin/partials/paypal-wp-button-manager-html-format.php:664
+#: admin/partials/paypal-wp-button-manager-html-format.php:773
+#: admin/partials/paypal-wp-button-manager-html-format.php:807
+#: admin/partials/paypal-wp-button-manager-html-format.php:841
+#: admin/partials/paypal-wp-button-manager-html-format.php:876
+#: admin/partials/paypal-wp-button-manager-html-format.php:948
+#: admin/partials/paypal-wp-button-manager-html-format.php:963
+msgid "Cancel"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:433
+msgid "Choose a button type"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:457
+#: admin/partials/paypal-wp-button-manager-html-format.php:469
+msgid "Item name"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:460
+msgid "Item ID"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:460
+#: admin/partials/paypal-wp-button-manager-html-format.php:464
+#: admin/partials/paypal-wp-button-manager-html-format.php:470
+#: admin/partials/paypal-wp-button-manager-html-format.php:993
+msgid "(optional)"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:463
+msgid "Organization name/service"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:464
+msgid "Donation ID"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:470
+msgid "Subscription ID"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:475
+#: admin/partials/paypal-wp-button-manager-html-format.php:546
+msgid "Price"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:477
+#: admin/partials/paypal-wp-button-manager-html-format.php:496
+#: admin/partials/paypal-wp-button-manager-html-format.php:546
+#: admin/partials/paypal-wp-button-manager-html-format.php:1343
+msgid "Currency"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:509
+msgid "Customize button"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:532
+msgid "Add drop-down menu with price/option"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:533
+msgid "Add a dropdown menu with prices and options"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:541
+#: admin/partials/paypal-wp-button-manager-html-format.php:753
+#: admin/partials/paypal-wp-button-manager-html-format.php:787
+#: admin/partials/paypal-wp-button-manager-html-format.php:821
+#: admin/partials/paypal-wp-button-manager-html-format.php:856
+msgid "Name of drop-down menu (ex.: \"Colors,\" \"Sizes\")"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:542
+msgid "Description (For example, \"Payment options\".)"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:546
+#: admin/partials/paypal-wp-button-manager-html-format.php:754
+#: admin/partials/paypal-wp-button-manager-html-format.php:788
+#: admin/partials/paypal-wp-button-manager-html-format.php:822
+#: admin/partials/paypal-wp-button-manager-html-format.php:857
+msgid "Menu option name"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:546
+msgid "Menu Name"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:546
+#: admin/partials/paypal-wp-button-manager-html-format.php:1395
+msgid "Amount"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:546
+#: admin/partials/paypal-wp-button-manager-html-format.php:1182
+msgid "Frequency"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:671
+msgid "Change"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:671
+#: admin/partials/paypal-wp-button-manager-html-format.php:782
+#: admin/partials/paypal-wp-button-manager-html-format.php:816
+#: admin/partials/paypal-wp-button-manager-html-format.php:851
+#: admin/partials/paypal-wp-button-manager-html-format.php:885
+#: admin/partials/paypal-wp-button-manager-html-format.php:959
+#: admin/partials/paypal-wp-button-manager-html-format.php:973
+msgid "Delete"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:745
+msgid "Add a dropdown menu"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:746
+msgid "Add drop-down menu"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:772
+#: admin/partials/paypal-wp-button-manager-html-format.php:806
+#: admin/partials/paypal-wp-button-manager-html-format.php:840
+#: admin/partials/paypal-wp-button-manager-html-format.php:875
+msgid "Add option"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:899
+msgid "Add another drop-down menu"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:947
+#: admin/partials/paypal-wp-button-manager-html-format.php:962
+msgid "Enter name of text field (up to 30 characters)"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:990
+msgid "Add another text field"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:993
+msgid "Customize text or appearance"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1020
+msgid "PayPal button"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1047
+msgid "Use smaller button"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1055
+msgid "Display credit card logos"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1061
+msgid "Country and language for button"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1083
+#: admin/partials/paypal-wp-button-manager-html-format.php:1107
+msgid "Select button text"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1120
+msgid "Subscribe"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1097
+msgid "Pay Now"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1130
+msgid "Use your own button image"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1143
+msgid "Your customer's view"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1310
+msgid "Shipping"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1314
+msgid "Use specific amount: (' "
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1325
+msgid "Tax"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1329
+msgid "Use tax rate ( % )"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1364
+msgid "Contribution amount"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1372
+msgid "Donors enter their own contribution amount."
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1387
+msgid "Donors contribute a fixed amount."
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1401
+msgid "Note:"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1401
+msgid "This button is intended for fundraising. If you are not raising money for a cause, please choose another option. Nonprofits  must verify their status to withdraw donations they receive. Users that are not verified nonprofits must demonstrate how their  donations will be used, once they raise more than $10,000 USD.
+msgstr "
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1408
+msgid "Have PayPal create user names and passwords for customers"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1413
+msgid "Give customers access to \"members-only\" content on your site."
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1415
+msgid "Notes:"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1425
+msgid "Billing amount each cycle ("
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1435
+msgid "Billing cycle"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1476
+msgid "After how many cycles should billing stop?"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1511
+msgid "I want to offer a trial period"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1521
+msgid "Amount to bill for the trial period ("
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1532
+msgid "Define the trial period"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1568
+msgid "Do you want to offer a second trial period?"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1568
+msgid "What's this?"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1568
+msgid "Customers will receive just one bill for each trial period."
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1587
+#: admin/partials/paypal-wp-button-manager-html-format.php:1902
+#: admin/partials/paypal-wp-button-manager-html-format.php:1926
+#: admin/partials/paypal-wp-button-manager-html-format.php:1960
+msgid "Yes"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1590
+#: admin/partials/paypal-wp-button-manager-html-format.php:1904
+#: admin/partials/paypal-wp-button-manager-html-format.php:1929
+#: admin/partials/paypal-wp-button-manager-html-format.php:1963
+msgid "No"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1599
+msgid "Amount to bill for this trial period ("
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1607
+msgid "How long should the trial period last?"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1650
+msgid "Enter your PayPal Email Address or Merchant Account ID"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1650
+msgid "Learn more"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1883
+msgid "Customize checkout pages"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1888
+msgid "If you are an advanced user, you can customize checkout pages for your customers, streamline checkout, and more in this section."
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1895
+msgid "Do you want to let your customer change order quantities?"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1912
+msgid "Can your customer add special instructions in a message to you?"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1937
+msgid "Name of message box (40-character limit)"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1947
+msgid "Do you need your customer's shipping address?"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1983
+msgid "Take customers to this URL when they cancel their checkout"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:1989
+#: admin/partials/paypal-wp-button-manager-html-format.php:2012
+msgid "Example:"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: admin/partials/paypal-wp-button-manager-html-format.php:2006
+msgid "Take customers to this URL when they finish checkout"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:129
+msgid "Shopping Cart"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:130
+#: admin/partials/paypal-wp-button-manager-html-format.php:1096
+#: admin/partials/paypal-wp-button-manager-html-format.php:1121
+msgid "Buy Now"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:131
+msgid "Donation"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:132
+msgid "Subscription"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:174
+msgid "Daily"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:175
+msgid "Weekly"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:176
+msgid "Monthly"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:177
+msgid "Yearly"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:183
+msgid "day (s)"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:184
+msgid "week (s)"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:185
+msgid "month (s)"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:186
+msgid "years (s)"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:192
+msgid "Blue"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:193
+msgid "Orange"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:194
+msgid "Green"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:195
+#: includes/paypal-wp-button-manager-functions.php:211
+msgid "Purple"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:202
+#: includes/paypal-wp-button-manager-functions.php:208
+msgid "Birthday"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:203
+#: includes/paypal-wp-button-manager-functions.php:209
+msgid "Winter"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:204
+#: includes/paypal-wp-button-manager-functions.php:210
+msgid "Wedding/Anniversary"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:205
+msgid "New Baby - Blue"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:206
+msgid "New Baby - Pink"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:207
+msgid "New Baby - Yellow"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
+#: includes/paypal-wp-button-manager-functions.php:252
+msgid "Never"
+msgstr ""
+
+# @ paypal-button-manager-for-wordpress
 #. translators: plugin header field 'Name'
 #: paypal-button-manager-for-wordpress.php:0
-#@ paypal-button-manager-for-wordpress
 msgid "PayPal Button Manager for WordPress"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #. translators: plugin header field 'PluginURI'
 #. translators: plugin header field 'AuthorURI'
 #: paypal-button-manager-for-wordpress.php:0
-#@ paypal-button-manager-for-wordpress
 msgid "http://www.angelleye.com/"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #. translators: plugin header field 'Description'
 #: paypal-button-manager-for-wordpress.php:0
-#@ paypal-button-manager-for-wordpress
 msgid "Easily create and manage secure PayPal buttons for WordPress"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #. translators: plugin header field 'Author'
 #: paypal-button-manager-for-wordpress.php:0
-#@ paypal-button-manager-for-wordpress
 msgid "Angell EYE"
 msgstr ""
 
+# @ paypal-button-manager-for-wordpress
 #. translators: plugin header field 'Version'
 #: paypal-button-manager-for-wordpress.php:0
-#@ paypal-button-manager-for-wordpress
 msgid "1.0.0"
 msgstr ""
-

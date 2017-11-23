@@ -284,7 +284,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
         if (isset($paypal_button_id) && !empty($paypal_button_id)) {
             $button_id_text = $paypal_button_id;
         } else {
-            $button_id_text = _e('Not available with non-hosted PayPal buttons.', 'paypal-wp-button-manager');
+            $button_id_text = __('Not available with non-hosted PayPal buttons.','paypal-wp-button-manager');
         }        
         
         $paypal_email_link = get_post_meta($post_ID, 'paypal_wp_button_manager_email_link', true);
@@ -339,11 +339,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
             $results_companis = $wpdb->get_row("SELECT count(*) as cnt_totalcompany FROM $tbl_company_name");
             if (isset($results_companis) && $results_companis->cnt_totalcompany <= 0) {
                 ?>
-
-                <div id="div_no_company">You do not have any company accounts setup.  Please <a href='<?php echo admin_url() . "admin.php?page=paypal-wp-button-manager-option&tab=company" ?>'>add a company / PayPal account</a> for use in the settings. </div>
-
+                <div id="div_no_company"><?php echo __('You do not have any company accounts setup.  Please ','paypal-wp-button-manager'); ?> <a href='<?php echo admin_url() . "admin.php?page=paypal-wp-button-manager-option&tab=company" ?>'><?php echo __('add a company / PayPal account','paypal-wp-button-manager'); ?></a> <?php _e('for use in the settings.','paypal-wp-button-manager') ?></div>
                 <?php
-            } else {   
+            } else {
                     global $pagenow;
                     if( in_array( $pagenow, array('post.php') )) {                        
                         do_action('paypal_wp_button_manager_before_interface','edit');

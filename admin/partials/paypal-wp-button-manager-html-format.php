@@ -34,8 +34,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                     if(!isset($meta['paypal_wp_button_manager_button_id'])){
                         echo '
                         <div class="update-nag notice">
-                            <p>This is not a PayPal hosted button.</p>
-                            <p>Only buttons that have been saved in your PayPal account are able to be updated.</p>
+                            <p>'.esc_html__('This is not a PayPal hosted button.','paypal-wp-button-manager').'</p>
+                            <p>'.esc_html__('Only buttons that have been saved in your PayPal account are able to be updated.','paypal-wp-button-manager').'</p>
                         </div>';                    
                         exit;    
                     }   
@@ -47,9 +47,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         ?>
         <div class="div_companies_dropdown col-lg-4" >
             <div class="div_companyname form-group">               
-                <label for="paypalcompanyname" class="control-label"><strong>Choose Company Name:</strong></label>                
+                <label for="paypalcompanyname" class="control-label"><strong><?php echo esc_html__('Choose Company Name:','paypal-wp-button-manager');?></strong></label>                
                 <select id="ddl_companyname" name="ddl_companyname" class="form-control">
-                    <option value="">--Select Company--</option>
+                    <option value=""><?php echo esc_html__('--Select Company--','paypal-wp-button-manager'); ?></option>
                     <?php foreach ($result_records as $result_records_value) { ?>
                         <?php 
                             if($string_param=='edit'){
@@ -100,7 +100,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $customersShippingAddress = '';
         $cancel_return = '';
         $return = '';
-        $add_special_instruction = 'Add special instructions to the seller:';
+        $add_special_instruction = __('Add special instructions to the seller:','paypal-wp-button-manager');
         $enableHostedButtons_checkbox = '';
         $track_inv = '';
         $track_pnl = '';
@@ -385,15 +385,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
             <div id="main" class="legacyErrors">
                 <div class="layout1">
                     <script type="text/javascript">var oPage = document.getElementById('main').getElementsByTagName('div')[0];var oContainer = document.createElement('div');oContainer.id = 'pageLoadMsg';oContainer.innerHTML = "Loading...";oPage.appendChild(oContainer);</script>
-                    <div id="pageLoadMsg" class="accessAid">Loading...</div>
+                    <div id="pageLoadMsg" class="accessAid"><?php echo esc_html__('Loading...','paypal-wp-button-manager'); ?></div>
                     <div class="accessAid" id="ddLightbox">
                         <div class="header">
-                            <h2>Change dropdown</h2>
+                            <h2><?php echo esc_html__('Change dropdown','paypal-wp-button-manager'); ?></h2>
                         </div>
                         <div class="">
-                            <p>You can assign inventory options in only one dropdown.<br><br><span id="lightboxChoiceBody">Choose:</span></p>
-                            <div class="buttons"><button class="default primary btn btn-primary" type="submit" id="ddLightboxSubmit" name="done">Done</button>
-                                <button class="closer btn btn-danger" type="button" id="ddLightboxCancel" name="cancel">Cancel</button>
+                            <p><?php echo esc_html__('You can assign inventory options in only one dropdown.','paypal-wp-button-manager'); ?><br><br><span id="lightboxChoiceBody"><?php echo esc_html__('Choose:','paypal-wp-button-manager'); ?></span></p>
+                            <div class="buttons"><button class="default primary btn btn-primary" type="submit" id="ddLightboxSubmit" name="done"><?php echo esc_html__('Done','paypal-wp-button-manager'); ?></button>
+                                <button class="closer btn btn-danger" type="button" id="ddLightboxCancel" name="cancel"><?php echo esc_html__('Cancel','paypal-wp-button-manager'); ?></button>
                             </div><br>
                         </div>
                     </div>                    
@@ -430,7 +430,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                             }
                                             ?>">
                                                 <div class="col-lg-4">
-                                                    <label for="buttonType" class="control-label">Choose a button type</label>
+                                                    <label for="buttonType" class="control-label"><?php echo esc_html__('Choose a button type','paypal-wp-button-manager'); ?></label>
                                                     <?php $paypal_button_options = get_paypal_button_options(); ?>
                                                     <select id="buttonType" name="button_type" class="form-control">
                                                         <?php foreach ($paypal_button_options as $paypal_button_options_key => $paypal_button_options_value) { ?>
@@ -454,27 +454,27 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                             <div class="group details">
                                                 <div class="products">
                                                     <div class="col-lg-4">
-                                                        <label for="itemName" class="control-label">Item name</label>
+                                                        <label for="itemName" class="control-label"><?php echo esc_html__('Item name','paypal-wp-button-manager'); ?></label>
                                                         <input class="form-control" maxlength="127" type="text" id="itemName" name="product_name" value="<?php echo $product_name; ?>">
                                                     </div>
-                                                    <div class="col-lg-4"><label for="itemID">Item ID<span class="fieldNote"> (optional) </span></label><input class="form-control" maxlength="127" type="text" id="itemID" size="9" name="product_id" value="<?php echo $product_id; ?>"></div>
+                                                    <div class="col-lg-4"><label for="itemID"><?php echo esc_html__('Item ID','paypal-wp-button-manager'); ?><span class="fieldNote"><?php echo esc_html__('(optional)','paypal-wp-button-manager'); ?></span></label><input class="form-control" maxlength="127" type="text" id="itemID" size="9" name="product_id" value="<?php echo $product_id; ?>"></div>
                                                 </div>
                                                 <div class="donations accessAid fadedOut">
-                                                    <div class="col-lg-4"><label for="donationName" class="control-label">Organization name/service</label><input class="form-control" maxlength="127" type="text" id="donationName" name="donation_name" value="<?php echo $donation_name; ?>" disabled=""></div>
-                                                    <div class="col-lg-4"><label for="donationID" class="control-label">Donation ID<span class="fieldNote"> (optional) </span>
+                                                    <div class="col-lg-4"><label for="donationName" class="control-label"><?php echo esc_html__('Organization name/service','paypal-wp-button-manager'); ?></label><input class="form-control" maxlength="127" type="text" id="donationName" name="donation_name" value="<?php echo $donation_name; ?>" disabled=""></div>
+                                                    <div class="col-lg-4"><label for="donationID" class="control-label"><?php echo esc_html__('Donation ID','paypal-wp-button-manager'); ?><span class="fieldNote"> <?php echo esc_html__('(optional)','paypal-wp-button-manager'); ?></span>
                                                         </label>
                                                         <input class="form-control" maxlength="127" type="text" id="donationID" size="27" name="donation_id" value="<?php echo $donation_id; ?>" disabled=""></div>
                                                 </div>
                                                 <div class="subscriptions accessAid fadedOut">
-                                                    <div class="col-lg-4"><label for="subscriptionName" class="control-label">Item name</label><input class="form-control" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="<?php echo $subscription_name; ?>" disabled=""></div>
-                                                    <div class="col-lg-4"><label for="subscriptionID" class="control-label">Subscription ID<span class="fieldNote"> (optional) </span></label><input class="form-control" maxlength="127" type="text" id="subscriptionID" size="27" name="subscription_id" value="<?php echo $subscription_id; ?>" disabled=""></div>
+                                                    <div class="col-lg-4"><label for="subscriptionName" class="control-label"><?php echo esc_html__('Item name','paypal-wp-button-manager'); ?></label><input class="form-control" maxlength="127" type="text" id="subscriptionName" name="subscription_name" value="<?php echo $subscription_name; ?>" disabled=""></div>
+                                                    <div class="col-lg-4"><label for="subscriptionID" class="control-label"><?php echo esc_html__('Subscription ID','paypal-wp-button-manager'); ?><span class="fieldNote"> <?php echo esc_html__('(optional)','paypal-wp-button-manager'); ?> </span></label><input class="form-control" maxlength="127" type="text" id="subscriptionID" size="27" name="subscription_id" value="<?php echo $subscription_id; ?>" disabled=""></div>
                                                 </div>
                                                 
                                             </div>
                                             <div class="group products pricing opened">
-                                                <div class="col-lg-4"><label for="itemPrice" class="control-label">Price</label><input class="form-control" type="text" id="itemPrice" size="9" name="item_price" value="<?php echo $item_price; ?>"></div>
+                                                <div class="col-lg-4"><label for="itemPrice" class="control-label"><?php echo esc_html__('Price','paypal-wp-button-manager'); ?></label><input class="form-control" type="text" id="itemPrice" size="9" name="item_price" value="<?php echo $item_price; ?>"></div>
                                                 <div class="col-lg-4">
-                                                    <label for="itemPriceCurrency" class="control-label">Currency</label>
+                                                    <label for="itemPriceCurrency" class="control-label"><?php echo esc_html__('Currency','paypal-wp-button-manager'); ?></label>
                                                     <?php $paypal_button_currency_with_symbole = get_paypal_button_currency_with_symbole(); ?>
                                                     <select id="BillingAmountCurrency" name="item_price_currency" class="currencySelect form-control">
 
@@ -493,7 +493,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                 </div>
                                             </div>
                                             <div class="group subscriptions accessAid fadedOut col-lg-4">
-                                                <label for="subscriptionBillingAmountCurrency" class="control-label">Currency</label>
+                                                <label for="subscriptionBillingAmountCurrency" class="control-label"><?php echo esc_html__('Currency','paypal-wp-button-manager'); ?></label>
                                                 <?php $paypal_button_currency = get_paypal_button_currency(); ?>
                                                 <select id="subscriptionBillingAmountCurrency" name="item_price_currency" class="currencySelect form-control" disabled="">
                                                     <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
@@ -506,7 +506,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     <div class="borderBox">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <p class="heading"><strong>Customize button</strong></p>
+                                                                <p class="heading"><strong><?php echo esc_html__('Customize button','paypal-wp-button-manager'); ?></strong></p>
                                                             </div>
                                                         </div>
 
@@ -529,8 +529,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <p id="addDropdownPrice" class="hideShow opened">
                                                                         <label for="dropdownPrice" class="control-label">
                                                                             <input class="checkbox form-control" type="checkbox" id="dropdownPrice" name="dropdown_price" value="createdDropdownPrice" <?php echo $dropdownPrice_checkbox; ?>>
-                                                                            <span class="products">Add drop-down menu with price/option&nbsp;</span>
-                                                                            <span class="subscriptions accessAid fadedOut">Add a dropdown menu with prices and options</span>
+                                                                            <span class="products"><?php echo esc_html__('Add drop-down menu with price/option ','paypal-wp-button-manager'); ?></span>
+                                                                            <span class="subscriptions accessAid fadedOut"><?php echo esc_html__('Add a dropdown menu with prices and options','paypal-wp-button-manager'); ?></span>
                                                                         </label>
                                                                     </p>
                                                                 </div>
@@ -538,12 +538,12 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             <div id="dropdownPriceSection" class="hideShow accessAid hide">
                                                                 <p class="title dropdownPriceTitle col-md-9">
                                                                     <label for="dropdownPriceTitle" class="control-label">
-                                                                        <span class="products">Name of drop-down menu (ex.: "Colors," "Sizes")</span>
-                                                                        <span class="subscriptions accessAid fadedOut">Description (For example, "Payment options".)</span>
+                                                                        <span class="products"><?php echo esc_html__('Name of drop-down menu (ex.: "Colors," "Sizes")','paypal-wp-button-manager'); ?></span>
+                                                                        <span class="subscriptions accessAid fadedOut"><?php echo esc_html__('Description (For example, "Payment options".)','paypal-wp-button-manager'); ?></span>
                                                                     </label>
                                                                     <input class="text form-control" maxlength="64" type="text" id="dropdownPriceTitle" <?php echo $dropdown_price_title_disabled; ?> name="dropdown_price_title" value="<?php echo $dropdown_price_title_input; ?>">
                                                                 </p>
-                                                                <p><label class="optionNameLbl control-label" for=""><span class="products">Menu option name</span><span class="subscriptions accessAid fadedOut">Menu Name</span></label><label class="optionPriceLbl control-label" for="optionPrice"><span class="products">Price</span><span class="subscriptions accessAid fadedOut">Amount (<span class="currencyLabel control-label"><?php echo $item_price_currency; ?></span>)</span></label><label class="optionCurrencyLbl control-label" for="optionCurrency"><span class="products">Currency</span><span class="subscriptions accessAid fadedOut control-label">Frequency</span></label></p>
+                                                                <p><label class="optionNameLbl control-label" for=""><span class="products"><?php echo esc_html__('Menu option name','paypal-wp-button-manager'); ?></span><span class="subscriptions accessAid fadedOut"><?php echo esc_html__('Menu Name','paypal-wp-button-manager'); ?></span></label><label class="optionPriceLbl control-label" for="optionPrice"><span class="products"><?php echo esc_html__('Price','paypal-wp-button-manager'); ?></span><span class="subscriptions accessAid fadedOut"><?php echo esc_html__('Amount','paypal-wp-button-manager'); ?> (<span class="currencyLabel control-label"><?php echo $item_price_currency; ?></span>)</span></label><label class="optionCurrencyLbl control-label" for="optionCurrency"><span class="products"><?php echo esc_html__('Currency','paypal-wp-button-manager'); ?></span><span class="subscriptions accessAid fadedOut control-label"><?php echo esc_html__('Frequency','paypal-wp-button-manager'); ?></span></label></p>
                                                                 <div id="optionsPriceContainer">
                                                                     <?php                                                                    
                                                                     $optionselectcount = isset($optionprice[0]) && count($optionprice[0]) > 0 ? count($optionprice[0]) : 0;
@@ -661,14 +661,14 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 <p class="moreOptionsLink">
                                                                     <a id="addOptionPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span></a>
                                                                     <a id="removeOptionPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span></a></p>
-                                                                <p class="saveCancel"><input class="btn btn-default" type="submit" id="saveOptionPrice" name="save_option_price" value="Done" alt="Done"><a id="cancelOptionPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-danger">Cancel</a></p>
+                                                                <p class="saveCancel"><input class="btn btn-default" type="submit" id="saveOptionPrice" name="save_option_price" value="Done" alt="Done"><a id="cancelOptionPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-danger"><?php echo esc_html__('Cancel','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
                                                             <div id="savedDropdownPriceSection" class="hideShow accessAid <?php echo $savedDropdownPriceSection_class; ?>">
                                                                 <p><label id="savedDropdownPrice" for="" style="font-size: 12px;font-weight: 500;"><?php
                                                                         echo $optionname[0] . ': ';
                                                                         echo implode(', ', $optionselect[0])
                                                                         ?></label></p>
-                                                                <p class="editDelete"><a id="editDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-sm btn-info"><span class="products">Edit</span><span class="subscriptions accessAid fadedOut">Change</span></a>&nbsp;|&nbsp;<a id="deleteDropdownPrice" class="btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products">Delete</span><span class="subscriptions accessAid fadedOut glyphicon glyphicon-remove"></span></a></p>
+                                                                <p class="editDelete"><a id="editDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-sm btn-info"><span class="products"><?php echo esc_html__('Edit','paypal-wp-button-manager'); ?></span><span class="subscriptions accessAid fadedOut"><?php echo esc_html__('Change','paypal-wp-button-manager'); ?></span></a>&nbsp;|&nbsp;<a id="deleteDropdownPrice" class="btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products"><?php echo esc_html__('Delete','paypal-wp-button-manager'); ?></span><span class="subscriptions accessAid fadedOut glyphicon glyphicon-remove"></span></a></p>
                                                             </div>
 
 
@@ -742,16 +742,16 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         ?>
                                                                         <label for="dropdown" class="control-label">
                                                                             <input class="checkbox form-control" type="checkbox" id="dropdown" name="dropdown" value="createdDropdown" <?php echo $dropdown_checkbox; ?>>
-                                                                            <span class="hideShow accessAid hide" id="dropDownLabelForSubscription">Add a dropdown menu </span>
-                                                                            <span id="dropDownLabel" class="opened">Add drop-down menu&nbsp;</span>
+                                                                            <span class="hideShow accessAid hide" id="dropDownLabelForSubscription"><?php echo esc_html__('Add a dropdown menu','paypal-wp-button-manager'); ?></span>
+                                                                            <span id="dropDownLabel" class="opened"><?php echo esc_html__('Add drop-down menu','paypal-wp-button-manager'); ?></span>
                                                                         </label>
                                                                     </p>
                                                                 </div>
                                                             </div>   
 
                                                             <div class="hideShow dropdownSection accessAid hide" id="dropdownSection1">
-                                                                <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" <?php echo $dropdown1_title_disabled; ?> name="dropdown1_title" value="<?php echo $dropdown1_title; ?>"></p>
-                                                                <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
+                                                                <p class="title col-md-9"><label for="" class="control-label"><?php echo esc_html__('Name of drop-down menu (ex.: "Colors," "Sizes")','paypal-wp-button-manager'); ?></label><input maxlength="64" type="text" class="dropdownTitle text form-control" <?php echo $dropdown1_title_disabled; ?> name="dropdown1_title" value="<?php echo $dropdown1_title; ?>"></p>
+                                                                <p class="title col-md-9"><label for="" class="control-label"><?php echo esc_html__('Menu option name','paypal-wp-button-manager'); ?></label></p>
                                                                 <?php if ($string == 'edit' && !empty($optionselect[0 + $t])) { ?>
                                                                     <div id="optionsContainer1">
                                                                         <?php
@@ -769,8 +769,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd1_option_name" value="Option 3"></p>
                                                                     </div>
                                                                 <?php } ?>
-                                                                <p class="moreOptionsLink"><a class="addOption btn btn-sm btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
-                                                                <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                <p class="moreOptionsLink"><a class="addOption btn btn-sm btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Add option','paypal-wp-button-manager'); ?></a></p>
+                                                                <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Cancel','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
                                                             <div class="hideShow accessAid savedDropdownSection <?php echo $savedDropdownSection1_class; ?>" id="savedDropdownSection1">
                                                                 <p><label id="savedDropdown1" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php
@@ -779,13 +779,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             echo implode(", ", $optionselect[0 + $t]);
                                                                         }
                                                                         ?></label></p>
-                                                                <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Edit','paypal-wp-button-manager'); ?></a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Delete','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
 
 
                                                             <div class="hideShow dropdownSection accessAid hide" id="dropdownSection2">
-                                                                <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" <?php echo $dropdown2_title_disabled; ?> name="dropdown2_title" value="<?php echo $dropdown2_title; ?>"></p>
-                                                                <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
+                                                                <p class="title col-md-9"><label for="" class="control-label"><?php echo esc_html__('Name of drop-down menu (ex.: "Colors," "Sizes")','paypal-wp-button-manager'); ?></label><input maxlength="64" type="text" class="dropdownTitle text form-control" <?php echo $dropdown2_title_disabled; ?> name="dropdown2_title" value="<?php echo $dropdown2_title; ?>"></p>
+                                                                <p class="title col-md-9"><label for="" class="control-label"><?php echo esc_html__('Menu option name','paypal-wp-button-manager'); ?></label></p>
                                                                 <?php if ($string == 'edit' && !empty($optionselect[1 + $t])) { ?>
                                                                     <div id="optionsContainer2">
                                                                         <?php
@@ -803,8 +803,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd2_option_name" value="Option 3"></p>
                                                                     </div>
                                                                 <?php } ?>
-                                                                <p class="moreOptionsLink"><a class="addOption btn btn-sm btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
-                                                                <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option_2" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                <p class="moreOptionsLink"><a class="addOption btn btn-sm btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Add option','paypal-wp-button-manager'); ?></a></p>
+                                                                <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option_2" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Cancel','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
                                                             <div class="hideShow accessAid savedDropdownSection <?php echo $savedDropdownSection2_class; ?>" id="savedDropdownSection2">
                                                                 <p><label id="savedDropdown2" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php
@@ -813,13 +813,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                          echo implode(", ", $optionselect[$t + 1]);   
                                                                         }
                                                                         ?></label></p>
-                                                                <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Edit','paypal-wp-button-manager'); ?></a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Delete','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
 
 
                                                             <div class="hideShow dropdownSection accessAid hide" id="dropdownSection3">
-                                                                <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control" <?php echo $dropdown3_title_disabled; ?> name="dropdown3_title" value="<?php echo $dropdown3_title; ?>"></p>
-                                                                <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
+                                                                <p class="title col-md-9"><label for="" class="control-label"><?php echo esc_html__('Name of drop-down menu (ex.: "Colors," "Sizes")','paypal-wp-button-manager'); ?></label><input maxlength="64" type="text" class="dropdownTitle text form-control" <?php echo $dropdown3_title_disabled; ?> name="dropdown3_title" value="<?php echo $dropdown3_title; ?>"></p>
+                                                                <p class="title col-md-9"><label for="" class="control-label"><?php echo esc_html__('Menu option name','paypal-wp-button-manager'); ?></label></p>
                                                                 <?php if ($string == 'edit' && !empty($optionselect[$t + 2])) { ?>
                                                                     <div id="optionsContainer3">
                                                                         <?php
@@ -837,8 +837,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd3_option_name" value="Option 3"></p>
                                                                     </div>
                                                                 <?php } ?>
-                                                                <p class="moreOptionsLink"><a class="addOption btn btn-sm btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
-                                                                <p class="saveCancel"><input class="saveOption  btn btn-default" type="submit" name="save_option_3" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                <p class="moreOptionsLink"><a class="addOption btn btn-sm btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Add option','paypal-wp-button-manager'); ?></a></p>
+                                                                <p class="saveCancel"><input class="saveOption  btn btn-default" type="submit" name="save_option_3" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Cancel','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
                                                             <div class="hideShow accessAid savedDropdownSection <?php echo $savedDropdownSection3_class; ?>" id="savedDropdownSection3">
                                                                 <p><label id="savedDropdown3" for="" style="font-size: 12px;font-weight: 500;"><?php
@@ -848,13 +848,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             echo implode(", ", $optionselect[$t + 2]);                                                                             
                                                                         }
                                                                         ?></label></p>
-                                                                <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Edit','paypal-wp-button-manager'); ?></a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Delete','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
 
 
                                                             <div class="hideShow dropdownSection accessAid hide" id="dropdownSection4">
-                                                                <p class="title col-md-9"><label for="" class="control-label">Name of drop-down menu (ex.: "Colors," "Sizes")</label><input maxlength="64" type="text" class="dropdownTitle text form-control"  <?php echo $dropdown4_title_disabled; ?> name="dropdown4_title" value="<?php echo $dropdown4_title; ?>"></p>
-                                                                <p class="title col-md-9"><label for="" class="control-label">Menu option name</label></p>
+                                                                <p class="title col-md-9"><label for="" class="control-label"><?php echo esc_html__('Name of drop-down menu (ex.: "Colors," "Sizes")','paypal-wp-button-manager'); ?></label><input maxlength="64" type="text" class="dropdownTitle text form-control"  <?php echo $dropdown4_title_disabled; ?> name="dropdown4_title" value="<?php echo $dropdown4_title; ?>"></p>
+                                                                <p class="title col-md-9"><label for="" class="control-label"><?php echo esc_html__('Menu option name','paypal-wp-button-manager'); ?></label></p>
                                                                 <?php if ($string == 'edit' && !empty($optionselect[$t + 3])) { ?>
                                                                     <div id="optionsContainer4">
                                                                         <?php
@@ -872,8 +872,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <p class="optionRow dropdown col-md-9"><input maxlength="64" type="text" class="ddOptionName text form-control" disabled="" name="dd4_option_name" value="Option 3"></p>
                                                                     </div>
                                                                 <?php } ?>
-                                                                <p class="moreOptionsLink"><a class="addOption btn btn-sm btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Add option</a></p>
-                                                                <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option_4" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                <p class="moreOptionsLink"><a class="addOption btn btn-sm btn-success" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Add option','paypal-wp-button-manager'); ?></a></p>
+                                                                <p class="saveCancel"><input class="saveOption btn btn-default" type="submit" name="save_option_4" value="Done" alt="Done"><a class="cancelOption btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Cancel','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
                                                             <div class="hideShow accessAid savedDropdownSection  <?php echo $savedDropdownSection4_class; ?>" id="savedDropdownSection4">
                                                                 <p><label id="savedDropdown4" for="" class="control-label" style="font-size: 12px;font-weight: 500;"><?php
@@ -882,7 +882,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             echo implode(", ", $optionselect[$t + 3]);
                                                                         }
                                                                         ?></label></p>
-                                                                <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                <p class="editDelete"><a class="editDropdown btn btn-info btn-sm" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Edit','paypal-wp-button-manager'); ?></a>&nbsp;|&nbsp;<a class="deleteDropdown btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Delete','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
 
                                                             <?php
@@ -896,7 +896,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 }
                                                             }
                                                             ?>
-                                                            <p id="addNewDropdownSection" class="editDelete hideShow accessAid <?php echo $addNewDropdownSection_class; ?>"><a id="addNewDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-sm btn-success">Add another drop-down menu</a></p>                                                                                    
+                                                            <p id="addNewDropdownSection" class="editDelete hideShow accessAid <?php echo $addNewDropdownSection_class; ?>"><a id="addNewDropdown" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-sm btn-success"><?php echo esc_html__('Add another drop-down menu','paypal-wp-button-manager'); ?></a></p>
 
                                                             <div class="row">
                                                                 <div class="col-md-12">
@@ -937,15 +937,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                 $textfieldTitle2_disabled = 'disabled';
                                                                             }
                                                                             ?>
-                                                                            <input type="checkbox" value="createdTextfield" name="textfield" id="textfield" class="checkbox form-control" <?php echo $createdTextfield_checkbox; ?>>Add text field&nbsp;
-                                                                            <a onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})" href="https://www.paypal.com/uk/cgi-bin/webscr?cmd=_display-textfield-example" class="infoLink exampleLink" target="_blank">Example</a>
+                                                                            <input type="checkbox" value="createdTextfield" name="textfield" id="textfield" class="checkbox form-control" <?php echo $createdTextfield_checkbox; ?>><?php echo esc_html__('Add text field','paypal-wp-button-manager'); ?>
+                                                                            <a onclick="PAYPAL.core.openWindow(event, {width: 560, height: 410})" href="https://www.paypal.com/uk/cgi-bin/webscr?cmd=_display-textfield-example" class="infoLink exampleLink" target="_blank"><?php echo esc_html__('Example','paypal-wp-button-manager'); ?></a>
                                                                         </label>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                             <div class="hideShow accessAid textfieldSection hide" id="textfieldSection1">
-                                                                <p class="title col-md-9"><label for="textfieldTitle1" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle1" class="text form-control" <?php echo $textfieldTitle1_disabled; ?> name="textfield1_title" value="<?php echo $textfieldTitle1; ?>"></p>
-                                                                <p class="saveCancel"><input class="saveTextfield btn btn-default" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                <p class="title col-md-9"><label for="textfieldTitle1" class="control-label"><?php echo esc_html__('Enter name of text field (up to 30 characters)','paypal-wp-button-manager'); ?></label><input maxlength="30" type="text" id="textfieldTitle1" class="text form-control" <?php echo $textfieldTitle1_disabled; ?> name="textfield1_title" value="<?php echo $textfieldTitle1; ?>"></p>
+                                                                <p class="saveCancel"><input class="saveTextfield btn btn-default" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Cancel','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
 
                                                             <div class="hideShow accessAid savedTextfieldSection <?php echo $savedTextfieldSection1; ?>" id="savedTextfieldSection1">
@@ -956,11 +956,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             echo '';
                                                                         }
                                                                         ?></label></p>
-                                                                <p class="editDelete"><a class="editTextfield btn btn-sm btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                <p class="editDelete"><a class="editTextfield btn btn-sm btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Edit','paypal-wp-button-manager'); ?></a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Delete','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
                                                             <div class="hideShow accessAid textfieldSection hide" id="textfieldSection2">
-                                                                <p class="title col-md-9"><label for="textfieldTitle2" class="control-label">Enter name of text field (up to 30 characters)</label><input maxlength="30" type="text" id="textfieldTitle2" class="text form-control" <?php echo $textfieldTitle2_disabled; ?>  name="textfield2_title" value="<?php echo $textfieldTitle2; ?>"></p>
-                                                                <p class="saveCancel"><input class="saveTextfield btn btn-default" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Cancel</a></p>
+                                                                <p class="title col-md-9"><label for="textfieldTitle2" class="control-label"><?php echo esc_html__('Enter name of text field (up to 30 characters)','paypal-wp-button-manager'); ?></label><input maxlength="30" type="text" id="textfieldTitle2" class="text form-control" <?php echo $textfieldTitle2_disabled; ?>  name="textfield2_title" value="<?php echo $textfieldTitle2; ?>"></p>
+                                                                <p class="saveCancel"><input class="saveTextfield btn btn-default" type="submit" name="save_textfield" value="Done" alt="Done"><a class="cancelTextfield btn btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Cancel','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
                                                             <div class="hideShow accessAid savedTextfieldSection <?php echo $savedTextfieldSection2; ?>" id="savedTextfieldSection2">
                                                                 <p><label class="savedTextfield control-label" id="savedTextfield2" for=""><?php
@@ -970,7 +970,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             echo '';
                                                                         }
                                                                         ?></label></p>
-                                                                <p class="editDelete"><a class="editTextfield btn btn-sm btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Edit</a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Delete</a></p>
+                                                                <p class="editDelete"><a class="editTextfield btn btn-sm btn-info" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Edit','paypal-wp-button-manager'); ?></a>&nbsp;|&nbsp;<a class="deleteTextfield btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Delete','paypal-wp-button-manager'); ?></a></p>
                                                             </div>
                                                             <?php
                                                             if ($string == 'edit') {
@@ -987,10 +987,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 $addNewTextfieldSection_class = 'hide';
                                                             }
                                                             ?>
-                                                            <p id="addNewTextfieldSection" class="editDelete hideShow accessAid <?php echo $addNewTextfieldSection_class; ?>"><a id="addNewTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-sm btn-success">Add another text field</a></p>
+                                                            <p id="addNewTextfieldSection" class="editDelete hideShow accessAid <?php echo $addNewTextfieldSection_class; ?>"><a id="addNewTextfield" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-sm btn-success"><?php echo esc_html__('Add another text field','paypal-wp-button-manager'); ?></a></p>
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <span id="buttonAppLink" class="collapsed"><a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=">Customize text or appearance</a><span class="fieldNote"> (optional)</span></span>
+                                                                    <span id="buttonAppLink" class="collapsed"><a href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><?php echo esc_html__('Customize text or appearance','paypal-wp-button-manager'); ?></a><span class="fieldNote"><?php echo esc_html__('(optional)','paypal-wp-button-manager'); ?></span></span>
                                                                 </div>
                                                             </div>
 
@@ -1017,7 +1017,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="col-md-12">
                                                                         <p id="addPaypalButton">
                                                                             <label for="paypalButton" class="control-label">
-                                                                                <input class="radio form-control" type="radio" id="paypalButton" <?php echo $paypalButton_checked; ?> name="paypal_button" value="true">PayPal button
+                                                                                <input class="radio form-control" type="radio" id="paypalButton" <?php echo $paypalButton_checked; ?> name="paypal_button" value="true"><?php echo esc_html__('PayPal button','paypal-wp-button-manager'); ?>
                                                                             </label>
                                                                         </p>
                                                                     </div>
@@ -1044,7 +1044,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             ?>
                                                                             <p id="displaySmallButton">
                                                                                 <label for="smallButton" class="control-label">
-                                                                                    <input class="checkbox form-control" type="checkbox" id="smallButton" name="small_button" value="createdSmallButton" <?php echo $smallButton_checked; ?>>Use smaller button</label>
+                                                                                    <input class="checkbox form-control" type="checkbox" id="smallButton" name="small_button" value="createdSmallButton" <?php echo $smallButton_checked; ?>><?php echo esc_html__('Use smaller button','paypal-wp-button-manager'); ?></label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -1052,13 +1052,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         <div class="col-md-12">
                                                                             <p id="displayCcLogos" class="hideShow hide">
                                                                                 <label for="ccLogos" class="control-label">
-                                                                                    <input class="checkbox form-control" type="checkbox" <?php echo $displayCcLogos_checked; ?> id="ccLogos" name="cc_logos" value="createdButtonWithCCLogo">Display credit card logos</label></p>
+                                                                                    <input class="checkbox form-control" type="checkbox" <?php echo $displayCcLogos_checked; ?> id="ccLogos" name="cc_logos" value="createdButtonWithCCLogo"><?php echo esc_html__('Display credit card logos','paypal-wp-button-manager'); ?></label></p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <p id="buttonCountryLanguage">
-                                                                                <label for="" class="control-label">Country and language for button</label>
+                                                                                <label for="" class="control-label"><?php echo esc_html__('Country and language for button','paypal-wp-button-manager'); ?></label>
                                                                                 <?php $paypal_button_language = get_paypal_button_languages(); ?>
                                                                                 <select id="selectCountryLanguage" name="select_country_language" class="form-control">
 
@@ -1080,7 +1080,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <p id="textBuyNow" class="hideShow buttonText hide">
-                                                                                <label for="" class="control-label">Select button text</label>
+                                                                                <label for="" class="control-label"><?php echo esc_html__('Select button text','paypal-wp-button-manager'); ?></label>
                                                                                 <span class="field">
                                                                                     <select id="buttonTextBuyNow" name="button_text" disabled="" class="form-control">
                                                                                         <?php
@@ -1093,8 +1093,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                                 $pay_now_selected='selected';
                                                                                             }
                                                                                         ?>
-                                                                                        <option value="buy_now" <?php echo $buy_now_selected; ?> >Buy Now</option>
-                                                                                        <option value="pay_now" <?php echo $pay_now_selected; ?> >Pay Now</option>
+                                                                                        <option value="buy_now" <?php echo $buy_now_selected; ?> ><?php echo esc_html__('Buy Now','paypal-wp-button-manager'); ?></option>
+                                                                                        <option value="pay_now" <?php echo $pay_now_selected; ?> ><?php echo esc_html__('Pay Now','paypal-wp-button-manager'); ?></option>
                                                                                     </select>
                                                                                 </span>
                                                                             </p>
@@ -1104,7 +1104,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <p id="textSubscr" class="hideShow buttonText hide">
-                                                                                <label for="" class="control-label">Select button text</label>
+                                                                                <label for="" class="control-label"><?php echo esc_html__('Select button text','paypal-wp-button-manager'); ?></label>
                                                                                 <span class="field">
                                                                                     <select id="buttonTextSubscribe" name="button_text" disabled="" class="form-control">
                                                                                         <?php 
@@ -1117,8 +1117,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                                                 $buttonTextSubscribe_subscribe='selected';
                                                                                             }
                                                                                         ?>
-                                                                                        <option value="subscriptions" <?php echo $buttonTextSubscribe_subscribe; ?> >Subscribe</option>
-                                                                                        <option value="buy_now" <?php echo $buttonTextSubscribe_buynow; ?> >Buy Now</option>
+                                                                                        <option value="subscriptions" <?php echo $buttonTextSubscribe_subscribe; ?> ><?php echo esc_html__('Subscribe','paypal-wp-button-manager'); ?></option>
+                                                                                        <option value="buy_now" <?php echo $buttonTextSubscribe_buynow; ?> ><?php echo esc_html__('Buy Now','paypal-wp-button-manager'); ?></option>
                                                                                     </select>
                                                                                 </span>
                                                                             </p>
@@ -1127,7 +1127,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md-12">
-                                                                        <p id="addCustomButton"><label for="customButton" class="control-label"><input class="radio form-control" type="radio" id="customButton" <?php echo $customButton_checked; ?> name="paypal_button" value="false">Use your own button image</label></p>
+                                                                        <p id="addCustomButton"><label for="customButton" class="control-label"><input class="radio form-control" type="radio" id="customButton" <?php echo $customButton_checked; ?> name="paypal_button" value="false"><?php echo esc_html__('Use your own button image','paypal-wp-button-manager'); ?></label></p>
                                                                     </div>
                                                                 </div>
 
@@ -1140,7 +1140,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     <div class="buyerViewSection">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <p class="heading"><strong>Your customer's view</strong></p>
+                                                                <p class="heading"><strong><?php echo esc_html__('Your customer\'s view','paypal-wp-button-manager'); ?></strong></p>
                                                             </div>
                                                         </div>
 
@@ -1179,7 +1179,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                             }
                                                                             ?>
                                                                         </select>
-                                                                        <span class="hide control-label" id="frequencyTxt">Frequency</span>
+                                                                        <span class="hide control-label" id="frequencyTxt"><?php echo esc_html__('Frequency','paypal-wp-button-manager'); ?></span>
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -1307,11 +1307,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="shipping">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <h4>Shipping</h4>
+                                                                    <h4><?php echo esc_html__('Shipping','paypal-wp-button-manager'); ?></h4>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <div class="col-md-12">
-                                                                        <label for="itemFlatShippingAmount" class="control-label">Use specific amount: ( <span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label>
+                                                                        <label for="itemFlatShippingAmount" class="control-label"><?php echo esc_html__('Use specific amount: (','paypal-wp-button-manager'); ?> <span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label>
                                                                         <input class="form-control" type="text" id="itemFlatShippingAmount" size="9" name="item_shipping_amount" value="<?php echo $item_shipping_amount; ?>">
                                                                     </div>                                                                                
                                                                 </div>
@@ -1322,11 +1322,11 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="tax">                                                                                
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <h4>Tax</h4>
+                                                                    <h4><?php echo esc_html__('Tax','paypal-wp-button-manager'); ?></h4>
                                                                 </div>
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">                                                                                        
-                                                                        <label for="itemTaxRate" class="control-label">Use tax rate ( % )</label>
+                                                                        <label for="itemTaxRate" class="control-label"><?php echo esc_html__('Use tax rate ( % )','paypal-wp-button-manager'); ?></label>
                                                                         <input class="form-control" type="text" id="itemTaxRate" name="item_tax_rate" value="<?php echo $itemTaxRate; ?>">
                                                                     </div>
                                                                 </div>
@@ -1340,7 +1340,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     <div class="row">
                                                         <div class="col-md-9">
                                                             <div class="form-group">
-                                                                <label for="donationCurrency" class="control-label">Currency</label>
+                                                                <label for="donationCurrency" class="control-label"><?php echo esc_html__('Currency','paypal-wp-button-manager'); ?></label>
                                                                 <select id="donationCurrency" name="item_price_currency" class="currencySelect form-control" disabled="" style="width: auto !important">
                                                                     <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
                                                                         <?php
@@ -1361,7 +1361,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
                                                     <div class="row">
                                                         <div class="col-md-9">
-                                                            <h4>Contribution amount</h4>
+                                                            <h4><?php echo esc_html__('Contribution amount','paypal-wp-button-manager'); ?></h4>
                                                         </div>
                                                     </div>
 
@@ -1369,7 +1369,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="col-md-4">
                                                             <div class="form-group">                                                                                    
                                                                 <input class="radio donationType form-control" type="radio" id="optDonationTypeFlexible" checked="" name="donation_type" value="open" disabled="">
-                                                                <label for="optDonationTypeFlexible" class="control-label">Donors enter their own contribution amount.</label>
+                                                                <label for="optDonationTypeFlexible" class="control-label"><?php echo esc_html__('Donors enter their own contribution amount.','paypal-wp-button-manager'); ?></label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
@@ -1384,7 +1384,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 }
                                                                 ?>
                                                                 <input class="radio donationType form-control" <?php echo $donation_amount_check; ?> type="radio" id="optDonationTypeFixed" name="donation_type" value="fixed" disabled="">
-                                                                <label for="optDonationTypeFixed" class="control-label">Donors contribute a fixed amount.</label>
+                                                                <label for="optDonationTypeFixed" class="control-label"><?php echo esc_html__('Donors contribute a fixed amount.','paypal-wp-button-manager'); ?></label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1392,27 +1392,27 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     <div class="labelOption fixedDonationAmountContainer <?php echo $donation_container_amount_class; ?>">
                                                         <div class="row">
                                                             <div class="col-md-9">
-                                                                <label for="fixedDonationAmount" class="control-label">Amount ( <span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label>
+                                                                <label for="fixedDonationAmount" class="control-label"><?php echo esc_html__('Amount (','paypal-wp-button-manager'); ?> <span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label>
                                                                 <input type="text" id="fixedDonationAmount" size="7" maxlength="20" class="text form-control" name="item_price" value="<?php echo $donation_amount; ?>" disabled="">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row"><div class="col-md-9"><strong>Note:</strong> This button is intended for fundraising. If you are not raising money for a cause, please choose another option. Nonprofits must verify their status to withdraw donations they receive. Users that are not verified nonprofits must demonstrate how their donations will be used, once they raise more than $10,000 USD.</div></div>
+                                                <div class="row"><div class="col-md-9"><strong><?php echo esc_html__('Note:','paypal-wp-button-manager'); ?></strong> <?php echo esc_html__('This button is intended for fundraising. If you are not raising money for a cause, please choose another option. Nonprofits must verify their status to withdraw donations they receive. Users that are not verified nonprofits must demonstrate how their donations will be used, once they raise more than $10,000 USD.','paypal-wp-button-manager'); ?></div></div>
                                             </div>
                                             <div class="group subscriptions last accessAid fadedOut">
                                                 <div class="group">
                                                     <div class="row">
                                                         <div class="col-md-9">
                                                             <div class="form-group">
-                                                                <input type="checkbox" id="enableUsernamePasswordCreation" class="checkbox form-control" name="enable_username_password_creation" value="1" disabled="">Have PayPal create user names and passwords for customers
+                                                                <input type="checkbox" id="enableUsernamePasswordCreation" class="checkbox form-control" name="enable_username_password_creation" value="1" disabled=""><?php echo esc_html__('Have PayPal create user names and passwords for customers','paypal-wp-button-manager'); ?>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="balloonCallout accessAid" id="customerControlHelp">Give customers access to "members-only" content on your site.</div>
+                                                    <div class="balloonCallout accessAid" id="customerControlHelp"><?php echo esc_html__('Give customers access to "members-only" content on your site.','paypal-wp-button-manager'); ?></div>
                                                     <div class="fieldNote">
-                                                        <div class="label">Notes: </div>
+                                                        <div class="label"><?php echo esc_html__('Notes:','paypal-wp-button-manager'); ?></div>
                                                         <div class="floatLeft">
                                                         </div>
                                                     </div>
@@ -1422,7 +1422,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="row">
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <label for="subscriptionBillingAmount" class="control-label">Billing amount each cycle ( <span class="currencyLabel"><?php echo $item_price_currency; ?></span> ) </label>
+                                                                    <label for="subscriptionBillingAmount" class="control-label"><?php echo esc_html__('Billing amount each cycle (','paypal-wp-button-manager'); ?><span class="currencyLabel"><?php echo $item_price_currency; ?></span> ) </label>
                                                                     <input type="text" id="subscriptionBillingAmount" size="22" class="text form-control" name="subscription_billing_amount" value="<?php echo $subscriptionBillingAmount; ?>" disabled="">
                                                                 </div>
                                                             </div>
@@ -1432,7 +1432,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     <div class="group">
                                                         <div class="row">                                                                                
                                                             <div class="form-group">
-                                                                <div class="col-md-12"><label for="subscriptionBillingCycleNumber" class="control-label">Billing cycle</label></div>
+                                                                <div class="col-md-12"><label for="subscriptionBillingCycleNumber" class="control-label"><?php echo esc_html__('Billing cycle','paypal-wp-button-manager'); ?></label></div>
                                                                 <div class="col-md-1">
                                                                     <?php $paypal_button_subscription_billing_cycle_number = get_paypal_button_subscription_billing_cycle_number(); ?>
                                                                     <select name="subscription_billing_cycle_number" disabled="" class="form-control" style="width: auto !important">
@@ -1473,7 +1473,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                     <div class="row">
                                                         <div class="col-md-9">
                                                             <div class="form-group">
-                                                                <label for="subscriptionBillingLimit" class="control-label">After how many cycles should billing stop?</label>
+                                                                <label for="subscriptionBillingLimit" class="control-label"><?php echo esc_html__('After how many cycles should billing stop?','paypal-wp-button-manager'); ?></label>
                                                                 <select name="subscription_billing_limit" disabled="" class="form-control" style="width: auto !important">
                                                                     <?php
                                                                     $paypal_button_subscriptions_cycle_billing_limit = get_paypal_button_subscription_billing_limit();
@@ -1508,7 +1508,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                         $trialOfferOptions_class='accessAid';
                                                                     }
                                                                 ?>
-                                                                <input type="checkbox" id="offerTrial" class="checkbox form-control" name="subscriptions_offer_trial" value="1" disabled="" <?php echo $subscriptions_offer_trial_checkbox; ?>><label for="offerTrial" class="control-label">I want to offer a trial period</label>
+                                                                <input type="checkbox" id="offerTrial" class="checkbox form-control" name="subscriptions_offer_trial" value="1" disabled="" <?php echo $subscriptions_offer_trial_checkbox; ?>><label for="offerTrial" class="control-label"><?php echo esc_html__('I want to offer a trial period','paypal-wp-button-manager'); ?></label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1518,7 +1518,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
-                                                                    <label for="subscriptionLowerRate" class="control-label">Amount to bill for the trial period ( <span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label>
+                                                                    <label for="subscriptionLowerRate" class="control-label"><?php echo esc_html__('Amount to bill for the trial period (','paypal-wp-button-manager'); ?><span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label>
                                                                     <input class="hidden" type="hidden" id="subscriptionLowerRate" name="subscription_trial_billing_amount" value="1" disabled="">
                                                                     <input type="text" id="subscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_rate" value="<?php echo $subscription_trial_rate; ?>" disabled="">
                                                                 </div>
@@ -1529,7 +1529,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             <div class="form-group">
                                                                 <?php $paypal_button_subscription_trial_duration = get_paypal_button_subscription_trial_duration(); ?>                                                                                    
 
-                                                                <div class="col-md-12"><label class="control-label">Define the trial period</label></div>
+                                                                <div class="col-md-12"><label class="control-label"><?php echo esc_html__('Define the trial period','paypal-wp-button-manager'); ?></label></div>
                                                                 <div class="col-md-1">
                                                                     <select name="subscription_trial_duration" disabled="" class="form-control">
                                                                         <?php foreach ($paypal_button_subscription_trial_duration as $paypal_button_subscription_trial_duration_key => $paypal_button_subscription_trial_duration_value) { ?>
@@ -1565,7 +1565,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
                                                         <div class="row">
                                                             <div class="col-md-9">
-                                                                <h5>Do you want to offer a second trial period? <span class="autoTooltip" title="" tabindex="0">What's this?<span class="accessAid">Customers will receive just one bill for each trial period.</span></span></h5>
+                                                                <h5><?php echo esc_html__('Do you want to offer a second trial period?','paypal-wp-button-manager'); ?><span class="autoTooltip" title="" tabindex="0"><?php echo esc_html__('What\'s this?','paypal-wp-button-manager'); ?><span class="accessAid"><?php echo esc_html__('Customers will receive just one bill for each trial period.','paypal-wp-button-manager'); ?></span></span></h5>
                                                             </div>                                                                                
                                                         </div>
                                                         <div class="row">
@@ -1584,10 +1584,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                     }
                                                                 ?>
                                                                     <input class="radio secondTrialOfferOption form-control" type="radio" id="secondSubscriptionTrialOffer" <?php echo $secondSubscriptionTrialOffer_radio; ?> name="subscriptions_offer_another_trial" value="1" disabled="">
-                                                                    <label for="secondSubscriptionTrialOffer" class="control-label">Yes</label>
+                                                                    <label for="secondSubscriptionTrialOffer" class="control-label"><?php echo esc_html__('Yes','paypal-wp-button-manager'); ?></label>
 
                                                                     <input class="radio secondTrialOfferOption form-control" type="radio" id="lastSubscriptionTrialOffer" <?php echo $lastSubscriptionTrialOffer_radio; ?> name="subscriptions_offer_another_trial" value="0" disabled="">
-                                                                    <label for="lastSubscriptionTrialOffer" class="control-label">No</label>
+                                                                    <label for="lastSubscriptionTrialOffer" class="control-label"><?php echo esc_html__('No','paypal-wp-button-manager'); ?></label>
 
                                                                 </div>
                                                             </div>
@@ -1596,7 +1596,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label class="control-label">Amount to bill for this trial period ( <span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label>
+                                                                        <label class="control-label"><?php echo esc_html__('Amount to bill for this trial period (','paypal-wp-button-manager'); ?><span class="currencyLabel"><?php echo $item_price_currency; ?></span> )</label>
                                                                         <input type="text" id="secondSubscriptionLowerRateAmount" size="11" class="text form-control" name="subscription_trial_2_rate" value="<?php echo $subscription_trial_2_rate; ?>" disabled="">
                                                                     </div>
                                                                 </div>
@@ -1604,7 +1604,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             <div class="row">                                                                                        
                                                                 <div class="form-group">
                                                                     <div class="col-md-12">
-                                                                        <label class="control-label">How long should the trial period last?</label>
+                                                                        <label class="control-label"><?php echo esc_html__('How long should the trial period last?','paypal-wp-button-manager'); ?></label>
                                                                     </div>
                                                                     <div class="col-md-1">
                                                                         <select name="subscription_trial_2_duration" disabled="" class="form-control">
@@ -1647,7 +1647,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                 <div class="row">
                                                     <div class="col-md-5">
                                                         <div class="form-group">
-                                                            <label for="merchantIDNotificationMethod" class="control-label">Enter your PayPal Email Address or Merchant Account ID <a target="_blank" class="infoLink" href="https://www.paypal.com/businessstaticpage/BDMerchantIdInformation" onclick="PAYPAL.core.openWindow(event, {height: 500, width: 450});">Learn more</a></label>
+                                                            <label for="merchantIDNotificationMethod" class="control-label"><?php echo esc_html__('Enter your PayPal Email Address or Merchant Account ID','paypal-wp-button-manager'); ?><a target="_blank" class="infoLink" href="https://www.paypal.com/businessstaticpage/BDMerchantIdInformation" onclick="PAYPAL.core.openWindow(event, {height: 500, width: 450});"><?php echo esc_html__('Learn more','paypal-wp-button-manager'); ?></a></label>
                                                             <input type="text" class="custom_text form-control" name="business" id="business"  value="<?php echo $account_id; ?>"/>
                                                         </div>
                                                     </div>
@@ -1865,7 +1865,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         <?php echo __(' button on "item sold out" page', 'paypal-wp-button-manager'); ?>
                                                     </span>
                                                     <input class="type-text form-control" type="text" id="soldOutURL" name="sold_out_url" value="<?php echo $item_soldout_url_step2; ?>" disabled="">
-                                                    <span class="littleHint">Ex: http://www.mybuynowstore.com</span>
+                                                    <span class="littleHint"><?php _e('Ex: http://www.mybuynowstore.com', 'paypal-wp-button-manager'); ?></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -1880,28 +1880,28 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                     <div class="container">
                                         <div class="row">
                                             <diV class="col-md-9">
-                                                <strong>Customize checkout pages</strong>
+                                                <strong><?php echo esc_html__('Customize checkout pages','paypal-wp-button-manager'); ?></strong>
                                             </diV>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-9">
-                                                <p>If you are an advanced user, you can customize checkout pages for your customers, streamline checkout, and more in this section.</p>
+                                                <p><?php echo esc_html__('If you are an advanced user, you can customize checkout pages for your customers, streamline checkout, and more in this section.','paypal-wp-button-manager'); ?></p>
                                             </div>
                                         </div>
 
                                         <div id="changeOrderQuantitiesContainer" class="hide">
                                             <div class="row">
                                                 <div class="col-md-9">
-                                                    <b>Do you want to let your customer change order quantities?</b>
+                                                    <b><?php echo esc_html__('Do you want to let your customer change order quantities?','paypal-wp-button-manager'); ?></b>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-9">
                                                     <div class="form-group">                                                                                
                                                         <input class="radio form-control" type="radio" id="changeOrderQuantities" name="undefined_quantity" value="1">
-                                                        <label class="control-label" for="keepOrderQuantities">Yes</label>
+                                                        <label class="control-label" for="keepOrderQuantities"><?php echo esc_html__('Yes','paypal-wp-button-manager'); ?></label>
                                                         <input class="radio" type="radio" id="keepOrderQuantities" checked="" name="undefined_quantity" value="0">
-                                                        <label class="control-label" for="changeOrderQuantities">No</label>
+                                                        <label class="control-label" for="changeOrderQuantities"><?php echo esc_html__('No','paypal-wp-button-manager'); ?></label>
                                                     </div>
                                                 </div>
                                             </div>                                                                    
@@ -1909,7 +1909,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                         <div id="specialInstructionsContainer" class="opened">                                                                    
                                             <div class="row">
                                                 <div class="col-md-9">
-                                                    <p><b>Can your customer add special instructions in a message to you?</b></p>
+                                                    <p><b><?php echo esc_html__('Can your customer add special instructions in a message to you?','paypal-wp-button-manager'); ?></b></p>
                                                     <div class="form-group">
                                                         <?php
                                                         if ($no_note == 0) {
@@ -1923,10 +1923,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         }
                                                         ?>    
                                                         <input class="radio form-control" type="radio" id="addSpecialInstructions" <?php echo $cn_add_checked; ?> name="no_note" value="0">
-                                                        <label class="control-label" for="addSpecialInstructions">Yes</label>
+                                                        <label class="control-label" for="addSpecialInstructions"><?php echo esc_html__('Yes','paypal-wp-button-manager'); ?></label>
                                                         &nbsp; &nbsp;
                                                         <input class="radio form-control" type="radio" id="noSpecialInstructions" <?php echo $cn_no_checked; ?> name="no_note" value="1">
-                                                        <label class="control-label" for="noSpecialInstructions">No</label>
+                                                        <label class="control-label" for="noSpecialInstructions"><?php echo esc_html__('No','paypal-wp-button-manager'); ?></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1934,7 +1934,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                             <div class="row <?php echo $cn_class; ?>" id="messageBoxContainer">
                                                 <div class="col-md-9">
                                                     <div class="form-group">
-                                                        <label  for="messageBox" class="control-label">Name of message box (40-character limit)</label>
+                                                        <label  for="messageBox" class="control-label"><?php echo esc_html__('Name of message box (40-character limit)','paypal-wp-button-manager'); ?></label>
                                                         <input type="text" id="messageBox" size="40" maxlength="40" class="form-control" name="custom_note" value="<?php echo $add_special_instruction; ?>">
                                                     </div>
                                                 </div>
@@ -1944,7 +1944,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
                                             <div class="row">
                                                 <div class="col-md-9">
-                                                    <p><b>Do you need your customer's shipping address?</b></p>
+                                                    <p><b><?php echo esc_html__('Do you need your customer\'s shipping address?','paypal-wp-button-manager'); ?></b></p>
                                                     <div class="form-group">
                                                         <?php
                                                         if ($customersShippingAddress == '2') {
@@ -1957,10 +1957,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         }
                                                         ?>
                                                         <input class="radio form-control" type="radio" id="needShippingAddress" <?php echo $shippingYes; ?> name="no_shipping" value="2">
-                                                        <label class="control-label" for="needShippingAddress">Yes</label>
+                                                        <label class="control-label" for="needShippingAddress"><?php echo esc_html__('Yes','paypal-wp-button-manager'); ?></label>
 
                                                         <input class="radio form-control" type="radio" id="noShippingAddress" <?php echo $shippingNo; ?> name="no_shipping" value="1">
-                                                        <label class="control-label" for="noShippingAddress">No</label>
+                                                        <label class="control-label" for="noShippingAddress"><?php echo esc_html__('No','paypal-wp-button-manager'); ?></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1980,13 +1980,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         }
                                                         ?>
                                                         <input class="checkbox form-control" type="checkbox" id="cancellationCheckbox" name="cancellation_return" value="1" <?php echo $cancellationCheckbox; ?> >
-                                                        <label for="cancellationCheckbox" class="control-label">Take customers to this URL when they cancel their checkout</label>
+                                                        <label for="cancellationCheckbox" class="control-label"><?php echo esc_html__('Take customers to this URL when they cancel their checkout','paypal-wp-button-manager'); ?></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="redirectContainer">
                                                 <input type="text" id="cancellationRedirectURL" size="30" class="form-control" <?php echo $cancleFormcontrol; ?> name="cancel_return" value="<?php echo $cancel_return; ?>">
-                                                <div>Example: https://www.mystore.com/cancel</div>
+                                                <div><?php echo esc_html__('Example: ','paypal-wp-button-manager'); ?>https://www.mystore.com/cancel</div>
                                             </div>
                                         </div>
                                         <div id="successfulRedirectURLContainer" class="opened">
@@ -2003,13 +2003,13 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                         }
                                                         ?>
                                                         <input class="checkbox form-control" type="checkbox" id="successfulCheckbox" name="successful_return" value="1" <?php echo $successfulCheckbox; ?> >
-                                                        <label for="successfulCheckbox" class="control-label">Take customers to this URL when they finish checkout</label>
+                                                        <label for="successfulCheckbox" class="control-label"><?php echo esc_html__('Take customers to this URL when they finish checkout','paypal-wp-button-manager'); ?></label>
                                                     </div>
                                                 </div>
                                             </div>                                                                    
                                             <div class="redirectContainer">
                                                 <input type="text" id="successfulRedirectURL" size="30" class="form-control" <?php echo $returnFormcontrol; ?> name="return" value="<?php echo $return; ?>">
-                                                <div>Example: https://www.mystore.com/success</div>
+                                                <div><?php echo esc_html__('Example: ','paypal-wp-button-manager'); ?> https://www.mystore.com/success</div>
                                             </div>
                                         </div>
                                     </div>                                    

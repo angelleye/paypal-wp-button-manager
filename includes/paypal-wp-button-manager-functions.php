@@ -126,10 +126,10 @@ function get_paypal_button_currency_with_symbole() {
 
 function get_paypal_button_options() {
     $paypal_button_options = ( array(
-        "products" => "Shopping Cart",
-        "services" => "Buy Now",
-        "donations" => "Donation",        
-        "subscriptions" => "Subscription"
+        "products" => __("Shopping Cart",'paypal-wp-button-manager'),
+        "services" => __("Buy Now",'paypal-wp-button-manager'),
+        "donations" => __("Donation",'paypal-wp-button-manager'),        
+        "subscriptions" => __("Subscription",'paypal-wp-button-manager')
             ));
 
     return array_unique($paypal_button_options);
@@ -171,44 +171,44 @@ function get_paypal_button_currency() {
 
 function get_paypal_button_subscriptions() {
     $paypal_button_subscriptions = ( array(
-        "D" => "Daily",
-        "W" => "Weekly",
-        "M" => "Monthly",
-        "Y" => "Yearly"));
+        "D" => __("Daily",'paypal-wp-button-manager'),
+        "W" => __("Weekly",'paypal-wp-button-manager'),
+        "M" => __("Monthly",'paypal-wp-button-manager'),
+        "Y" => __("Yearly",'paypal-wp-button-manager')));
     return array_unique($paypal_button_subscriptions);
 }
 
 function get_paypal_button_subscriptions_cycle() {
     $paypal_button_subscriptions_cycle = ( array(
-        "D" => "day (s)",
-        "W" => "week (s)",
-        "M" => "month (s)",
-        "Y" => "years (s)"));
+        "D" => __("day (s)",'paypal-wp-button-manager'),
+        "W" => __("week (s)",'paypal-wp-button-manager'),
+        "M" => __("month (s)",'paypal-wp-button-manager'),
+        "Y" => __("years (s)",'paypal-wp-button-manager')));
     return array_unique($paypal_button_subscriptions_cycle);
 }
 
 function get_paypal_button_gcBackgroundColor() {
     $paypal_button_gcBackgroundColor = ( array(
-        "BLU" => "Blue",
-        "ORG" => "Orange",
-        "GRN" => "Green",
-        "PPL" => "Purple"));
+        "BLU" => __("Blue",'paypal-wp-button-manager'),
+        "ORG" => __("Orange",'paypal-wp-button-manager'),
+        "GRN" => __("Green",'paypal-wp-button-manager'),
+        "PPL" => __("Purple",'paypal-wp-button-manager')));
     return array_unique($paypal_button_gcBackgroundColor);
 }
 
 function get_paypal_button_gcBackgroundTheme() {
 
     $paypal_button_gcBackgroundTheme = ( array(
-        "BD" => "Birthday",
-        "WT" => "Winter",
-        "WA" => "Wedding/Anniversary",
-        "BB" => "New Baby - Blue",
-        "BP" => "New Baby - Pink",
-        "BY" => "New Baby - Yellow",
-        "BD" => "Birthday",
-        "WT" => "Winter",
-        "WA" => "Wedding/Anniversary",
-        "PPL" => "Purple"));
+        "BD" => __("Birthday",'paypal-wp-button-manager'),
+        "WT" => __("Winter",'paypal-wp-button-manager'),
+        "WA" => __("Wedding/Anniversary",'paypal-wp-button-manager'),
+        "BB" => __("New Baby - Blue",'paypal-wp-button-manager'),
+        "BP" => __("New Baby - Pink",'paypal-wp-button-manager'),
+        "BY" => __("New Baby - Yellow",'paypal-wp-button-manager'),
+        "BD" => __("Birthday",'paypal-wp-button-manager'),
+        "WT" => __("Winter",'paypal-wp-button-manager'),
+        "WA" => __("Wedding/Anniversary",'paypal-wp-button-manager'),
+        "PPL" => __("Purple",'paypal-wp-button-manager')));
     return array_unique($paypal_button_gcBackgroundTheme);
 }
 
@@ -249,7 +249,7 @@ function get_paypal_button_subscription_billing_cycle_number() {
 
 function get_paypal_button_subscription_billing_limit() {
     $paypal_button_subscriptions_cycle_billing_limit = ( array(
-        "Never" => "Never",
+        "Never" => __("Never",'paypal-wp-button-manager'),
         "1" => "1",
         "2" => "2",
         "3" => "3",
