@@ -388,11 +388,12 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
         }
     }
 
-    public static function my_action_row($actions, $post){
+    public static function my_action_row($actions, $post){        
         //check for your post type
         if ($post->post_type == "paypal_buttons") {
             /*this will add View link in the post listing action */
-            $actions['view'] = '<a href="'.admin_url().'/post.php?post=' . $post->ID . '&action=edit&view=true">View</a>';  
+            $actions['edit'] = '<a href="'.admin_url().'/post.php?post=' . $post->ID . '&action=edit">'.__('Edit','paypal-wp-button-manager').'</a>';
+            $actions['view'] = '<a href="'.admin_url().'/post.php?post=' . $post->ID . '&action=edit&view=true">'.__('View','paypal-wp-button-manager').'</a>';                                    
         }
         return $actions;
     }
