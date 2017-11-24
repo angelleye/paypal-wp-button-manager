@@ -300,6 +300,14 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
         if (isset($paypal_button_html) && !empty($paypal_button_html) && $action_request=='true') {
             ?>
             <table class="tbl_shortcode">
+                <?php if(current_user_can('edit_posts')){ ?>                                            
+                <tr>
+                    <td class="text-center-align"><a class="btn btn-primary" href="<?php echo admin_url('post.php?post='.$_REQUEST['post'].'&action=edit'); ?>"><?php echo esc_html__('Edit button', 'paypal-wp-button-manager') ?></a></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="center-text"></td>
+                </tr>
+                <?php } ?>
                 <tr>
                     <td class="td_title"><?php echo _e('You can easily place this button in your pages and posts using this tool....', 'paypal-wp-button-manager'); ?></td>
                 </tr>
@@ -392,8 +400,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
         //check for your post type
         if ($post->post_type == "paypal_buttons") {
             /*this will add View link in the post listing action */
-            $actions['edit'] = '<a href="'.admin_url().'/post.php?post=' . $post->ID . '&action=edit">'.__('Edit','paypal-wp-button-manager').'</a>';
-            $actions['view'] = '<a href="'.admin_url().'/post.php?post=' . $post->ID . '&action=edit&view=true">'.__('View','paypal-wp-button-manager').'</a>';                                    
+            $actions['edit'] = '<a href="'.admin_url().'post.php?post=' . $post->ID . '&action=edit">'.__('Edit','paypal-wp-button-manager').'</a>';
+            $actions['view'] = '<a href="'.admin_url().'post.php?post=' . $post->ID . '&action=edit&view=true">'.__('View','paypal-wp-button-manager').'</a>';                                    
         }
         return $actions;
     }

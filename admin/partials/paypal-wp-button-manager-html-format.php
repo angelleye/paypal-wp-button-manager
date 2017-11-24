@@ -22,10 +22,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
     }
 
     public static function paypal_wp_button_manager_for_wordpress_button_interface_html_before($string_param) {
-        global $wpdb;
-        $companies = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
-        $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE paypal_mode !=''", ARRAY_A);
-        $ddl_companyname_selected='';
+            global $wpdb;
         ?> 
          <?php 
             if($string_param=='edit'){
@@ -47,25 +44,30 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
             }
         ?>
         <div class="div_companies_dropdown col-lg-4" >
-            <div class="div_companyname form-group">               
-                <label for="paypalcompanyname" class="control-label"><strong><?php echo esc_html__('Choose Company Name:','paypal-wp-button-manager');?></strong></label>                
+            <div class="div_companyname form-group">                               
+                <?php
+                    if($string_param=='edit'){
+                        $companies = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
+                        $result_records = $wpdb->get_results("SELECT title FROM `{$companies}` WHERE paypal_mode !='' AND ID={$edit_button_param_company_id}", ARRAY_A);
+                    ?>
+                        <label for="paypalcompanyname" class="control-label"><strong><?php echo esc_html__('Company Name:','paypal-wp-button-manager');?></strong></label>
+                        <label><?php echo $result_records[0]['title']; ?></label>
+                        <input type="hidden" name="ddl_companyname" value="<?php echo $edit_button_param_company_id; ?>">
+                    <?php
+                    }
+                    else{
+                        $companies = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
+                        $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE paypal_mode !=''", ARRAY_A); 
+                ?>
+                <label for="paypalcompanyname" class="control-label"><strong><?php echo esc_html__('Choose Company Name:','paypal-wp-button-manager');?></strong></label>
                 <select id="ddl_companyname" name="ddl_companyname" class="form-control">
                     <option value=""><?php echo esc_html__('--Select Company--','paypal-wp-button-manager'); ?></option>
-                    <?php foreach ($result_records as $result_records_value) { ?>
-                        <?php 
-                            if($string_param=='edit'){
-                                if($edit_button_param_company_id == $result_records_value['ID']){
-                                    $ddl_companyname_selected='selected';
-                                }
-                                else{
-                                    $ddl_companyname_selected='';
-                                }
-                            }
-                        ?>
-                        <option value="<?php echo $result_records_value['ID']; ?>" <?php echo $ddl_companyname_selected; ?> ><?php echo $result_records_value['title']; ?></option>
+                    <?php foreach ($result_records as $result_records_value) { ?>                        
+                        <option value="<?php echo $result_records_value['ID']; ?>"><?php echo $result_records_value['title']; ?></option>
                     <?php }
                     ?>
                 </select>
+                <?php } ?>
             </div>
         </div>
         <?php
@@ -113,7 +115,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $customersShippingAddress = '';
         $cancel_return = '';
         $return = '';
-        $add_special_instruction = __('Add special instructions to the seller:','paypal-wp-button-manager');
+        $add_special_instruction = '';
+        $add_special_instruction_place_holder = __('Add special instructions to the seller:','paypal-wp-button-manager');
         $enableHostedButtons_checkbox = '';
         $track_inv = '';
         $track_pnl = '';
@@ -212,7 +215,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
             $account_id = isset($BUTTONVAR['business']) ? $BUTTONVAR['business'] : '';
             $no_note = isset($BUTTONVAR['no_note']) ? $BUTTONVAR['no_note'] : '';
-            $add_special_instruction = isset($BUTTONVAR['cn']) ? $BUTTONVAR['cn'] : 'Add special instructions to the seller:';
+            $add_special_instruction = isset($BUTTONVAR['cn']) ? $BUTTONVAR['cn'] : '';
             $customersShippingAddress = isset($BUTTONVAR['no_shipping']) ? $BUTTONVAR['no_shipping'] : '';
             $cancel_return = isset($BUTTONVAR['cancel_return']) ? $BUTTONVAR['cancel_return'] : '';
             $return = isset($BUTTONVAR['return']) ? $BUTTONVAR['return'] : '';
@@ -1656,13 +1659,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                             </div>
                                             
                                             <div class="group notifications">
+                                                <br>
                                                 <div class="row">
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="merchantIDNotificationMethod" class="control-label"><?php echo esc_html__('Enter your PayPal Email Address or Merchant Account ID','paypal-wp-button-manager'); ?><a target="_blank" class="infoLink" href="https://www.paypal.com/businessstaticpage/BDMerchantIdInformation" onclick="PAYPAL.core.openWindow(event, {height: 500, width: 450});"><?php echo esc_html__('Learn more','paypal-wp-button-manager'); ?></a></label>
-                                                            <input type="text" class="custom_text form-control" name="business" id="business"  value="<?php echo $account_id; ?>"/>
+                                                            <label for="merchantIDNotificationMethod" class="control-label"><?php echo esc_html__('PayPal Email Address or Merchant Account ID : ','paypal-wp-button-manager'); ?></label>
+                                                            <input type="hidden" name="business" id="business"  value="<?php echo $account_id; ?>"/>
+                                                            <label style="font-weight: 400;"><?php echo $account_id; ?></label>
                                                         </div>
-                                                    </div>
+                                                    </div>                                                    
                                                 </div>
                                             </div>                                        
                                 </div>    
@@ -1945,7 +1950,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                 <div class="col-md-9">
                                                     <div class="form-group">
                                                         <label  for="messageBox" class="control-label"><?php echo esc_html__('Name of message box (40-character limit)','paypal-wp-button-manager'); ?></label>
-                                                        <input type="text" id="messageBox" size="40" maxlength="40" class="form-control" name="custom_note" value="<?php echo $add_special_instruction; ?>">
+                                                        <input type="text" id="messageBox" size="40" maxlength="40" class="form-control" name="custom_note" value="<?php echo $add_special_instruction; ?>" placeholder="<?php echo $add_special_instruction_place_holder; ?>">
                                                     </div>
                                                 </div>
                                             </div>                                                                    

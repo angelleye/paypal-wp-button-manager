@@ -171,3 +171,7 @@ img#angelleye_logo {
     padding: 10px 0 8px;
     line-height: 180%;
 }
+.panel-title > a:focus {
+    outline: 0px;
+    box-shadow: unset
+}
