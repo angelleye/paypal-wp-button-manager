@@ -19,6 +19,16 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         add_action('paypal_wp_button_manager_interface', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_html'));
         add_action('paypal_wp_button_manager_before_interface', array(__CLASS__, 'paypal_wp_button_manager_for_wordpress_button_interface_html_before'));
         add_action('admin_head', array(__CLASS__, 'paypal_wp_button_manager_hide_update_metabox'));
+        add_action('wp_ajax_save_non_hosted_button_snippet', array(__CLASS__, 'save_non_hosted_button_snippet'));
+        add_action("wp_ajax_nopriv_save_non_hosted_button_snippet", array(__CLASS__, 'save_non_hosted_button_snippet'));
+    }
+
+    public static function save_non_hosted_button_snippet(){
+        if(isset($_POST['textarea_snippet']) && !empty($_POST['textarea_snippet'])){
+            $paypal_button_html = update_post_meta($_POST['post_id'], 'paypal_button_response',$_POST['textarea_snippet']);
+            echo json_encode(array('success'=>'true'));
+            exit;
+        }
     }
 
     public static function paypal_wp_button_manager_for_wordpress_button_interface_html_before($string_param) {
@@ -26,15 +36,33 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         ?> 
          <?php 
             if($string_param=='edit'){
-                $meta = get_post_meta(get_the_ID());
+                $post_id = get_the_ID();
+                $meta = get_post_meta($post_id);
                 if(isset($meta['paypal_wp_button_manager_company_rel'][0])){
                     $edit_button_param_company_id=$meta['paypal_wp_button_manager_company_rel'][0];
                     if(!isset($meta['paypal_wp_button_manager_button_id'])){
-                        echo '
-                        <div class="update-nag notice">
-                            <p>'.esc_html__('This is not a PayPal hosted button.','paypal-wp-button-manager').'</p>
-                            <p>'.esc_html__('Only buttons that have been saved in your PayPal account are able to be updated.','paypal-wp-button-manager').'</p>
-                        </div>';                    
+                         $paypal_button_html = get_post_meta($post_id, 'paypal_button_response', true);
+                        ?>
+                        <table class="tbl_shortcode">
+                            <tr>
+                                <td class="td_title">
+                                    <?php echo _e('You can edit values for non-hosted button.', 'paypal-wp-button-manager'); ?>
+                                    <a class="btn btn-primary btn-sm" id="non_hosted_button_edit"><?php _e('Edit','paypal-wp-button-manager')?></a>
+                                    <a class="btn btn-primary btn-sm hidden" data-postid="<?php echo $post_id; ?>" id="non_hosted_button_save"><?php _e('Save','paypal-wp-button-manager')?></a>
+                                    <a class="btn btn-primary btn-sm hidden" id="non_hosted_button_cancel"><?php _e('Cancel','paypal-wp-button-manager')?></a>
+                                </td>
+                            </tr>                            
+                            <tr>
+                                <td><textarea  id="snippet_textarea" readonly="readonly" class="wp-ui-text-highlight code txtarea_response" cols="70" rows="10"><?php echo $paypal_button_html; ?></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="alert alert-info"><?php echo _e('Non-Hosted buttons are not saved on PayPal so that you just need to edit "Value" attribute in above snippet.', 'paypal-wp-button-manager'); ?>
+                                    <a href="https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/Appx_websitestandard_htmlvariables/" target="_blank"><?php _e('More info',''); ?></a>    
+                                </td>
+                            </tr>
+                            
+                        </table>
+                        <?php                        
                         exit;    
                     }   
                 }
@@ -82,6 +110,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 </style>
                 <?php
             }
+            $paypal_button_id = get_post_meta($_REQUEST['post'], 'paypal_wp_button_manager_button_id', true);                                    
+            if(isset($_REQUEST['action']) && $_REQUEST['action']=== 'edit' && empty($paypal_button_id)){
+                ?>
+                <style>
+                    #side-sortables { display: none; }
+                </style>
+                <?php
+            }
+            
         }
     }
 

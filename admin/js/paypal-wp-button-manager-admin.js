@@ -200,4 +200,40 @@ jQuery(function ($) {
             });
         });
     }
+    
+    $(document).on('click','#non_hosted_button_edit',function(){
+       $('#snippet_textarea').removeAttr('readonly');
+       $('#snippet_textarea').focus();
+       $(this).addClass('hidden');
+       $('#non_hosted_button_save').removeClass('hidden');
+       $('#non_hosted_button_cancel').removeClass('hidden');
+    });
+    
+    $(document).on('click','#non_hosted_button_cancel',function(){
+        $('#snippet_textarea').attr('readonly','readonly');
+        $('#non_hosted_button_edit').removeClass('hidden');
+        $('#non_hosted_button_save').addClass('hidden');
+        $(this).addClass('hidden');
+    });
+    
+    $(document).on('click','#non_hosted_button_save',function(){
+        $(this).text('Processing..');
+        var post_id = $(this).data('postid');
+        var textarea_snippet = $('#snippet_textarea').val();
+        $.ajax({
+            type: 'POST',
+            url: ajaxurl,
+             data: {
+                action  : 'save_non_hosted_button_snippet',
+                textarea_snippet : textarea_snippet,
+                post_id : post_id
+            },
+            dataType: "json",
+            success: function (result) {
+                $('#non_hosted_button_save').text('Saved');
+                $('#snippet_textarea').attr('readonly','readonly');
+            }
+        });
+    });
+    
 });

@@ -289,10 +289,12 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
         global $post, $post_ID;
         $paypal_button_html = get_post_meta($post_ID, 'paypal_button_response', true);
         $paypal_button_id = get_post_meta($post_ID, 'paypal_wp_button_manager_button_id', true);
+        $non_hosted_button = false;
         if (isset($paypal_button_id) && !empty($paypal_button_id)) {
             $button_id_text = $paypal_button_id;
         } else {
             $button_id_text = __('Not available with non-hosted PayPal buttons.','paypal-wp-button-manager');
+            $non_hosted_button = true;
         }        
         
         $paypal_email_link = get_post_meta($post_ID, 'paypal_wp_button_manager_email_link', true);
@@ -300,7 +302,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
         if (isset($paypal_button_html) && !empty($paypal_button_html) && $action_request=='true') {
             ?>
             <table class="tbl_shortcode">
-                <?php if(current_user_can('edit_posts')){ ?>                                            
+                <?php if(current_user_can('edit_posts') && !$non_hosted_button){ ?>
                 <tr>
                     <td class="text-center-align"><a class="btn btn-primary" href="<?php echo admin_url('post.php?post='.$_REQUEST['post'].'&action=edit'); ?>"><?php echo esc_html__('Edit button', 'paypal-wp-button-manager') ?></a></td>
                 </tr>
