@@ -131,6 +131,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * Fix - Resolves an issue with button text options not working properly on some buttons. ([#70](https://github.com/angelleye/paypal-wp-button-manager/issues/70)) ([#78](https://github.com/angelleye/paypal-wp-button-manager/issues/78))
 * Fix - Resolves a PHP notice that was showing up in the WooCommerce setup wizard. ([#84](https://github.com/angelleye/paypal-wp-button-manager/issues/84))
 * Fix - Resolves an issue where the form would be wiped out if an API error occurred when creating a button. ([#57](https://github.com/angelleye/paypal-wp-button-manager/issues/57))
+* Fix - Resolves issues with some displayed text not getting translated properly. ([#88](https://github.com/angelleye/paypal-wp-button-manager/issues/88))
 
 = 1.0.3 - 12.17.2015 =
 * Fix - Resolves an issue where the preview of a custom button would not display correctly. ([#56](https://github.com/angelleye/paypal-wp-button-manager/issues/56))
