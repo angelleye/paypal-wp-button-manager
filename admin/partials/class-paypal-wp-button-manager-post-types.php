@@ -304,7 +304,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
             <table class="tbl_shortcode">
                 <?php if(current_user_can('edit_posts') && !$non_hosted_button){ ?>
                 <tr>
-                    <td class="text-center-align"><a class="btn btn-primary" href="<?php echo admin_url('post.php?post='.$_REQUEST['post'].'&action=edit'); ?>"><?php echo esc_html__('Edit button', 'paypal-wp-button-manager') ?></a></td>
+                    <td class="text-center-align"><a class="btn btn-primary" href="<?php echo admin_url('post.php?post='.$_REQUEST['post'].'&action=edit'); ?>"><?php echo esc_html__('Edit Button', 'paypal-wp-button-manager') ?></a></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="center-text"></td>
