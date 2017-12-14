@@ -3,8 +3,8 @@ Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SG9SQU2GBXJNA
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
 Requires at least: 3.8
-Tested up to: 4.4
-Stable tag: 1.0.3
+Tested up to: 4.9.1
+Stable tag: 1.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -112,7 +112,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 1.1.0 - xx.xx.2016 =
+= 1.1.0 - 12.14.2017 =
 * Feature - Adds the ability to update existing buttons. ([#55](https://github.com/angelleye/paypal-wp-button-manager/issues/55)) ([#89](https://github.com/angelleye/paypal-wp-button-manager/issues/89))
 * Feature - Adds the ability to set inventory for a button. ([#48](https://github.com/angelleye/paypal-wp-button-manager/issues/48))
 * Feature - Adds multi-site compatibility. ([#66](https://github.com/angelleye/paypal-wp-button-manager/issues/66))
@@ -169,5 +169,5 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-This is the final 1.0 release of the plugin and has quite a few changes from the previous beta release.  You may need to disable and then re-activate the plugin after applying the update in order to trigger required database updates.
+= 1.1.0 =
+Make sure you have cleared any caching / CDN tools after applying this update.
