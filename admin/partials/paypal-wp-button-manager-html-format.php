@@ -170,8 +170,8 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $item_price_currency = 'USD';
         $item_shipping_amount = '';
         $itemTaxRate = '';
-        $optionname = '';
-        $optionselect = '';
+        $optionname = array();
+        $optionselect = array();
         $buttonLanguage = '';
         $buttonCountry = '';
         $byOptionTableBody_class='accessAid';
@@ -1699,11 +1699,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-md-12">
+                                                        <?php
+                                                        if(isset($account_id) && !empty($account_id)){
+                                                        ?>
                                                         <div class="form-group">
                                                             <label for="merchantIDNotificationMethod" class="control-label"><?php echo esc_html__('PayPal Email Address or Merchant Account ID : ','paypal-wp-button-manager'); ?></label>
                                                             <input type="hidden" name="business" id="business"  value="<?php echo $account_id; ?>"/>
                                                             <label style="font-weight: 400;"><?php echo $account_id; ?></label>
                                                         </div>
+                                                        <?php } ?>
                                                     </div>                                                    
                                                 </div>
                                             </div>                                        
