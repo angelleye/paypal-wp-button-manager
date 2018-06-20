@@ -410,7 +410,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Company_Setting extends WP_List_Table {
 
         if (isset($_POST['paypal_intigration_form'])) {
 
-            if (isset($_GET['action']) && $_GET['action'] == 'edit') {
+            if (isset($_GET['action']) && sanitize_key($_GET['action']) == 'edit') {
                 if (isset($_GET['cmp_id']) && !empty($_GET['cmp_id'])) {
                     $edit_result = $obj_company_operation->paypal_wp_button_manager_edit_company();
                     ?>

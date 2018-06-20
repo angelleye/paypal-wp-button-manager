@@ -521,7 +521,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 		global $wpdb;
 		$companies = $wpdb->prefix . 'paypal_wp_button_manager_companies';
-		$result_config = $wpdb->get_row("SELECT * FROM `{$companies}` WHERE ID ='$_POST[ddl_companyname]'");
+                $ddl_companyname = isset($_POST['ddl_companyname']) ? sanitize_key($_POST['ddl_companyname']) : '';
+		$result_config = $wpdb->get_row("SELECT * FROM `{$companies}` WHERE ID ='".$ddl_companyname."'");
 		if (isset($result_config) && !empty($result_config)) {
 			$APIUsername = isset($result_config->paypal_api_username) ? $result_config->paypal_api_username : '';
 			$APIPassword = isset($result_config->paypal_api_password) ? $result_config->paypal_api_password : '';
@@ -538,9 +539,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 	public static function paypal_wp_button_manager_before_delete_post() {
 		global $wpdb;
 		$obj_for_log = new AngellEYE_PayPal_WP_Button_Manager_button_generator();
-
-		$button_hosted_id = get_post_meta($_POST['del_post_id'], 'paypal_wp_button_manager_button_id', true);
-		$ddl_companyname = get_post_meta($_POST['del_post_id'], 'paypal_wp_button_manager_company_rel', true);
+                $del_post_id = is_numeric($_POST['del_post_id']) ? $_POST['del_post_id'] : '';
+		$button_hosted_id = get_post_meta($del_post_id, 'paypal_wp_button_manager_button_id', true);
+		$ddl_companyname = get_post_meta($del_post_id, 'paypal_wp_button_manager_company_rel', true);
 		if ((isset($ddl_companyname) && !empty($ddl_companyname)) && (isset($button_hosted_id) && !empty($button_hosted_id))) {
 			// Prepare request arrays
 
@@ -596,15 +597,16 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			global $wpdb;
 			$tbl_name = $wpdb->prefix . "posts";
 			$post_meta = $wpdb->prefix . "postmeta";
-			$wpdb->query($wpdb->prepare("DELETE FROM $tbl_name WHERE ID = %d", $_POST['del_post_id']));
-			$wpdb->query($wpdb->prepare("DELETE FROM $post_meta WHERE post_id = %d", $_POST['del_post_id']));
+			$wpdb->query($wpdb->prepare("DELETE FROM $tbl_name WHERE ID = %d", $del_post_id));
+			$wpdb->query($wpdb->prepare("DELETE FROM $post_meta WHERE post_id = %d", $del_post_id));
 			echo "1";
 			exit(0);
 		}
 	}
 
 	public static function paypal_wp_button_manager_checkhosted_button() {
-		$btnid = get_post_meta($_POST['btnid'], 'paypal_wp_button_manager_button_id', true);
+                $btn_post_id = is_numeric($_POST['btnid']) ? $_POST['btnid'] : '';
+		$btnid = get_post_meta($btn_post_id, 'paypal_wp_button_manager_button_id', true);
 
 		if (isset($btnid) && !empty($btnid)) {
 			echo "1";
@@ -618,10 +620,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 	public static function paypal_wp_button_manager_delete_post_own() {
 		global $wpdb;
+                $del_post_id = is_numeric($_POST['del_post']) ? $_POST['del_post'] : '';
 		$tbl_name = $wpdb->prefix . "posts";
 		$post_meta = $wpdb->prefix . "postmeta";
-		$wpdb->query($wpdb->prepare("DELETE FROM $tbl_name WHERE ID = %d", $_POST['del_post']));
-		$wpdb->query($wpdb->prepare("DELETE FROM $post_meta WHERE post_id = %d", $_POST['del_post']));
+		$wpdb->query($wpdb->prepare("DELETE FROM $tbl_name WHERE ID = %d", $del_post_id));
+		$wpdb->query($wpdb->prepare("DELETE FROM $post_meta WHERE post_id = %d", $del_post_id));
 		echo "1";
 		exit(0);
 

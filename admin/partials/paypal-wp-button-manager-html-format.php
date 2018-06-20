@@ -25,7 +25,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
     public static function save_non_hosted_button_snippet(){
         if(isset($_POST['textarea_snippet']) && !empty($_POST['textarea_snippet'])){
-            $paypal_button_html = update_post_meta($_POST['post_id'], 'paypal_button_response',$_POST['textarea_snippet']);
+            $paypal_button_html = update_post_meta($_POST['post_id'], 'paypal_button_response',wp_kses_post($_POST['textarea_snippet']));
             echo json_encode(array('success'=>'true'));
             exit;
         }

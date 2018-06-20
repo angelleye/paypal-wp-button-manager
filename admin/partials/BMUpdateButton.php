@@ -87,7 +87,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
                 update_post_meta($post_ID, 'paypal_wp_button_manager_button_id', $PayPalResult['HOSTEDBUTTONID']);
             }
             if (isset($_POST['ddl_companyname']) && !empty($_POST['ddl_companyname'])) {
-                update_post_meta($post_ID, 'paypal_wp_button_manager_company_rel', $_POST['ddl_companyname']);
+                update_post_meta($post_ID, 'paypal_wp_button_manager_company_rel', sanitize_key($_POST['ddl_companyname']));
             }
             if (isset($PayPalResult['EMAILLINK']) && !empty($PayPalResult['EMAILLINK'])) {
                 update_post_meta($post_ID, 'paypal_wp_button_manager_email_link', $PayPalResult['EMAILLINK']);

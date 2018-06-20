@@ -26,7 +26,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
      */
     public function paypal_wp_button_manager_get_button_type() {
         if (isset($_POST['button_type']) && !empty($_POST['button_type'])) {
-            $button_type = $_POST['button_type'];
+            $button_type = sanitize_key($_POST['button_type']);
         } else {
             $button_type = 'CART';
         }
@@ -64,7 +64,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             global $wpdb;
             $flag = '';
             $tbl_name = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
-            $getconfig = $wpdb->get_row("SELECT * FROM `{$tbl_name}` where ID='$_POST[ddl_companyname]'");
+            $getconfig = $wpdb->get_row("SELECT * FROM `{$tbl_name}` where ID='".sanitize_key($_POST['ddl_companyname'])."'");
             $is_sandbox = isset($getconfig->paypal_mode) ? $getconfig->paypal_mode : '';
             if (isset($is_sandbox) && !empty($is_sandbox)) {
                 if ($is_sandbox == 'Sandbox') {
@@ -492,21 +492,21 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
          if (isset($_POST['track_button_by']) && !empty($_POST['track_button_by'])) {
              if ($_POST['track_button_by'] == 'trackdByItem') {
                  if (isset($_POST['item_id']) && !empty($_POST['item_id'])) {
-                     $post_item_id = $_POST['item_id'];
+                     $post_item_id = sanitize_text_field($_POST['item_id']);
                  } else {
                      $post_item_id = '';
                  }
  
                  if (isset($_POST['items_in_stock']) && !empty($_POST['items_in_stock'])) {
-                     $post_item_in_stock = $_POST['items_in_stock'];
+                     $post_item_in_stock = sanitize_text_field($_POST['items_in_stock']);
                  }
                  if (isset($_POST['alert_quantity']) && !empty($_POST['alert_quantity'])) {
-                     $post_alert_quantity = $_POST['alert_quantity'];
+                     $post_alert_quantity = sanitize_text_field($_POST['alert_quantity']);
                  } else {
                      $post_alert_quantity = '';
                  }
                  if (isset($_POST['item_cost']) && !empty($_POST['item_cost'])) {
-                     $post_item_cost = $_POST['item_cost'];
+                     $post_item_cost = sanitize_text_field($_POST['item_cost']);
                  } else {
                      $post_item_cost = '';
                  }
