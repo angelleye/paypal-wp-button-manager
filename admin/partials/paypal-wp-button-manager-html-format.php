@@ -102,16 +102,16 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
     }
     
     public static function paypal_wp_button_manager_hide_update_metabox(){        
-        if( isset($_REQUEST['post']) && get_post_type($_REQUEST['post']) === 'paypal_buttons'){
-            if(isset($_REQUEST['action']) && isset($_REQUEST['view']) && $_REQUEST['action']=== 'edit' && $_REQUEST['view'] =='true'){
+        if( isset($_REQUEST['post']) && get_post_type(sanitize_key($_REQUEST['post'])) === 'paypal_buttons'){
+            if(isset($_REQUEST['action']) && isset($_REQUEST['view']) && sanitize_key($_REQUEST['action']) === 'edit' && sanitize_key($_REQUEST['view']) =='true'){
                 ?>
                 <style>
                     #side-sortables { display: none; }
                 </style>
                 <?php
             }
-            $paypal_button_id = get_post_meta($_REQUEST['post'], 'paypal_wp_button_manager_button_id', true);                                    
-            if(isset($_REQUEST['action']) && $_REQUEST['action']=== 'edit' && empty($paypal_button_id)){
+            $paypal_button_id = get_post_meta(sanitize_key($_REQUEST['post']), 'paypal_wp_button_manager_button_id', true);                                    
+            if(isset($_REQUEST['action']) && sanitize_key($_REQUEST['action'])=== 'edit' && empty($paypal_button_id)){
                 ?>
                 <style>
                     #side-sortables { display: none; }

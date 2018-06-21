@@ -389,7 +389,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 		$screen = get_current_screen();
 		if ($screen->post_type == 'paypal_buttons') {
-			if (((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' ))) && (isset($count_companies) && $count_companies > 0) && (isset($count_hostedbuttons) && !empty($count_hostedbuttons)) && ((isset($count_trashpost) && $count_trashpost > 0)) && (isset($_GET['post_status']) && ($_GET['post_status'] == 'trash'))) {
+			if (((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' ))) && (isset($count_companies) && $count_companies > 0) && (isset($count_hostedbuttons) && !empty($count_hostedbuttons)) && ((isset($count_trashpost) && $count_trashpost > 0)) && (isset($_GET['post_status']) && (sanitize_key($_GET['post_status']) == 'trash'))) {
                 ?>
                 <script>
                 jQuery( document ).ready(function() {
@@ -742,8 +742,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			
 			<?php
 			$setting_tabs_wc = apply_filters('paypal_wp_button_manager_setting_tab', array("pbm_about" => "Overview", "pbm_credits" => "Credits", "pbm_translators" => "Translators"));
-			$current_tab_wc = (isset($_GET['tab'])) ? $_GET['tab'] : 'general';
-			$aboutpage = isset($_GET['page'])
+			$current_tab_wc = (isset($_GET['tab'])) ? sanitize_key($_GET['tab']) : 'general';
+			//$aboutpage = isset($_GET['page'])
 			?>
 			 <h2 id="paypal-wp-button-manage-tab-wrapper" class="nav-tab-wrapper">
             <?php
@@ -872,7 +872,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         public function paypal_wp_button_manager_ignore_update_notice() {
             global $current_user;
             $user_id = $current_user->ID;
-            if ( (isset($_GET['ignore_pwbm_update_notice']) && '0' == $_GET['ignore_pwbm_update_notice']) || ( isset($_GET['tab']) && 'pbm_about' == $_GET['tab'] ) ) {
+            if ( (isset($_GET['ignore_pwbm_update_notice']) && '0' == $_GET['ignore_pwbm_update_notice']) || ( isset($_GET['tab']) && 'pbm_about' == sanitize_key($_GET['tab']) ) ) {
                 update_user_meta($user_id, '_ignore_pwbm_update_notice', true);
             }
         }

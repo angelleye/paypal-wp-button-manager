@@ -119,8 +119,8 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 'buttontype' => AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper::paypal_wp_button_manager_get_button_type(), // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
                 'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
                 'buttonimage' => $buttonimage, //isset($_POST['cc_logos']) ? 'CC' : 'SML',
-                'buttonimageurl' => $_POST['wpss_upload_image'],
-                'buttonlanguage' => (isset($_POST['select_country_language']) ? $_POST['select_country_language'] : '')
+                'buttonimageurl' => esc_url($_POST['wpss_upload_image']),
+                'buttonlanguage' => (isset($_POST['select_country_language']) ? sanitize_text_field($_POST['select_country_language']) : '')
             );
             
         } else {
@@ -131,13 +131,13 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 'buttontype' => AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper::paypal_wp_button_manager_get_button_type(), // Required.  The kind of button you want to create.  It is one of the following values:  BUYNOW, CART, GIFTCERTIFICATE, SUBSCRIBE, DONATE, UNSUBSCRIBE, VIEWCART, PAYMENTPLAN, AUTOBILLING, PAYMENT
                 'buttonsubtype' => '', // The use of button you want to create.  Values are:  PRODUCTS, SERVICES
                 'buttonimage' => $buttonimage, //isset($_POST['cc_logos']) ? 'CC' : 'SML',
-                'buttonlanguage' => (isset($_POST['select_country_language']) ? $_POST['select_country_language'] : '')
+                'buttonlanguage' => (isset($_POST['select_country_language']) ? sanitize_text_field($_POST['select_country_language']) : '')
             );
             
         }
         
         if( !empty($_POST['custom_image_url']) ) {
-            $bmcreatebuttonfields['ButtonImageURL'] = $_POST['custom_image_url'];
+            $bmcreatebuttonfields['ButtonImageURL'] = esc_url($_POST['custom_image_url']);
             $bmcreatebuttonfields['ButtonImage'] = 'REG';
         }
         
@@ -178,21 +178,21 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
      */
     public function paypal_wp_button_manager_get_buttonvars() {
         if (isset($_POST['product_id'])) {
-            $item_number = $_POST['product_id'];
+            $item_number = sanitize_text_field($_POST['product_id']);
         } else if (isset($_POST['donation_id'])) {
-            $item_number = $_POST['donation_id'];
+            $item_number = sanitize_text_field($_POST['donation_id']);
         } else if (isset($_POST['subscription_id'])) {
-            $item_number = $_POST['subscription_id'];
+            $item_number = sanitize_text_field($_POST['subscription_id']);
         } else {
             $item_number = '';
         }
 
         if (isset($_POST['donation_name'])) {
-            $item_name = $_POST['donation_name'];
+            $item_name = sanitize_text_field($_POST['donation_name']);
         } else if (isset($_POST['product_name'])) {
-            $item_name = $_POST['product_name'];
+            $item_name = sanitize_text_field($_POST['product_name']);
         } else if (isset($_POST['subscription_name'])) {
-            $item_name = $_POST['subscription_name'];
+            $item_name = sanitize_text_field($_POST['subscription_name']);
         } else {
             $item_name = '';
         }
@@ -207,7 +207,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
         if ((isset($ddp_option_name) && !empty($ddp_option_name)) && (empty($_POST['dropdown_price_title']) || !empty($_POST['dropdown_price_title']))) {
             $item_price = '';
         } else if (isset($_POST['item_price']) && !empty($_POST['item_price'])) {
-            $item_price = $_POST['item_price'];
+            $item_price = sanitize_text_field($_POST['item_price']);
         } else {
             $item_price = '';
         }
@@ -216,7 +216,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             global $wpdb;
 
             $get_business_tbl = $wpdb->prefix . 'paypal_wp_button_manager_companies'; // do not forget about tables prefix
-            $get_business = $wpdb->get_row("SELECT * FROM `{$get_business_tbl}` where ID='$_POST[ddl_companyname]'");
+            $get_business = $wpdb->get_row("SELECT * FROM `{$get_business_tbl}` where ID='".sanitize_key($_POST['ddl_companyname'])."'");
             if (isset($get_business)) {
 				
             	if (isset($get_business->paypal_account_mode) && !empty ($get_business->paypal_account_mode)) {
@@ -237,7 +237,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
         }
 
         $buttonvars = array(
-            'notify_url' => isset($_POST['ipn_urlinput']) ? $_POST['ipn_urlinput'] : '', // The URL to which PayPal posts information about the payment. in the form of an IPN message.
+            'notify_url' => isset($_POST['ipn_urlinput']) ? esc_url($_POST['ipn_urlinput']) : '', // The URL to which PayPal posts information about the payment. in the form of an IPN message.
             'amount' => isset($item_price) ? $item_price : '', // The price or amount of the product, service, or contribution, not including shipping, handling, or tax.  If this variable is omitted from Buy Now or Donate buttons, buyers enter their own amount at the time of the payment.
             'discount_amount' => '', // Discount amount associated with an item.  Must be less than the selling price of the item.  Valid only for Buy Now and Add to Cart buttons.
             'discount_amount2' => '', // Discount amount associated with each additional quantity of the item.  Must be equal to or less than the selling price of the item.
@@ -247,16 +247,16 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'item_name' => isset($item_name) ? $item_name : '', // Description of the item.  If this is omitted, buyers enter their own name during checkout.
             'item_number' => isset($item_number) ? $item_number : '', // Pass-through variable for you to track product or service purchased or the contribution made.
             'quantity' => '', // Number of items.
-            'shipping' => isset($_POST['item_shipping_amount']) ? $_POST['item_shipping_amount'] : '', // The cost of shipping this item.
+            'shipping' => isset($_POST['item_shipping_amount']) ? sanitize_text_field($_POST['item_shipping_amount']) : '', // The cost of shipping this item.
             'shipping2' => '', // The cost of shipping each additional unit of this item.
             'handling' => '', // handling charges.  This variable is not quantity-specific.
             'tax' => '', // Transaction-based tax override variable.  Set this variable to a flat tax amount to apply to the payment regardless of the buyer's location.  This overrides any tax settings in the account profile.
-            'tax_rate' => isset($_POST['item_tax_rate']) ? $_POST['item_tax_rate'] : '', // Transaction-based tax override variable.  Set this variable to a percentage that applies to the amount multipled by the quantity selected uring checkout.  This overrides your paypal account profile.
+            'tax_rate' => isset($_POST['item_tax_rate']) ? sanitize_text_field($_POST['item_tax_rate']) : '', // Transaction-based tax override variable.  Set this variable to a percentage that applies to the amount multipled by the quantity selected uring checkout.  This overrides your paypal account profile.
             'undefined_quantity' => '', // Set to 1 to allow the buyer to specify the quantity.
             'weight' => '', // Weight of items.
             'weight_unit' => '', // The unit of measure if weight is specified.  Values are:  lbs, kgs
             'address_override' => '', // Set to 1 to override the payer's address stored in their PayPal account.
-            'currency_code' => isset($_POST['item_price_currency']) ? $_POST['item_price_currency'] : '', // The currency of the payment.  https://developer.paypal.com/docs/classic/api/currency_codes/#id09A6G0U0GYK
+            'currency_code' => isset($_POST['item_price_currency']) ? sanitize_text_field($_POST['item_price_currency']) : '', // The currency of the payment.  https://developer.paypal.com/docs/classic/api/currency_codes/#id09A6G0U0GYK
             'custom' => '', // Pass-through variable for your own tracking purposes, which buyers do not see.
             'invoice' => '', // Pass-through variable you can use to identify your invoice number for the purchase.
             'tax_cart' => '', // Cart-wide tax, overriding any individual item tax_ value
@@ -270,9 +270,9 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'shopping_url' => '', // The URL of the page on the merchant website that buyers go to when they click the Continue Shopping button on the PayPal shopping cart page.
             'src' => isset($_POST['subscription_billing_limit']) ? '1' : '', // Recurring payments.  Subscription payments recur unless subscribers cancel.  Values are:  1, 0
             'sra' => '', // Reattempt on failure.  If a recurring payment fails, PayPal attempts to collect the payment two more times before canceling.  Values are:  1, 0
-            'no_note' => isset($_POST['no_note']) ? $_POST['no_note'] : '', // Set to 1 to disable prompts for buyers to include a note with their payments.
+            'no_note' => isset($_POST['no_note']) ? sanitize_key($_POST['no_note']) : '', // Set to 1 to disable prompts for buyers to include a note with their payments.
             'modify' => '', // Modification behavior.  0 - allows subscribers only to sign up for new subscriptions.  1 - allows subscribers to sign up for new subscriptions and modify their current subscriptions.  2 - allows subscribers to modify only their current subscriptions.
-            'usr_manage' => isset($_POST['enable_username_password_creation']) ? $_POST['enable_username_password_creation'] : '', // Set to 1 to have PayPal generate usernames and passwords for subscribers.  https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/subscribe_buttons/#id08ADFB00QWS
+            'usr_manage' => isset($_POST['enable_username_password_creation']) ? sanitize_key($_POST['enable_username_password_creation']) : '', // Set to 1 to have PayPal generate usernames and passwords for subscribers.  https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/subscribe_buttons/#id08ADFB00QWS
             'max_text' => '', // A description of the automatic billing plan.
             'set_customer_limit' => '', // Specify whether to let buyers enter maximum billing limits in a text box or choose from a list of max billing limits that you specify.  Values are:  max_limit_own, max_limit_defined
             'min_amount' => '', // The minimum monthly billing limit, if you have one.
@@ -286,8 +286,8 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'cpp_logo_image' => '', // A URL to your logo image.  Must be .gif, .jpg, or .png.  190x60
             'cpp_payflow_color' => '', // The background color for the checkout page below the header.
             'lc' => '', // The locale of the login or sign-up page.
-            'cn' => isset($_POST['custom_note']) ? $_POST['custom_note'] : '', // Label that appears above the note field.
-            'no_shipping' => isset($_POST['no_shipping']) ? $_POST['no_shipping'] : '', // Do not prompt buyers for a shipping address.  Values are:  0 - prompt for an address but do not require.  1 - do not prompt.  2 - prompt and require address.
+            'cn' => isset($_POST['custom_note']) ? sanitize_text_field($_POST['custom_note']) : '', // Label that appears above the note field.
+            'no_shipping' => isset($_POST['no_shipping']) ? sanitize_key($_POST['no_shipping']) : '', // Do not prompt buyers for a shipping address.  Values are:  0 - prompt for an address but do not require.  1 - do not prompt.  2 - prompt and require address.
             'return' => isset($_POST['return']) ? esc_url($_POST['return']) : '', // The URL to which PayPal redirects buyers' browsers after they complete their payment.
             'rm' => '', // Return method.  Values are:  0 - all shopping cart payments use GET method.  1 - buyer's browser is redirected using the GET method. 2 - buyer's browser is redirected using POST.
             'cbt' => '', // Sets the text for the Return to Merchant button on the PayPal completed payment page.
@@ -305,31 +305,31 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'night_phone_a' => '', // Area code for US phone numbers or country code for phone numbers outside the US.
             'night_phone_b' => '', // 3 digit prefix for US numbers or the entire phone number for numbers outside the US.
             'night_phone_c' => '', // 4 digit phone number for US numbers.
-            'fixed_denom' => isset($_POST['gc_fixed_amount']) ? $_POST['gc_fixed_amount'] : ''
+            'fixed_denom' => isset($_POST['gc_fixed_amount']) ? sanitize_text_field($_POST['gc_fixed_amount']) : ''
         );
         
         if( isset($_POST['subscription_billing_limit']) && !empty($_POST['subscription_billing_limit']) ) {
             if($_POST['subscription_billing_limit'] != 'Never') {
-                $buttonvars['srt'] = $_POST['subscription_billing_limit'];
+                $buttonvars['srt'] = sanitize_key($_POST['subscription_billing_limit']);
             }
         }
         if( isset($_POST['subscription_trial_rate']) && !empty($_POST['subscription_trial_rate'])) {
-            $buttonvars['a1'] = $_POST['subscription_trial_rate'];
-            $buttonvars['p1'] = isset($_POST['subscription_trial_duration']) ? $_POST['subscription_trial_duration'] : '';
-            $buttonvars['t1'] = isset($_POST['subscription_trial_duration_type']) ? $_POST['subscription_trial_duration_type'] : '';
+            $buttonvars['a1'] = sanitize_text_field($_POST['subscription_trial_rate']);
+            $buttonvars['p1'] = isset($_POST['subscription_trial_duration']) ? sanitize_key($_POST['subscription_trial_duration']) : '';
+            $buttonvars['t1'] = isset($_POST['subscription_trial_duration_type']) ? sanitize_text_field($_POST['subscription_trial_duration_type']) : '';
         }
         
         if( isset($_POST['subscription_trial_2_rate']) && !empty($_POST['subscription_trial_2_rate'])) {
-            $buttonvars['a2'] = $_POST['subscription_trial_2_rate'];
-            $buttonvars['p2'] = isset($_POST['subscription_trial_2_duration']) ? $_POST['subscription_trial_2_duration'] : '';
-            $buttonvars['t2'] = isset($_POST['subscription_trial_2_duration_type']) ? $_POST['subscription_trial_2_duration_type'] : '';
+            $buttonvars['a2'] = sanitize_text_field($_POST['subscription_trial_2_rate']);
+            $buttonvars['p2'] = isset($_POST['subscription_trial_2_duration']) ? sanitize_key($_POST['subscription_trial_2_duration']) : '';
+            $buttonvars['t2'] = isset($_POST['subscription_trial_2_duration_type']) ? sanitize_text_field($_POST['subscription_trial_2_duration_type']) : '';
 
         }
         
         if( isset($_POST['subscription_billing_amount']) && !empty($_POST['subscription_billing_amount'])) {
-            $buttonvars['a3'] = $_POST['subscription_billing_amount'];
-            $buttonvars['p3'] = isset($_POST['subscription_billing_cycle_number']) ? $_POST['subscription_billing_cycle_number'] : '';
-            $buttonvars['t3'] = isset($_POST['subscription_billing_cycle_period']) ? $_POST['subscription_billing_cycle_period'] : '';
+            $buttonvars['a3'] = sanitize_text_field($_POST['subscription_billing_amount']);
+            $buttonvars['p3'] = isset($_POST['subscription_billing_cycle_number']) ? sanitize_key($_POST['subscription_billing_cycle_number']) : '';
+            $buttonvars['t3'] = isset($_POST['subscription_billing_cycle_period']) ? sanitize_text_field($_POST['subscription_billing_cycle_period']) : '';
         }
          
         return $buttonvars;
@@ -369,7 +369,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
                 array_push($BMButtonOptionSelections, $BMButtonOptionSelection);
             }
             $BMButtonOption = array(
-                'name' => isset($_POST['dropdown_price_title']) ? $_POST['dropdown_price_title'] : '',
+                'name' => isset($_POST['dropdown_price_title']) ? sanitize_text_field($_POST['dropdown_price_title']) : '',
                 'selections' => $BMButtonOptionSelections
             );
             array_push($BMButtonOptions, $BMButtonOption);
@@ -459,7 +459,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
              'trackinv' => $trackinv, // Required.  Whether to track inventory levels associated with the button.  Values are:  0 - do not track, 1 - track
              'trackpnl' => $trackpnl, // Required.  Whether to track the gross profit associated with inventory changes.  Values are:  0 - do not track, 1 - track
              'optionnameindex' => 0, // Option index, which identifies the button.  Option index 0 is the menu that contains the price if one exists; otherwise, it is the first menu without a price.
-             'soldouturl' => isset($_POST['sold_out_url']) ? $_POST['sold_out_url'] : '', // The URL to which the buyer's browser is redreicted when the inventory drops to 0.  This also prevents a sale when the inventory drops to 0.
+             'soldouturl' => isset($_POST['sold_out_url']) ? esc_url($_POST['sold_out_url']) : '', // The URL to which the buyer's browser is redreicted when the inventory drops to 0.  This also prevents a sale when the inventory drops to 0.
                  //    'reusedigitaldownloadkeys' => '0', // Whether to reuse download keys.  Values are:  0 - do not reuse keys (default), 1 - reuse keys.
                  //   'appenddigitaldownloadkeys' => '1', // Whether to append download keys.  Values are:  0 - do not append keys (defeault), 1 - append keys.  If you do not append, unused keys will be replaced.
          );
@@ -469,7 +469,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
              'trackinv' => $trackinv, // Required.  Whether to track inventory levels associated with the button.  Values are:  0 - do not track, 1 - track
              'trackpnl' => $trackpnl, // Required.  Whether to track the gross profit associated with inventory changes.  Values are:  0 - do not track, 1 - track
              'optionnameindex' => '0', // Option index, which identifies the button.  Option index 0 is the menu that contains the price if one exists; otherwise, it is the first menu without a price.
-             'soldouturl' => isset($_POST['sold_out_url']) ? $_POST['sold_out_url'] : '', // The URL to which the buyer's browser is redreicted when the inventory drops to 0.  This also prevents a sale when the inventory drops to 0.
+             'soldouturl' => isset($_POST['sold_out_url']) ? esc_url($_POST['sold_out_url']) : '', // The URL to which the buyer's browser is redreicted when the inventory drops to 0.  This also prevents a sale when the inventory drops to 0.
                  //    'reusedigitaldownloadkeys' => '0', // Whether to reuse download keys.  Values are:  0 - do not reuse keys (default), 1 - reuse keys.
                  //   'appenddigitaldownloadkeys' => '1', // Whether to append download keys.  Values are:  0 - do not append keys (defeault), 1 - append keys.  If you do not append, unused keys will be replaced.
          );

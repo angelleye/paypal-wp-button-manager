@@ -94,7 +94,7 @@ class AngellEYE_PayPal_WP_Button_Manager_General_Setting {
      */
     public static function paypal_wp_button_manager_general_setting_save_field() {
         $paypalapi_setting_fields = self::paypal_wp_button_manager_general_setting_fields();
-        $Html_output = new AngellEYE_PayPal_WP_Button_Manager_Html_output();
+        $Html_output = new AngellEYE_PayPal_WP_Button_Manager_Html_output();        
         $Html_output->save_fields($paypalapi_setting_fields);
         if (isset($_POST['paypal_intigration'])):
             ?>

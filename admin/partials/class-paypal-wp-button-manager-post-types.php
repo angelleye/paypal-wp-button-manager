@@ -298,13 +298,13 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
         }        
         
         $paypal_email_link = get_post_meta($post_ID, 'paypal_wp_button_manager_email_link', true);
-        $action_request= isset($_REQUEST['view']) ? $_REQUEST['view'] : '';
+        $action_request= isset($_REQUEST['view']) ? sanitize_key($_REQUEST['view']) : '';
         if (isset($paypal_button_html) && !empty($paypal_button_html) && $action_request=='true') {
             ?>
             <table class="tbl_shortcode">
                 <?php if(current_user_can('edit_posts') && !$non_hosted_button){ ?>
                 <tr>
-                    <td class="text-center-align"><a class="btn btn-primary" href="<?php echo admin_url('post.php?post='.$_REQUEST['post'].'&action=edit'); ?>"><?php echo esc_html__('Edit Button', 'paypal-wp-button-manager') ?></a></td>
+                    <td class="text-center-align"><a class="btn btn-primary" href="<?php echo admin_url('post.php?post='.sanitize_key($_REQUEST['post']).'&action=edit'); ?>"><?php echo esc_html__('Edit Button', 'paypal-wp-button-manager') ?></a></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="center-text"></td>
