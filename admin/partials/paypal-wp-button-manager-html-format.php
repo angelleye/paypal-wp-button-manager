@@ -717,8 +717,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             </div>
                                                             <div id="savedDropdownPriceSection" class="hideShow accessAid <?php echo $savedDropdownPriceSection_class; ?>">
                                                                 <p><label id="savedDropdownPrice" for="" style="font-size: 12px;font-weight: 500;"><?php
-                                                                        echo $optionname[0] . ': ';
-                                                                        echo implode(', ', $optionselect[0])
+                                                                        if(isset($optionname[0])){
+                                                                            echo $optionname[0] . ': ';
+                                                                            echo implode(', ', $optionselect[0]);
+                                                                        }                                                                        
                                                                         ?></label></p>
                                                                 <p class="editDelete"><a id="editDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-sm btn-info"><span class="products"><?php echo esc_html__('Edit','paypal-wp-button-manager'); ?></span><span class="subscriptions accessAid fadedOut"><?php echo esc_html__('Change','paypal-wp-button-manager'); ?></span></a>&nbsp;|&nbsp;<a id="deleteDropdownPrice" class="btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products"><?php echo esc_html__('Delete','paypal-wp-button-manager'); ?></span><span class="subscriptions accessAid fadedOut glyphicon glyphicon-remove"></span></a></p>
                                                             </div>
@@ -728,7 +730,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 <div class="col-md-12">
                                                                     <p id="addDropdown" class="hideShow opened">
                                                                         <?php
-                                                                        if (!empty($optionprice[0])) {
+                                                                        if (isset($optionprice[0]) && !empty($optionprice[0])) {
                                                                             $t = 1;
                                                                         } else {
                                                                             $t = 0;
