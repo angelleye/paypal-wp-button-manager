@@ -114,6 +114,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 = 1.1.1 - 06.22.2018 =
 * Tweak - Generate fresh default POT file. ([PWBM-3](https://github.com/angelleye/paypal-wp-button-manager/pull/99))
+* Fix - PHP 7+ compatibility. ([PWBM-4](https://github.com/angelleye/paypal-wp-button-manager/pull/100))
 
 = 1.1.0 - 12.14.2017 =
 * Feature - Adds the ability to update existing buttons. ([#55](https://github.com/angelleye/paypal-wp-button-manager/issues/55)) ([#89](https://github.com/angelleye/paypal-wp-button-manager/issues/89))
