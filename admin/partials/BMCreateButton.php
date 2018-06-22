@@ -101,12 +101,12 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
                 update_post_meta($post_ID, 'paypal_wp_button_manager_button_id', $PayPalResult['HOSTEDBUTTONID']);
             }
             if (isset($_POST['ddl_companyname']) && !empty($_POST['ddl_companyname'])) {
-                update_post_meta($post_ID, 'paypal_wp_button_manager_company_rel', $_POST['ddl_companyname']);
+                update_post_meta($post_ID, 'paypal_wp_button_manager_company_rel', sanitize_key($_POST['ddl_companyname']));
             }
             if (isset($PayPalResult['EMAILLINK']) && !empty($PayPalResult['EMAILLINK'])) {
                 update_post_meta($post_ID, 'paypal_wp_button_manager_email_link', $PayPalResult['EMAILLINK']);
             }
-            $btn_shopping = $_POST['button_type'];
+            $btn_shopping = isset($_POST['button_type']) ? sanitize_key($_POST['button_type']) : '';
 
             if (isset($btn_shopping) && $btn_shopping == 'products') {
                 $button_post_status = 'shopping_cart';
@@ -140,12 +140,12 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
                 if (isset($_POST['ddl_companyname']) && !empty($_POST['ddl_companyname'])) {
 
                     $postmeta_table = $wpdb->prefix . "postmeta";
-                    $is_viewcart_created_for_cid = $wpdb->get_row("SELECT COUNT(*)as cnt_cid from  $postmeta_table where meta_key='paypal_wp_button_manager_viewcart_button_companyid' and meta_value='$_POST[ddl_companyname]'");
+                    $is_viewcart_created_for_cid = $wpdb->get_row("SELECT COUNT(*)as cnt_cid from  $postmeta_table where meta_key='paypal_wp_button_manager_viewcart_button_companyid' and meta_value='".sanitize_key($_POST['ddl_companyname'])."'");
                     $total_viewcart_for_cid = $is_viewcart_created_for_cid->cnt_cid;
 
                     $companies_name = $wpdb->prefix . 'paypal_wp_button_manager_companies';
 
-                    $company_name = $wpdb->get_row("SELECT *from  $companies_name where ID='$_POST[ddl_companyname]'");
+                    $company_name = $wpdb->get_row("SELECT *from  $companies_name where ID='".sanitize_key($_POST['ddl_companyname'])."'");
                     if (isset($company_name->title) && !empty($company_name->title)) {
                         $cname = $company_name->title;
                     }
@@ -186,7 +186,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_generator {
                                 $update_term = wp_set_post_terms($post_id, $tag, 'paypal_button_types');
 
                                 update_post_meta($post_id, 'paypal_button_response', $PayPalResult_viewcart['WEBSITECODE']);
-                                update_post_meta($post_id, 'paypal_wp_button_manager_viewcart_button_companyid', $_POST['ddl_companyname']);
+                                update_post_meta($post_id, 'paypal_wp_button_manager_viewcart_button_companyid', sanitize_key($_POST['ddl_companyname']));
                                 
                                 $PayPalRequest = isset($PayPalResult_viewcart['RAWREQUEST']) ? $PayPalResult_viewcart['RAWREQUEST'] : '';
                                 $PayPalResponse = isset($PayPalResult_viewcart['RAWRESPONSE']) ? $PayPalResult_viewcart['RAWRESPONSE'] : '';

@@ -81,8 +81,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 		wp_enqueue_script($this->plugin_name . 'one', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-global.js', array('jquery'), $this->version, false);
 		wp_enqueue_script($this->plugin_name . 'three', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-pa.js', array('jquery'), $this->version, false);
-		wp_enqueue_script($this->plugin_name . 'five', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-widgets.js', array('jquery'), $this->version, false);
-		wp_enqueue_script($this->plugin_name . 'four', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-pp_jscode_080706.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name . 'five', plugin_dir_url(__FILE__) . 'js/paypal-wp-button-manager-widgets.js', array('jquery'), $this->version, false);		
 
                 if($screen->post_type == 'paypal_buttons'){
                     wp_enqueue_script($this->plugin_name . 'six', plugin_dir_url(__FILE__) . 'css/bootstrap/js/bootstrap.min.js', array('jquery'), $this->version, false);
@@ -390,7 +389,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 		$screen = get_current_screen();
 		if ($screen->post_type == 'paypal_buttons') {
-			if (((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' ))) && (isset($count_companies) && $count_companies > 0) && (isset($count_hostedbuttons) && !empty($count_hostedbuttons)) && ((isset($count_trashpost) && $count_trashpost > 0)) && (isset($_GET['post_status']) && ($_GET['post_status'] == 'trash'))) {
+			if (((in_array($pagenow, array('edit.php')) && ('paypal_buttons' == 'paypal_buttons' ))) && (isset($count_companies) && $count_companies > 0) && (isset($count_hostedbuttons) && !empty($count_hostedbuttons)) && ((isset($count_trashpost) && $count_trashpost > 0)) && (isset($_GET['post_status']) && (sanitize_key($_GET['post_status']) == 'trash'))) {
                 ?>
                 <script>
                 jQuery( document ).ready(function() {
@@ -522,7 +521,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 		global $wpdb;
 		$companies = $wpdb->prefix . 'paypal_wp_button_manager_companies';
-		$result_config = $wpdb->get_row("SELECT * FROM `{$companies}` WHERE ID ='$_POST[ddl_companyname]'");
+                $ddl_companyname = isset($_POST['ddl_companyname']) ? sanitize_key($_POST['ddl_companyname']) : '';
+		$result_config = $wpdb->get_row("SELECT * FROM `{$companies}` WHERE ID ='".$ddl_companyname."'");
 		if (isset($result_config) && !empty($result_config)) {
 			$APIUsername = isset($result_config->paypal_api_username) ? $result_config->paypal_api_username : '';
 			$APIPassword = isset($result_config->paypal_api_password) ? $result_config->paypal_api_password : '';
@@ -539,9 +539,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 	public static function paypal_wp_button_manager_before_delete_post() {
 		global $wpdb;
 		$obj_for_log = new AngellEYE_PayPal_WP_Button_Manager_button_generator();
-
-		$button_hosted_id = get_post_meta($_POST['del_post_id'], 'paypal_wp_button_manager_button_id', true);
-		$ddl_companyname = get_post_meta($_POST['del_post_id'], 'paypal_wp_button_manager_company_rel', true);
+                $del_post_id = is_numeric($_POST['del_post_id']) ? $_POST['del_post_id'] : '';
+		$button_hosted_id = get_post_meta($del_post_id, 'paypal_wp_button_manager_button_id', true);
+		$ddl_companyname = get_post_meta($del_post_id, 'paypal_wp_button_manager_company_rel', true);
 		if ((isset($ddl_companyname) && !empty($ddl_companyname)) && (isset($button_hosted_id) && !empty($button_hosted_id))) {
 			// Prepare request arrays
 
@@ -597,15 +597,16 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			global $wpdb;
 			$tbl_name = $wpdb->prefix . "posts";
 			$post_meta = $wpdb->prefix . "postmeta";
-			$wpdb->query($wpdb->prepare("DELETE FROM $tbl_name WHERE ID = %d", $_POST['del_post_id']));
-			$wpdb->query($wpdb->prepare("DELETE FROM $post_meta WHERE post_id = %d", $_POST['del_post_id']));
+			$wpdb->query($wpdb->prepare("DELETE FROM $tbl_name WHERE ID = %d", $del_post_id));
+			$wpdb->query($wpdb->prepare("DELETE FROM $post_meta WHERE post_id = %d", $del_post_id));
 			echo "1";
 			exit(0);
 		}
 	}
 
 	public static function paypal_wp_button_manager_checkhosted_button() {
-		$btnid = get_post_meta($_POST['btnid'], 'paypal_wp_button_manager_button_id', true);
+                $btn_post_id = is_numeric($_POST['btnid']) ? $_POST['btnid'] : '';
+		$btnid = get_post_meta($btn_post_id, 'paypal_wp_button_manager_button_id', true);
 
 		if (isset($btnid) && !empty($btnid)) {
 			echo "1";
@@ -619,10 +620,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
 	public static function paypal_wp_button_manager_delete_post_own() {
 		global $wpdb;
+                $del_post_id = is_numeric($_POST['del_post']) ? $_POST['del_post'] : '';
 		$tbl_name = $wpdb->prefix . "posts";
 		$post_meta = $wpdb->prefix . "postmeta";
-		$wpdb->query($wpdb->prepare("DELETE FROM $tbl_name WHERE ID = %d", $_POST['del_post']));
-		$wpdb->query($wpdb->prepare("DELETE FROM $post_meta WHERE post_id = %d", $_POST['del_post']));
+		$wpdb->query($wpdb->prepare("DELETE FROM $tbl_name WHERE ID = %d", $del_post_id));
+		$wpdb->query($wpdb->prepare("DELETE FROM $post_meta WHERE post_id = %d", $del_post_id));
 		echo "1";
 		exit(0);
 
@@ -740,8 +742,8 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 			
 			<?php
 			$setting_tabs_wc = apply_filters('paypal_wp_button_manager_setting_tab', array("pbm_about" => "Overview", "pbm_credits" => "Credits", "pbm_translators" => "Translators"));
-			$current_tab_wc = (isset($_GET['tab'])) ? $_GET['tab'] : 'general';
-			$aboutpage = isset($_GET['page'])
+			$current_tab_wc = (isset($_GET['tab'])) ? sanitize_key($_GET['tab']) : 'general';
+			//$aboutpage = isset($_GET['page'])
 			?>
 			 <h2 id="paypal-wp-button-manage-tab-wrapper" class="nav-tab-wrapper">
             <?php
@@ -870,7 +872,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         public function paypal_wp_button_manager_ignore_update_notice() {
             global $current_user;
             $user_id = $current_user->ID;
-            if ( (isset($_GET['ignore_pwbm_update_notice']) && '0' == $_GET['ignore_pwbm_update_notice']) || ( isset($_GET['tab']) && 'pbm_about' == $_GET['tab'] ) ) {
+            if ( (isset($_GET['ignore_pwbm_update_notice']) && '0' == $_GET['ignore_pwbm_update_notice']) || ( isset($_GET['tab']) && 'pbm_about' == sanitize_key($_GET['tab']) ) ) {
                 update_user_meta($user_id, '_ignore_pwbm_update_notice', true);
             }
         }

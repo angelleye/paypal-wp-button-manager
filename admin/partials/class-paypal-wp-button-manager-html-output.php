@@ -381,7 +381,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Html_output {
         if (empty($_POST)) {
             return false;
         }
-
+        
         // Options to update will be stored here
         $update_options = array();
 
@@ -398,11 +398,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Html_output {
                 $option_name = current(array_keys($option_name_array));
                 $setting_name = key($option_name_array[$option_name]);
 
-                $option_value = isset($_POST[$option_name][$setting_name]) ? stripslashes_deep($_POST[$option_name][$setting_name]) : null;
+                $option_value = isset($_POST[$option_name][$setting_name]) ? sanitize_key($_POST[$option_name][$setting_name]) : null;
             } else {
                 $option_name = $value['id'];
                 $setting_name = '';
-                $option_value = isset($_POST[$value['id']]) ? stripslashes_deep($_POST[$value['id']]) : null;
+                $option_value = isset($_POST[$value['id']]) ? sanitize_key($_POST[$value['id']]) : null;
             }
 
             // Format value

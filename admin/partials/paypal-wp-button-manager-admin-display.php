@@ -34,12 +34,12 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin_Display {
      */
     public static function paypal_wp_button_manager_options() {
         $setting_tabs = apply_filters('paypal_wp_button_manager_setting_tab', array('general' => __('General','paypal-wp-button-manager'), 'company' => __('Companies','paypal-wp-button-manager'), 'logs' => __('Logs','paypal-wp-button-manager')));
-        $current_tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'general';
+        $current_tab = (isset($_GET['tab'])) ? sanitize_key($_GET['tab']) : 'general';
         ?>
         <h2 class="nav-tab-wrapper">
             <?php
             foreach ($setting_tabs as $name => $label)
-                echo '<a href="' . admin_url('admin.php?page=paypal-wp-button-manager-option&tab=' . $name) . '" class="nav-tab ' . ( $current_tab == $name ? 'nav-tab-active' : '' ) . '">' . $label . '</a>';
+                echo '<a href="' . esc_url(admin_url('admin.php?page=paypal-wp-button-manager-option&tab=' . $name)) . '" class="nav-tab ' . ( $current_tab == $name ? 'nav-tab-active' : '' ) . '">' . esc_html($label) . '</a>';
             ?>
         </h2>
         <?php

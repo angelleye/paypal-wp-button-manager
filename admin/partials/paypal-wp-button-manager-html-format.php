@@ -25,7 +25,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
     public static function save_non_hosted_button_snippet(){
         if(isset($_POST['textarea_snippet']) && !empty($_POST['textarea_snippet'])){
-            $paypal_button_html = update_post_meta($_POST['post_id'], 'paypal_button_response',$_POST['textarea_snippet']);
+            $paypal_button_html = update_post_meta($_POST['post_id'], 'paypal_button_response',wp_kses_post($_POST['textarea_snippet']));
             echo json_encode(array('success'=>'true'));
             exit;
         }
@@ -102,16 +102,16 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
     }
     
     public static function paypal_wp_button_manager_hide_update_metabox(){        
-        if( isset($_REQUEST['post']) && get_post_type($_REQUEST['post']) === 'paypal_buttons'){
-            if(isset($_REQUEST['action']) && isset($_REQUEST['view']) && $_REQUEST['action']=== 'edit' && $_REQUEST['view'] =='true'){
+        if( isset($_REQUEST['post']) && get_post_type(sanitize_key($_REQUEST['post'])) === 'paypal_buttons'){
+            if(isset($_REQUEST['action']) && isset($_REQUEST['view']) && sanitize_key($_REQUEST['action']) === 'edit' && sanitize_key($_REQUEST['view']) =='true'){
                 ?>
                 <style>
                     #side-sortables { display: none; }
                 </style>
                 <?php
             }
-            $paypal_button_id = get_post_meta($_REQUEST['post'], 'paypal_wp_button_manager_button_id', true);                                    
-            if(isset($_REQUEST['action']) && $_REQUEST['action']=== 'edit' && empty($paypal_button_id)){
+            $paypal_button_id = get_post_meta(sanitize_key($_REQUEST['post']), 'paypal_wp_button_manager_button_id', true);                                    
+            if(isset($_REQUEST['action']) && sanitize_key($_REQUEST['action'])=== 'edit' && empty($paypal_button_id)){
                 ?>
                 <style>
                     #side-sortables { display: none; }
@@ -717,8 +717,10 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                             </div>
                                                             <div id="savedDropdownPriceSection" class="hideShow accessAid <?php echo $savedDropdownPriceSection_class; ?>">
                                                                 <p><label id="savedDropdownPrice" for="" style="font-size: 12px;font-weight: 500;"><?php
-                                                                        echo $optionname[0] . ': ';
-                                                                        echo implode(', ', $optionselect[0])
+                                                                        if(isset($optionname[0])){
+                                                                            echo $optionname[0] . ': ';
+                                                                            echo implode(', ', $optionselect[0]);
+                                                                        }                                                                        
                                                                         ?></label></p>
                                                                 <p class="editDelete"><a id="editDropdownPrice" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=" class="btn btn-sm btn-info"><span class="products"><?php echo esc_html__('Edit','paypal-wp-button-manager'); ?></span><span class="subscriptions accessAid fadedOut"><?php echo esc_html__('Change','paypal-wp-button-manager'); ?></span></a>&nbsp;|&nbsp;<a id="deleteDropdownPrice" class="btn btn-sm btn-danger" href="https://www.paypal.com/us/cgi-bin/webscr?cmd="><span class="products"><?php echo esc_html__('Delete','paypal-wp-button-manager'); ?></span><span class="subscriptions accessAid fadedOut glyphicon glyphicon-remove"></span></a></p>
                                                             </div>
@@ -728,7 +730,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                                 <div class="col-md-12">
                                                                     <p id="addDropdown" class="hideShow opened">
                                                                         <?php
-                                                                        if (!empty($optionprice[0])) {
+                                                                        if (isset($optionprice[0]) && !empty($optionprice[0])) {
                                                                             $t = 1;
                                                                         } else {
                                                                             $t = 0;
