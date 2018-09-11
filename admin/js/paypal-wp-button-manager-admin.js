@@ -236,4 +236,17 @@ jQuery(function ($) {
         });
     });
     
+    $(document).on('click','#saveOptionPrice',function(){
+        var dropdownPriceTitle = $('#dropdownPriceTitle').val();
+        if(dropdownPriceTitle == ''){
+            alert('Please Enter title for Dropdown.');
+            setTimeout(function(){ 
+                if($('#dropdownPriceSection').hasClass('hide')){
+                    $('#dropdownPriceSection').removeClass('hide');
+                    $('#dropdownPriceSection').addClass('opened');
+                }                
+            }, 1000);
+        }
+    });    
+    
 });
