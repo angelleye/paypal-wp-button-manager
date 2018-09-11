@@ -112,6 +112,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 1.1.2 - xx.xx.2018 =
+* Fix - Resolves a PHP notice showing up sometimes in WooCommerce order emails. ([PWBM-2](https://github.com/angelleye/paypal-wp-button-manager/pull/102))
+
 = 1.1.1 - 06.22.2018 =
 * Tweak - Generate fresh default POT file. ([PWBM-3](https://github.com/angelleye/paypal-wp-button-manager/pull/99))
 * Tweak - Data sanitization adjustments for privacy and security. ([PWBM-1](https://github.com/angelleye/paypal-wp-button-manager/pull/101))
