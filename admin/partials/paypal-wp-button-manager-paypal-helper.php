@@ -252,7 +252,7 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             'handling' => '', // handling charges.  This variable is not quantity-specific.
             'tax' => '', // Transaction-based tax override variable.  Set this variable to a flat tax amount to apply to the payment regardless of the buyer's location.  This overrides any tax settings in the account profile.
             'tax_rate' => isset($_POST['item_tax_rate']) ? sanitize_text_field($_POST['item_tax_rate']) : '', // Transaction-based tax override variable.  Set this variable to a percentage that applies to the amount multipled by the quantity selected uring checkout.  This overrides your paypal account profile.
-            'undefined_quantity' => '', // Set to 1 to allow the buyer to specify the quantity.
+            'undefined_quantity' => ($_POST['undefined_quantity']) ? $_POST['undefined_quantity'] : '', // Set to 1 to allow the buyer to specify the quantity.
             'weight' => '', // Weight of items.
             'weight_unit' => '', // The unit of measure if weight is specified.  Values are:  lbs, kgs
             'address_override' => '', // Set to 1 to override the payer's address stored in their PayPal account.
