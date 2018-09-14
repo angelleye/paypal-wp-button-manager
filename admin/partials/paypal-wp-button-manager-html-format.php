@@ -193,6 +193,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
         $subscription_trial_2_duration_type = '';
         $subscribe_text='';
         $buynowtext='BUYNOW';
+        $undefined_quantity = 0;
         
         if ($string == 'edit') {
 
@@ -365,6 +366,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 $buynowtext = isset($button_details_array['BUYNOWTEXT']) ? $button_details_array['BUYNOWTEXT'] : '';
                 $inventory_set = true;
                 $DataArray = array();
+                $undefined_quantity = (isset($BUTTONVAR['undefined_quantity']) && $BUTTONVAR['undefined_quantity'] ==1) ? 1 : 0;
                 $PayPal_get_inventory = $PayPal->BMGetInventory($DataArray, $edit_hosted_button_id);
                 
                 if (isset($PayPal_get_inventory['ERRORS']) && !empty($PayPal_get_inventory['ERRORS'])) {
@@ -1956,9 +1958,9 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                             <div class="row">
                                                 <div class="col-md-9">
                                                     <div class="form-group">                                                                                
-                                                        <input class="radio form-control" type="radio" id="changeOrderQuantities" name="undefined_quantity" value="1">
+                                                        <input class="radio form-control" type="radio" id="changeOrderQuantities" name="undefined_quantity" value="1" <?php echo ($undefined_quantity == 1) ? 'checked' : ''; ?>/>
                                                         <label class="control-label" for="keepOrderQuantities"><?php echo esc_html__('Yes','paypal-wp-button-manager'); ?></label>
-                                                        <input class="radio" type="radio" id="keepOrderQuantities" checked="" name="undefined_quantity" value="0">
+                                                        <input class="radio" type="radio" id="keepOrderQuantities" <?php echo ($undefined_quantity == 0) ? 'checked' : ''; ?> name="undefined_quantity" value="0">
                                                         <label class="control-label" for="changeOrderQuantities"><?php echo esc_html__('No','paypal-wp-button-manager'); ?></label>
                                                     </div>
                                                 </div>
