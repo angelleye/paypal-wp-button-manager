@@ -310,8 +310,18 @@ class AngellEYE_PayPal_WP_Button_Manager_Post_types {
                     <td colspan="2" class="center-text"></td>
                 </tr>
                 <?php } ?>
+
                 <tr>
-                    <td class="td_title"><?php echo _e('You can easily place this button in your pages and posts using this tool....', 'paypal-wp-button-manager'); ?></td>
+                    <td class="td_title"><?php echo _e('You can easily place this button in your pages and posts using our PayPal Button Block for Gutenberg Editor.', 'paypal-wp-button-manager'); ?></td>
+                </tr>
+                <tr>
+                    <td class="td_shortcode text-center-align"><img src="<?php echo BMW_PLUGIN_URL; ?>/admin/images/paypal_button_manager_gutenberg.gif" width="75%"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="center-text">OR</td>
+                </tr>
+                <tr>
+                    <td class="td_title"><?php echo _e('You can easily place this button in your pages and posts using this tool in Classic Editor WordPress', 'paypal-wp-button-manager'); ?></td>
                 </tr>
                 <tr>
                     <td class="td_shortcode text-center-align"><img src="<?php echo BMW_PLUGIN_URL; ?>/admin/images/paypal_tools.png" width="75%"/></td>
