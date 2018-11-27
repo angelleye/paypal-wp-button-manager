@@ -925,4 +925,24 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
                 }
             }
         }
+
+        public function pwbm_shortcode_block_editor_assets() {
+
+            /**
+             * Scripts.
+             */
+            wp_enqueue_script($this->plugin_name . 'pwbm_shortcode-block-js',
+                                plugin_dir_url(__FILE__) . 'gutenberg/blocks.build.js',
+                                    array( 'wp-blocks', 'wp-i18n', 'wp-element','wp-editor' ),
+                                true);
+
+            /**
+             * Styles.element
+             */
+
+            wp_enqueue_style($this->plugin_name . 'pwbm_shortcode-block-editor-css',
+                                plugin_dir_url(__FILE__) .'gutenberg/blocks.editor.build.css',
+                                    array( 'wp-edit-blocks' )
+            );
+        }
 } 
