@@ -256,6 +256,12 @@ class AngellEYE_PayPal_WP_Button_Manager {
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
+
+        /**
+         *  Gutenberg block
+         *  Hook: front display assets.
+         */
+        $this->loader->add_action( 'enqueue_block_assets',$plugin_public,'pwbm_shortcode_block_assets' );
     }
 
     /**

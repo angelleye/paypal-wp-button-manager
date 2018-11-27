@@ -926,6 +926,11 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
             }
         }
 
+        /**
+         * Enqueue Gutenberg block assets for backend.
+         *
+         * @since 1.1.2
+         */
         public function pwbm_shortcode_block_editor_assets() {
 
             /**
