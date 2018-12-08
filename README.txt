@@ -117,6 +117,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * Fix - Resolves a PHP notice showing up sometimes in WooCommerce order emails. ([PWBM-2](https://github.com/angelleye/paypal-wp-button-manager/pull/102))
 * Fix - Resolves an error from improper field validation. ([PWBM-6](https://github.com/angelleye/paypal-wp-button-manager/pull/103))
 * Fix - Resolves an issue with order quantities. ([PWBM-10](https://github.com/angelleye/paypal-wp-button-manager/pull/104))
+* Fix - Resolves a $post variable conflict. ([PWBM-16](https://github.com/angelleye/paypal-wp-button-manager/pull/108))
 
 = 1.1.1 - 06.22.2018 =
 * Tweak - Generate fresh default POT file. ([PWBM-3](https://github.com/angelleye/paypal-wp-button-manager/pull/99))
