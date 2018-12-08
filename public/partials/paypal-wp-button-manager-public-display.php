@@ -20,8 +20,6 @@ class AngellEYE_PayPal_WP_Button_Manager_Public_Display {
      */
     public static function paypal_wp_button_manager_create_shortcode($atts, $content = null) {
 
-        global $post, $post_ID;
-
         extract(shortcode_atts(array(
                     'id' => ''), $atts));
 
