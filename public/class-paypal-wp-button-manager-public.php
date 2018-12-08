@@ -71,4 +71,18 @@ class AngellEYE_PayPal_WP_Button_Manager_Public {
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/partials/paypal-wp-button-manager-public-display.php';
     }
 
+    /**
+     * Enqueue Gutenberg block assets for front end.
+     *
+     * @since 1.1.2
+     */
+    public function pwbm_shortcode_block_assets(){
+
+        wp_enqueue_style($this->plugin_name.'pwbm_shortcode_block-style-css',
+                         plugin_dir_url(__FILE__) . 'gutenberg/blocks.style.build.css',
+                            array(),
+                            $this->version
+        );
+    }
+
 }
