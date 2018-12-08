@@ -113,6 +113,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 == Changelog ==
 
 = 1.1.2 - xx.xx.2018 =
+* Feature - WordPress 5.0 (Gutenberg) Compatibility. ([PWBM-13](https://github.com/angelleye/paypal-wp-button-manager/pull/105))
 * Fix - Resolves a PHP notice showing up sometimes in WooCommerce order emails. ([PWBM-2](https://github.com/angelleye/paypal-wp-button-manager/pull/102))
 * Fix - Resolves an error from improper field validation. ([PWBM-6](https://github.com/angelleye/paypal-wp-button-manager/pull/103))
 * Fix - Resolves an issue with order quantities. ([PWBM-10](https://github.com/angelleye/paypal-wp-button-manager/pull/104))
