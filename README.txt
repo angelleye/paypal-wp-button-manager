@@ -3,8 +3,8 @@ Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SG9SQU2GBXJNA
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
 Requires at least: 3.8
-Tested up to: 4.9.6
-Stable tag: 1.1.1
+Tested up to: 5.0.0
+Stable tag: 1.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -112,7 +112,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 1.1.2 - xx.xx.2018 =
+= 1.1.2 - 12.08.2018 =
 * Feature - WordPress 5.0 (Gutenberg) Compatibility. ([PWBM-13](https://github.com/angelleye/paypal-wp-button-manager/pull/105)) ([PWBM-15](https://github.com/angelleye/paypal-wp-button-manager/pull/106))
 * Fix - Resolves a PHP notice showing up sometimes in WooCommerce order emails. ([PWBM-2](https://github.com/angelleye/paypal-wp-button-manager/pull/102))
 * Fix - Resolves an error from improper field validation. ([PWBM-6](https://github.com/angelleye/paypal-wp-button-manager/pull/103))
