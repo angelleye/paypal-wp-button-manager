@@ -292,9 +292,16 @@ PAYPAL.Merchant.ButtonDesigner.Master = {
         }
         BD_STEP1.init();
         BD_CBUTTON.init();
+        setTimeout("BD_MASTER.showTimeout()", (BD_MASTER.timeOut * 60 * 1000));
+        YUE.on("timeoutSubmit", 'click', BD_MASTER.submitTimeout);
+        YUE.on("timeoutCancel", 'click', BD_MASTER.submitTimeout);
         if (document.getElementById('pageLoadMsg')) {
             YUD.addClass('pageLoadMsg', 'accessAid');
         }
+    },
+    showTimeout: function() {
+        BD_MASTER.sessionLightbox = new PAYPAL.util.Lightbox("timeoutLightbox");
+        BD_MASTER.sessionLightbox.show();
     },
     submitTimeout: function(e) {
         YUE.preventDefault(e);
@@ -551,6 +558,20 @@ PAYPAL.Merchant.ButtonDesigner.StepOne = {
             onPricePerOption.subscribe(this.priceOptionSubscriber);
             onAccordionComplete.subscribe(this.accordionSubscriber);
             this.itemDetailsChangeHandler();
+        }
+    },
+    donationDropDownChange: function(e) {
+        var selectedTypeValue = document.getElementById("buttonType");
+        if (selectedTypeValue.options[selectedTypeValue.selectedIndex].value == 'donations') {
+            var content = document.getElementById("jsContent");
+            YUD.replaceClass(content, 'show', 'hide');
+            var header = document.getElementById("headline");
+            header = header.getElementsByTagName("h2");
+            YUD.replaceClass(header, 'show', 'hide');
+            var pageLoadMsg = document.getElementById("pageLoadMsg");
+            YUD.replaceClass(pageLoadMsg, 'accessAid', 'show');
+            var redirectUrl = document.getElementById("donateUrl").value;
+            window.location = redirectUrl;
         }
     },
     itemDetailsChangeHandler: function(e) {
@@ -854,6 +875,7 @@ PAYPAL.Merchant.ButtonDesigner.StepOne = {
         }
     }
 };
+YUE.addListener('buttonType', 'change', PAYPAL.Merchant.ButtonDesigner.StepOne.donationDropDownChange);
 PAYPAL.Merchant.ButtonDesigner.CustomizeButton = {
     numOptionsPrice: 0,
     numOptions1: 0,

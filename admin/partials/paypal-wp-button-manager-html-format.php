@@ -224,15 +224,20 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 }
             }
 
+            $buttonType = isset($button_details_array['BUTTONTYPE']) ? $button_details_array['BUTTONTYPE'] : '';
             /* START section to get values from dropdown of the customizzation section */
-
             for ($k = 0; $k < 5; $k++) {
                 if (array_key_exists('OPTION' . $k . 'NAME', $button_details_array)) {
                     $optionname[] = substr(substr($button_details_array['OPTION' . $k . 'NAME'], 1), 0, -1);
                     if (array_key_exists('L_OPTION' . $k . 'PRICE0', $button_details_array)) {
                         for ($j = 0; $j < 10; $j++) {
                             if (array_key_exists('L_OPTION' . $k . 'PRICE' . $j, $button_details_array)) {
-                                $optionprice[$k][] = substr(substr($button_details_array['L_OPTION' . $k . 'PRICE' . $j], 1), 0, -1);
+                                if($buttonType == 'SUBSCRIBE'){
+                                    $optionprice[$k][] = $button_details_array['L_OPTION' . $k . 'PRICE' . $j];
+                                }
+                                else{
+                                    $optionprice[$k][] = substr(substr($button_details_array['L_OPTION' . $k . 'PRICE' . $j], 1), 0, -1);
+                                }
                             }
                         }
                     }
@@ -244,8 +249,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                 }
             }
             /* END of section to get values from dropdown of the customizzation section */
-           
-            $buttonType = isset($button_details_array['BUTTONTYPE']) ? $button_details_array['BUTTONTYPE'] : '';
+
             $buttonCountry = isset($button_details_array['BUTTONCOUNTRY']) ? $button_details_array['BUTTONCOUNTRY'] : '';
             $buttonLanguage = isset($button_details_array['BUTTONLANGUAGE']) ? $button_details_array['BUTTONLANGUAGE'] : '';
             $buttonImageSize = isset($button_details_array['BUTTONIMAGE']) ? $button_details_array['BUTTONIMAGE'] : '';
@@ -551,7 +555,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                                                 <?php $paypal_button_currency = get_paypal_button_currency(); ?>
                                                 <select id="subscriptionBillingAmountCurrency" name="item_price_currency" class="currencySelect form-control" disabled="">
                                                     <?php foreach ($paypal_button_currency as $paypal_button_currency_key => $paypal_button_currency_value) { ?>
-                                                        <option value="<?php echo $paypal_button_currency_value; ?>" title="<?php echo $paypal_button_options_key; ?>"><?php echo $paypal_button_currency_value; ?></option>
+                                                        <option value="<?php echo $paypal_button_currency_value; ?>" title=""><?php echo $paypal_button_currency_value; ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>                                                    
