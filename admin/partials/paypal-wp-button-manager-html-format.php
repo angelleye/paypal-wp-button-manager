@@ -67,7 +67,15 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
                     }   
                 }
                 else{
-                    exit;
+                    echo "<div class='alert alert-info'>";
+                    echo __("No data found of PayPal Button.",'paypal-wp-button-manager');
+                    echo "</div>";
+                    ?>
+                    <style>
+                        input[name='post_title']{display: none}
+                    </style>
+                    <?php
+                    die();
                 }
             }
         ?>
