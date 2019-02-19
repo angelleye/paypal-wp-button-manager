@@ -185,13 +185,21 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 		$timeout_notice = get_option('paypal_wp_button_manager_timeout_notice');
 		$success_notice = get_option('paypal_wp_button_manager_success_notice');
 		if ((isset($errors_notice) && !empty($errors_notice)) && (isset($error_code) && !empty($error_code)) && (empty($timeout_notice))) {
-			echo _e('<div class="error"><p>Error Code:&nbsp;' . $error_code[$post->ID] . '<br/>Error Details:&nbsp;' . $errors_notice[$post->ID] . '</p><input type="hidden" name="err_btn" value="err_btn"/></div>', 'paypal-wp-button-manager');
-			echo "<style>.updated{display:none;}</style>";
-			unset($errors_notice[$post->ID]);
-			unset($error_code[$post->ID]);
+
+		    if(isset($error_code[$post->ID]) && isset($errors_notice[$post->ID])){
+			    echo __('<div class="error"><p>Error Code:&nbsp;' . $error_code[$post->ID] . '<br/>Error Details:&nbsp;' . $errors_notice[$post->ID] . '</p><input type="hidden" name="err_btn" value="err_btn"/></div>', 'paypal-wp-button-manager');
+			    echo "<style>.updated{display:none;}</style>";
+			    unset($errors_notice[$post->ID]);
+			    unset($error_code[$post->ID]);
+
+            }
+		    else{
+                echo '<div class="error"><p>';
+                echo __('Error while add/update button.','paypal-wp-button-manager');
+                echo '</p></div>';
+            }
 			delete_option('paypal_wp_button_manager_notice');
 			delete_option('paypal_wp_button_manager_error_code');
-
 			// update_option('paypal_wp_button_manager_notice', $errors_notice[$post->ID]);
 			// update_option('paypal_wp_button_manager_error_code', $error_code[$post->ID]);
 		} else if (isset($timeout_notice) && !empty($timeout_notice)) {
