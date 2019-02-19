@@ -112,6 +112,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 1.1.4 - 02.19.2019 =
+* Fix - Resolves PHP notices. ([PBM-4](https://github.com/angelleye/paypal-wp-button-manager/pull/111))
+
 = 1.1.3 - 12.17.2018 =
 * Fix - Resolves bugs with some drop-down menu options in button builder. ([PWBM-14](https://github.com/angelleye/paypal-wp-button-manager/pull/107))
 * Fix - Gutenberg bug fixes. ([PWBM-17](https://github.com/angelleye/paypal-wp-button-manager/pull/109))
