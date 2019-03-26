@@ -112,6 +112,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 2.0.0 - xx.xx.2019 =
+* Resolves an issue with special characters not displaying properly in the button drop down options. ([PBM-5](https://github.com/angelleye/paypal-wp-button-manager/pull/112))
+
 = 1.1.4 - 02.19.2019 =
 * Fix - Resolves PHP notices. ([PBM-4](https://github.com/angelleye/paypal-wp-button-manager/pull/111))
 
