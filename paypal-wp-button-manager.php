@@ -43,6 +43,17 @@ if (!defined('PAYPAL_WP_BUTTON_MANAGER_PLUGIN_BASENAME')) {
     define('PAYPAL_WP_BUTTON_MANAGER_PLUGIN_BASENAME', plugin_basename(__FILE__));
 }
 
+if (!defined('AEU_ZIP_URL')) {
+    define('AEU_ZIP_URL', 'https://github.com/angelleye/angelleye-updater/archive/master.zip');
+}
+
+/**
+ * Required functions
+ */
+if (!function_exists('angelleye_queue_update')) {
+    require_once( 'includes/angelleye-functions.php' );
+}
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-paypal-wp-button-manager-activator.php
