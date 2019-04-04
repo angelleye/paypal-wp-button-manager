@@ -113,7 +113,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 == Changelog ==
 
 = 2.0.0 - xx.xx.2019 =
-* Feature - Adds AE Updater compatibility for future notices and automated updates. [PWBM-23]
+* Feature - Adds AE Updater compatibility for future notices and automated updates. [PWBM-23] ([PBM-29](https://github.com/angelleye/paypal-wp-button-manager/pull/114))
 * Resolves an issue with special characters not displaying properly in the button drop down options. ([PBM-5](https://github.com/angelleye/paypal-wp-button-manager/pull/112))
 
 = 1.1.4 - 02.19.2019 =
