@@ -44,7 +44,7 @@ if (!defined('PAYPAL_WP_BUTTON_MANAGER_PLUGIN_BASENAME')) {
 }
 
 if (!defined('AEU_ZIP_URL')) {
-    define('AEU_ZIP_URL', 'https://github.com/angelleye/angelleye-updater/archive/master.zip');
+    define('AEU_ZIP_URL', 'https://updates.angelleye.com/ae-updater/angelleye-updater/angelleye-updater.zip');
 }
 
 /**
