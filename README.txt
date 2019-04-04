@@ -3,8 +3,8 @@ Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SG9SQU2GBXJNA
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
 Requires at least: 3.8
-Tested up to: 5.0.3
-Stable tag: 1.1.4
+Tested up to: 5.1.1
+Stable tag: 2.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -112,7 +112,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 2.0.0 - xx.xx.2019 =
+= 2.0.0 - 04.04.2019 =
 * Feature - Adds AE Updater compatibility for future notices and automated updates. [PWBM-23] ([PBM-29](https://github.com/angelleye/paypal-wp-button-manager/pull/114))
 * Resolves an issue with special characters not displaying properly in the button drop down options. ([PBM-5](https://github.com/angelleye/paypal-wp-button-manager/pull/112))
 
