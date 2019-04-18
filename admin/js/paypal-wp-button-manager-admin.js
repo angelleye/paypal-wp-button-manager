@@ -247,6 +247,20 @@ jQuery(function ($) {
                 }                
             }, 1000);
         }
-    });    
-    
+    });
+
+
+    $(document).on('click','.upload_custom_image_pp_button ', function(e){
+        e.preventDefault();
+        var image = wp.media({
+            title: 'Upload Image',
+            multiple: false
+        }).open()
+            .on('select', function (e) {
+                var uploaded_image = image.state().get('selection').first();
+                var image_url = uploaded_image.toJSON().url;
+                $('#customImageUrl').val(image_url);
+            });
+    });
+
 });
