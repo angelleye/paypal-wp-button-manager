@@ -135,8 +135,9 @@ class AngellEYE_PayPal_WP_Button_Manager_PayPal_Helper {
             );
             
         }
-        
-        if( !empty($_POST['custom_image_url']) ) {
+
+        if( !empty($_POST['custom_image_url']) && $_POST['paypal_button'] == 'false' ) {
+
             $bmcreatebuttonfields['ButtonImageURL'] = esc_url($_POST['custom_image_url']);
             $bmcreatebuttonfields['ButtonImage'] = 'REG';
         }

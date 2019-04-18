@@ -1201,6 +1201,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_interface {
 
                                                                 <div id="customButtonSection" class="hideShow accessAid <?php echo $customButtonSection_class; ?>">
                                                                     <input type="text" id="customImageUrl" class="text form-control" name="custom_image_url" style="width: auto" value="<?php echo $buttonImageUrl; ?>">
+                                                                    <a href="#" class="upload_custom_image_pp_button button" style="margin: 5px 0 0 60px;">Upload Image</a>
                                                                 </div>
                                                             </div>
                                                         </div>
