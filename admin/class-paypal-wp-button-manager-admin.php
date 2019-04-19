@@ -50,6 +50,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
      */
 	public function enqueue_styles() {
                 $screen = get_current_screen();
+		if($screen->post_type == 'paypal_buttons' && $screen->id == 'paypal_buttons'){
+			wp_enqueue_style($this->plugin_name . 'eight', plugin_dir_url(__FILE__) . 'css/bootstrap/css/bootstrap.css', array(), $this->version, 'all');
+		}
 		wp_enqueue_style('thickbox'); // call to media files in wp
 		wp_enqueue_style($this->plugin_name . 'one', plugin_dir_url(__FILE__) . '/css/paypal-wp-button-manager-global.css', array(), $this->version, false);
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/paypal-wp-button-manager-master.css', array(), $this->version, false);
@@ -58,9 +61,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 		wp_enqueue_style($this->plugin_name . 'four', plugin_dir_url(__FILE__) . '/css/paypal-wp-button-manager-print.css', array(), $this->version, false);
 		wp_enqueue_style($this->plugin_name . 'five', plugin_dir_url(__FILE__) . 'css/paypal-wp-button-manager-admin.css', 20, $this->version, 'all');
 		wp_enqueue_style($this->plugin_name . 'seven', plugin_dir_url(__FILE__) . 'css/webkit/fontello.css', array(), $this->version, 'all');
-		if($screen->post_type == 'paypal_buttons' && $screen->id == 'paypal_buttons'){
-                 wp_enqueue_style($this->plugin_name . 'eight', plugin_dir_url(__FILE__) . 'css/bootstrap/css/bootstrap.css', array(), $this->version, 'all');
-                }
+
 	}
 
 	/**
