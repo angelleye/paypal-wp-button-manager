@@ -78,7 +78,7 @@ if (!class_exists('AngellEYE_Updater') && !function_exists('angell_updater_notic
                 $message = '<a href="' . esc_url(admin_url($activate_url)) . '"> Activate the Angell EYE Updater plugin</a> to get updates for your Angell EYE plugins.';
             }
         }
-        echo '<div class="updated"><p>' . $message . '</p></div>' . "\n";
+        echo '<div class="updated fade"><p>' . $message . '</p></div>' . "\n";
     }
 
     add_action('admin_notices', 'angell_updater_notice');
