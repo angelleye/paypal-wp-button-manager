@@ -112,6 +112,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 2.0.1 - 04.22.2019 =
+* Feature - Adds WP Media Uploader to plugin where optional images are available. ([PWM-6](https://github.com/angelleye/paypal-wp-button-manager/pull/116))
+
 = 2.0.0 - 04.04.2019 =
 * Feature - Adds AE Updater compatibility for future notices and automated updates. [PWBM-23] ([PBM-29](https://github.com/angelleye/paypal-wp-button-manager/pull/114))
 * Resolves an issue with special characters not displaying properly in the button drop down options. ([PBM-5](https://github.com/angelleye/paypal-wp-button-manager/pull/112))
