@@ -136,6 +136,10 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 		wp_localize_script('paypal-wp-button-manager', 'shortcodes_button_array', apply_filters('paypal_wp_button_manager_shortcode', array(
 		'shortcodes_button' => $shortcodes_values
 		)));
+
+		if ( ! did_action( 'wp_enqueue_media' ) ) {
+			wp_enqueue_media();
+		}
 	}
 
 	private function load_dependencies() {

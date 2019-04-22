@@ -27,7 +27,7 @@ class AngellEYE_PayPal_WP_Button_Manager_button_updater {
         $edit_hosted_button_id=$meta['paypal_wp_button_manager_button_id'][0];        
         $BMButtonVars = array();
         $BMButtonVars = $payapal_helper->paypal_wp_button_manager_get_buttonvars();
-        $PayPalRequestData = $payapal_helper->paypal_wp_button_manager_get_dropdown_values();        
+        $PayPalRequestData = $payapal_helper->paypal_wp_button_manager_get_dropdown_values();
         $PayPalResult = $PayPal->BMUpdateButton($PayPalRequestData,$edit_hosted_button_id);        
         
         // Write the contents of the response array to the screen for demo purposes.
