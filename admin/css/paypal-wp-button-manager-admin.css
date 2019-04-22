@@ -175,3 +175,6 @@ img#angelleye_logo {
     outline: 0px;
     box-shadow: unset
 }
+.fade{
+    opacity: 1;
+}
