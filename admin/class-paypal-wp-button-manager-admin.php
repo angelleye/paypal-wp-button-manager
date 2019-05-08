@@ -979,7 +979,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
 
     public function angelleye_get_push_notifications() {
         $args = array(
-            'plugin_name' => 'woo-paypal-here',
+            'plugin_name' => 'paypal-wp-button-manager',
         );
         $api_url = PAYPAL_FOR_WOOCOMMERCE_PUSH_NOTIFICATION_WEB_URL . '?Wordpress_Plugin_Notification_Sender';
         $api_url .= '&action=angelleye_get_plugin_notification';
