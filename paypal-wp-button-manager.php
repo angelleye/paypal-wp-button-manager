@@ -54,6 +54,10 @@ if (!function_exists('angelleye_queue_update')) {
     require_once( 'includes/angelleye-functions.php' );
 }
 
+if (!defined('PAYPAL_FOR_WOOCOMMERCE_PUSH_NOTIFICATION_WEB_URL')) {
+    define('PAYPAL_FOR_WOOCOMMERCE_PUSH_NOTIFICATION_WEB_URL', 'https://www.angelleye.com/');
+}
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-paypal-wp-button-manager-activator.php
