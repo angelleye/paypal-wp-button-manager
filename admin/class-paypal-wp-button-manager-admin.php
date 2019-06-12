@@ -1025,7 +1025,7 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         global $current_user;
         $user_id = $current_user->ID;
         if (!empty($_POST['action']) && $_POST['action'] == 'angelleye_paypal_here_adismiss_notice') {
-            add_user_meta($user_id, wc_clean($_POST['data']), 'true', true);
+            add_user_meta($user_id, stripslashes_deep($_POST['data']), 'true', true);
             wp_send_json_success();
         }
     }
