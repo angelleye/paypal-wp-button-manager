@@ -71,7 +71,7 @@ class Angelleye_PayPal {
 
         $this->APIVersion = isset($DataArray['APIVersion']) ? $DataArray['APIVersion'] : '119.0';
         $this->APIMode = isset($DataArray['APIMode']) ? $DataArray['APIMode'] : 'Signature';
-        $this->APIButtonSource = 'AngellEYE_SP_BM_WordPress';
+        $this->APIButtonSource = '';
         $this->PathToCertKeyPEM = '/path/to/cert/pem.txt';
         $this->SSL = $_SERVER['SERVER_PORT'] == '443' ? true : false;
         $this->APISubject = isset($DataArray['APISubject']) ? $DataArray['APISubject'] : '';
