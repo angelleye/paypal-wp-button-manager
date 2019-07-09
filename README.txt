@@ -3,8 +3,8 @@ Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SG9SQU2GBXJNA
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
 Requires at least: 3.8
-Tested up to: 5.1.1
-Stable tag: 2.0.1
+Tested up to: 5.2.2
+Stable tag: 2.0.1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -111,6 +111,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * Sandbox credentials can be obtained by viewing the sandbox account profile within your PayPal developer account, or by signing in with a sandbox account here:  https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
 
 == Changelog ==
+
+= 2.0.1.1 - 07.09.2019 =
+* Tweak - Minor adjustment to PayPal API requests.
 
 = 2.0.1 - 04.22.2019 =
 * Feature - Adds WP Media Uploader to plugin where optional images are available. ([PWM-6](https://github.com/angelleye/paypal-wp-button-manager/pull/116))
