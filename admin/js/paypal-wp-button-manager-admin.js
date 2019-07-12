@@ -280,7 +280,7 @@ jQuery(function () {
     });
     function notify_wordpress(message) {
         var param = {
-            action: 'angelleye_paypal_here_adismiss_notice',
+            action: 'angelleye_paypal_button_manager_adismiss_notice',
             data: message
         };
         jQuery.post(ajaxurl, param);

@@ -243,8 +243,8 @@ class AngellEYE_PayPal_WP_Button_Manager {
          */
         $this->loader->add_action( 'enqueue_block_editor_assets',$plugin_admin,'pwbm_shortcode_block_editor_assets' );
         
-        $this->loader->add_action('wp_ajax_angelleye_paypal_here_adismiss_notice', $plugin_admin, 'angelleye_paypal_here_adismiss_notice', 10);
-        $this->loader->add_action('admin_notices', $plugin_admin, 'angelleye_paypal_here_display_push_notification', 10);
+        $this->loader->add_action('wp_ajax_angelleye_paypal_button_manager_adismiss_notice', $plugin_admin, 'angelleye_paypal_button_manager_adismiss_notice', 10);
+        $this->loader->add_action('admin_notices', $plugin_admin, 'angelleye_paypal_button_manager_display_push_notification', 10);
     }
 
     /**

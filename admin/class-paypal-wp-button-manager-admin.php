@@ -964,17 +964,23 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
             );
         }
         
-          public function angelleye_paypal_here_display_push_notification() {
-        global $current_user;
-        $user_id = $current_user->ID;
-        $response = $this->angelleye_get_push_notifications();
-        if (is_object($response)) {
-            foreach ($response->data as $key => $response_data) {
-                if (!get_user_meta($user_id, $response_data->id)) {
-                    $this->angelleye_display_push_notification($response_data);
+        public function angelleye_paypal_button_manager_display_push_notification() {
+            global $current_user;
+            $user_id = $current_user->ID;
+            if (false === ( $response = get_transient('angelleye_paypal_button_manager_push_notification_result') )) {
+                $response = $this->angelleye_get_push_notifications();
+                if(is_object($response)) {
+                    set_transient('angelleye_paypal_button_manager_push_notification_result', $response, 12 * HOUR_IN_SECONDS);
                 }
             }
-        }
+            $response = $this->angelleye_get_push_notifications();
+            if (is_object($response)) {
+                foreach ($response->data as $key => $response_data) {
+                    if (!get_user_meta($user_id, $response_data->id)) {
+                        $this->angelleye_display_push_notification($response_data);
+                    }
+                }
+            }
     }
 
     public function angelleye_get_push_notifications() {
@@ -1021,10 +1027,10 @@ class AngellEYE_PayPal_WP_Button_Manager_Admin {
         . '</div>';
     }
     
-    public function angelleye_paypal_here_adismiss_notice() {
+    public function angelleye_paypal_button_manager_adismiss_notice() {
         global $current_user;
         $user_id = $current_user->ID;
-        if (!empty($_POST['action']) && $_POST['action'] == 'angelleye_paypal_here_adismiss_notice') {
+        if (!empty($_POST['action']) && $_POST['action'] == 'angelleye_paypal_button_manager_adismiss_notice') {
             add_user_meta($user_id, stripslashes_deep($_POST['data']), 'true', true);
             wp_send_json_success();
         }
