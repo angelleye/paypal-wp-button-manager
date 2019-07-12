@@ -112,6 +112,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 2.0.2 - XX.XX.2019 =
+* Feature - Adds push notification system. ([PBM-30](https://github.com/angelleye/paypal-wp-button-manager/pull/117))
+
 = 2.0.1.1 - 07.09.2019 =
 * Tweak - Minor adjustment to PayPal API requests.
 
