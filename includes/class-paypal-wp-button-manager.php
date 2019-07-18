@@ -56,7 +56,7 @@ class AngellEYE_PayPal_WP_Button_Manager {
     public function __construct() {
 
         $this->plugin_name = 'paypal-wp-button-manager';
-        $this->version = '2.0.1.1';
+        $this->version = '2.0.2';
 
         $this->load_dependencies();
         $this->set_locale();
@@ -83,8 +83,8 @@ class AngellEYE_PayPal_WP_Button_Manager {
         $custom_actions = array(
             'configure' => sprintf('<a href="%s">%s</a>', admin_url('options-general.php?page=paypal-wp-button-manager-option'), __('Configure', 'paypal-wp-button-manager')),
             'docs' => sprintf('<a href="%s" target="_blank">%s</a>', 'http://www.angelleye.com/category/docs/paypal-wp-button-manager/?utm_source=paypal_wp_button_manager&utm_medium=docs_link&utm_campaign=paypal_wp_button_manager', __('Docs', 'paypal-wp-button-manager')),
-            'support' => sprintf('<a href="%s" target="_blank">%s</a>', 'http://wordpress.org/support/plugin/paypal-wp-button-manager/', __('Support', 'paypal-wp-button-manager')),
-            'review' => sprintf('<a href="%s" target="_blank">%s</a>', 'http://wordpress.org/support/view/plugin-reviews/paypal-wp-button-manager', __('Write a Review', 'paypal-wp-button-manager')),
+            'support' => sprintf('<a href="%s" target="_blank">%s</a>', 'https://www.angelleye.com/support', __('Support', 'paypal-wp-button-manager')),
+            'review' => sprintf('<a href="%s" target="_blank">%s</a>', 'https://www.angelleye.com/product/wordpress-paypal-button-manager/#tab-reviews', __('Write a Review', 'paypal-wp-button-manager')),
         );
 
         // add the links to the front of the actions list

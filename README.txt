@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
 Requires at least: 3.8
 Tested up to: 5.2.2
-Stable tag: 2.0.1.1
+Stable tag: 2.0.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -112,8 +112,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 2.0.2 - XX.XX.2019 =
+= 2.0.2 - 07.18.2019 =
 * Feature - Adds push notification system. ([PBM-30](https://github.com/angelleye/paypal-wp-button-manager/pull/117))
+* Tweak - Updates plugin action links. ([PBM-35](https://github.com/angelleye/paypal-wp-button-manager/pull/118))
 
 = 2.0.1.1 - 07.09.2019 =
 * Tweak - Minor adjustment to PayPal API requests.
