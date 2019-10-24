@@ -54,6 +54,8 @@ if (!function_exists('angelleye_queue_update')) {
     require_once( 'includes/angelleye-functions.php' );
 }
 
+angelleye_queue_update(plugin_basename(__FILE__), '101', 'paypal-wp-button-manager');
+
 if (!defined('PAYPAL_FOR_WOOCOMMERCE_PUSH_NOTIFICATION_WEB_URL')) {
     define('PAYPAL_FOR_WOOCOMMERCE_PUSH_NOTIFICATION_WEB_URL', 'https://www.angelleye.com/');
 }
