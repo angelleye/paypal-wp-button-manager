@@ -56,7 +56,7 @@ class AngellEYE_PayPal_WP_Button_Manager {
     public function __construct() {
 
         $this->plugin_name = 'paypal-wp-button-manager';
-        $this->version = '2.0.2';
+        $this->version = '2.0.2.1';
 
         $this->load_dependencies();
         $this->set_locale();
