@@ -3,8 +3,8 @@ Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SG9SQU2GBXJNA
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
 Requires at least: 3.8
-Tested up to: 5.3
-Stable tag: 2.0.2.2
+Tested up to: 5.3.2
+Stable tag: 2.0.2.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -112,7 +112,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 2.0.2.3 - 12.XX.2019 =
+= 2.0.2.3 - 12.30.2019 =
 * Tweak - Adjustment to Updater plugin notice dismissible. ([PBM-38](https://github.com/angelleye/paypal-wp-button-manager/pull/120))
 
 = 2.0.2.2 - 11.20.2019 =
