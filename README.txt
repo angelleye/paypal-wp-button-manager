@@ -112,7 +112,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 2.0.2.3 - 23.12.2019 =
+= 2.0.2.3 - 12.XX.2019 =
 * Tweak - Adjustment to Updater plugin notice dismissible. ([PBM-38](https://github.com/angelleye/paypal-wp-button-manager/pull/120))
 
 = 2.0.2.2 - 11.20.2019 =
