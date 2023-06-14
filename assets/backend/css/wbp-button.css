@@ -1,0 +1,241 @@
+.paypal-button-generator-form .h5,.paypal-button-generator-form h5 {
+    font-size: 1.25rem;
+    margin: 0px;
+}
+.paypal-button-generator-form .row {
+    display: flex;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex; 
+    flex-wrap: wrap;
+}
+.paypal-button-generator-form .row>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+}
+.paypal-button-generator-form .col-md-12 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+.form-pd{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.paypal-button-generator-form select{
+    border: solid 2px #dadada !important;
+    width: 100%;
+    padding: 4px 10px;
+}
+@media (min-width: 768px){
+    .paypal-button-generator-form .col-md-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
+.paypal-button-generator-form .customization {
+    border: 1px solid #cbc8c8;
+    width: 100%;
+    margin: 20px 0px 0px 0px;
+}
+
+.paypal-button-generator-form .customize-row {
+    border-right: 1px solid #cbc8c8;
+}
+
+.paypal-button-generator-form .customized-paypal-button,
+.paypal-button-generator-form .add-another-option,
+.paypal-button-generator-form  .button,
+.paypal-button-generator-form .option-name-done,
+.paypal-button-generator-form .remove, 
+.paypal-button-generator-form .save-price-option, 
+.paypal-button-generator-form .customize-text-appearance, 
+.paypal-button-generator-form .save-text-field {
+    background-color: #63a804;
+    width: fit-content;
+    height: 35px;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 10px;
+    border: none;
+    padding: 8px 30px;
+    border-radius: 5px;
+    display: block;
+}
+.paypal-button-generator-form{
+    padding: 15px 0 0px 0px;
+}
+.paypal-button-generator-form label {
+    color: #1e1e1e;
+    padding-bottom: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+}
+.customize-button label{
+    width: 50%;
+}
+.paypal-button-generator-form .customize-button label{
+    padding-bottom: 0px; 
+}
+.paypal-button-generator-form .wp-core-ui select {
+    font-size: 16px;
+    width: 100%;
+}
+.panel-body .form-control,.panel-body input {
+    padding: 5px 24px 5px 8px  !important;
+    line-height: 2 !important;
+    border-color: #8c8f94;
+}
+.paypal-button-generator-form .currency{
+    padding: 8px 24px 5px 8px  !important;
+}
+.paypal-button-generator-form .create-option-field input{
+    padding: 0px 10px  !important;
+    margin-bottom: 5px;
+}
+.paypal-button-generator-form .create-option-field .form-control,.paypal-button-generator-form .menu-option-name .form-control{
+    padding: 2px 10px  !important;
+    margin-bottom: 5px;
+}
+.paypal-button-generator-form a{
+    text-decoration: none;
+}
+.other-customization-fields{
+    margin: 20px 0;
+}
+.add-text-field .form-control{
+    margin-bottom: 20px;
+}
+.paypal-button-generator-form .add-text-field{
+    margin-top: 20px;
+}
+.wp-color-picker, .wp-picker-open, .wp-picker-input-wrap{
+    margin: 0 10px;
+}
+.remove{
+    background-color: #b41d1d!important;
+}
+.customize-btn-padding > a:active,.customize-btn-padding > a:hover,.customize-btn-padding > a:focus, .customize-text-appearance:active, .customize-text-appearance:hover, .customize-text-appearance:focus{
+    color: #fff;
+}
+.customized-paypal-button, .save-price-option,.option-name-done, .save-text-field, .wp-picker-clear{
+    background-color: #888686;
+    color: #fff !important;
+    border-radius: 5px;
+    border: none !important;
+    text-align: center;
+    font-size: 14px  !important;
+}
+.wp-picker-clear{
+    padding: 6px 17px !important;
+    background-color: #888686 !important;
+    margin-bottom: 15px !important;
+}
+.wp-picker-input-wrap input{
+    line-height: 1.6 !important;
+}
+.create-price-option, .create-option-name, .create-option-name .menu-option-name{
+    margin-top: 10px;
+}
+.btn-text{
+    font-size: 16px;
+    font-weight: 600;
+}
+#paypal-button-meta-box .inside{
+    background-color: #f0f0f1;
+    margin-top: 0px !important;
+}
+.paypal-button-generator-form  .step1-heading{
+    background: #9e9b9b;
+    padding: 6px 12px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.paypal-button-generator-form  .panel-body{
+    margin-top: 8px;
+}
+.wp-picker-clear{
+    margin: 10px 20px !important;
+}
+.paypal-button-generator-form .form-group:nth-child(odd) {
+    background: #e1e1e1;
+}
+.paypal-button-generator-form .form-group .form-pd {
+    margin-bottom: 10px;
+    display: flex;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex; 
+    align-items: center;
+    padding: 10px 20px;
+}
+.paypal-button-generator-form .form-group {
+    margin-bottom: 10px;
+}
+.paypal-button-generator-form  .panel-body input,
+.paypal-button-generator-form  .panel-body select{
+    border: solid 2px #dadada !important;
+    width: 100%;
+}
+.paypal-button-generator-form  .panel-body .btn-text {
+    font-size: 20px;
+    font-weight: 600;
+}
+#paypal-button-meta-box .select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+    padding-left: 18px;
+}
+#paypal-button-meta-box .select2-container .select2-search--inline {
+    float: none;
+    position: relative;
+    top: -8px;
+}
+.wbp-hide-funding label{
+    width: 48%;
+}
+#paypal-button-meta-box .select2-container{
+    width: 100% !important;
+}
+.wbp-funding-method-message{
+    font-size: 18px;
+    font-weight: 500;
+    background: #ffffff;
+    color: #000;
+    padding: 15px;
+    border: dashed 2px #c2c2c2;
+    text-align: center;
+}
+@media screen and (max-width: 1525px) {
+    .wp-picker-clear{
+        margin: 10px 10px !important;
+    }
+    .wp-picker-open{
+        margin-right: 10px !important;
+    }
+}
+@media screen and (max-width: 1299px) {
+    .wp-picker-open{
+        margin: 15px 0 !important;
+    }
+    .wp-color-picker, .wp-picker-input-wrap {
+        margin: 0px !important;
+    }
+    .wp-picker-input-wrap .button-color-field{
+        width: 90%;
+    }
+    .paypal-button-generator-form .form-group .form-pd {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .paypal-button-generator-form label{
+        width: 100%;
+    }
+    .customize-button label {
+        padding-bottom: 5px;
+    }
+}
