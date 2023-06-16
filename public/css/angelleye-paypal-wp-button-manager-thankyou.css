@@ -1,0 +1,64 @@
+.order-message {
+    background-color: #eeeeee;
+    text-align: center;
+    padding: 70px 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    max-width: initial;
+}
+.order-message.order-success .message:before {
+    content: '';
+    color: #08a908;
+    display: block;
+    font-size: 80px;
+    margin-bottom: -30px;
+    background: url(../images/check-mark-verified.png);
+    background-size: contain;
+    width: 110px;
+    height: 110px;
+    text-align: center;
+    margin: auto;
+    background-repeat: no-repeat;
+}
+.order-message.order-failed .message:before {
+    content: '\f153';
+    font-family: dashicons;
+    color: #d50505;
+    display: block;
+    font-size: 86px;
+    font-size: 80px;
+    margin-bottom: -30px;
+}
+
+.order-message .message, .order-message .order_id{
+    color: #000;
+}
+.order-message .order_id{
+    font-size: 24px;
+    color: #008300;
+}
+.order-message .message{
+    font-size: 48px;
+    font-weight: 600;
+}
+.order-failed .message {
+    color: #d50505;
+}
+@media (max-width:699px){
+    .order-message.order-failed .message:before,
+    .order-message.order-success .message:before {
+        margin-bottom: 17px;
+    }
+    .order-message .message {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 33px;
+    }
+    .order-message .order_id {
+        font-size: 20px;
+    }
+}

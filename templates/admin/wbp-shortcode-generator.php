@@ -1,1 +1,0 @@
-<span class="paypal_shortcode" title="<?php _e('Click to copy','paypal-wp-button-manager'); ?>" id="paypal_shortcode">[<?php echo self::$shortcode; ?> id="<?php echo $post->ID; ?>"]</span>
