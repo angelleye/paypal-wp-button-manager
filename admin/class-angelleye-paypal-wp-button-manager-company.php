@@ -29,7 +29,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Company {
      * Adds the menu page
      * */
     public function admin_menu(){
-        $companies_page = add_submenu_page( 'edit.php?post_type=paypal_button', __('PayPal Companies','angelleye-paypal-wp-button-manager'), __('PayPal Companies','angelleye-paypal-wp-button-manager'), 'manage_options', self::$paypal_button_company_slug, array( $this, 'paypal_button_manager_admin') );
+        $companies_page = add_submenu_page( 'edit.php?post_type=paypal_button', __('PayPal Accounts','angelleye-paypal-wp-button-manager'), __('PayPal Accounts','angelleye-paypal-wp-button-manager'), 'manage_options', self::$paypal_button_company_slug, array( $this, 'paypal_button_manager_admin') );
         add_action("load-$companies_page", array( $this, 'companies_screen_options') );
     }
 

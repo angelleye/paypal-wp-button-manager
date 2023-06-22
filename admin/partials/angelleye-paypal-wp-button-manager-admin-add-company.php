@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="paypal-gp">
-        <label class="PayPal-gp-left" for="paypal-company"><?php _e('Company Name:','angelleye-paypal-wp-button-manager'); ?></label>
+        <label class="PayPal-gp-left" for="paypal-company"><?php _e('Account Name:','angelleye-paypal-wp-button-manager'); ?></label>
         <div class="paypal-ac-checkbox">
             <div id="paypal-ac-type">
                 <input type="text" name="company_name" id="paypal-company" value="<?php echo isset( $company ) ? $company->company_name : ''; ?>" <?php echo isset( $company ) ? 'disabled="disabled"' : ''; ?>>

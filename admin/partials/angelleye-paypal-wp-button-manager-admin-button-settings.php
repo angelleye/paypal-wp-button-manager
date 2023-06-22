@@ -7,14 +7,14 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
             <div class="form-pd">
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="company_id"><?php _e("Choose Company Name:", "angelleye-paypal-wp-button-manager");?>
+                        <label for="company_id"><?php _e("Choose Account Name:", "angelleye-paypal-wp-button-manager");?>
                         </label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <select class="form-control select-company" name="company_id" id="company_id" required>
-                            <option value=""><?php _e("Select Company", "angelleye-paypal-wp-button-manager"); ?></option><?php 
+                            <option value=""><?php _e("Select Account", "angelleye-paypal-wp-button-manager"); ?></option><?php 
                             foreach ($companies as $company) {
                                 ?><option value="<?php echo $company->ID; ?>"<?php selected($company->ID, $button->get_company_id( 'edit' ) ); ?>><?php _e($company->company_name, "angelleye-paypal-wp-button-manager") ?></option><?php 
                             }

@@ -11,8 +11,8 @@ class Angelleye_Paypal_Wp_Button_Manager_Companies extends Angelleye_Paypal_Wp_B
     public function __construct() {
 
         parent::__construct( [
-            'singular' => __( 'PayPal Companies', 'angelleye-paypal-wp-button-manager' ),
-            'plural' => __( 'PayPal Company', 'angelleye-paypal-wp-button-manager' ),
+            'singular' => __( 'PayPal Accounts', 'angelleye-paypal-wp-button-manager' ),
+            'plural' => __( 'PayPal Account', 'angelleye-paypal-wp-button-manager' ),
             'ajax' => false
 
         ] );
@@ -73,7 +73,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Companies extends Angelleye_Paypal_Wp_B
      * @return string
      * */
     public function no_items() {
-        _e( 'No companies avaliable.', 'angelleye-paypal-wp-button-manager' );
+        _e( 'No accounts avaliable.', 'angelleye-paypal-wp-button-manager' );
     }
 
     /**
@@ -125,7 +125,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Companies extends Angelleye_Paypal_Wp_B
      * */
     function get_columns() {
         $columns = array(
-            'name'          => __('Company Name', 'angelleye-paypal-wp-button-manager'),
+            'name'          => __('Account Name', 'angelleye-paypal-wp-button-manager'),
             'paypal_person_name'         => __('Contact Name', 'angelleye-paypal-wp-button-manager'),
             'paypal_mode'   => __('PayPal Mode', 'angelleye-paypal-wp-button-manager'),
             'paypal_merchant_id'        => __('PayPal Merchant ID', 'angelleye-paypal-wp-button-manager')

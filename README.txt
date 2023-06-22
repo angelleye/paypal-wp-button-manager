@@ -33,7 +33,7 @@ We have essentially replicated the PayPal Button Manager experience you see in y
 
 = Create Buttons for Multiple PayPal Accounts =
 
-Within the plugin you may create one or more companies (PayPal accounts).  When creating a new button, the first step is to choose which company / account you will be creating the button for.  This provides the ability to create and manage buttons for any number of PayPal accounts within a single installation.
+Within the plugin you may connect one or more accounts (PayPal accounts).  When creating a new button, the first step is to choose which account you will be creating the button for.  This provides the ability to create and manage buttons for any number of PayPal accounts within a single installation.
 
 = Options for Button Usage =
 
@@ -73,8 +73,8 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 = Usage =
 
 1. Hover the PayPal Buttons tab in your WordPress admin panel.
-2. Click the PayPal Companies.
-3. Click the Add Company.
+2. Click the PayPal Accounts.
+3. Click the Add Account.
 4. Fill up the details and click save.
 5. Click Begin Now.
 6. Login and proceed with PayPal steps.
