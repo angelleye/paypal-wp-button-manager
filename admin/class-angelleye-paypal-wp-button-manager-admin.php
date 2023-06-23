@@ -49,7 +49,8 @@ class Angelleye_Paypal_Wp_Button_Manager_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		if( isset( $_GET['page'] ) && $_GET['page'] == Angelleye_Paypal_WP_Button_Manager_Company::$paypal_button_company_slug ){
+		global $post_type, $pagenow;
+		if( ( isset( $_GET['page'] ) && $_GET['page'] == Angelleye_Paypal_WP_Button_Manager_Company::$paypal_button_company_slug ) || ( $post_type === Angelleye_Paypal_Wp_Button_Manager_Post::$post_type && $pagenow === 'edit.php' ) ){
             wp_enqueue_style( $this->plugin_name . '-company', ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_URL . 'admin/css/angelleye-paypal-wp-button-manager-company.css', array(), $this->version, 'all' );
         }
 

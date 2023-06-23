@@ -289,6 +289,10 @@ body{
 .paypal-ac-new .paypal-wp-l-logo-details{
     align-items: center;
 }
+.paypal-wp-l-details p a {
+    color: #219642;
+    font-weight: bold;
+}
 @media(max-width:991px){
     .paypal-wp-manager-right,
     .paypal-wp-manager{

@@ -12,6 +12,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
         add_action( 'init', array($this, 'register_post_type') );
         add_action( 'add_meta_boxes', array($this, 'add_meta_boxes'));
         add_action( 'save_post', array($this, 'save_settings'), 10, 1);
+        add_action( 'admin_notices', array( $this, 'check_company_exists') );
     }
 
     /**
@@ -149,5 +150,18 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
      * */
     public function print_shortcode( $post ){
         include_once(ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_PATH . '/admin/partials/angelleye-paypal-wp-button-manager-admin-shortcode-generator.php');
+    }
+
+    /**
+     * Checks if the paypal company exists, if not then loads the assistance page to setup one.
+     * */
+    public function check_company_exists(){
+        global $post_type, $pagenow;
+
+        if( $post_type === self::$post_type && $pagenow === 'edit.php' ){
+            if( Angelleye_Paypal_Wp_Button_Manager_Companies::record_count() == 0 ){
+                include_once(ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_PATH . '/admin/partials/angelleye-paypal-wp-button-manager-admin-button-default.php');
+            }
+        }
     }
 }
