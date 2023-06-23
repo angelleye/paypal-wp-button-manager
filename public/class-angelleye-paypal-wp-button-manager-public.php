@@ -62,7 +62,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-
+		
 	}
 
 }

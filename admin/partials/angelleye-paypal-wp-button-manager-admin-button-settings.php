@@ -186,8 +186,7 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                     <div class="customer-view col-md-6">
                         <div class="form-pd">
                             <p class="btn-text"><?php  _e("Your customer's view", "angelleye-paypal-wp-button-manager"); ?></p>
-                            <div id="wbp-paypal-button"></div>
-                            <div class="wbp-funding-method-message"><?php _e('Hiding the funding method will not change the preview here but it will be hidden for the customer.','angelleye-paypal-wp-button-manager'); ?></div>
+                            <iframe id="wbp-paypal-iframe" src="<?php echo get_site_url() . '/angelleye-paypal-button-manager-iframe-preview?layout='. $button->get_button_layout() . '&color=' . $button->get_button_color() . '&shape=' . $button->get_button_shape() . '&size=' . $button->get_button_size() . '&height=' . $button->get_button_height() . '&label=' . $button->get_button_label() . '&tagline=' . $button->get_button_tagline() .'&hide_funding=' . implode(',' , $button->get_hide_funding_method() ); ?>"></iframe>
                         </div>
                     </div>
                 </div>

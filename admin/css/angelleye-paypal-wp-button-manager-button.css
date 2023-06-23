@@ -210,6 +210,10 @@
     border: dashed 2px #c2c2c2;
     text-align: center;
 }
+#wbp-paypal-iframe {
+    width: 100%;
+    height: 82vh;
+}
 @media screen and (max-width: 1525px) {
     .wp-picker-clear{
         margin: 10px 10px !important;

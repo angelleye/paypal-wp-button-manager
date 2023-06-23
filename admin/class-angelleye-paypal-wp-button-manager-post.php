@@ -13,6 +13,8 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
         add_action( 'add_meta_boxes', array($this, 'add_meta_boxes'));
         add_action( 'save_post', array($this, 'save_settings'), 10, 1);
         add_action( 'admin_notices', array( $this, 'check_company_exists') );
+        add_action('init', array( $this, 'register_iframe_route') );
+        add_action( 'template_redirect', array( $this, 'paypal_button_iframe' ) );
     }
 
     /**
@@ -162,6 +164,21 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
             if( Angelleye_Paypal_Wp_Button_Manager_Companies::record_count() == 0 ){
                 include_once(ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_PATH . '/admin/partials/angelleye-paypal-wp-button-manager-admin-button-default.php');
             }
+        }
+    }
+
+    public function register_iframe_route(){
+        add_rewrite_endpoint( 'angelleye-paypal-button-manager-iframe-preview', EP_ROOT );
+    }
+
+    public function paypal_button_iframe(){
+        global $wp;
+        if ( isset( $wp->query_vars['angelleye-paypal-button-manager-iframe-preview'] ) ) {
+            if( get_current_user_id() && current_user_can( 'manage_options') ){
+
+                include_once(ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_PATH . '/admin/partials/angelleye-paypal-wp-button-manager-paypal-button-preview.php');
+            }
+            exit;
         }
     }
 }
