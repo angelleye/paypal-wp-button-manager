@@ -92,7 +92,7 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                                 <div class="form-pd">
                                     <label for="wbp-button-layout"><?php _e('Button Layout','angelleye-paypal-wp-button-manager'); ?></label>
                                     <select name="wbp-button-layout" id="wbp-button-layout" class="form-control wbp-field">
-                                        <option value="horizontal" <?php selected('horizontal',$button->get_button_layout( 'edit' ) ); ?>><?php _e('Horizontal (Recommended)', 'angelleye-paypal-wp-button-manager'); ?></option>
+                                        <option value="horizontal" <?php selected('horizontal',$button->get_button_layout( 'edit' ) ); ?>><?php _e('Horizontal', 'angelleye-paypal-wp-button-manager'); ?></option>
                                         <option value="vertical" <?php selected('vertical',$button->get_button_layout( 'edit' ) ); ?>><?php _e('Vertical','angelleye-paypal-wp-button-manager'); ?></option>
                                     </select>
                                 </div>
@@ -101,7 +101,7 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                                <div class="form-pd">
                                     <label for="wbp-button-color"><?php _e('Button Color','angelleye-paypal-wp-button-manager'); ?></label>
                                     <select name="wbp-button-color" id="wbp-button-color" class="form-control wbp-field">
-                                        <option value="gold" <?php selected('gold',$button->get_button_color( 'edit' ) ); ?>><?php _e('Gold (Recommended)', 'angelleye-paypal-wp-button-manager'); ?></option>
+                                        <option value="gold" <?php selected('gold',$button->get_button_color( 'edit' ) ); ?>><?php _e('Gold', 'angelleye-paypal-wp-button-manager'); ?></option>
                                         <option value="blue" <?php selected('blue',$button->get_button_color( 'edit' ) ); ?>><?php _e('Blue','angelleye-paypal-wp-button-manager'); ?></option>
                                         <option value="silver" <?php selected('silver',$button->get_button_color( 'edit' ) ); ?>><?php _e('Silver','angelleye-paypal-wp-button-manager'); ?></option>
                                         <option value="white" <?php selected('white',$button->get_button_color( 'edit' ) ); ?>><?php _e('White','angelleye-paypal-wp-button-manager'); ?></option>
@@ -113,7 +113,7 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                                 <div class="form-pd">
                                     <label for="wbp-button-shape"><?php _e('Button Shape','angelleye-paypal-wp-button-manager'); ?></label>
                                     <select name="wbp-button-shape" id="wbp-button-shape" class="form-control wbp-field">
-                                        <option value="rect" <?php selected('rect',$button->get_button_shape( 'edit' ) ); ?>><?php _e('Rect (Recommended)', 'angelleye-paypal-wp-button-manager'); ?></option>
+                                        <option value="rect" <?php selected('rect',$button->get_button_shape( 'edit' ) ); ?>><?php _e('Rect', 'angelleye-paypal-wp-button-manager'); ?></option>
                                         <option value="pill" <?php selected('pill',$button->get_button_shape( 'edit' ) ); ?>><?php _e('Pill','angelleye-paypal-wp-button-manager'); ?></option>
                                     </select>
                                 </div>
@@ -122,7 +122,7 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                                 <div class="form-pd">
                                     <label for="wbp-button-size"><?php _e('Button Size','angelleye-paypal-wp-button-manager'); ?></label>
                                     <select name="wbp-button-size" id="wbp-button-size" class="form-control wbp-field">
-                                        <option value="responsive" <?php selected('responsive',$button->get_button_size( 'edit' ) ); ?>><?php _e('Responsive (Recommended)', 'angelleye-paypal-wp-button-manager'); ?></option>
+                                        <option value="responsive" <?php selected('responsive',$button->get_button_size( 'edit' ) ); ?>><?php _e('Responsive', 'angelleye-paypal-wp-button-manager'); ?></option>
                                         <option value="small" <?php selected('small',$button->get_button_size( 'edit' ) ); ?>><?php _e('Small','angelleye-paypal-wp-button-manager'); ?></option>
                                         <option value="medium" <?php selected('medium',$button->get_button_size( 'edit' ) ); ?>><?php _e('Medium','angelleye-paypal-wp-button-manager'); ?></option>
                                         <option value="large" <?php selected('large',$button->get_button_size( 'edit' ) ); ?>><?php _e('Large','angelleye-paypal-wp-button-manager'); ?></option>
@@ -133,7 +133,7 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                                 <div class="form-pd">
                                     <label for="wbp-button-height"><?php _e('Button Height','angelleye-paypal-wp-button-manager'); ?></label>
                                     <select name="wbp-button-height" id="wbp-button-height" class="form-control wbp-field">
-                                        <option value="" <?php selected('',$button->get_button_height( 'edit' ) ); ?>><?php _e('Default Height (Recommended)', 'angelleye-paypal-wp-button-manager'); ?></option><?php
+                                        <option value="" <?php selected('',$button->get_button_height( 'edit' ) ); ?>><?php _e('Default Height', 'angelleye-paypal-wp-button-manager'); ?></option><?php
                                         for( $i=25; $i<=55; $i++ ){
                                             ?><option value="<?php echo $i; ?>" <?php selected($i,$button->get_button_height( 'edit' ) ); ?>><?php echo sprintf( __('%d px','angelleye-paypal-wp-button-manager'), $i); ?></option><?php
                                         }
@@ -144,7 +144,7 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                                 <div class="form-pd">
                                     <label for="wbp-button-label"><?php _e('Button Label','angelleye-paypal-wp-button-manager'); ?></label>
                                     <select name="wbp-button-label" id="wbp-button-label" class="form-control wbp-field">
-                                        <option value="paypal" <?php selected('paypal',$button->get_button_label( 'edit' ) ); ?>><?php _e('PayPal (Recommended)', 'angelleye-paypal-wp-button-manager'); ?></option>
+                                        <option value="paypal" <?php selected('paypal',$button->get_button_label( 'edit' ) ); ?>><?php _e('PayPal', 'angelleye-paypal-wp-button-manager'); ?></option>
                                         <option value="checkout" <?php selected('checkout',$button->get_button_label( 'edit' ) ); ?>><?php _e('Checkout','angelleye-paypal-wp-button-manager'); ?></option>
                                         <option value="buynow" <?php selected('buynow',$button->get_button_label( 'edit' ) ); ?>><?php _e('Buy Now','angelleye-paypal-wp-button-manager'); ?></option>
                                         <option value="pay" <?php selected('pay',$button->get_button_label( 'edit' ) ); ?>><?php _e('Pay','angelleye-paypal-wp-button-manager'); ?></option>
