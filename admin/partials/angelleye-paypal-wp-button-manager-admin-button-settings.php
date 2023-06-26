@@ -53,7 +53,7 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                     <div class="col-md-6">
                         <div class="form-pd">
                             <label for="item-price"><?php _e("Price", "angelleye-paypal-wp-button-manager") ?></label>
-                            <input type="number" min="0" name="item_price" id="item-price" class="form-control" value="<?php echo $button->get_price( 'edit' ); ?>" required>
+                            <input type="number" min="0" step=".01" name="item_price" id="item-price" class="form-control" value="<?php echo $button->get_price( 'edit' ); ?>" required>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -73,14 +73,14 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                             <h5><?php _e("Shipping", "angelleye-paypal-wp-button-manager", "angelleye-paypal-wp-button-manager") ?></h5>
                             <p><label><?php _e("Use specific amount: (<span class=shipping-currency>USD</span>)", "angelleye-paypal-wp-button-manager") ?></label>
                             </p>
-                            <input type="number" min="0" class="shipping-amount form-control" name="item_shipping_amount" value="<?php echo $button->get_shipping_amount(); ?>">
+                            <input type="number" min="0" step=".01" class="shipping-amount form-control" name="item_shipping_amount" value="<?php echo $button->get_shipping_amount(); ?>">
                         </div>
                     </div>
                     <div class="tax col-md-6">
                         <div class="form-pd">
                             <h5><?php _e("Tax", "angelleye-paypal-wp-button-manager", "angelleye-paypal-wp-button-manager") ?></h5>
                             <p><label><?php _e("Use tax rate: (%)", "angelleye-paypal-wp-button-manager") ?></label></p>
-                            <input type="number" min="0" class="text-rate form-control" name="item_tax_rate" value="<?php echo $button->get_tax_rate(); ?>">
+                            <input type="number" min="0" step=".01" class="text-rate form-control" name="item_tax_rate" value="<?php echo $button->get_tax_rate(); ?>">
                         </div>
                     </div>
                 </div>
