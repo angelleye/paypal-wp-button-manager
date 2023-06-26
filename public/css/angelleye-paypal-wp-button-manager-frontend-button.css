@@ -1,0 +1,42 @@
+.wbp-form{
+    background: #f7f7f7a6;
+    padding: 40px;
+    border-radius: 20px;
+}
+.wbp-form p{
+    margin-bottom: 0px;
+}
+.item-price-label,
+.wbp-form label,
+.item-name-details .item-name-label{
+    font-weight: 600;
+    font-size: 18px;
+    display: inline-block;
+    color: #000000;
+}
+.wbp-form .tax-rate,
+.wbp-form .shipping-rate{
+    margin: 10px 0px;
+}
+.item-price,
+.total-amount,
+.tax-amount,
+.shipping,
+.item-name-details .item-name {
+    display: inline-block;
+    font-size: 18px;
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+.item-price-label,
+.total-amount-label,
+.tax-rate-label,
+.shipping-rate-label{
+    width: 120px;
+    margin-bottom: 5px;
+}
+@media screen and (max-width: 480px){
+    .wbp-form{
+        padding: 20px;
+    }
+}
