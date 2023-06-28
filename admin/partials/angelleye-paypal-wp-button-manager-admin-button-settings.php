@@ -84,6 +84,17 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                         </div>
                     </div>
                 </div>
+                <hr>
+                <div class="row additional-settings-row">
+                    <div class="additional-settings col-md-6">
+                        <div class="form-pd additional-settings">
+                            <h5 class="additional-heading"><?php esc_html_e("Additional Settings", "angelleye-paypal-wp-button-manager"); ?></h5>
+                            
+                            <input type="checkbox" id="hide-data-fields" class="form-control" name="hide_data_fields" value="yes" <?php echo ($button->is_data_fields_hidden() == 'yes') ? 'checked' : '' ?>>
+                            <label for="hide-data-fields"><?php esc_html_e("Hide Data Fields", "angelleye-paypal-wp-button-manager"); ?></label>
+                        </div>
+                    </div>                    
+                </div>
                 <div class="row customization">
                     <div class="customize-button col-md-6">
                         <div class="customize-row">

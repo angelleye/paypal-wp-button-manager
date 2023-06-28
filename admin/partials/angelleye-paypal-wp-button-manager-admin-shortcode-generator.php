@@ -1,1 +1,3 @@
 <span class="paypal_shortcode" title="<?php _e('Click to copy','angelleye-paypal-wp-button-manager'); ?>" id="paypal_shortcode">[<?php echo self::$shortcode; ?> id="<?php echo $post->ID; ?>"]</span>
+<span class="dashicons-before dashicons-info paypal_shortcode_info"><span class="tooltiptext"><?php _e('This shortcode is also available in the blocks system.','angelleye-paypal-wp-button-manager'); ?></span></span>
+<span class="dashicons-before dashicons-admin-page paypal_shortcode_copy"><span class="tooltiptext"><?php _e('Copy Shortcode','angelleye-paypal-wp-button-manager'); ?></span>

@@ -190,6 +190,17 @@ class Angelleye_Paypal_Wp_Button_Manager_Button{
     }
 
     /**
+     * Returns data fields hidden or not
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function is_data_fields_hidden( $context='view' ){
+        return $this->get_prop( 'wbp_hide_data_fields', $context );
+    }    
+
+    /**
      * Returns the hidden funding method
      * 
      * @param string context context of function i.e. view or edit
