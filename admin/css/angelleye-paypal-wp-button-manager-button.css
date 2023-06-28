@@ -193,7 +193,20 @@
 #paypal-button-meta-box .select2-container .select2-search--inline {
     float: none;
     position: relative;
-    top: -8px;
+    top: -1px;
+}
+#paypal-button-meta-box .select2-container--default .select2-selection--multiple {
+    border: 2px solid #dadada;
+    padding: 8px;
+    border-radius: 0px;
+     -webkit-appearance: none;
+    background: #fff url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E) no-repeat right 5px top 55%;
+    background-size: 16px 16px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+#paypal-button-meta-box .select2-container--default .select2-search--inline .select2-search__field{
+    cursor: pointer;
 }
 .wbp-hide-funding label{
     width: 48%;
@@ -213,6 +226,29 @@
 #wbp-paypal-iframe {
     width: 100%;
     height: 82vh;
+}
+.paypal_shortcode_copy {
+    float: right;
+    cursor: pointer;
+}
+.paypal_shortcode_copy .tooltiptext, .paypal_shortcode_info .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%; /* Position the tooltip above the element */
+  left: 85%; /* Center the tooltip horizontally */
+  transform: translateX(-50%); /* Center the tooltip horizontally */
+}
+.paypal_shortcode_copy:hover .tooltiptext, .paypal_shortcode_info:hover .tooltiptext {
+  visibility: visible;
 }
 @media screen and (max-width: 1525px) {
     .wp-picker-clear{
