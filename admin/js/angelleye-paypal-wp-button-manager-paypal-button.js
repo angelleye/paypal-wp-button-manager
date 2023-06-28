@@ -23,12 +23,18 @@ jQuery(function($){
         placeholder: wbp_select2.placeholder
     });
 
-    $('.paypal_shortcode').on('click',function(){
+    $(".paypal_shortcode_copy").on('click',function(){
         var temp = $("<input>");
         $("body").append(temp);
-        temp.val($(this).text()).select();
+        temp.val($(".paypal_shortcode").text()).select();
         document.execCommand("copy");
         temp.remove();
+
+        $('.paypal_shortcode_copy .tooltiptext').text(angelleye_paypal_wp_button_manager_admin_paypal_button.copied_text);
+
+        setTimeout(function(){
+            $('.paypal_shortcode_copy .tooltiptext').text(angelleye_paypal_wp_button_manager_admin_paypal_button.copy_text);
+        }, 2000);
     });
 });
 

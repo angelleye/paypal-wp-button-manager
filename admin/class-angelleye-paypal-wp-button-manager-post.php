@@ -15,6 +15,11 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
         add_action( 'admin_notices', array( $this, 'check_company_exists') );
         add_action('init', array( $this, 'register_iframe_route') );
         add_action( 'template_redirect', array( $this, 'paypal_button_iframe' ) );
+        add_filter('manage_' . self::$post_type . '_posts_columns', array( $this, 'button_post_type_columns'), 10, 1);
+        add_filter('manage_edit-' . self::$post_type . '_sortable_columns', array( $this, 'button_post_type_sort_columns'), 10, 1);
+        add_action( 'manage_' . self::$post_type . '_posts_custom_column' , array($this,'fill_button_post_type_columns'), 10, 2 );
+        add_action( 'pre_get_posts', array( $this, 'handle_custom_column_sorting' ) );
+        add_filter('posts_search', array( $this, 'custom_column_search'), 10, 2);
     }
 
     /**
@@ -167,10 +172,16 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
         }
     }
 
+    /**
+     * Registers the iframe route
+     * */
     public function register_iframe_route(){
         add_rewrite_endpoint( 'angelleye-paypal-button-manager-iframe-preview', EP_ROOT );
     }
 
+    /**
+     * Adds the template for iframe route
+     * */
     public function paypal_button_iframe(){
         global $wp;
         if ( isset( $wp->query_vars['angelleye-paypal-button-manager-iframe-preview'] ) ) {
@@ -180,5 +191,134 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
             }
             exit;
         }
+    }
+
+    /**
+     * Adds the columns to button posts
+     * 
+     * @param array     columns     Array of columns
+     * 
+     * @return array
+     * */
+    public function button_post_type_columns( $columns ){
+        $date = $columns['date'];
+        unset( $columns['date'] );
+
+        $columns['item_name'] = __('Item Name','angelleye-paypal-wp-button-manager');
+        $columns['item_id'] = __('Item ID','angelleye-paypal-wp-button-manager');
+        $columns['price'] = __('Price', 'angelleye-paypal-wp-button-manager');
+        $columns['currency'] = __('Currency', 'angelleye-paypal-wp-button-manager');
+        $columns['shipping'] = __('Shipping','angelleye-paypal-wp-button-manager');
+        $columns['tax'] = __('Tax','angelleye-paypal-wp-button-manager');
+        $columns['date'] = $date;
+        return $columns;
+    }
+
+    /**
+     * Adds the sortable to columns of button posts
+     * 
+     * @param array     columns     Array of columns
+     * 
+     * @return array
+     * */
+    public function button_post_type_sort_columns( $columns ){
+        $columns['item_name'] = 'item_name';
+        $columns['item_id'] = 'item_id';
+        $columns['price'] = 'price';
+        $columns['currency'] = 'currency';
+        $columns['shipping'] = 'shipping';
+        $columns['tax'] = 'tax';
+        return $columns;
+    }
+
+    /**
+     * Fills the custom post type columns
+     * 
+     * @param string    column      column id
+     * @param int       post_id     ID of the post
+     * 
+     * @return void
+     * */
+    public function fill_button_post_type_columns( $column, $post_id ){
+        $button = new Angelleye_Paypal_Wp_Button_Manager_Button( $post_id );
+        switch( $column ){
+            case 'item_name':
+                echo $button->get_item_name();
+                break;
+
+            case 'item_id':
+                echo $button->get_item_id();
+                break;
+
+            case 'price':
+                echo $button->get_price();
+                break;
+
+            case 'currency':
+                echo $button->get_currency();
+                break;
+
+            case 'shipping':
+                echo $button->get_shipping_amount();
+                break;
+
+            case 'tax':
+                echo $button->get_tax_rate();
+                break;
+        }
+    }
+
+    /**
+     * Handles the custom column sorting
+     * 
+     * @param WP_Query      query       Query object
+     * 
+     * @return void
+     * */
+    public function handle_custom_column_sorting( $query ) {
+        if ( ! is_admin() ) {
+            return;
+        }
+
+        $orderby = $query->get( 'orderby' );
+
+        if ( 'item_name' === $orderby ) {
+            $query->set( 'meta_key', 'wbp_product_name' );
+            $query->set( 'orderby', 'meta_value' );
+        } else if ( 'item_id' === $orderby ) {
+            $query->set( 'meta_key', 'wbp_product_id' );
+            $query->set( 'orderby', 'meta_value' );
+        } else if ( 'price' === $orderby ) {
+            $query->set( 'meta_key', 'wbp_item_price' );
+            $query->set( 'orderby', 'meta_value' );
+        } else if ( 'currency' === $orderby ) {
+            $query->set( 'meta_key', 'wbp_item_price_currency' );
+            $query->set( 'orderby', 'meta_value' );
+        } else if ( 'shipping' === $orderby ) {
+            $query->set( 'meta_key', 'wbp_item_shipping_amount' );
+            $query->set( 'orderby', 'meta_value' );
+        } else if ( 'tax' === $orderby ) {
+            $query->set( 'meta_key', 'wbp_item_tax_rate' );
+            $query->set( 'orderby', 'meta_value' );
+        }
+    }
+
+    /**
+     * Allows to search in custom column
+     * 
+     * @param string    search      search query
+     * @param WP_Query  wp_query    WP_Query object
+     * 
+     * @return string
+     * */
+    public function custom_column_search( $search, $wp_query ){
+        global $wpdb;
+
+        if (isset($wp_query->query['s']) && is_admin() && $wp_query->is_main_query() && $wp_query->get('post_type') === self::$post_type ) {
+            $search_term = $wp_query->query['s'];
+            $search .= " OR ($wpdb->postmeta.meta_key = 'wbp_product_name' AND $wpdb->postmeta.meta_value LIKE '%$search_term%') OR ($wpdb->postmeta.meta_key = 'wbp_product_id' AND $wpdb->postmeta.meta_value LIKE '%$search_term%') OR ($wpdb->postmeta.meta_key = 'wbp_item_price' AND $wpdb->postmeta.meta_value LIKE '%$search_term%') OR ($wpdb->postmeta.meta_key = 'wbp_item_price_currency' AND $wpdb->postmeta.meta_value LIKE '%$search_term%') OR ($wpdb->postmeta.meta_key = 'wbp_item_shipping_amount' AND $wpdb->postmeta.meta_value LIKE '%$search_term%') OR ($wpdb->postmeta.meta_key = 'wbp_item_tax_rate' AND $wpdb->postmeta.meta_value LIKE '%$search_term%')";
+        }
+
+        return $search;
     }
 }
