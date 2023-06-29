@@ -42,20 +42,24 @@ class Angelleye_Paypal_Wp_Button_Manager_Order{
     public function custom_endpoint_templates() {
         global $wp;
         if ( isset( $wp->query_vars['angelleye-capture-order'] ) ) {
-            $payment_id = $this->capture_order();
-            if( is_wp_error( $payment_id ) ){
-                wp_redirect( get_site_url() . '/angelleye-order-received?success=false&order_id=' . $payment_id . '&message=' . $payment_id->get_error_message() );
+            $payment = $this->capture_order();
+            if( is_wp_error( $payment['payment'] ) ){
+                wp_redirect( get_site_url() . '/angelleye-order-received?success=false&message=' . $payment['payment']->get_error_message() );
             } else {
-                wp_redirect( get_site_url() . '/angelleye-order-received?success=true&order_id=' . $payment_id );
+                wp_redirect( get_site_url() . '/angelleye-order-received?success=true&order_id=' . $payment['payment']->body->id . '&button_id=' . $payment['button_id'] );
             }
             exit;
         }
         if( isset( $wp->query_vars['angelleye-order-received'] ) ){
             wp_enqueue_style( $this->plugin_name . '-thankyou' );
-            $order_id = $_GET['order_id'];
             $success = ( isset( $_GET['success'] ) && $_GET['success'] == 'true' ) ? true : false;
             if( !$success ){
                 $message = $_GET['message'];
+            } else {
+                $order_id = sanitize_text_field( $_GET['order_id'] );
+                $button_id = sanitize_text_field( $_GET['button_id'] );
+
+                $button = new Angelleye_Paypal_Wp_Button_Manager_Button( $button_id );
             }
             include( ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_PATH . '/public/partials/angelleye-paypal-wp-button-manager-public-thankyou.php' );
             exit;
@@ -142,23 +146,22 @@ class Angelleye_Paypal_Wp_Button_Manager_Order{
 
         $api->set_body( $paypal_body );
         $api->set_action('create_order');
-        $payment_id = $api->submit();
-        if( is_wp_error( $payment_id ) ){
-            return $payment_id;
+        $payment = $api->submit();
+        if( is_wp_error( $payment ) ){
+            return $payment;
         }
 
-        wp_send_json(array('orderID' => $payment_id), 200);
+        wp_send_json(array('orderID' => $payment->body->id), 200);
     }
 
     /**
      * Allows to capture order
      * 
-     * @return string
+     * @return array
      * */
     public function capture_order(){
         $paypal_order_id = sanitize_text_field( $_GET['paypal_order_id'] );
         $button_id = sanitize_text_field( $_GET['button_id'] );
-        $referer = $_GET['referrer'];
 
         $button = new Angelleye_Paypal_Wp_Button_Manager_Button( $button_id );
         if( !$button->is_valid_button() ){
@@ -170,7 +173,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Order{
         $api->set_method('POST');
         $api->set_action('capture_order');
         $api->set_paypal_url( $paypal_order_id . '/capture', true );
-        $payment_id = $api->submit();
-        return $payment_id;
+        $payment = $api->submit();
+        return array( 'payment' => $payment, 'button_id' => $button_id );
     }
 }

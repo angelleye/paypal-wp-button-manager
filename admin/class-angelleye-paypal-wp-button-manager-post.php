@@ -142,7 +142,8 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
             'wbp_button_tagline' => sanitize_text_field( $_POST['wbp-button-tagline'] ),
             'wbp_item_shipping_amount' =>  sanitize_text_field( $_POST['item_shipping_amount'] ),
             'wbp_item_tax_rate' =>  sanitize_text_field( $_POST['item_tax_rate'] ),
-            'wbp_hide_funding_method' => $_POST['wbp-button-hide-funding']
+            'wbp_hide_funding_method' => $_POST['wbp-button-hide-funding'],
+            'wbp_hide_data_fields' => $_POST['hide_data_fields']
         );
                
         foreach ( $meta_values as $key => $value ) {
