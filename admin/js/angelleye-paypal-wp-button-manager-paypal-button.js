@@ -36,6 +36,70 @@ jQuery(function($){
             $('.paypal_shortcode_copy .tooltiptext').text(angelleye_paypal_wp_button_manager_admin_paypal_button.copy_text);
         }, 2000);
     });
+
+    $('.row-actions .trash > a').on('click', function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var post_id = $(this).parents('tr').attr('id').replace('post-','');
+        var html = '<div id="button_delete_popup"></div>';
+        $('body').append(html);
+
+        var interval, i;
+        $("#button_delete_popup").dialog({
+            minWidth: 500,
+            buttons: {
+                Delete: function(){
+                    location.href = url;
+                },
+                Cancel: function(){
+                    $(this).dialog('close');
+                }
+            },
+            title: angelleye_paypal_wp_button_manager_admin_paypal_button.delete_caution,
+            open: function( event, ui ){
+                $("#button_delete_popup").html('<p>' + angelleye_paypal_wp_button_manager_admin_paypal_button.delete_caution_wait_message + '<span class="append"></span></p>');
+                $(".ui-dialog-buttonset > button:eq(0)").hide();
+                i=0;
+                interval = setInterval( function(){
+                    i++;
+                    if( i%3 == 0 ){
+                        i=0;
+                        $("#button_delete_popup p > .append").text('');
+                    }
+                    $("#button_delete_popup p > .append").append('.');
+                }, 1000);
+
+                $.ajax({
+                    url: angelleye_paypal_wp_button_manager_admin_paypal_button.ajaxurl,
+                    method: 'POST',
+                    data: {
+                        'action': 'angelleye_paypal_wp_button_manager_admin_paypal_button_check_shortcode_used',
+                        'post_id' : post_id
+                    },
+                    success: function( response ){
+                        if( response.success ){
+                            if( response.posts.length > 0 ){
+                                clearInterval( interval );
+                                var _html = '<p>' + angelleye_paypal_wp_button_manager_admin_paypal_button.delete_caution_2 + '</p><ol>';
+                                for( var j=0; j<response.posts.length; j++ ){
+                                    _html += '<li><a target="_blank" href="' + response.posts[j].url + '">' + response.posts[j].title + '</a></li>';
+                                }
+                                _html += '</ol><p>' + angelleye_paypal_wp_button_manager_admin_paypal_button.delete_caution_3 + '</p><p>' + angelleye_paypal_wp_button_manager_admin_paypal_button.delete_caution_4 + '<p><p>' + angelleye_paypal_wp_button_manager_admin_paypal_button.delete_caution_5 + '</p>';
+                                $("#button_delete_popup").html(_html);
+                                $(".ui-dialog-buttonset > button:eq(0)").show();
+                            } else {
+                                location.href = url;
+                            }
+                        }
+                    }
+                });
+            },
+            close: function( event, ui ){
+                i=0;
+                clearInterval( interval );
+            }
+        });
+    });
 });
 
 jQuery(document).on('change','#wbp-button-layout',function(){

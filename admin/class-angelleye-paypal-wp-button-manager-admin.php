@@ -57,6 +57,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Admin {
         if( ( isset( $_GET['post_type'] ) && $_GET['post_type'] == Angelleye_Paypal_Wp_Button_Manager_Post::$post_type ) || ( isset( $_GET['post'] ) && get_post_type( sanitize_text_field( $_GET['post'] ) ) == Angelleye_Paypal_Wp_Button_Manager_Post::$post_type ) ){
         	wp_enqueue_style( $this->plugin_name . '-button', ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_URL . 'admin/css/angelleye-paypal-wp-button-manager-button.css', array(), $this->version, 'all' );
         	wp_enqueue_style( $this->plugin_name . '-select2', ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_URL . 'admin/css/select2.min.css', array(), $this->version, 'all' );
+        	wp_enqueue_style( $this->plugin_name . '-jquery-ui', ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_URL . 'admin/css/jquery-ui.min.css', array(), $this->version, 'all');
         }
 	}
 
@@ -90,8 +91,21 @@ class Angelleye_Paypal_Wp_Button_Manager_Admin {
             wp_enqueue_script( $this->plugin_name . '-paypal-sdk', 'https://www.paypal.com/sdk/js?&client-id=' . ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_SANDBOX_PARTNER_CLIENT_ID . '&enable-funding=venmo,paylater' . $hide_method, array(), null );
 
             wp_register_script( $this->plugin_name . '-button', ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_URL . 'admin/js/angelleye-paypal-wp-button-manager-paypal-button.js', array( $this->plugin_name . '-paypal-sdk', 'jquery'), '1.0.0' );
-            wp_localize_script( $this->plugin_name . '-button', 'angelleye_paypal_wp_button_manager_admin_paypal_button', array( 'copy_text' => __('Copy Shortcode','angelleye-paypal-wp-button-manager'), 'copied_text' => __('Shortcode successfully copied!','angelleye-paypal-wp-button-manager' ) ) );
+            wp_localize_script( $this->plugin_name . '-button', 'angelleye_paypal_wp_button_manager_admin_paypal_button', array( 
+	            	'copy_text' => __('Copy Shortcode','angelleye-paypal-wp-button-manager'), 
+	            	'copied_text' => __('Shortcode successfully copied!','angelleye-paypal-wp-button-manager' ), 
+	            	'delete_caution' => __('Caution', 'angelleye-paypal-wp-button-manager'),
+	            	'delete_caution_2' => __('This PayPal button is being used in your site content.','angelleye-paypal-wp-button-manager'),
+	            	'delete_caution_3' => __('Deleting this button will remove it from your site, and any content or shortcodes referencing this button will no longer render.', 'angelleye-paypal-wp-button-manager'),
+	            	'delete_caution_4' => __('Please ensure you have removed references to this button from your content before deleting it.', 'angelleye-paypal-wp-button-manager'),
+	            	'delete_caution_5' => __('Do you wish to proceed with deleting this button?', 'angelleye-paypal-wp-button-manager'),
+	            	'delete_caution_wait_message' => __('Please Wait', 'angelleye-paypal-wp-button-manager'),
+	            	'ajaxurl' => admin_url( 'admin-ajax.php' ),
+	        	) 
+       		);
             wp_enqueue_script( $this->plugin_name . '-button' );
+
+            wp_enqueue_script( $this->plugin_name . '-jquery-ui', ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_URL . 'admin/js/jquery-ui.min.js', array(), $this->version, 'all');
         }
 	}
 

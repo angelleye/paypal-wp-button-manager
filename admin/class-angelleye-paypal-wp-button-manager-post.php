@@ -20,6 +20,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
         add_action( 'manage_' . self::$post_type . '_posts_custom_column' , array($this,'fill_button_post_type_columns'), 10, 2 );
         add_action( 'pre_get_posts', array( $this, 'handle_custom_column_sorting' ) );
         add_filter('posts_search', array( $this, 'custom_column_search'), 10, 2);
+        add_action('wp_ajax_angelleye_paypal_wp_button_manager_admin_paypal_button_check_shortcode_used', array( $this, 'check_shortcode_used') );
     }
 
     /**
@@ -321,5 +322,26 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
         }
 
         return $search;
+    }
+
+    public function check_shortcode_used(){
+        if( get_current_user_id() && current_user_can( 'manage_options' ) ){
+            global $wpdb;
+            $post_id = sanitize_text_field( $_POST['post_id'] );
+
+            $shortcode = '[' . self::$shortcode . ' id="' . $post_id . '"]';
+
+            $posts = $wpdb->get_results( $wpdb->prepare( "SELECT ID, post_title FROM {$wpdb->posts} WHERE post_content LIKE '%%%s%%' AND post_type IN ('post','page')", $shortcode ) );
+
+            $_posts = array();
+            foreach ($posts as $post) {
+                $_posts[] = array(
+                    'title' => $post->post_title,
+                    'url' => get_edit_post_link( $post->ID )
+                );
+            }
+            wp_send_json( array('success' => true, 'posts' => $_posts ) );
+        }
+        die();
     }
 }
