@@ -294,7 +294,7 @@ body{
     color: #219642;
     font-weight: bold;
 }
-#paypal-wp-company-add .paypal-wp-manager-left{
+#paypal-wp-company-add > .paypal-wp-manager-left{
     padding: 0px 0px;
 }
 #paypal-wp-company-add .paypal-ac-setting{
