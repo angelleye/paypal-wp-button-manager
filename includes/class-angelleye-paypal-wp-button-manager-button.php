@@ -190,6 +190,61 @@ class Angelleye_Paypal_Wp_Button_Manager_Button{
     }
 
     /**
+     * Returns data fields hidden or not
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function is_data_fields_hidden( $context='view' ){
+        return $this->get_prop( 'wbp_hide_data_fields', $context );
+    }
+
+    /**
+     * Returns data fields left side background color
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function left_background_color( $context='view' ){
+        return $this->get_prop( 'wbp_data_fields_left_background_color', $context );
+    }  
+
+    /**
+     * Returns data fields right side background color
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function right_background_color( $context='view' ){
+        return $this->get_prop( 'wbp_data_fields_right_background_color', $context );
+    }  
+
+    /**
+     * Returns data fields left side foreground color
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function left_foreground_color( $context='view' ){
+        return $this->get_prop( 'wbp_data_fields_left_foreground_color', $context );
+    }
+
+    /**
+     * Returns data fields right side foreground color
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function right_foreground_color( $context='view' ){
+        return $this->get_prop( 'wbp_data_fields_right_foreground_color', $context );
+    }
+
+    /**
      * Returns the hidden funding method
      * 
      * @param string context context of function i.e. view or edit

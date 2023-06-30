@@ -206,20 +206,20 @@
 .paypal-button-generator-form .form-group {
     margin-bottom: 10px;
 }
-.paypal-button-generator-form .panel-body input[type=date],
-.paypal-button-generator-form .panel-body input[type=datetime-local],
-.paypal-button-generator-form .panel-body input[type=datetime],
-.paypal-button-generator-form .panel-body input[type=email],
-.paypal-button-generator-form .panel-body input[type=month],
-.paypal-button-generator-form .panel-body input[type=number],
-.paypal-button-generator-form .panel-body input[type=password],
-.paypal-button-generator-form .panel-body input[type=search],
-.paypal-button-generator-form .panel-body input[type=tel],
-.paypal-button-generator-form .panel-body input[type=text],
-.paypal-button-generator-form .panel-body input[type=time],
-.paypal-button-generator-form .panel-body input[type=url],
-.paypal-button-generator-form .panel-body input[type=week],
-.paypal-button-generator-form .panel-body select{
+.paypal-button-generator-form  .panel-body input[type=date],
+.paypal-button-generator-form  .panel-body input[type=datetime-local],
+.paypal-button-generator-form  .panel-body input[type=datetime],
+.paypal-button-generator-form  .panel-body input[type=email],
+.paypal-button-generator-form  .panel-body input[type=month],
+.paypal-button-generator-form  .panel-body input[type=number],
+.paypal-button-generator-form  .panel-body input[type=password],
+.paypal-button-generator-form  .panel-body input[type=search],
+.paypal-button-generator-form  .panel-body input[type=tel],
+.paypal-button-generator-form  .panel-body input[type=text],
+.paypal-button-generator-form  .panel-body input[type=time],
+.paypal-button-generator-form  .panel-body input[type=url],
+.paypal-button-generator-form  .panel-body input[type=week],
+.paypal-button-generator-form  .panel-body select{
     border: solid 2px #dadada !important;
     width: 100%;
 }
@@ -289,6 +289,13 @@
 }
 .paypal_shortcode_copy:hover .tooltiptext, .paypal_shortcode_info:hover .tooltiptext {
   visibility: visible;
+}
+.wp-picker-container .wp-color-result.button {
+    height: 30px;
+    border: solid 1px #a9a9a9;
+}
+.wp-color-result-text {
+    border-radius: 3px;
 }
 @media screen and (max-width: 1525px) {
     .wp-picker-clear{

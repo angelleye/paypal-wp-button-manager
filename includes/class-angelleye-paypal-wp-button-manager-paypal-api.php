@@ -90,9 +90,12 @@ class Angelleye_Paypal_Wp_Button_Manager_Paypal_API {
             'testmode' => $this->testmode ? 'yes' : 'no',
             'paypal_url' => $this->paypal_url,
             'paypal_header' => $this->paypal_header,
-            'paypal_method' => $this->paypal_method,
-            'action_name' => $this->action_name
+            'paypal_method' => $this->paypal_method
         );
+
+        if( !empty( $this->action_name ) ){
+            $request_body['action_name'] = $this->action_name;
+        }
 
         if( !empty( $this->paypal_body ) ){
             $request_body['paypal_body'] = $this->paypal_body;
@@ -115,7 +118,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Paypal_API {
 
         $this->logger->info('Request parameters are built', array('api_url' => $this->api_url, 'request' => $request ) );
 
-        $response = wp_remote_post( $this->api_url, $request );
+        $response = wp_remote_request( $this->api_url, $request );
 
         if( is_wp_error( $response ) ){
             $this->logger->error('WP Error Received', $response );
@@ -143,7 +146,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Paypal_API {
         }
 
         $this->logger->info('API execution completed', $response );
-        return $response->body->id;
+        return $response;
     }
 
     /**

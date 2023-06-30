@@ -84,6 +84,44 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                         </div>
                     </div>
                 </div>
+                <hr>
+                <div class="row additional-settings-row">
+                    <div class="additional-settings col-md-6">
+                        <div class="form-pd additional-settings">
+                            <h5 class="additional-heading"><?php esc_html_e("Additional Settings", "angelleye-paypal-wp-button-manager"); ?></h5>
+                            
+                            <input type="checkbox" id="hide-data-fields" class="form-control" name="hide_data_fields" value="yes" <?php echo ($button->is_data_fields_hidden() == 'yes') ? 'checked' : '' ?>>
+                            <label for="hide-data-fields"><?php esc_html_e("Hide Data Fields", "angelleye-paypal-wp-button-manager"); ?></label>
+                        </div>
+                    </div>                   
+                </div>
+                <div class="row data-fields-additional-settings-row" style="<?php echo ($button->is_data_fields_hidden() == 'yes') ? 'display: none' : '' ?>">
+                    <div class="data-fields-additional-settings-background col-md-6">
+                        <div class="form-pd data-fields-additional-settings">
+                            <p><label><?php _e("Left Background Color", "angelleye-paypal-wp-button-manager"); ?></label></p>
+                            <input type="text" name="left_background_color" class="angelleye-color-picker" value="<?php echo $button->left_background_color(); ?>"  />
+                        </div>
+                    </div>
+                    <div class="data-fields-additional-settings-background col-md-6">
+                        <div class="form-pd data-fields-additional-settings">
+                            <p><label><?php _e("Right Background Color", "angelleye-paypal-wp-button-manager"); ?></label></p>
+                            <input type="text" name="right_background_color" class="angelleye-color-picker" value="<?php echo $button->right_background_color(); ?>"  />
+                        </div>
+                    </div>
+
+                    <div class="data-fields-additional-settings-foreground col-md-6">
+                        <div class="form-pd data-fields-additional-settings">
+                            <p><label><?php _e("Left Foreground Color", "angelleye-paypal-wp-button-manager"); ?></label></p>
+                            <input type="text" name="left_foreground_color" class="angelleye-color-picker" value="<?php echo $button->left_foreground_color(); ?>"  />
+                        </div>
+                    </div>
+                    <div class="data-fields-additional-settings-foreground col-md-6">
+                        <div class="form-pd data-fields-additional-settings">
+                            <p><label><?php _e("Right Foreground Color", "angelleye-paypal-wp-button-manager"); ?></label></p>
+                            <input type="text" name="right_foreground_color" class="angelleye-color-picker" value="<?php echo $button->right_foreground_color(); ?>"  />
+                        </div>
+                    </div>                 
+                </div>
                 <div class="row customization">
                     <div class="customize-button col-md-6">
                         <div class="customize-row">
