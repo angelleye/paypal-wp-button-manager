@@ -100,6 +100,16 @@ jQuery(function($){
             }
         });
     });
+
+    $("input#hide-data-fields").on("click", function() {
+        if($(this).prop("checked") == true) {
+            $(".data-fields-additional-settings-row").hide();
+        } else {
+            $(".data-fields-additional-settings-row").show();
+        }
+    });
+
+    $('.angelleye-color-picker').wpColorPicker();
 });
 
 jQuery(document).on('change','#wbp-button-layout',function(){

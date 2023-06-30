@@ -200,6 +200,7 @@ body{
     cursor: pointer;
 }
 .paypal-ac-type-btn {
+    cursor: pointer;
     background: #1c9440;
     color: #fff;
     font-size: 16px;
@@ -292,6 +293,20 @@ body{
 .paypal-wp-l-details p a {
     color: #219642;
     font-weight: bold;
+}
+#paypal-wp-company-add .paypal-wp-manager-left{
+    padding: 0px 0px;
+}
+#paypal-wp-company-add .paypal-ac-setting{
+    padding: 45px 30px;
+    border: none;
+}
+#paypal-wp-company-add .paypal-ac-type-btn {
+    margin-top: 40px;
+}
+#paypal-wp-company-add #paypal-ac-type input,
+#paypal-wp-company-add #paypal-ac-checkbox input{
+    width: 285px;
 }
 @media(max-width:991px){
     .paypal-wp-manager-right,
