@@ -107,7 +107,8 @@ class Angelleye_Paypal_Wp_Button_Manager_Admin {
             wp_enqueue_script( $this->plugin_name . '-button' );
 
             wp_enqueue_script( $this->plugin_name . '-jquery-ui', ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_URL . 'admin/js/jquery-ui.min.js', array(), $this->version, 'all');
-
+        	wp_enqueue_script("wp-color-picker");
+            
         }
 	}
 
