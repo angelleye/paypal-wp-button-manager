@@ -6,11 +6,10 @@
                 <div class="paypal-wp-l-logo-details">
                     <img width="159" height="188" src="<?php echo ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_IMAGE_PATH . 'logo.png'; ?>">
                     <div class="paypal-wp-l-details">
-                        <div class="paypal-ac-heading"><?php _e('Welcome To The Most PayPal WP Button Manager','angelleye-paypal-wp-button-manager'); ?></div>
-                        <p><?php _e('Boost average order totals and conversion rates with<br>
-                        PayPal Checkout, PayPal Credit, Buy Now Pay Later, Venmo, and more!<br>
-                        All for a total fee of only 3.59% + 49¢</p>
-                        <p>Save money on Visa/MasterCard/Discover transactions with a total fee of only 2.69% + 49¢','angelleye-paypal-wp-button-manager'); ?></p><?php
+                        <div class="paypal-ac-heading"><?php _e('Welcome to the PayPal Commerce Button Manager','angelleye-paypal-wp-button-manager'); ?></div>
+                        <p><?php _e('<p>Boost average order totals and conversion rates with PayPal Checkout, PayPal Credit, Buy Now Pay Later, Venmo, and more!</p>
+                        <p>All for a total fee of only 3.59% + 49¢</p>
+                        <p>Save money on Visa/MasterCard/Discover transactions with a total fee of only 2.69% + 49¢</p>','angelleye-paypal-wp-button-manager'); ?><?php
                         if( isset( $redirect_url ) && is_wp_error( $redirect_url ) ){
                             ?><span class="signup-url-error"><?php echo $redirect_url->get_error_message(); ?></span><?php
                         } else {
