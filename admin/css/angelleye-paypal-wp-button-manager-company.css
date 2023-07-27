@@ -200,6 +200,7 @@ body{
     cursor: pointer;
 }
 .paypal-ac-type-btn {
+    cursor: pointer;
     background: #1c9440;
     color: #fff;
     font-size: 16px;
