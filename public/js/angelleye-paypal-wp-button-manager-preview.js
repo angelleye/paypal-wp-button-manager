@@ -22,7 +22,7 @@ function angelleyeRenderButton() {
     if (paypalButton) {
         paypalButton.close();
     }
-
+    
     paypalButton = paypal.Buttons(buttonConfig);
     paypalButton.render('#wbp-paypal-button');
 }

@@ -11,7 +11,6 @@
     flex-wrap: wrap;
 }
 .paypal-button-generator-form .row>* {
-    flex-shrink: 0;
     width: 100%;
     max-width: 100%;
 }
@@ -289,6 +288,13 @@
 }
 .paypal_shortcode_copy:hover .tooltiptext, .paypal_shortcode_info:hover .tooltiptext {
   visibility: visible;
+}
+.wp-picker-container .wp-color-result.button {
+    height: 30px;
+    border: solid 1px #a9a9a9;
+}
+.wp-color-result-text {
+    border-radius: 3px;
 }
 @media screen and (max-width: 1525px) {
     .wp-picker-clear{

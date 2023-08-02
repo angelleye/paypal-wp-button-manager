@@ -41,9 +41,11 @@
                 ?></select>
             </div>
         </div>
-    </div>
-    <button name="save_paypal_ac_type" type="submit" class="paypal-ac-type-btn" <?php echo isset( $company ) ? 'disabled="disabled"' : ''; ?>><?php _e('Save', 'angelleye-paypal-wp-button-manager'); ?></button>
-    <div class="wave-vector">
+    </div><?php
+    if(!isset($company)) {
+        ?><button name="save_paypal_ac_type" type="submit" class="paypal-ac-type-btn"><?php _e('Save', 'angelleye-paypal-wp-button-manager'); ?></button><?php
+    }
+    ?><div class="wave-vector">
         <img width="110" height="110" src="<?php echo ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_IMAGE_PATH . 'vector-paypal.png'; ?>">
     </div>
 </form>

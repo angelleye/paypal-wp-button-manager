@@ -7,11 +7,16 @@
                 <div class="paypal-wp-l-details"><?php
                     if( !is_array( $products ) ){
                         ?><div class="paypal-payments">
-                            <span class="paypal-payments-text"><?php echo $products; ?>
+                            <span class="paypal-payments-text"><?php echo angelleye_paypal_wp_button_manager_format_strings( $products ); ?>
                         </div><?php
                     } else {
                         foreach( $products as $product ){
-                            $product_method = array( str_replace( '_', ' ', $product['name'] ), str_replace( '_', ' ', implode( ', ', $product['capabilities'] ) ) );
+                            $name = angelleye_paypal_wp_button_manager_format_strings( str_replace( '_', ' ', $product['name'] ) );
+                            $capabilities = array_map( 'angelleye_paypal_wp_button_manager_format_strings', array_map( function( $element ){
+                                    return str_replace('_', ' ', $element);
+                                }, $product['capabilities'] ) 
+                            );
+                            $product_method = array($name, str_replace( '_', ' ', implode( ', ', $capabilities ) ) );
                             $product_method = array_filter( $product_method );
                             ?><div class="paypal-payments">
                                 <span class="<?php echo in_array( $product['vetting_status'], array( 'SUBSCRIBED', 'ACTIVE') ) ? 'approved' : 'rejected'; ?>"></span>
