@@ -201,6 +201,50 @@ class Angelleye_Paypal_Wp_Button_Manager_Button{
     }
 
     /**
+     * Returns data fields left side background color
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function left_background_color( $context='view' ){
+        return $this->get_prop( 'wbp_data_fields_left_background_color', $context );
+    }  
+
+    /**
+     * Returns data fields right side background color
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function right_background_color( $context='view' ){
+        return $this->get_prop( 'wbp_data_fields_right_background_color', $context );
+    }  
+
+    /**
+     * Returns data fields left side foreground color
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function left_foreground_color( $context='view' ){
+        return $this->get_prop( 'wbp_data_fields_left_foreground_color', $context );
+    }
+
+    /**
+     * Returns data fields right side foreground color
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function right_foreground_color( $context='view' ){
+        return $this->get_prop( 'wbp_data_fields_right_foreground_color', $context );
+    }
+
+    /**
      * Returns the hidden funding method
      * 
      * @param string context context of function i.e. view or edit
@@ -324,5 +368,27 @@ class Angelleye_Paypal_Wp_Button_Manager_Button{
     public function get_company_merchant_id(){
         $this->maybe_set_company();
         return $this->data['paypal_company']['paypal_merchant_id'];
+    }
+
+    /**
+     * Returns hosted button id for donation
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function get_hosted_button_id( $context='view' ){
+        return $this->get_prop( 'wbp_hosted_button_id', $context );
+    }
+
+    /**
+     * Returns hosted button id for donation
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function get_button_environment( $context='view' ){
+        return $this->get_prop( 'wbp_button_environment', $context );
     }
 }
