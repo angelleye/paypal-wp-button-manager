@@ -159,6 +159,7 @@ function hideDonateFields(){
 
 function showDonateFields(){
     jQuery('#donate_group').show();
+<<<<<<< HEAD
 }
 
 function priceHTML(amount){
