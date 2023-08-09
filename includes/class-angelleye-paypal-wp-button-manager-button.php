@@ -369,4 +369,26 @@ class Angelleye_Paypal_Wp_Button_Manager_Button{
         $this->maybe_set_company();
         return $this->data['paypal_company']['paypal_merchant_id'];
     }
+
+    /**
+     * Returns hosted button id for donation
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function get_hosted_button_id( $context='view' ){
+        return $this->get_prop( 'wbp_hosted_button_id', $context );
+    }
+
+    /**
+     * Returns hosted button id for donation
+     *
+     * @param string context context of function i.e. view or edit
+     *
+     * @return string
+     * */
+    public function get_button_environment( $context='view' ){
+        return $this->get_prop( 'wbp_button_environment', $context );
+    }
 }

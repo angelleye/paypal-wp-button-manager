@@ -21,6 +21,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
         add_action( 'pre_get_posts', array( $this, 'handle_custom_column_sorting' ) );
         add_filter('posts_search', array( $this, 'custom_column_search'), 10, 2);
         add_action('wp_ajax_angelleye_paypal_wp_button_manager_admin_paypal_button_check_shortcode_used', array( $this, 'check_shortcode_used') );
+        add_filter( 'post_updated_messages', array( $this, 'updated_messages_for_buttons' ) );
     }
 
     /**
@@ -40,6 +41,8 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
             'search_items' => __('Search PayPal Buttons', 'angelleye-paypal-wp-button-manager'),
             'not_found' => __( 'No paypal buttons found', 'angelleye-paypal-wp-button-manager'),
             'not_found_in_trash' => __('No paypal buttons found in trash', 'angelleye-paypal-wp-button-manager'),
+            'item_updated' => __('Button updated successfully', 'angelleye-paypal-wp-button-manager'),
+            'item_published' => __('Button published successfully', 'angelleye-paypal-wp-button-manager')
         );
     
         $args = array(
@@ -149,6 +152,8 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
             'wbp_data_fields_right_background_color' => sanitize_text_field( $_POST['right_background_color'] ),
             'wbp_data_fields_left_foreground_color' => sanitize_text_field( $_POST['left_foreground_color'] ),
             'wbp_data_fields_right_foreground_color' => sanitize_text_field( $_POST['right_foreground_color'] ),
+            'wbp_hosted_button_id' => sanitize_text_field( $_POST['hosted_button_id'] ),
+            'wbp_button_environment' => sanitize_text_field( $_POST['button-environment'] ),
         );
                
         foreach ( $meta_values as $key => $value ) {
@@ -328,6 +333,11 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
         return $search;
     }
 
+    /**
+     * Checks if the shortcode is used on any post
+     * 
+     * @return json
+     * */
     public function check_shortcode_used(){
         if( get_current_user_id() && current_user_can( 'manage_options' ) ){
             global $wpdb;
@@ -347,5 +357,25 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
             wp_send_json( array('success' => true, 'posts' => $_posts ) );
         }
         die();
+    }
+
+    /**
+     * Allows to update the messages for button
+     * 
+     * @param array    $messages      messages array
+     * 
+     * @return array
+     * */
+    public function updated_messages_for_buttons($messages) {
+        $messages['paypal_button'] = array(
+            0  => '',
+            1  => __( 'PayPal button updated successfully.', 'angelleye-paypal-wp-button-manager' ),
+            6  => __( 'PayPal button created successfully.', 'angelleye-paypal-wp-button-manager' ),
+            7  => __( 'PayPal button saved successfully.', 'angelleye-paypal-wp-button-manager' ),
+            8  => __( 'PayPal button submitted successfully.', 'angelleye-paypal-wp-button-manager' ),
+            10 => __( 'PayPal button draft updated.' )
+        );
+
+        return $messages;
     }
 }

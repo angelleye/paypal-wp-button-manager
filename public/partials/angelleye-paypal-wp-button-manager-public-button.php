@@ -1,5 +1,5 @@
 <div id="form-<?php echo $button_id; ?>" data-id="<?php echo $button_id; ?>" class="wbp-form"><?php
-	if($button->is_data_fields_hidden() !== 'yes') {
+	if($button->get_button_type() == 'services' && $button->is_data_fields_hidden() !== 'yes') {
 		?><div class="item-name-details" style="<?php echo (!empty($button->right_background_color())) ? 'background: '.$button->right_background_color() : '' ?>; <?php echo (!empty($button->right_foreground_color())) ? 'color: '.$button->right_foreground_color() : ''; ?>">
 			<label class="item-name-label" style="<?php echo (!empty($button->left_background_color())) ? 'background: '.$button->left_background_color() : '' ?>; <?php echo (!empty($button->left_foreground_color())) ? 'color: '.$button->left_foreground_color() : ''; ?>"><?php _e("Item Name:", "angelleye-paypal-wp-button-manager") ?></label>
 			<p class="item-name" style="<?php echo (!empty($button->right_background_color())) ? 'background: '.$button->right_background_color() : '' ?>; <?php echo (!empty($button->right_foreground_color())) ? 'color: '.$button->right_foreground_color() : ''; ?>"><?php echo $button->get_item_name(); ?></p>
