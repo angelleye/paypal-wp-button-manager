@@ -11,7 +11,6 @@
     flex-wrap: wrap;
 }
 .paypal-button-generator-form .row>* {
-    flex-shrink: 0;
     width: 100%;
     max-width: 100%;
 }
@@ -265,7 +264,7 @@
 }
 #wbp-paypal-iframe {
     width: 100%;
-    height: 82vh;
+    height: 36vh;
 }
 .paypal_shortcode_copy {
     float: right;
@@ -290,6 +289,152 @@
 .paypal_shortcode_copy:hover .tooltiptext, .paypal_shortcode_info:hover .tooltiptext {
   visibility: visible;
 }
+.wp-picker-container .wp-color-result.button {
+    height: 30px;
+    border: solid 1px #a9a9a9;
+}
+.wp-color-result-text {
+    border-radius: 3px;
+}
+.item-name-details, .price-currency, .shipping-rate, .tax-rate,  {
+    padding: 15px 0;
+}
+
+.customization .currency {
+    padding: 0 !important;
+}
+.paypal-button-generator-form .wbp-form .item-name-details label {
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+    width: 50%;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+p.item-name {
+    width: auto;
+}
+p.item-name, p.item-price, span.amount, .wbp-price {
+    font-size: 18px;
+    line-height: normal;
+    margin: 0; 
+    padding: 11px 20px; 
+}
+span.amount, .wbp-price {
+    padding-left: 0;
+}
+p.item-price {
+    float: left;
+}
+p.shipping {
+    float: left;
+    margin: 0;
+    padding: 10px 20px; 
+}
+label.shipping-rate-label {
+    float: left;
+    width: 50%;
+    line-height: 24px;
+}
+label.tax-rate-label {
+    float: left;
+    width: 50%;
+}
+p.tax-amount {
+    float: left;
+    margin: 0px;
+    padding: 10px 20px; 
+}
+.item-name-details {
+    display: flex;
+    align-items: center;
+    background:#fff;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+}
+.price-currency {
+    margin: 0px;
+    display: block;  
+}
+.shipping-rate {
+    display: flex;
+    align-items: center;
+    float: left;
+    width: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+}
+.price-currency .price {
+    border: 1px solid #cbc8c8;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-left: 0;
+    border-right: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+}
+.tax-rate {
+    float: left;
+    width: 100%;
+    border: 1px solid #cbc8c8;
+    border-radius: 0;
+    border-left: 0;
+    display: flex;
+    align-items: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+}
+.tax-rate + div{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+}
+.wbp-form {
+    float: left !important;
+    border: 1px solid #cbc8c8 !important;
+    background: #fff;
+    width: 100%;
+}
+span.currency {
+    font-size: 18px;
+}
+.customer-view .form-pd .wbp-form label {
+    font-weight: 600;
+    font-size: 18px;
+    display: inline-block;
+    color: #555555;
+    background: #f0f0f0;
+    padding: 11px 20px;
+    width: 170px;
+    margin-bottom: 0px;
+}
+
+.customer-view .form-pd {
+    margin: 15px 15px 0 15px;
+}
+
+p.total-amount {
+    float: left;
+    line-height: 24px;
+    margin: 0px;
+    padding: 10px 20px; 
+}
+
 @media screen and (max-width: 1525px) {
     .wp-picker-clear{
         margin: 10px 10px !important;
@@ -317,5 +462,16 @@
     }
     .customize-button label {
         padding-bottom: 5px;
+    }
+}
+@media screen and (max-width:499px) {
+    .customer-view .form-pd .wbp-form label{
+        font-size: 14px;
+        padding: 11px 10px;
+        width: 135px;
+    }
+    p.item-name, p.item-price, span.amount, .wbp-price, p.tax-amount, p.total-amount{
+        font-size: 14px;
+        padding: 1px 10px;
     }
 }

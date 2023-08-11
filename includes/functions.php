@@ -329,3 +329,32 @@ if( !function_exists('angelleye_paypal_wp_button_manager_get_countries') ){
 		) );
 	}
 }
+
+if( !function_exists( 'angelleye_paypal_wp_button_manager_format_strings') ){
+	/**
+	 * Formats the string
+	 * 
+	 * @param string 	$string 	Unformatted String
+	 * 
+	 * @return string
+	 * 
+	 * */
+	function angelleye_paypal_wp_button_manager_format_strings( $string ){
+		$references = array(
+	        'paypal' => 'PayPal',
+	        'ppcp' => 'PPCP',
+	    );
+
+	    $formattedReferences = array();
+	    $words = explode(' ', strtolower($string));
+	    foreach ($words as $word) {
+	        if (isset($references[$word])) {
+	            $formattedReferences[] = $references[$word];
+	        } else {
+	        	$formattedReferences[] = ucfirst( $word );
+	        }
+	    }
+
+	    return implode(' ', $formattedReferences);
+	}
+}

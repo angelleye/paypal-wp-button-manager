@@ -115,7 +115,12 @@ class Angelleye_Paypal_Wp_Button_Manager_Companies extends Angelleye_Paypal_Wp_B
      * @return string
      * */
     function column_name( $item ) {
-        return '<a href="' . admin_url('admin.php?page=' . Angelleye_Paypal_Wp_Button_Manager_Company::$paypal_button_company_slug . '&company_id=' . $item['ID'] ) . '">'. $item['name'] . '</a>';
+        $actions = array(
+            'delete' => sprintf('<a href="%s?page=%s&action=%s&company_id=%s">%s</a>', admin_url('admin.php'),Angelleye_Paypal_Wp_Button_Manager_Company::$paypal_button_company_slug, 'delete', $item['ID'], __('Delete', 'angelleye-paypal-wp-button-manager') )
+        );
+        $view_page = '<a href="' . admin_url('admin.php?page=' . Angelleye_Paypal_Wp_Button_Manager_Company::$paypal_button_company_slug . '&company_id=' . $item['ID'] ) . '">'. $item['name'] . '</a>';
+
+        return sprintf('%1$s %2$s', $view_page, $this->row_actions($actions));
     }
 
     /**

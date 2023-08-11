@@ -22,6 +22,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Company {
         add_action( 'admin_menu', array( $this, 'admin_menu') );
         add_action('admin_post_angelleye_paypal_wp_button_manager_admin_add_company', array( $this, 'create_company') );
         add_action('admin_post_angelleye_paypal_wp_button_manager_admin_added_company', array( $this, 'update_company') );
+        add_action('admin_post_angelleye_paypal_wp_button_manager_admin_delete_company', array( $this, 'delete_company') );
         add_filter( 'set-screen-option', array($this, 'save_listing_page_option' ), 10, 3 );
     }
 
@@ -39,7 +40,16 @@ class Angelleye_Paypal_Wp_Button_Manager_Company {
     public function paypal_button_manager_admin(){
         global $wpdb;
 
-        if( isset( $_GET['company_id'] ) ){
+        if( isset( $_GET['action'] ) && $_GET['action'] == 'delete' && isset( $_GET['company_id'] ) ){
+
+            $company_id = esc_sql( $_GET['company_id'] );
+
+            $company = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}angelleye_paypal_button_manager_companies WHERE ID = %d", $company_id ) );
+            if( !empty( $company ) ){
+                $companies = $wpdb->get_results( $wpdb->prepare( "SELECT ID, company_name FROM {$wpdb->prefix}angelleye_paypal_button_manager_companies WHERE ID != %d", $company_id ) );
+                include_once( ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PLUGIN_PATH .'/admin/partials/angelleye-paypal-wp-button-manager-delete-company.php');
+            }
+        } else if( isset( $_GET['company_id'] ) ){
             $company_id = esc_sql( $_GET['company_id'] );
 
             $company = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}angelleye_paypal_button_manager_companies WHERE ID = %d", $company_id ) );
@@ -141,6 +151,21 @@ class Angelleye_Paypal_Wp_Button_Manager_Company {
 
             $wpdb->update( $wpdb->prefix . 'angelleye_paypal_button_manager_companies', array( 'paypal_merchant_id' => $merchant_id ), array( 'ID' => $company_id ) );
             wp_redirect( admin_url('admin.php?page=' . self::$paypal_button_company_slug . '&company_id=' . $company_id ) );
+        }
+    }
+
+    public function delete_company(){
+        if( isset( $_POST['company_id'] ) ){
+            global $wpdb;
+            $company_id = esc_sql( $_POST['company_id'] );
+            $new_company_id = esc_sql( $_POST['reassign_company'] );
+
+            if( !empty( $new_company_id ) ){
+                $wpdb->update( $wpdb->postmeta, array( 'meta_value' => $new_company_id ), array( 'meta_key' => 'wbp_company_id', 'meta_value' => $company_id ) );
+            }
+
+            $wpdb->delete( $wpdb->prefix . 'angelleye_paypal_button_manager_companies', array( 'ID' => $company_id ) );
+            wp_redirect( admin_url('edit.php?post_type=' . Angelleye_Paypal_Wp_Button_Manager_Post::$post_type . '&page=' . self::$paypal_button_company_slug . '&deleted=true' ) );
         }
     }
 
