@@ -1,37 +1,31 @@
-=== PayPal WP Button Manager ===
+=== Plugin Name ===
 Contributors: angelleye
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SG9SQU2GBXJNA
-Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
+Donate link: https://angelleye.com
+Tags: paypal, payments, standard, buy now
 Requires at least: 3.8
-Tested up to: 5.3.2
-Stable tag: 2.0.2.3
-License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Tested up to: 6.2.2
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add secure PayPal Buy Now, Donate, Subscribe, and Cart buttons to your website quickly and easily!
+Add secure PayPal Buy Now buttons to your website quickly and easily!
 
 == Description ==
 
 = Introduction =
 
-Easily create and manage PayPal Standard payment buttons within WordPress, and place them on Pages / Posts using shortcodes.
+Easily create and manage PayPal ppcp payment buttons within WordPress, and place them on Pages / Posts using shortcodes or blocks.
 
  * Buy Now Button
- * Donation Button
- * Subscription Button
- * Shopping Cart Button / View Cart Button
  * Shortcodes for easy placement of buttons on Pages / Posts
-
-= Video Demo =
-[youtube https://www.youtube.com/watch?t=53&v=TVZhXxmPil4]
+ * Blocks for easy placement of buttons on Pages
 
 = Security =
 
-The primary objective of this plugin is to provide a way to use PayPal Standard buttons in a secure way.
+The primary objective of this plugin is to provide a way to use PayPal PPCP buttons in a secure way.
 
 Other similar PayPal button plugins will allow you to create a button and display on a page, however, these buttons are not protected in any way.  This allows potential fraudsters to obtain the HTML code that makes up the PayPal button, change the values (ie. item price, shipping amount, etc.) and then submit a payment using those bogus values.
 
-PayPal WP Button Manager is a more advanced solution which utilizes the [PayPal Button Manager API](https://developer.paypal.com/docs/classic/button-manager/integration-guide/NVP/ButtonMgrOverview/) to generate buttons as opposed to basic HTML, which gives you the option to create PayPal Hosted buttons.  These buttons and all of their details are saved in your PayPal account which keeps them safe from prying eyes.  The only thing one could see when viewing the HTML for a PayPal Hosted button is the button ID, and this is worthless to a potential fraudster.
+PayPal WP Button Manager is a more advanced solution which utilizes the [PayPal PPCP](https://developer.paypal.com/docs/multiparty/checkout/standard/integrate/) to generate buttons as opposed to basic HTML.
 
 = User Friendly Interface =
 
@@ -39,15 +33,13 @@ We have essentially replicated the PayPal Button Manager experience you see in y
 
 = Create Buttons for Multiple PayPal Accounts =
 
-Within the plugin you may create one or more companies (PayPal accounts).  When creating a new button, the first step is to choose which company / account you will be creating the button for.  This provides the ability to create and manage buttons for any number of PayPal accounts within a single installation.
+Within the plugin you may connect one or more accounts (PayPal accounts).  When creating a new button, the first step is to choose which account you will be creating the button for.  This provides the ability to create and manage buttons for any number of PayPal accounts within a single installation.
 
 = Options for Button Usage =
 
 After creating your PayPal button you will have multiple options for how to place it in various pages, posts, emails, etc.
 
 First, the Visual Editor in WordPress provides a Shortcodes menu with all of the buttons you have created available for point and click placement.  The actual shortcode values themselves are made available as well so you can simply type them out or copy/paste if you prefer.
-
-You will also have access to the entire HTML snippet that is returned by the PayPal Button Manager API as well as a basic URL link that could be used in emails, social network posts, graphical links, etc.
 
 With numerous options for placement of buttons, you will not have any problems using them wherever you would like.
 
@@ -80,10 +72,16 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 = Usage =
 
-1. Click the PayPal Buttons tab in your WordPress admin panel.
-2. Click Add PayPal Button to open the button creation interface.
-3. Follow the steps to create the type of button you are looking to create.
-4. Place the button on Pages / Posts using shortcodes or the provided HTML / URL snippets.
+1. Hover the PayPal Buttons tab in your WordPress admin panel.
+2. Click the PayPal Accounts.
+3. Click the Add Account.
+4. Fill up the details and click save.
+5. Click Begin Now.
+6. Login and proceed with PayPal steps.
+7. Click the PayPal Buttons tab in your WordPress admin panel.
+8. Click Add PayPal Button to open the button creation interface.
+9. Follow the steps to create the type of button you are looking to create.
+4. Place the button on Pages / Posts using shortcodes or the blocks.
 
 == Screenshots ==
 
@@ -95,7 +93,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 = How is this plugin more secure than others? =
 
-* PayPal WP Button Manager utilizes the PayPal Button Manager API which provides tighter integration with PayPal's system and allows you to create PayPal hosted payment buttons.  These buttons remove all of the detail about the payment from the HTML viewable through view-source in a web browser, so they will not be able to hack the code and submit payments with bogus values.
+* PayPal WP Button Manager utilizes the PayPal PPCP API which provides tighter integration with PayPal's system and allows you to create PayPal hosted payment buttons.  These buttons remove all of the detail about the payment from the HTML viewable through view-source in a web browser, so they will not be able to hack the code and submit payments with bogus values.
 
 = How do I create sandbox accounts for testing? =
 
@@ -112,106 +110,6 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 2.0.2.3 - 12.30.2019 =
-* Tweak - Adjustment to Updater plugin notice dismissible. ([PBM-38](https://github.com/angelleye/paypal-wp-button-manager/pull/120))
-
-= 2.0.2.2 - 11.20.2019 =
-* Feature - Adds AE Updater compatibility for future notices and automated updates. ([PBM-36](https://github.com/angelleye/paypal-wp-button-manager/pull/119))
-
-= 2.0.2.1 - 07.24.2019 =
-* Fix - Resolves version tag issue.
-
-= 2.0.2 - 07.18.2019 =
-* Feature - Adds push notification system. ([PBM-30](https://github.com/angelleye/paypal-wp-button-manager/pull/117))
-* Tweak - Updates plugin action links. ([PBM-35](https://github.com/angelleye/paypal-wp-button-manager/pull/118))
-
-= 2.0.1.1 - 07.09.2019 =
-* Tweak - Minor adjustment to PayPal API requests.
-
-= 2.0.1 - 04.22.2019 =
-* Feature - Adds WP Media Uploader to plugin where optional images are available. ([PWM-6](https://github.com/angelleye/paypal-wp-button-manager/pull/116))
-* Tweak - Resolves a spacing issue where admin notices are displayed. ([PBM-31](https://github.com/angelleye/paypal-wp-button-manager/pull/115))
-
-= 2.0.0 - 04.04.2019 =
-* Feature - Adds AE Updater compatibility for future notices and automated updates. [PWBM-23] ([PBM-29](https://github.com/angelleye/paypal-wp-button-manager/pull/114))
-* Resolves an issue with special characters not displaying properly in the button drop down options. ([PBM-5](https://github.com/angelleye/paypal-wp-button-manager/pull/112))
-
-= 1.1.4 - 02.19.2019 =
-* Fix - Resolves PHP notices. ([PBM-4](https://github.com/angelleye/paypal-wp-button-manager/pull/111))
-
-= 1.1.3 - 12.17.2018 =
-* Fix - Resolves bugs with some drop-down menu options in button builder. ([PWBM-14](https://github.com/angelleye/paypal-wp-button-manager/pull/107))
-* Fix - Gutenberg bug fixes. ([PWBM-17](https://github.com/angelleye/paypal-wp-button-manager/pull/109))
-* Fix - Resolves PHP error displayed when Company Name is not selected. ([PWBM-18](https://github.com/angelleye/paypal-wp-button-manager/pull/110))
-
-= 1.1.2 - 12.08.2018 =
-* Feature - WordPress 5.0 (Gutenberg) Compatibility. ([PWBM-13](https://github.com/angelleye/paypal-wp-button-manager/pull/105)) ([PWBM-15](https://github.com/angelleye/paypal-wp-button-manager/pull/106))
-* Fix - Resolves a PHP notice showing up sometimes in WooCommerce order emails. ([PWBM-2](https://github.com/angelleye/paypal-wp-button-manager/pull/102))
-* Fix - Resolves an error from improper field validation. ([PWBM-6](https://github.com/angelleye/paypal-wp-button-manager/pull/103))
-* Fix - Resolves an issue with order quantities. ([PWBM-10](https://github.com/angelleye/paypal-wp-button-manager/pull/104))
-* Fix - Resolves a $post variable conflict. ([PWBM-16](https://github.com/angelleye/paypal-wp-button-manager/pull/108))
-
-= 1.1.1 - 06.22.2018 =
-* Tweak - Generate fresh default POT file. ([PWBM-3](https://github.com/angelleye/paypal-wp-button-manager/pull/99))
-* Tweak - Data sanitization adjustments for privacy and security. ([PWBM-1](https://github.com/angelleye/paypal-wp-button-manager/pull/101))
-* Fix - PHP 7+ compatibility. ([PWBM-4](https://github.com/angelleye/paypal-wp-button-manager/pull/100))
-
-= 1.1.0 - 12.14.2017 =
-* Feature - Adds the ability to update existing buttons. ([#55](https://github.com/angelleye/paypal-wp-button-manager/issues/55)) ([#89](https://github.com/angelleye/paypal-wp-button-manager/issues/89))
-* Feature - Adds the ability to set inventory for a button. ([#48](https://github.com/angelleye/paypal-wp-button-manager/issues/48))
-* Feature - Adds multi-site compatibility. ([#66](https://github.com/angelleye/paypal-wp-button-manager/issues/66))
-* Feature - Adds a log viewer for easier troubleshooting with logs. ([#73](https://github.com/angelleye/paypal-wp-button-manager/issues/73))
-* Feature - Syncs button details with PayPal when entering edit button page via admin panel. ([#76](https://github.com/angelleye/paypal-wp-button-manager/issues/76))
-* Tweak - Removes obsolete email/account ID option. ([#74](https://github.com/angelleye/paypal-wp-button-manager/issues/74))
-* Tweak - Masks API logs. ([#75](https://github.com/angelleye/paypal-wp-button-manager/issues/75))
-* Tweak - Adds better error message to explain when the PayPal API credentials are incorrect. ([#82](https://github.com/angelleye/paypal-wp-button-manager/issues/82))
-* Tweak - Design updates using Bootstrap. ([#79](https://github.com/angelleye/paypal-wp-button-manager/issues/79))
-* Tweak - Hides unnecessary fields when creating buttons. ([#83](https://github.com/angelleye/paypal-wp-button-manager/issues/83))
-* Tweak - Improves error messages when API failures occur. ([#86](https://github.com/angelleye/paypal-wp-button-manager/issues/86))
-* Tweak - Adjustments to functionality of view/edit links. ([#91](https://github.com/angelleye/paypal-wp-button-manager/issues/91))
-* Fix - Resolves an issue with the visual editor shortcode tool placing the wrong button. ([#64](https://github.com/angelleye/paypal-wp-button-manager/issues/64))
-* Fix - Resolves a bug with the custom image option. ([#67](https://github.com/angelleye/paypal-wp-button-manager/issues/67))
-* Fix - Resolves PHP warnings displayed when activating themes. ([#72](https://github.com/angelleye/paypal-wp-button-manager/issues/72))
-* Fix - Resolves issues with subscription buttons. ([#71](https://github.com/angelleye/paypal-wp-button-manager/issues/71))
-* Fix - Resolves an issue with button text options not working properly on some buttons. ([#70](https://github.com/angelleye/paypal-wp-button-manager/issues/70)) ([#78](https://github.com/angelleye/paypal-wp-button-manager/issues/78))
-* Fix - Resolves a PHP notice that was showing up in the WooCommerce setup wizard. ([#84](https://github.com/angelleye/paypal-wp-button-manager/issues/84))
-* Fix - Resolves an issue where the form would be wiped out if an API error occurred when creating a button. ([#57](https://github.com/angelleye/paypal-wp-button-manager/issues/57))
-* Fix - Resolves issues with some displayed text not getting translated properly. ([#88](https://github.com/angelleye/paypal-wp-button-manager/issues/88))
-
-= 1.0.3 - 12.17.2015 =
-* Fix - Resolves an issue where the preview of a custom button would not display correctly. ([#56](https://github.com/angelleye/paypal-wp-button-manager/issues/56))
-* Fix - General code improvements and bug fixes.
-* Fix - Resolves a conflict with the bbPress plugin. ([#63](https://github.com/angelleye/paypal-wp-button-manager/issues/63))
-* Tweak - Trims the values of API credentials entered into settings to avoid errors because of empty spaces in the values. ([#58](https://github.com/angelleye/paypal-wp-button-manager/issues/58))
-* Tweak - Adds additional currency codes. ([#60](https://github.com/angelleye/paypal-wp-button-manager/issues/60))
-* Tweak - Adds missing functionality in subscription buttons. ([#61](https://github.com/angelleye/paypal-wp-button-manager/issues/61))
-
-= 1.0.2 - 06.02.2015 =
-* Fix - Resolves a conflict with the WordPress media uploader.
-
-= 1.0.1 - 06.01.2015 =
-* Fix - Removes PHP short tag to resolve an error when activating on servers that do not have short tags enabled.
-
-= 1.0.0 - 06.01.2015 =
-* Feature - Adds option to include a notify URL (used for IPN) with created buttons.
-* Feature - Adds the ability to create multiple companies (PayPal accounts) so that buttons can be created for any account.
-* Feature - Adds the ability to use the PayPal account merchant ID or the email address within non-hosted buttons.
-* Feature - Adds internationalization and a default.po file for translation.
-* Feature - Adds the option to delete a hosted button from your PayPal account when it's deleted from WordPress.
-* Fix - Resolves a potential SQL injection vulnerability.
-* Fix - Resolves an encoding issue causing plus signs (+) to show up in button drop-down lists.
-
-= 0.1.1 - 05.06.2015 =
-*Fix - Resolves a bug causing a "Security Header" failure to occur when creating live PayPal buttons.
-
-= 0.1.0 - 05.04.2015 =
+= 1.0.0 - 16.06.2023 =
 * Feature - Buy Now Button
-* Feature - Donation Button
-* Feature - Subscription Button
-* Feature - Shopping Cart Button / View Cart Button
-* Feature - Shortcodes for easy placement of buttons on Pages / Posts
-
-== Upgrade Notice ==
-
-= 1.1.1 =
-Make sure you have cleared any caching / CDN tools after applying this update.
+* Feature - Shortcodes and Blocks for easy placement of buttons on Pages / Posts

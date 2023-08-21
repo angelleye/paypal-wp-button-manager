@@ -1,0 +1,68 @@
+/*.wbp-form{
+    background: #f7f7f7a6;
+    padding: 40px;
+    border-radius: 20px;
+}*/
+.wbp-button{
+    margin-top: 40px;
+}
+.wbp-form p{
+    margin-bottom: 0px;
+}
+.item-price-label, .wbp-form label, .item-name-details .item-name-label {
+    font-weight: 600;
+    font-size: 18px;
+    display: inline-block;
+    color: #555555;
+    background: #f0f0f0;
+    /* color: #000; */
+    padding: 11px 20px;
+    width: 170px;
+/*    margin-right: 20px;*/
+    margin-bottom: 0px;
+}
+/*.wbp-form .tax-rate,
+.wbp-form .shipping-rate{
+    margin: 10px 0px;
+}*/
+.item-price, .total-amount, .tax-amount, .shipping, .item-name-details .item-name {
+    display: inline-block;
+    font-size: 18px;
+    padding-left: 5px;
+    margin-bottom: 0px;
+    padding: 11px 20px;
+}
+.item-name-details, .price-currency, .shipping-rate, .tax-rate, .tax-rate + div {
+    background: #fff;
+    border-right: solid 2px #f0f0f0;
+    width: 100%;
+    max-width: 750px;
+    border-bottom: solid 1px #f3f3f3;
+}
+.item-name-details{
+    border-top: solid 2px #f0f0f0;
+}
+.tax-rate + div{
+    border-bottom: solid 2px #f0f0f0;
+}
+.item-price-label,
+.total-amount-label,
+.tax-rate-label,
+.shipping-rate-label{
+    width: 120px;
+    margin-bottom: 5px;
+}
+@media screen and (max-width: 480px){
+    .wbp-form{
+        padding: 20px;
+    }
+    .item-price-label, .wbp-form label, .item-name-details .item-name-label {
+        font-size: 14px;
+        padding: 6px 10px;
+        width: 135px;
+    }
+    .item-price, .total-amount, .tax-amount, .shipping, .item-name-details .item-name{
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}

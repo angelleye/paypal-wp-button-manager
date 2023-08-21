@@ -1,0 +1,353 @@
+body{
+    background: #f0f0f1;
+}
+.b-btn{
+    background: #4f4f4f;
+    color: #fff;
+    font-size: 16px;
+    border: inherit;
+    display: flex;
+    align-items: center;
+    padding: 8px 25px;
+    border-radius: 10px;
+    margin-top: 35px;
+    max-width: fit-content;
+    text-decoration: none;
+}
+.b-btn:hover {
+    color: white;
+    cursor: default;
+}
+.b-btn img{
+    position: relative;
+    top: -8px;
+    margin-left: 10px;
+}
+.paypal-delete-guide {
+    font-weight: 500;
+    color: red;
+    font-size: 16px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+.paypal-ac-wordpress{
+    font-family: 'Open Sans', sans-serif;
+}
+.paypal-ac-setting{
+    background: #fff;
+    border: solid 1px #d7d7d7;
+    padding: 18px 20px;
+    position: relative;
+}
+.wave-vector img{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+.wave-vector-wordpress img{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+.paypal-ac-heading{
+    font-size: 26px;
+    font-weight: 700;
+    line-height: normal;
+}
+.paypal-ac-wordpress p {
+    font-size: 16px;
+    color: #727273;
+    line-height: 30px;
+}
+.paypal-gp{
+    display: flex;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex; 
+    margin-top: 20px;
+}
+.paypal-gp .PayPal-gp-left{
+    font-size: 18px;
+    font-weight: 600;
+    width: 190px;
+}
+.paypal-ac-checkbox {
+    color: #8e8d8f;
+    font-size: 15px;
+    float: left;
+}
+.paypal-wp-l-logo-details{
+    display: flex;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex; 
+}
+.paypal-wp-l-details{
+    margin-left: 74px;
+}
+.paypal-wp-manager{
+    margin-top: 35px;
+    display: flex;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex; 
+}
+.paypal-wp-manager-left{
+    background: #fff;
+    border: solid 1px #d7d7d7;
+    padding: 60px 60px;
+    position: relative;
+    flex: 1;
+}
+.paypal-wp-manager-right{
+    display: flex;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex; 
+    flex-direction: column;
+    row-gap: 35px;
+}
+.paypal-wp-r-box{
+    text-align: center;
+    background: #fff;
+    padding: 25px 36px;
+    border: solid 1px #d7d7d7;
+    margin-left: 35px;
+}
+.paypal-wp-r-box-heading{
+    display: block;
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    padding-top: 5px;
+}
+.checkbox {
+    position: relative;
+    display: flex;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex; 
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.checkbox input {
+    position: absolute;
+    width: 0;
+    left: 50px;
+    height: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox .checkmark {
+    position: relative;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    background: #f0f0f1;
+    outline: 1px solid #acacac;
+    transition: all 0.2s ease;
+    margin-right: 10px;
+}
+
+.checkbox:hover .checkmark {
+    background: #f4f4f5;
+    transition: all 0.2s ease;
+}
+
+.checkbox input:checked ~.checkmark {
+    background: #3f7fed;
+    outline: 1px solid rgb(95, 126, 240);
+}
+
+.checkbox input[type="radio"] ~ .checkmark {
+    border-radius: 50%;
+}
+
+.checkbox .checkmark::after {
+    position: absolute;
+    display: block;
+    content: "";
+    left: 50%;
+    top: 40%;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+    -moz-transform: translate(-50%, -50%) rotate(45deg);
+    -ms-transform: translate(-50%, -50%) rotate(45deg);
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.checkbox input:checked~.checkmark::after {
+    opacity: 1;
+    transition: all 0.2s ease;
+}
+.b-btn.active {
+    background-color: #1c9440;
+    cursor: pointer;
+}
+.paypal-ac-type-btn {
+    cursor: pointer;
+    background: #1c9440;
+    color: #fff;
+    font-size: 16px;
+    border: inherit;
+    align-items: center;
+    padding: 8px 25px;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: left;
+}
+#paypal-ac-type-cb::before {
+    display: none !important;
+}
+#paypal-ac-type-cb {
+    border: none !important;
+}
+.paypal-payments {
+    display: flex;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.paypal-payments .approved {
+    width: 22px;
+    height: 20px;
+    position: relative;
+    background: #9ec855;
+    display: inline-block;
+    text-align: center;
+    margin-right: 12px;
+    border-radius: 5px;
+}
+.paypal-payments .approved:before {
+    content: '';
+    width: 17px;
+    height: 20px;
+    display: inline-block;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3C!--! Font Awesome Pro 6.4.0 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons  Inc. --%3E%3Cpath d='M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z'/%3E%3C/svg%3E");
+    filter: brightness(0) invert(1);
+    background-repeat: no-repeat;
+}
+.paypal-payments .rejected {
+    width: 22px;
+    height: 20px;
+    position: relative;
+    background: #fa642d;
+    display: inline-block;
+    text-align: center;
+    margin-right: 12px;
+    border-radius: 5px;
+}
+.paypal-payments .rejected:before {
+    content: '';
+    width: 17px;
+    height: 20px;
+    display: inline-block;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3C!--! Font Awesome Pro 6.4.0 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons  Inc. --%3E%3Cpath d='M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z'/%3E%3C/svg%3E");
+    filter: brightness(0) invert(1);
+    background-repeat: no-repeat;
+}
+.paypal-add-company.button {
+    padding: 15px 40px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    text-align: right;
+    width: 100%;
+    background: #239641;
+}
+.paypal-add-company.button:hover, 
+.paypal-add-company.button:active, 
+.paypal-add-company.button:focus{
+    background: #9bc755;
+    border-color: #9bc755;
+    color: #fff;
+}
+.paypal-wp-l-details span.paypal-payments-text {
+    width: 80%;
+}
+.paypal-ac-new .paypal-wp-l-details {
+    margin-left: 199px;
+}
+.paypal-ac-new .paypal-wp-l-logo-details{
+    align-items: center;
+}
+.paypal-wp-l-details p a {
+    color: #219642;
+    font-weight: bold;
+}
+@media(max-width:991px){
+    .paypal-wp-manager-right,
+    .paypal-wp-manager{
+        display: block;
+    }
+    .paypal-wp-r-box{
+        margin-left: 0px;
+        width:320px;
+        margin-top: 35px;
+    }
+}
+@media(max-width:599px){
+    .paypal-wp-l-logo-details{
+        display: block;
+    }
+    .paypal-wp-l-details {
+        margin-left: 0px;
+        margin-top: 25px;
+    }
+    .paypal-wp-manager-left {
+        padding: 20px 20px;
+    }
+    .wave-vector img,
+    .wave-vector-wordpress img {
+        width: 100px;
+        height: auto;
+    }
+}
+@media(max-width:470px){
+    .paypal-ac-heading {
+        padding-right: 50px;
+    }
+    .paypal-gp {
+        display: block;
+    }
+    .paypal-ac-checkbox {
+        margin-top: 18px;
+    }
+    .paypal-wp-r-box {
+        width: auto;
+    }
+    .paypal-gp .PayPal-gp-left {
+        font-size: 18px;
+        width: 100%;
+        display: block;
+        margin-top: 17px;
+    }
+    .paypal-ac-checkbox {
+        margin-top: 18px;
+        float: none;
+    }
+}
