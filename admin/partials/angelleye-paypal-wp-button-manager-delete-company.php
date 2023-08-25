@@ -43,8 +43,8 @@
             </div>
         </div>
     </div>
-    <p class="paypal-delete-guide"><?php _e("Deleting PayPal account will result in the loss of the buttons you have assigned to this account.",'angelleye-paypal-wp-button-manager'); ?></p>
-    <p class="paypal-delete-guide"><?php _e("Please select the account below to which you want to re-assign the existing button of this account, or leave it unassigned if you don't wish to re-assign it.",'angelleye-paypal-wp-button-manager'); ?></p>
+    <p class="paypal-delete-guide"><?php _e("Deleting this PayPal account will result in the loss of any buttons linked to this account.",'angelleye-paypal-wp-button-manager'); ?></p>
+    <p class="paypal-delete-guide"><?php _e("If you would like to re-link these buttons to a different account, please choose the account below.  If you do not choose an account, these buttons will be deleted.",'angelleye-paypal-wp-button-manager'); ?></p>
     <div class="paypal-gp">
         <label class="PayPal-gp-left" for="reassign-company"><?php _e('Assign To PayPal Account: ','angelleye-paypal-wp-button-manager'); ?></label>
         <div class="paypal-ac-checkbox">

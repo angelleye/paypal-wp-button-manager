@@ -1,15 +1,35 @@
-/*.order-message {
-    background-color: #eeeeee;
-    text-align: center;
-    padding: 70px 0;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    max-width: initial;
-}*/
+.order-detail-flex{
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.message {
+    font-size: 38px;
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    font-weight: 600;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 0;
+    max-width: 767px;
+    width: 100%;
+    margin: auto;
+}
+.order-message.order-failed .message{
+    border: 2px dotted #d50505;
+    align-items: center;
+}
+.order-message.order-success .message {
+    border: 2px dotted #75b33a;
+    margin-bottom: 80px;
+}
 .order-message.order-success .message:before {
     content: '';
     color: #08a908;
@@ -18,10 +38,10 @@
     margin-bottom: -30px;
     background: url(../images/check-mark-verified.png);
     background-size: contain;
-    width: 110px;
-    height: 110px;
+    width: 60px;
+    height: 60px;
     text-align: center;
-    margin: auto;
+    float: left;
     background-repeat: no-repeat;
 }
 .order-message.order-failed .message:before {
@@ -31,103 +51,74 @@
     display: block;
     font-size: 86px;
     font-size: 80px;
-    margin-bottom: -30px;
 }
-
-.order-message .message, .order-message .order_id{
-    color: #000;
-}
-.order-message .order_id{
-    font-size: 24px;
-    color: #008300;
-}
-.order-message .message{
-    font-size: 48px;
-    font-weight: 600;
-}
-.order-failed .message {
-    color: #d50505;
-}
-.order-details{
-    max-width: 750px;
+.order-details {
+    max-width: 767px;
     margin: auto;
-    border: solid 2px #f0f0f0;
-    width: 60%;
-    margin-top: 50px;
-}
-.order-message.order-success{
-    background: #fff !important;
     border: solid 2px #f0f0f0;
     width: 100%;
-    margin: auto;
-    max-width: 750px;
-    border-bottom: solid 1px #f3f3f3;
-    background: inherit;
-    margin-bottom: 50px;
-    margin: auto;
-    text-align: center;
-    padding: 70px 0;
+    margin-top: 50px;
 }
-.transaction, .price, .item-name-details, .price-currency, .shipping-rate, .tax-rate, .total-amount-details{
+.price, .item-name-details, .shipping-rate, .tax-rate, .total-amount-details {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     border-bottom: solid 1px #f3f3f3;
 }
-.transaction-label, .item-name-label, .item-price-label, .shipping-rate-label, .tax-rate-label, .total-amount-label{
+.transaction-label, .transaction-date-label , .item-name-label, .item-price-label, .shipping-rate-label, .tax-rate-label, .total-amount-label {
     font-weight: 600;
     font-size: 18px;
     display: inline-block;
     color: #555555;
-    background: #f0f0f0;
     padding: 11px 20px;
     width: 170px;
+    text-align: left;
     margin-bottom: 0px;
 }
-.transaction-id, .item-name, .item-price, .shipping, .tax-amount, .total-amount{
+.transaction, .transaction-date{
+    margin-right: 30px;
+    padding-right: 30px;
+    text-align: center;
+}
+.transaction.services, .transaction-date {
+    border-right: 1px solid #ddd;
+}
+.transaction-date-label, .transaction-label, .order-total-amount, .total-amount-detail{
+    text-align: center;
+}
+.order-detail-heading {
+    font-size: 24px;
+    line-height: 30px;
+    padding: 20px 0;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid #ddd;
+    background: #f3f3f3;
+}
+.transaction-id, .item-name, .item-price, .shipping, .tax-amount, .total-amount, .transaction-date-id {
     margin: 0 0 1.41575em;
-    display: inline-block;
     font-size: 18px;
     padding-left: 5px;
     margin-bottom: 0px;
-    padding: 11px 20px
+    padding: 11px 20px;
 }
-@media screen and (max-width:767px){
-    .order-details{
-        width: 80%;
-    }
+.thank-you-page {
+    margin-bottom: 50px;
 }
-@media (max-width:699px){
-    .order-message.order-failed .message:before,
-    .order-message.order-success .message:before {
-        margin-bottom: 17px;
-    }
-    .order-message .message {
-        font-size: 32px;
-        font-weight: 600;
-        line-height: 33px;
-    }
-    .order-message .order_id {
-        font-size: 20px;
+@media screen and (max-width: 599px) {
+    .transaction, .transaction-date {
+        margin-right: 0px;
+        padding-right: 0px; 
     }
 }
-@media screen and (max-width:599px){
-    /*.order-details{
-        width: 40%;
-    }*/
-    .transaction-label, .price, .item-name-label, .item-price-label, .shipping-rate-label, .tax-rate-label, .total-amount-label{
-        width: 100%;
-    }
-    .transaction, .total-amount-details, .price, .item-name-details, .price-currency, .shipping-rate, .tax-rate{
-        flex-direction: column;
-    }
-
-}
-@media screen and (max-width:399px){
-    .order-details{
-        width: 90%;
+@media screen and (max-width: 435px) {
+    .transaction, .transaction-date {
+        border-bottom: 1px solid #ddd;
+        border-right: inherit;
     }
 }
