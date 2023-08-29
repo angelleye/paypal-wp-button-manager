@@ -170,6 +170,7 @@ function previewData(){
 
     if( jQuery("#item-name").val() ){
         jQuery(".item-name").text(jQuery("#item-name").val());
+        jQuery(".item-name-details").show();
     } else {
         jQuery(".item-name-details").hide();
     }
@@ -178,6 +179,7 @@ function previewData(){
     if( jQuery("#item-price").val() ){
         jQuery(".item-price").html( priceHTML( jQuery("#item-price").val() ) );
         price += parseFloat( jQuery("#item-price").val() );
+        jQuery(".price-currency").show();
     } else {
         jQuery(".price-currency").hide();
     }
@@ -185,6 +187,7 @@ function previewData(){
     if( jQuery(".shipping-amount").val() ){
         jQuery(".shipping-rate .shipping").html( priceHTML( jQuery(".shipping-amount").val() ) );
         price += parseFloat( jQuery(".shipping-amount").val() );
+        jQuery(".shipping-rate").show();
     } else {
         jQuery(".shipping-rate").hide();
     }
@@ -195,6 +198,7 @@ function previewData(){
         tax = parseFloat( jQuery(".text-rate").val() );
         var tax_price = ( price * ( tax / 100 ) );
         jQuery(".tax-amount").html( priceHTML( tax_price ) );
+        jQuery(".tax-rate").show();
     } else {
         jQuery(".tax-rate").hide();
     }
@@ -206,6 +210,7 @@ function previewData(){
             var total_price = price;
         }
         jQuery(".total-amount").html( priceHTML( total_price ) );
+        jQuery(".total-amount-label").parent().show();
     } else {
         jQuery(".total-amount-label").parent().hide();
     }

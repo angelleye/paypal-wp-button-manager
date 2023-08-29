@@ -24,11 +24,23 @@ jQuery(function($){
                     }).then(function(response) {
                         return response.json();
                     }).then(function(data) {
-                        return data.orderID;
+                        if( data.orderID ){
+                            return data.orderID;
+                        } else {
+                            if( data.message ){
+                                throw new Error(data.message);
+                            } else {
+                                throw new Error(btn_obj.general_error)
+                            }
+                        }
                     });
                 },
                 onApprove: function( data, actions ) {
                    actions.redirect(btn_obj.capture_url + '?paypal_order_id=' + data.orderID + '&button_id=' + button_id);
+                },
+                onError: function( err, actions ){
+                    jQuery('.angelleye-paypal-wp-button-manager-error').remove();
+                    jQuery("#form-" + button_id).before('<div class="angelleye-paypal-wp-button-manager-error">' + err + '</div>');
                 }
             };
             if( btn_obj.height ){
