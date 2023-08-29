@@ -68,7 +68,8 @@ class Angelleye_Paypal_Wp_Button_Manager_Shortcode{
                 'tagline' => $button->get_button_tagline(),
                 'merchant_id' => $button->get_company_merchant_id(),
                 'amount' => $button->get_total(),
-                'type' => $button->get_button_type()
+                'type' => $button->get_button_type(),
+                'general_error' => __('Something went wrong on our end. We apologize for any inconvenience this may have caused. Please try again later.','angelleye-paypal-wp-button-manager')
             ));
             
             $hidden_method = $button->get_hide_funding_method();
