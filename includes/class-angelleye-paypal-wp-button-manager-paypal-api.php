@@ -23,6 +23,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Paypal_API {
         $this->partner_client_id = $testmode ? ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_SANDBOX_PARTNER_CLIENT_ID : ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_LIVE_PARTNER_CLIENT_ID;
         $this->paypal_url = $testmode ? 'https://api-m.sandbox.paypal.com/v2/checkout/orders/' : 'https://api-m.paypal.com/v2/checkout/orders/';
         $this->logger = new Angelleye_PayPal_WP_Button_Manager_Logger( 'ppcp-paypal' );
+        add_action('angelleye_button_manager_request_respose_data', array($this, 'angelleye_ppcp_tpv_tracking'), 10, 3);
 	}
 
     /**
@@ -119,6 +120,8 @@ class Angelleye_Paypal_Wp_Button_Manager_Paypal_API {
         $this->logger->info('Request parameters are built', array('api_url' => $this->api_url, 'request' => $request ) );
 
         $response = wp_remote_request( $this->api_url, $request );
+        
+        
 
         if( is_wp_error( $response ) ){
             $this->logger->error('WP Error Received', $response );
@@ -144,6 +147,8 @@ class Angelleye_Paypal_Wp_Button_Manager_Paypal_API {
             }
             return $error;
         }
+        
+        do_action('angelleye_button_manager_request_respose_data', $request, $response, $this->action_name);
 
         $this->logger->info('API execution completed', $response );
         return $response;
@@ -166,4 +171,43 @@ class Angelleye_Paypal_Wp_Button_Manager_Paypal_API {
         $returnData .= base64_encode(json_encode($temp)) . '.';
         return $returnData;
     }
+    
+    public function angelleye_ppcp_tpv_tracking($request, $response, $action_name) {
+        try {
+            $allow_payment_event = array('capture_order', 'refund_order', 'authorize_order', 'void_authorized', 'capture_authorized');
+            if (in_array($action_name, $allow_payment_event)) {
+                if (class_exists('AngellEYE_PFW_Payment_Logger')) {
+                    $amount = '';
+                    $transaction_id = '';
+                    if (isset($response['purchase_units']['0']['amount']['value'])) {
+                        $amount = $response['purchase_units']['0']['amount']['value'];
+                    } elseif (isset($response['amount']['value'])) {
+                        $amount = $response['amount']['value'];
+                    }
+                    if (isset($response['purchase_units']['0']['payments']['captures'][0]['id'])) {
+                        $transaction_id = $response['purchase_units']['0']['payments']['captures'][0]['id'];
+                    } elseif (isset($response['purchase_units']['0']['payments']['authorizations']['0']['id'])) {
+                        $transaction_id = $response['purchase_units']['0']['payments']['authorizations']['0']['id'];
+                    } elseif (isset($response['id'])) {
+                        $transaction_id = $response['id'];
+                    }
+                    $payment_logger = AngellEYE_PFW_Payment_Logger::instance();
+                    $request_param['type'] = 'ppcp_' . $action_name;
+                    $request_param['amount'] = $amount;
+                    $request_param['status'] = 'Success';
+                    $request_param['site_url'] = get_bloginfo('url');
+                    $request_param['mode'] = ($this->is_sandbox === true) ? 'sandbox' : 'live';
+                    $request_param['merchant_id'] = isset($response['purchase_units']['0']['payee']['merchant_id']) ? $response['purchase_units']['0']['payee']['merchant_id'] : '';
+                    $request_param['correlation_id'] = '';
+                    $request_param['transaction_id'] = $transaction_id;
+                    $request_param['product_id'] = '1';
+                    $payment_logger->angelleye_tpv_request($request_param);
+                }
+            }
+        } catch (Exception $ex) {
+            $this->api_log->log("The exception was created on line: " . $ex->getFile() . ' ' .$ex->getLine(), 'error');
+            $this->api_log->log($ex->getMessage(), 'error');
+        }
+    }
+
 }
