@@ -2,7 +2,7 @@ jQuery(function($){
     $('.wbp-button').each(function(){
         var button_id = $(this).data('button_id');
         var btn_obj = eval( 'btn_obj_' + button_id );
-        if( btn_obj.type == 'services' ){
+        if( btn_obj.type == 'services'){
             var buttonConfig = {
                 style : {
                     layout: btn_obj.layout,
@@ -47,15 +47,6 @@ jQuery(function($){
                 buttonConfig.style.height = parseInt( btn_obj.height );
             }
             paypal.Buttons(buttonConfig).render("#wbp-button-" + button_id );
-        } else if ( btn_obj.type == 'donate' ){
-            PayPal.Donation.Button({
-                env: btn_obj.button_environment,
-                hosted_button_id: btn_obj.hosted_button_id,
-                onComplete: function (params) {
-                    var st = params.st == 'Completed';
-                    location.href = btn_obj.redirect + '?success=' + st + '&order_id=' + params.tx  + '&button_id=' + button_id;
-                },
-            }).render("#wbp-button-" + button_id);
         }
     });
 });

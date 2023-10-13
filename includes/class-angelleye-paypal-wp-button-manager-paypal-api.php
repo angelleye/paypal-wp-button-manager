@@ -15,15 +15,27 @@ class Angelleye_Paypal_Wp_Button_Manager_Paypal_API {
     private $paypal_method;
     private $action_name;
     private $logger;
+    private $endpoint;
+    private $api_method;
 
 	public function __construct( $merchant_id, $testmode ){
         $this->api_url = ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PPCP_LINK;
+        $this->endpoint = 'ppcp-request';
 		$this->merchant_id = $merchant_id;
         $this->testmode = $testmode;
         $this->partner_client_id = $testmode ? ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_SANDBOX_PARTNER_CLIENT_ID : ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_LIVE_PARTNER_CLIENT_ID;
         $this->paypal_url = $testmode ? 'https://api-m.sandbox.paypal.com/v2/checkout/orders/' : 'https://api-m.paypal.com/v2/checkout/orders/';
         $this->logger = new Angelleye_PayPal_WP_Button_Manager_Logger( 'ppcp-paypal' );
 	}
+
+    /**
+     * Allows to set AWS Endpoint
+     * 
+     * @param endpoint  string      endpoint of the AWS URL.
+     * */
+    public function set_ppcp_endpoint( $endpoint ){
+        $this->endpoint = $endpoint;
+    }
 
     /**
      * Sets the paypal URL
@@ -37,6 +49,18 @@ class Angelleye_Paypal_Wp_Button_Manager_Paypal_API {
         } else {
             $this->paypal_url = $url;
         }
+    }
+
+    public function set_api_url( $url ){
+        $this->api_url = $url;
+    }
+
+    public function set_api_method( $method ){
+        $this->api_method = $method;
+    }
+
+    private function get_api_url(){
+        return $this->api_url . $this->endpoint;
     }
 
     /**
@@ -116,9 +140,15 @@ class Angelleye_Paypal_Wp_Button_Manager_Paypal_API {
             )
         );
 
-        $this->logger->info('Request parameters are built', array('api_url' => $this->api_url, 'request' => $request ) );
+        $this->logger->info('Request parameters are built', array('api_url' => $this->get_api_url(), 'request' => $request ) );
 
-        $response = wp_remote_request( $this->api_url, $request );
+        if( $this->api_method == 'GET'){
+            $response = wp_remote_get( $this->get_api_url(), $request );
+        } else if( $this->api_method == 'POST' ){
+            $response = wp_remote_post( $this->get_api_url(), $request );
+        } else {
+            $response = wp_remote_request( $this->get_api_url(), $request );
+        }
 
         if( is_wp_error( $response ) ){
             $this->logger->error('WP Error Received', $response );
@@ -131,12 +161,13 @@ class Angelleye_Paypal_Wp_Button_Manager_Paypal_API {
         }
        
         $response = json_decode( $response['body'] );
+
         if( !$response->status ){
             $this->logger->error('No response statuts', $response );
             return new WP_Error('paypal-api-error',  __('Internal server error','angelleye-paypal-wp-button-manager') );
         }
         
-        if( !in_array( $response->statusCode, array( 200, 201 ) ) ){
+        if( isset( $response->statusCode ) && !in_array( $response->statusCode, array( 200, 201 ) ) ){
             $this->logger->error('Invalid status code', $response );
             $error = new WP_Error( 'paypal-api-error' );
             foreach( $response->body->details as $detail ){

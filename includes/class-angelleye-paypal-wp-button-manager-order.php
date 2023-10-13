@@ -174,6 +174,7 @@ class Angelleye_Paypal_Wp_Button_Manager_Order{
         $api->set_action('capture_order');
         $api->set_paypal_url( $paypal_order_id . '/capture', true );
         $payment = $api->submit();
+
         return array( 'payment' => $payment, 'button_id' => $button_id );
     }
 }

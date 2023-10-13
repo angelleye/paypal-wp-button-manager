@@ -3,7 +3,7 @@ Contributors: angelleye
 Donate link: https://angelleye.com
 Tags: paypal, payments, standard, buy now
 Requires at least: 3.8
-Tested up to: 6.2.2
+Tested up to: 6.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,6 @@ Add secure PayPal Buy Now buttons to your website quickly and easily!
 Easily create and manage PayPal ppcp payment buttons within WordPress, and place them on Pages / Posts using shortcodes or blocks.
 
  * Buy Now Button
- * Donation Button
  * Shortcodes for easy placement of buttons on Pages / Posts
  * Blocks for easy placement of buttons on Pages
 
@@ -85,15 +84,6 @@ For Buy Now Buttons
 9. Follow the steps to create the type of button you are looking to create.
 10. Place the button on Pages / Posts using shortcodes or the blocks.
 
-For Donation Buttons
-1. Visit https://www.paypal.com/donate/buttons and create button
-2. Copy hosted_button_id or business
-3. Click the PayPal Buttons tab in your WordPress admin panel.
-4. Click Add PayPal Button to open the button creation interface.
-5. Choose Donation from Button Type
-6. Add the copied value in Button ID field
-7. Place the button on Pages / Posts using shortcodes or the blocks.
-
 == Screenshots ==
 
 1. Manage PayPal buttons in the WordPress admin panel.
@@ -123,5 +113,4 @@ For Donation Buttons
 
 = 1.0.0 - 16.06.2023 =
 * Feature - Buy Now Button
-* Feature - Donation Button
 * Feature - Shortcodes and Blocks for easy placement of buttons on Pages / Posts

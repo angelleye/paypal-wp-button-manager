@@ -157,7 +157,7 @@ class Angelleye_Paypal_Wp_Button_Manager {
 		new Angelleye_Paypal_Wp_Button_Manager_Shortcode( $this->plugin_name, $this->version );
 
 		/**
-		 * The class responsible for button manager blcok.
+		 * The class responsible for button manager block.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-angelleye-paypal-wp-button-manager-block.php';
 		new Angelleye_Paypal_Wp_Button_Manager_Block( $this->plugin_name, $this->version );

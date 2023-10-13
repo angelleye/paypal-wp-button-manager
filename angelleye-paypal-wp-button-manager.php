@@ -68,11 +68,15 @@ if( !defined('ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_IMAGE_PATH' ) ){
 }
 
 if( !defined('ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_API_LINK') ){
-    define('ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_API_LINK', 'https://3yjtbtgz0m.execute-api.us-east-2.amazonaws.com/default/PayPalMerchantIntegrationTest/' );
+    define('ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_API_LINK', 'https://zpyql2kd39.execute-api.us-east-2.amazonaws.com/production/PayPalMerchantIntegration/' );
 }
 
 if( !defined('ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PPCP_LINK') ){
-    define('ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PPCP_LINK', 'https://3yjtbtgz0m.execute-api.us-east-2.amazonaws.com/default/PayPalMerchantIntegrationTest/ppcp-request' );
+    define('ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_PPCP_LINK', 'https://zpyql2kd39.execute-api.us-east-2.amazonaws.com/production/PayPalMerchantIntegration/' );
+}
+
+if( !defined('ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_AWS_ID_TOKEN') ){
+    define('ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_AWS_ID_TOKEN', 'https://zpyql2kd39.execute-api.us-east-2.amazonaws.com/production/PayPalMerchantIntegration/' );
 }
 
 if( !defined( 'ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_SANDBOX_PARTNER_MERCHANT_ID') ){

@@ -20,7 +20,6 @@ jQuery(document).on('change', '#item-name, #item-price, #item_price_currency, .s
 
 jQuery(function($){
     $("#wbp-button-layout").trigger('change');
-    buttonFields();
     $("#wbp-button-hide-funding").select2({
         placeholder: wbp_select2.placeholder
     });
@@ -130,36 +129,6 @@ jQuery(document).on('change','#wbp-button-layout',function(){
 jQuery(document).on('change','#item_price_currency',function(){
     jQuery('.shipping-currency').text(jQuery(this).find('option:selected').val());
 });
-
-jQuery(document).on('change','#button_type',buttonFields);
-
-function buttonFields(){
-    if( jQuery('#button_type').val() == 'donate'){
-        hideBuyNowFields();
-        showDonateFields();
-    } else {
-        showBuyNowFields();
-        hideDonateFields();
-    }
-}
-
-function hideBuyNowFields(){
-    jQuery('#buy_now_group').hide();
-    jQuery("#item_price_currency, #item-price, #item-name, #company_id").removeAttr('required');
-}
-
-function showBuyNowFields(){
-    jQuery('#buy_now_group').show();
-    jQuery("#item_price_currency, #item-price, #item-name, #company_id").attr('required', 'required');
-}
-
-function hideDonateFields(){
-    jQuery('#donate_group').hide();
-}
-
-function showDonateFields(){
-    jQuery('#donate_group').show();
-}
 
 function priceHTML(amount){
     return '<span class="wbp-price"><span class="currency">' + jQuery('#item_price_currency').find(":selected").data('title') + '</span><span class="amount">' + parseFloat(amount).toFixed(2) + '</span></span>';

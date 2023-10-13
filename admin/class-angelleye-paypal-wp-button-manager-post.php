@@ -152,7 +152,6 @@ class Angelleye_Paypal_Wp_Button_Manager_Post{
             'wbp_data_fields_right_background_color' => sanitize_text_field( $_POST['right_background_color'] ),
             'wbp_data_fields_left_foreground_color' => sanitize_text_field( $_POST['left_foreground_color'] ),
             'wbp_data_fields_right_foreground_color' => sanitize_text_field( $_POST['right_foreground_color'] ),
-            'wbp_hosted_button_id' => sanitize_text_field( $_POST['hosted_button_id'] ),
             'wbp_button_environment' => sanitize_text_field( $_POST['button-environment'] ),
         );
                

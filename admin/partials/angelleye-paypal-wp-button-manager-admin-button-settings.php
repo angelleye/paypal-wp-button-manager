@@ -11,7 +11,6 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                             <label for="button_type"><?php _e("Choose a button type", "angelleye-paypal-wp-button-manager") ?></label>
                             <select class="form-control button-type" name="button_type" id="button_type">
                                 <option value="services" <?php selected('services', $button->get_button_type( 'edit' ) ); ?>><?php _e("Buy Now", "angelleye-paypal-wp-button-manager"); ?></option>
-                                <option value="donate" <?php selected('donate', $button->get_button_type( 'edit' ) ); ?>><?php _e('Donate', 'angelleye-paypal-wp-button-manager'); ?></option>
                             </select>
                         </div>
                     </div>
@@ -255,26 +254,6 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                                 
                                 <iframe id="wbp-paypal-iframe" src="<?php echo get_site_url() . '/angelleye-paypal-button-manager-iframe-preview?layout='. $button->get_button_layout() . '&color=' . $button->get_button_color() . '&shape=' . $button->get_button_shape() . '&size=' . $button->get_button_size() . '&height=' . $button->get_button_height() . '&label=' . $button->get_button_label() . '&tagline=' . $button->get_button_tagline() .'&hide_funding=' . implode(',' , $button->get_hide_funding_method() ); ?>"></iframe>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="donate_group">
-                    <div class="row donate">
-                        <div class="form-pd">
-                            <label for="button_environment"><?php _e("Environment:", "angelleye-paypal-wp-button-manager");?>
-                            </label>
-                            <select class="form-control button-environment" name="button-environment" id="button_environment">
-                                <option value="sandbox" <?php selected($button->get_button_environment('edit'), 'sandobx'); ?>><?php _e('Sandbox','angelleye-paypal-wp-button-manager'); ?></option>
-                                <option value="production" <?php selected($button->get_button_environment('edit'), 'production'); ?>><?php _e('Production','angelleye-paypal-wp-button-manager'); ?></option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row donate">
-                        <div class="form-pd">
-                            <label for="hosted_button_id"><?php _e("Button ID:", "angelleye-paypal-wp-button-manager");?>
-                            </label>
-                            <input type="text" class="form-control" name="hosted_button_id" value="<?php echo $button->get_hosted_button_id( 'edit' ); ?>" id="hosted_button_id">
-                            
                         </div>
                     </div>
                 </div>
