@@ -134,31 +134,11 @@ jQuery(document).on('change','#item_price_currency',function(){
 jQuery(document).on('change','#button_type',buttonFields);
 
 function buttonFields(){
-    if( jQuery('#button_type').val() == 'donate'){
-        hideBuyNowFields();
-        showDonateFields();
+    if( jQuery('#button_type').val() == 'subscription'){
+        jQuery(".subscription-settings").show();
     } else {
-        showBuyNowFields();
-        hideDonateFields();
+        jQuery(".subscription-settings").hide();
     }
-}
-
-function hideBuyNowFields(){
-    jQuery('#buy_now_group').hide();
-    jQuery("#item_price_currency, #item-price, #item-name, #company_id").removeAttr('required');
-}
-
-function showBuyNowFields(){
-    jQuery('#buy_now_group').show();
-    jQuery("#item_price_currency, #item-price, #item-name, #company_id").attr('required', 'required');
-}
-
-function hideDonateFields(){
-    jQuery('#donate_group').hide();
-}
-
-function showDonateFields(){
-    jQuery('#donate_group').show();
 }
 
 function priceHTML(amount){
@@ -170,6 +150,7 @@ function previewData(){
 
     if( jQuery("#item-name").val() ){
         jQuery(".item-name").text(jQuery("#item-name").val());
+        jQuery(".item-name-details").show();
     } else {
         jQuery(".item-name-details").hide();
     }
@@ -178,6 +159,7 @@ function previewData(){
     if( jQuery("#item-price").val() ){
         jQuery(".item-price").html( priceHTML( jQuery("#item-price").val() ) );
         price += parseFloat( jQuery("#item-price").val() );
+        jQuery(".price-currency").show();
     } else {
         jQuery(".price-currency").hide();
     }
@@ -185,6 +167,7 @@ function previewData(){
     if( jQuery(".shipping-amount").val() ){
         jQuery(".shipping-rate .shipping").html( priceHTML( jQuery(".shipping-amount").val() ) );
         price += parseFloat( jQuery(".shipping-amount").val() );
+        jQuery(".shipping-rate").show();
     } else {
         jQuery(".shipping-rate").hide();
     }
@@ -195,6 +178,7 @@ function previewData(){
         tax = parseFloat( jQuery(".text-rate").val() );
         var tax_price = ( price * ( tax / 100 ) );
         jQuery(".tax-amount").html( priceHTML( tax_price ) );
+        jQuery(".tax-rate").show();
     } else {
         jQuery(".tax-rate").hide();
     }
@@ -206,6 +190,7 @@ function previewData(){
             var total_price = price;
         }
         jQuery(".total-amount").html( priceHTML( total_price ) );
+        jQuery(".total-amount-label").parent().show();
     } else {
         jQuery(".total-amount-label").parent().hide();
     }

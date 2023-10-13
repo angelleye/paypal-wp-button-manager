@@ -157,10 +157,29 @@ class Angelleye_Paypal_Wp_Button_Manager {
 		new Angelleye_Paypal_Wp_Button_Manager_Shortcode( $this->plugin_name, $this->version );
 
 		/**
-		 * The class responsible for button manager blcok.
+		 * The class responsible for button manager block.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-angelleye-paypal-wp-button-manager-block.php';
 		new Angelleye_Paypal_Wp_Button_Manager_Block( $this->plugin_name, $this->version );
+
+		/**
+		 * The class responsible for button manager subscription admin.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-angelleye-paypal-wp-button-manager-subscription-management-list-table.php';
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-angelleye-paypal-wp-button-manager-subscription-management.php';
+		new Angelleye_Paypal_Wp_Button_Manager_Subscription_Management( $this->plugin_name, $this->version );
+
+		/**
+		 * The class responsible for subscription management.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-angelleye-paypal-wp-button-manager-subscription.php';
+
+		/**
+		 * The class responsible for subscription management.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-angelleye-paypal-wp-button-manager-subscription-renewal.php';
+		new Angelleye_Paypal_Wp_Button_Manager_Subscription_Renewal();
 
 		$this->loader = new Angelleye_Paypal_Wp_Button_Manager_Loader();
 

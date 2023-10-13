@@ -37,6 +37,27 @@ class Angelleye_Paypal_Wp_Button_Manager_Activator {
             dbDelta($sql);
         }
 
+        $table_name = $wpdb->prefix . "angelleye_paypal_button_manager_subscriptions";
+        if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+            $sql = "CREATE TABLE " . $table_name . " (
+            `ID` mediumint(9) NOT NULL AUTO_INCREMENT,
+            `user_id` mediumint(9) NOT NULL, 
+            `email_address` mediumtext NOT NULL,
+            `first_name` mediumtext NULL,
+            `last_name` mediumtext NULL,
+            `button_id` mediumint(9) NOT NULL,
+            `payment_source` mediumtext NOT NULL,
+            `vault_id` mediumtext NOT NULL,
+            `next_payment_due_date` DATETIME NOT NULL,
+            `status` varchar(20) NOT NULL,
+            `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+            PRIMARY KEY ID (ID)
+            ) $charset_collate;";
+
+            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+            dbDelta($sql);
+        }
+
         flush_rewrite_rules();
 	}
 

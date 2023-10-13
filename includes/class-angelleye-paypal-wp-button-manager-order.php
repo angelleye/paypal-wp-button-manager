@@ -126,6 +126,25 @@ class Angelleye_Paypal_Wp_Button_Manager_Order{
             'intent' => 'CAPTURE',
         );
 
+        if( $button->get_button_type() == 'subscription' ){
+            $paypal_body['payment_source'] = array(
+                'paypal' => array(
+                   'attributes' => array(
+                        'vault' => array(
+                            'store_in_vault' => 'ON_SUCCESS',
+                            'usage_type' => 'MERCHANT',
+                            'customer_type' => 'CONSUMER'
+                        )
+                    ),
+                   'experience_context' => array(
+                        'shipping_preference' => 'GET_FROM_FILE',
+                        'return_url' => get_site_url(),
+                        'cancel_url' => get_site_url()
+                   )
+                )
+            );
+        }
+
         if( !empty( $button->get_shipping_amount() ) ){
             $paypal_body['purchase_units'][0]['amount']['breakdown']['shipping'] = array(
                 'currency_code' => $button->get_currency(),
@@ -174,6 +193,28 @@ class Angelleye_Paypal_Wp_Button_Manager_Order{
         $api->set_action('capture_order');
         $api->set_paypal_url( $paypal_order_id . '/capture', true );
         $payment = $api->submit();
+
+        if( $button->get_button_type() == 'subscription' ){
+            $subscription = new Angelleye_Paypal_Wp_Button_Manager_Subscription();
+            $subscription->set_button_id( $button_id );
+            $subscription->set_user_id( get_current_user_id() );
+            $subscription->set_email_address( $payment->body->payment_source->paypal->email_address );
+            if( isset( $payment->body->payment_source->paypal->name->given_name ) && !empty( $payment->body->payment_source->paypal->name->given_name ) ){
+                $subscription->set_first_name( $payment->body->payment_source->paypal->name->given_name );
+            }
+
+            if( isset( $payment->body->payment_source->paypal->name->sur_name ) && !empty( $payment->body->payment_source->paypal->name->sur_name ) ){
+                $subscription->set_last_name( $payment->body->payment_source->paypal->name->sur_name );
+            }
+
+            $subscription->set_payment_source( 'paypal' ); // can be changed in future.
+            $subscription->set_vault_id( $payment->body->payment_source->paypal->attributes->vault->id );
+            $subscription->set_status( 'active' );
+            $subscription_id = $subscription->save();
+            if( is_wp_error( $subscription_id ) ){
+                return array( 'payment' => $subscription_id, 'button_id' => $button_id );
+            }
+        }
         return array( 'payment' => $payment, 'button_id' => $button_id );
     }
 }

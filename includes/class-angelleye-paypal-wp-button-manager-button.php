@@ -190,6 +190,28 @@ class Angelleye_Paypal_Wp_Button_Manager_Button{
     }
 
     /**
+     * Returns frequency count
+     * 
+     * @param string context context of function i.e. view or edit
+     * 
+     * @return mixed
+     * */
+    public function get_frequency_count( $context='view' ){
+        return $this->get_prop( 'wbp_frequency_count', $context );
+    }
+
+    /**
+     * Returns frequency
+     * 
+     * @param string context context of function i.e. view or edit
+     * 
+     * @return mixed
+     * */
+    public function get_frequency( $context='view' ){
+        return $this->get_prop( 'wbp_frequency', $context );
+    }
+
+    /**
      * Returns data fields hidden or not
      *
      * @param string context context of function i.e. view or edit

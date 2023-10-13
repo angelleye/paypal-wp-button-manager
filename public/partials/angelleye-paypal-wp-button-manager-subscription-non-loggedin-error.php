@@ -1,0 +1,1 @@
+<pre><?php _e('Please log in to create the subscription.', 'angelleye-paypal-wp-button-manager' ); ?></pre>

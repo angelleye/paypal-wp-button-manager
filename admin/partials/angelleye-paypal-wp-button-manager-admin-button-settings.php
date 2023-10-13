@@ -11,7 +11,7 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                             <label for="button_type"><?php _e("Choose a button type", "angelleye-paypal-wp-button-manager") ?></label>
                             <select class="form-control button-type" name="button_type" id="button_type">
                                 <option value="services" <?php selected('services', $button->get_button_type( 'edit' ) ); ?>><?php _e("Buy Now", "angelleye-paypal-wp-button-manager"); ?></option>
-                                <option value="donate" <?php selected('donate', $button->get_button_type( 'edit' ) ); ?>><?php _e('Donate', 'angelleye-paypal-wp-button-manager'); ?></option>
+                                <option value="subscription" <?php selected('subscription', $button->get_button_type( 'edit' ) ); ?>><?php _e('Subscription', 'angelleye-paypal-wp-button-manager'); ?></option>
                             </select>
                         </div>
                     </div>
@@ -87,6 +87,32 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                         </div>
                     </div>
                     <hr>
+                    <div class="row mb-3 subscription-settings" <?php echo $button->get_button_type( 'edit' ) != 'subscription' ? 'style="display:none;"' : ''; ?>>
+                        <div class="col-md-12">
+                            <div class="form-pd">
+                                <h5><?php _e('Subscription Management','angelleye-paypal-wp-button-manager'); ?></h5>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-pd">
+                                <label for="frequency_count"><?php _e("Frequency Count", "angelleye-paypal-wp-button-manager") ?></label>
+                                <input type="text" name="frequency_count" id="frequency_count" class="form-control" value="<?php echo $button->get_frequency_count( 'edit' ); ?>" maxlength="100" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-pd">
+                                <label for="frequency"><?php _e("Frequency", "angelleye-paypal-wp-button-manager") ?></label>
+                                <select name="frequency" id="frequency" class="form-control">
+                                    <option value=""><?php _e('Please Select','angelleye-paypal-wp-button-manager'); ?></option>
+                                    <option value="day" <?php selected( $button->get_frequency( 'edit' ), 'day' ); ?>><?php _e('Days','angelleye-paypal-wp-button-manager'); ?></option>
+                                    <option value="week" <?php selected( $button->get_frequency( 'edit' ), 'week' ); ?>><?php _e('Weeks','angelleye-paypal-wp-button-manager'); ?></option>
+                                    <option value="month" <?php selected( $button->get_frequency( 'edit' ), 'month' ); ?>><?php _e('Months','angelleye-paypal-wp-button-manager'); ?></option>
+                                    <option value="year" <?php selected( $button->get_frequency( 'edit' ), 'year' ); ?>><?php _e('Years','angelleye-paypal-wp-button-manager'); ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
                     <div class="row additional-settings-row">
                         <div class="additional-settings col-md-6">
                             <div class="form-pd additional-settings">
@@ -255,26 +281,6 @@ wp_nonce_field( 'paypal_button_settings', 'paypal_button_settings_nonce' );
                                 
                                 <iframe id="wbp-paypal-iframe" src="<?php echo get_site_url() . '/angelleye-paypal-button-manager-iframe-preview?layout='. $button->get_button_layout() . '&color=' . $button->get_button_color() . '&shape=' . $button->get_button_shape() . '&size=' . $button->get_button_size() . '&height=' . $button->get_button_height() . '&label=' . $button->get_button_label() . '&tagline=' . $button->get_button_tagline() .'&hide_funding=' . implode(',' , $button->get_hide_funding_method() ); ?>"></iframe>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="donate_group">
-                    <div class="row donate">
-                        <div class="form-pd">
-                            <label for="button_environment"><?php _e("Environment:", "angelleye-paypal-wp-button-manager");?>
-                            </label>
-                            <select class="form-control button-environment" name="button-environment" id="button_environment">
-                                <option value="sandbox" <?php selected($button->get_button_environment('edit'), 'sandobx'); ?>><?php _e('Sandbox','angelleye-paypal-wp-button-manager'); ?></option>
-                                <option value="production" <?php selected($button->get_button_environment('edit'), 'production'); ?>><?php _e('Production','angelleye-paypal-wp-button-manager'); ?></option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row donate">
-                        <div class="form-pd">
-                            <label for="hosted_button_id"><?php _e("Button ID:", "angelleye-paypal-wp-button-manager");?>
-                            </label>
-                            <input type="text" class="form-control" name="hosted_button_id" value="<?php echo $button->get_hosted_button_id( 'edit' ); ?>" id="hosted_button_id">
-                            
                         </div>
                     </div>
                 </div>
