@@ -74,6 +74,29 @@
     max-width: 750px;
     width: 100%;
 }
+#checkout-form{
+    max-width: 755px;
+}
+#card-field-submit-button{
+    width: 99%;
+    margin: 0px 0px 0px 6px;
+    border-radius: 5px;
+}
+.angelleye-or-message{
+    text-align: center;
+    max-width: 755px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0px;
+}
+.angelleye-or-message hr{
+    width: 100%;
+    max-width: 130px;
+    margin-bottom: 0px;
+    margin: 14px !important;
+}
 @media screen and (max-width: 480px){
     .wbp-form{
         padding: 20px;

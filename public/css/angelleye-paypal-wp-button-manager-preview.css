@@ -1,0 +1,24 @@
+.angelleye-or-message{
+    text-align: center;
+    max-width: 755px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0px;
+}
+.angelleye-or-message hr{
+    width: 100%;
+    max-width: 75px;
+    margin-bottom: 0px;
+    margin: 14px !important;
+}
+#card-field-submit-button {
+    width: 96%;
+    margin: 10px 0px 0px 6px;
+    border-radius: 5px;
+    /* border: inherit; */
+    cursor: pointer;
+    padding: 12px 1.41575em;
+    border: solid 1px #bbb;
+}

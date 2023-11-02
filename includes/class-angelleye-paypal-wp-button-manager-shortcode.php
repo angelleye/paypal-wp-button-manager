@@ -61,6 +61,13 @@ class Angelleye_Paypal_Wp_Button_Manager_Shortcode{
         
         $company_id = $button->get_company_id();
         $company = $wpdb->get_results( "SELECT ID, company_name FROM {$wpdb->prefix}angelleye_paypal_button_manager_companies WHERE ID = $company_id LIMIT 1" );
+
+        $hidden_method = $button->get_hide_funding_method();
+        if( !empty( $hidden_method ) ){
+            $hidden = '&disable-funding=' . implode(',', $hidden_method );
+        } else {
+            $hidden = '';
+        }
         
         wp_localize_script( $this->plugin_name . "-frontend-button", "btn_obj_".$button_id, array(
             'api_url' => get_site_url() . '/wp-json/angelleye-paypal-button-manager/create-order',
@@ -75,21 +82,25 @@ class Angelleye_Paypal_Wp_Button_Manager_Shortcode{
             'merchant_id' => $button->get_company_merchant_id(),
             'amount' => $button->get_total(),
             'type' => $button->get_button_type(),
+            'advanced_credit_card' => $button->is_eligible_product( 'PPCP_CUSTOM' ) && !in_array( 'card', $hidden_method ),
             'general_error' => __('Something went wrong on our end. We apologize for any inconvenience this may have caused. Please try again later.','angelleye-paypal-wp-button-manager')
         ));
-        
-        $hidden_method = $button->get_hide_funding_method();
-        if( !empty( $hidden_method ) ){
-            $hidden = '&disable-funding=' . implode(',', $hidden_method );
-        } else {
-            $hidden = '';
+
+        $paypal_src = 'https://www.paypal.com/sdk/js?';
+
+        if( $button->is_eligible_product( 'PPCP_CUSTOM' ) && !in_array( 'card', $hidden_method ) ){
+            $paypal_src .= 'components=buttons,card-fields';
         }
-        
+
         if( $button->is_company_test_mode() ){
-            wp_enqueue_script( $this->plugin_name . '-paypal-sdk', 'https://www.paypal.com/sdk/js?&client-id=' . ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_SANDBOX_PARTNER_CLIENT_ID . $hidden . '&enable-funding=venmo,paylater&merchant-id=' . $button->get_company_merchant_id() , array(), null);
+            $paypal_src .= "&client-id=" . ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_SANDBOX_PARTNER_CLIENT_ID;
         } else {
-            wp_enqueue_script( $this->plugin_name . '-paypal-sdk', 'https://www.paypal.com/sdk/js?&client-id=' . ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_LIVE_PARTNER_CLIENT_ID . $hidden . '&enable-funding=venmo,paylater&merchant-id=' . $button->get_company_merchant_id() , array(), null);
+            $paypal_src .= "&client-id=" . ANGELLEYE_PAYPAL_WP_BUTTON_MANAGER_LIVE_PARTNER_CLIENT_ID;
         }
+
+        $paypal_src .= $hidden . '&enable-funding=venmo,paylater&merchant-id=' . $button->get_company_merchant_id();
+
+        wp_enqueue_script( $this->plugin_name . '-paypal-sdk', $paypal_src, array(), null);
         
         wp_enqueue_script( $this->plugin_name . "-frontend-button");
         wp_enqueue_style( $this->plugin_name . "-frontend-button");

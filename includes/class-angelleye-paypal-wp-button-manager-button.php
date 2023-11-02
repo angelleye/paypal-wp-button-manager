@@ -371,13 +371,29 @@ class Angelleye_Paypal_Wp_Button_Manager_Button{
     }
 
     /**
-     * Returns hosted button id for donation
-     *
-     * @param string context context of function i.e. view or edit
-     *
-     * @return string
+     * Returns if the company is eligible for specific PayPal Product
+     * 
+     * @param string    product     name of product
+     * 
+     * @return boolean
      * */
-    public function get_button_environment( $context='view' ){
-        return $this->get_prop( 'wbp_button_environment', $context );
+    public function is_eligible_product( $product ){
+        $products = $this->get_eligible_products();
+        foreach( $products as $eligible_product ){
+            if( $product == $eligible_product['name'] && $eligible_product['vetting_status'] == 'SUBSCRIBED' ){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns all the eligible product of the PayPal company
+     * 
+     * @return array
+     * */
+    public function get_eligible_products(){
+        $this->maybe_set_company();
+        return maybe_unserialize( $this->data['paypal_company']['products'] );
     }
 }

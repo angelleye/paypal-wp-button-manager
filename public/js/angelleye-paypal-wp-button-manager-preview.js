@@ -28,6 +28,38 @@ function angelleyeRenderButton() {
     
     paypalButton = paypal.Buttons(buttonConfig);
     paypalButton.render('#wbp-paypal-button');
+
+    if(advanced_credit_card){
+        // Create the Card Fields Component and define callbacks
+        const cardField = paypal.CardFields({
+            createOrder: function () {},
+            onApprove: function () {}
+        });
+
+        // Render each field after checking for eligibility
+        if (cardField.isEligible()) {
+            const nameField = cardField.NameField();
+            nameField.render('#card-name-field-container');
+
+            const numberField = cardField.NumberField();
+            numberField.render('#card-number-field-container');
+
+            const cvvField = cardField.CVVField();
+            cvvField.render('#card-cvv-field-container');
+
+            const expiryField = cardField.ExpiryField();
+            expiryField.render('#card-expiry-field-container');
+
+            // Add click listener to submit button and call the submit function on the CardField component
+            document.getElementById("card-field-submit-button").addEventListener("click", () => {
+                cardField
+                .submit()
+                .then(() => {
+                    // submit successful
+                });
+            });
+        };
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function(event) { 

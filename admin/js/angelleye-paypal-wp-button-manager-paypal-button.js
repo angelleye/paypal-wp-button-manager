@@ -10,7 +10,12 @@ function angelleyeUpdateConfig(){
     });
     var hideFundingMethod = selectedValues.join(',');
 
-    iframeUrl = baseUrl + '?layout=' + jQuery("#wbp-button-layout").val() + '&color=' + jQuery("#wbp-button-color").val() + '&shape=' + jQuery("#wbp-button-shape").val() + '&size=' + jQuery("#wbp-button-size").val() + '&height=' + jQuery("#wbp-button-height").val() + '&label=' + jQuery("#wbp-button-label").val() + '&tagline=' + tagline + '&hide_funding=' + hideFundingMethod;
+    var left_background_color = jQuery('input[name="left_background_color"]').val();
+    left_background_color = left_background_color.replace('#','');
+    var left_foreground_color = jQuery('input[name="left_foreground_color"]').val();
+    left_foreground_color = left_foreground_color.replace('#','');
+
+    iframeUrl = baseUrl + '?layout=' + jQuery("#wbp-button-layout").val() + '&color=' + jQuery("#wbp-button-color").val() + '&shape=' + jQuery("#wbp-button-shape").val() + '&size=' + jQuery("#wbp-button-size").val() + '&height=' + jQuery("#wbp-button-height").val() + '&label=' + jQuery("#wbp-button-label").val() + '&tagline=' + tagline + '&hide_funding=' + hideFundingMethod + '&background_color=' + left_background_color + '&foreground_color=' + left_foreground_color;
 
     document.getElementById('wbp-paypal-iframe').src = iframeUrl;
 }
@@ -113,7 +118,10 @@ jQuery(function($){
     });
 
     $('.angelleye-color-picker').wpColorPicker({
-        change: previewData
+        change: function(){
+            previewData();
+            angelleyeUpdateConfig();
+        }
     });
 });
 

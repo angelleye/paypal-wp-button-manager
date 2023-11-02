@@ -35,4 +35,16 @@
 		</div><?php
 	}
 	?><div id="wbp-button-<?php echo $button_id; ?>" class="wbp-button" data-button_id="<?php echo $button_id; ?>"></div>
-</div>
+
+	<div id="paypal-button-container" class="paypal-button-container"></div><?php
+	if( $button->is_eligible_product( 'PPCP_CUSTOM' ) && !in_array( 'card', $hidden_method ) ){
+	    ?><div class="angelleye-or-message"><hr><?php _e('OR','angelleye-paypal-wp-button-manager'); ?><hr></div>
+	    <div id="checkout-form">
+	   		<div id="card-name-field-container"></div>
+	       	<div id="card-number-field-container"></div>
+	       	<div id="card-expiry-field-container"></div>
+	       	<div id="card-cvv-field-container"></div>
+	       	<button id="card-field-submit-button" type="button" style="<?php echo (!empty($button->right_background_color())) ? 'background: '.$button->right_background_color() : '' ?>; <?php echo (!empty($button->right_foreground_color())) ? 'color: '.$button->right_foreground_color() : ''; ?>"><?php _e('Place Order','angelleye-paypal-wp-button-manager'); ?></button>
+	    </div><?php
+	}
+?></div>
