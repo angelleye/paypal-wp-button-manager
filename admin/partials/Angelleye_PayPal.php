@@ -38,7 +38,6 @@
  * @package 		paypal-php-library
  * @author			Andrew Angell <service@angelleye.com>
  */
-#[\AllowDynamicProperties]
 class Angelleye_PayPal {
 
     var $APIUsername = '';
@@ -55,6 +54,12 @@ class Angelleye_PayPal {
     var $PrintHeaders = '';
     var $LogResults = '';
     var $LogPath = '';
+    var $NVPCredentials = '';
+    var $Countries = array();
+    var $States = array();
+    var $AVSCodes = array();
+    var $CVV2Codes = array();
+    var $CurrencyCodes = array();
 
     /**
      * Constructor

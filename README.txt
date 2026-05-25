@@ -117,7 +117,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * Security - Enables TLS peer verification on PayPal API requests (previously disabled).
 * Tweak - Migrates PayPal API requests from raw cURL to the WordPress HTTP API (`wp_remote_post`).
 * Tweak - Compatibility refresh: requires WordPress 6.2+ and PHP 7.4+; tested up to WordPress 7.0.
-* Fix - PHP 8.2 compatibility: silences dynamic property deprecation notices in the PayPal NVP wrapper class.
+* Fix - PHP 8.2 compatibility: explicitly declares previously-dynamic properties (`NVPCredentials`, `Countries`, `States`, `AVSCodes`, `CVV2Codes`, `CurrencyCodes`) on the PayPal NVP wrapper class to resolve dynamic-property deprecation notices.
 * Fix - Repairs broken translation loading (was passing a URL to `load_plugin_textdomain` and loading `.po` instead of `.mo`); textdomain now loads on `init` for WordPress 6.7+ translation timing rules.
 * Fix - Corrects a malformed `wp_enqueue_style` dependency argument that passed an integer where an array was expected.
 * Fix - Null-guards `get_current_screen()` in admin asset enqueue methods to avoid PHP 8 fatal when called outside a standard admin screen.
