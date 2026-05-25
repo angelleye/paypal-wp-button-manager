@@ -79,7 +79,7 @@ class Angelleye_PayPal {
         $this->APIMode = isset($DataArray['APIMode']) ? $DataArray['APIMode'] : 'Signature';
         $this->APIButtonSource = isset($DataArray['APIButtonSource']) && $DataArray['APIButtonSource'] !== ''
             ? $DataArray['APIButtonSource']
-            : 'WisetrTechnologyPPCP_SP';
+            : 'AngellEYELLC_SP_AwesomeMotive';
         $this->PathToCertKeyPEM = '/path/to/cert/pem.txt';
         $this->SSL = $_SERVER['SERVER_PORT'] == '443' ? true : false;
         $this->APISubject = isset($DataArray['APISubject']) ? $DataArray['APISubject'] : '';
