@@ -38,6 +38,7 @@
  * @package 		paypal-php-library
  * @author			Andrew Angell <service@angelleye.com>
  */
+#[\AllowDynamicProperties]
 class Angelleye_PayPal {
 
     var $APIUsername = '';
@@ -583,42 +584,47 @@ class Angelleye_PayPal {
     }
 
     /**
-     * Send the API request to PayPal using CURL.
+     * Send the API request to PayPal via the WordPress HTTP API.
      *
      * @access	public
      * @param	string	$Request		Raw API request string.
      * @param	string	$APIName		The name of the API which you are calling.
      * @param	string	$APIOperation	The method of the API which you are calling.
      * @param   string  $PrintHeaders   The option to print headers or not.
-     * @return	string	$Response		Returns the raw HTTP response from PayPal.
+     * @return	string	$Response		Returns the raw HTTP response body from PayPal.
      */
     function CURLRequest($Request = "", $APIName = "", $APIOperation = "", $PrintHeaders = false) {
-        $curl = curl_init();
-        // curl_setopt($curl, CURLOPT_HEADER,TRUE);
-        curl_setopt($curl, CURLOPT_VERBOSE, 1);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-        curl_setopt($curl, CURLOPT_URL, $this->EndPointURL);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $Request);
-
-        if ($this->APIMode == 'Certificate') {
-            curl_setopt($curl, CURLOPT_SSLCERT, $this->PathToCertKeyPEM);
+        $cert_filter = null;
+        if ($this->APIMode == 'Certificate' && !empty($this->PathToCertKeyPEM)) {
+            $cert_path = $this->PathToCertKeyPEM;
+            $cert_filter = function ($handle) use ($cert_path) {
+                curl_setopt($handle, CURLOPT_SSLCERT, $cert_path);
+            };
+            add_action('http_api_curl', $cert_filter, 10, 1);
         }
 
-        $Response = curl_exec($curl);
+        $response = wp_remote_post($this->EndPointURL, array(
+            'timeout'     => 30,
+            'redirection' => 0,
+            'sslverify'   => true,
+            'body'        => $Request,
+            'headers'     => array(
+                'Content-Type' => 'application/x-www-form-urlencoded',
+            ),
+        ));
 
-        /*
-         * If a cURL error occurs, output it for review.
-         */
-        if ($this->Sandbox) {
-            if (curl_error($curl)) {
-                echo curl_error($curl) . '<br /><br />';
+        if ($cert_filter !== null) {
+            remove_action('http_api_curl', $cert_filter, 10);
+        }
+
+        if (is_wp_error($response)) {
+            if ($this->Sandbox) {
+                echo esc_html($response->get_error_message()) . '<br /><br />';
             }
+            return '';
         }
 
-        curl_close($curl);
-        return $Response;
+        return wp_remote_retrieve_body($response);
     }
 
     /**

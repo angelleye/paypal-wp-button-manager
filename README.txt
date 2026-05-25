@@ -2,9 +2,10 @@
 Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SG9SQU2GBXJNA
 Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift certificates
-Requires at least: 3.8
-Tested up to: 5.3.2
-Stable tag: 2.0.2.3
+Requires at least: 6.2
+Tested up to: 7.0
+Requires PHP: 7.4
+Stable tag: 2.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -111,6 +112,12 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * Sandbox credentials can be obtained by viewing the sandbox account profile within your PayPal developer account, or by signing in with a sandbox account here:  https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
 
 == Changelog ==
+
+= 2.0.3 - 05.25.2026 =
+* Security - Enables TLS peer verification on PayPal API requests (previously disabled).
+* Tweak - Migrates PayPal API requests from raw cURL to the WordPress HTTP API (`wp_remote_post`).
+* Tweak - Compatibility refresh: requires WordPress 6.2+ and PHP 7.4+; tested up to WordPress 7.0.
+* Fix - PHP 8.2 compatibility: silences dynamic property deprecation notices in the PayPal NVP wrapper class.
 
 = 2.0.2.3 - 12.30.2019 =
 * Tweak - Adjustment to Updater plugin notice dismissible. ([PBM-38](https://github.com/angelleye/paypal-wp-button-manager/pull/120))
