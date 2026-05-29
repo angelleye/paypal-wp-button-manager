@@ -59,9 +59,27 @@ if (!function_exists('angelleye_queue_update')) {
 
 angelleye_queue_update(plugin_basename(__FILE__), '101', 'paypal-wp-button-manager');
 
-if (!defined('PAYPAL_FOR_WOOCOMMERCE_PUSH_NOTIFICATION_WEB_URL')) {
-    define('PAYPAL_FOR_WOOCOMMERCE_PUSH_NOTIFICATION_WEB_URL', 'https://www.angelleye.com/');
-}
+/**
+ * Shared AngellEYE push-notifications class. Self-contained — keep this file in
+ * sync with the copy in paypal-for-woocommerce; the class_exists guard inside
+ * ensures only one copy loads if multiple AngellEYE plugins are active.
+ */
+require_once plugin_dir_path(__FILE__) . 'includes/notifications/class-angelleye-push-notifications.php';
+add_action('plugins_loaded', function () {
+    if (!is_admin() || !class_exists('AngellEYE_Push_Notifications')) {
+        return;
+    }
+    (new AngellEYE_Push_Notifications(array(
+        'plugin_slug' => 'paypal-wp-button-manager',
+        'applies_to'  => function ($notification, $plugin_slug) {
+            if (empty($notification->ans_plugins) || !is_array($notification->ans_plugins)) {
+                // No targeting metadata — show to all AE plugins (legacy behavior).
+                return true;
+            }
+            return in_array($plugin_slug, $notification->ans_plugins, true);
+        },
+    )))->register();
+}, 25);
 
 /**
  * The code that runs during plugin activation.
