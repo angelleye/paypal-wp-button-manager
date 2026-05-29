@@ -114,7 +114,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 == Changelog ==
 
 = 2.0.4 - 05.29.2026 =
-* Tweak - Improved admin push-notification feature with the shared `AngellEYE_Push_Notifications` module.((#123)[https://github.com/angelleye/paypal-wp-button-manager/pull/123])
+* Tweak - Improved admin push-notification feature with the shared `AngellEYE_Push_Notifications` module.([#123](https://github.com/angelleye/paypal-wp-button-manager/pull/123))
 
 = 2.0.3 - 05.25.2026 =
 * Security - Enables TLS peer verification on PayPal API requests (previously disabled).
