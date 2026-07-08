@@ -5,7 +5,7 @@ Tags: paypal, payments, standard, subscriptions, buy now, shopping cart, gift ce
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -112,6 +112,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * Sandbox credentials can be obtained by viewing the sandbox account profile within your PayPal developer account, or by signing in with a sandbox account here:  https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true
 
 == Changelog ==
+
+= 2.0.5 - 07.08.2026 =
+* Fix - Resolved a fatal TypeError thrown when creating a new button, caused by the logger's destructor passing an open file resource to escapeshellarg() under PHP 8. ([#124](https://github.com/angelleye/paypal-wp-button-manager/pull/124))
 
 = 2.0.4 - 05.29.2026 =
 * Tweak - Improved admin push-notification feature with the shared `AngellEYE_Push_Notifications` module.([#123](https://github.com/angelleye/paypal-wp-button-manager/pull/123))
