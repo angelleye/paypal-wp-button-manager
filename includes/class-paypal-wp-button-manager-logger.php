@@ -35,7 +35,9 @@ class AngellEYE_PayPal_WP_Button_Manager_Logger {
      */
     public function __destruct() {
         foreach ($this->_handles as $handle) {
-            @fclose(escapeshellarg($handle));
+            if (is_resource($handle)) {
+                @fclose($handle);
+            }
         }
     }
 
